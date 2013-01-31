@@ -1,6 +1,5 @@
 package de.mediadesign.gd1011.dreamcatcher {
 
-
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
@@ -11,11 +10,13 @@ package de.mediadesign.gd1011.dreamcatcher {
 	import starling.events.Event;
 
 	[SWF(width="1280", height="800", frameRate="60", backgroundColor="#ffffff")]
-	public class Dreamcatcher extends Sprite {
+	public class Dreamcatcher extends Sprite
+    {
 		private var _starling:Starling;
 
 
-		public function Dreamcatcher() {
+		public function Dreamcatcher()
+        {
 			Starling.handleLostContext = true;
 
 
@@ -37,14 +38,16 @@ package de.mediadesign.gd1011.dreamcatcher {
 
 
 
-		private function init():void {
+		private function init():void
+        {
+            GameConstants.init();
 			_starling = new Starling(Game, stage);
 			_starling.showStats = true;
 			_starling.addEventListener(Event.ROOT_CREATED, startStarling);
-
 		}
 
-		private function startStarling(event:Event):void {
+		private function startStarling(event:Event):void
+        {
 			_starling.start();
 		}
 	}

@@ -3,7 +3,7 @@ package de.mediadesign.gd1011.dreamcatcher
     import flash.filesystem.File;
     import flash.filesystem.FileMode;
     import flash.filesystem.FileStream;
-
+	[SWF(width="1280", height="800", frameRate="60", backgroundColor="#ffffff")]
     public class GameConstants
     {
         /*
@@ -13,6 +13,7 @@ package de.mediadesign.gd1011.dreamcatcher
         private static var _testNumber:Number;
         private static var _testString:String;
         private static var _testBoolean:Boolean;
+	    private static var _player:String;
 
         /*
          Allows the usage of custom configs, but normally uses Config.json,
@@ -28,9 +29,10 @@ package de.mediadesign.gd1011.dreamcatcher
 
         private static function setConstants(data:Object):void
         {
-           if(data.testNumber) _testNumber = data.testNumber;
-           if(data.testString) _testString = data.testString;
-           if(data.testBoolean) _testBoolean = data.testBoolean;
+            if(data.testNumber) _testNumber = data.testNumber;
+            if(data.testString) _testString = data.testString;
+            if(data.testBoolean) _testBoolean = data.testBoolean;
+	        _player = "Player";
         }
 
         public static function get testNumber():Number
@@ -47,5 +49,10 @@ package de.mediadesign.gd1011.dreamcatcher
         {
             return _testBoolean;
         }
+
+	    public static function get playerName():String
+	    {
+		    return _player;
+	    }
     }
 }

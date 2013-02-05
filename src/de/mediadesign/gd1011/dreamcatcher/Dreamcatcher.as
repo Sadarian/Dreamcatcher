@@ -14,7 +14,6 @@ package de.mediadesign.gd1011.dreamcatcher {
     {
 		private var _starling:Starling;
 
-
 		public function Dreamcatcher()
         {
 			Starling.handleLostContext = true;
@@ -35,8 +34,6 @@ package de.mediadesign.gd1011.dreamcatcher {
 					Math.max(stage.fullScreenWidth, stage.fullScreenHeight),
 					Math.min(stage.fullScreenWidth, stage.fullScreenHeight));
 		}
-
-
 
 		private function init():void
         {

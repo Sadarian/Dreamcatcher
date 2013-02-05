@@ -1,17 +1,16 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.IMovement;
-    import starling.display.Sprite;
 
-    public class Entity extends Sprite
+    public class Entity
     {
-        private var movementSystem:IMovement
 
-        public function Entity(x:Number = 0, y:Number = 0, movementSystem:IMovement = null)
+        private var movementSystem:IMovement;
+	    private var name:String;
+
+        public function Entity(name:String, movementSystem:IMovement = null)
         {
-            this.x = x;
-            this.y = y;
-            this.movementSystem = movementSystem;
+	        this.name = name;
         }
 
         public function update():void

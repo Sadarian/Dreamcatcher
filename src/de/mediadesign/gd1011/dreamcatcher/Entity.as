@@ -28,8 +28,8 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		private function init():void
 		{
-			_moviClip.x = _position.x;
-			_moviClip.y = _position.y;
+			_moviClip.x = _position.x - _moviClip.width/2;
+			_moviClip.y = _position.y - _moviClip.height/2;
 		}
 
         public function move(deltaTime:Number):void
@@ -39,8 +39,8 @@ package de.mediadesign.gd1011.dreamcatcher
 
         public function render():void
         {
-	        _moviClip.x = _position.x;
-	        _moviClip.y = _position.y;
+	        _moviClip.x = _position.x - _moviClip.width/2;
+	        _moviClip.y = _position.y - _moviClip.height/2;
         }
 
 		public function shoot():void

@@ -1,20 +1,12 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
 
-<<<<<<< HEAD
-	import starling.display.Sprite;
-	import starling.events.Event;
-
-
-=======
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.MovementPlayer;
-    import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
     import starling.events.Touch;
     import starling.events.TouchEvent;
     import starling.events.TouchPhase;
->>>>>>> feature/Movement
 
 	public class Game extends Sprite
     {

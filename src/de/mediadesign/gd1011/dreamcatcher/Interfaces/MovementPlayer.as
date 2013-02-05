@@ -28,8 +28,8 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces
                 tempPoint.copyFrom(touch.getLocation(Starling.current.stage));
                 var tempVelocity = tempPoint;
                 tempVelocity.subtract(position);
-                velocity.x = (tempPoint.x < position.x) ? Math.max(-maxSpeed, tempVelocity.x) : Math.max(maxSpeed, tempVelocity.x);
-                velocity.y = (tempPoint.y < position.y) ? Math.max(-maxSpeed, tempVelocity.y) : Math.max(maxSpeed, tempVelocity.y);
+                velocity.x = (tempPoint.x < position.x) ? Math.max(-maxSpeed, -tempVelocity.x) : Math.min(maxSpeed, tempVelocity.x);
+                velocity.y = (tempPoint.y < position.y) ? Math.max(-maxSpeed, -tempVelocity.y) : Math.min(maxSpeed, tempVelocity.y);
             }
             else
                 velocity.copyFrom(tempPoint);
@@ -37,35 +37,38 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces
 
         private function validateVelocity(position:Point):void
         {
-            var touchLocation:Point = touch.getLocation(Starling.current.stage);
+            if(touch != null)
+            {
+                var touchLocation:Point = touch.getLocation(Starling.current.stage);
 
-            //Validation for Y
-            if(velocity.y > 0 && position.y + velocity.y > touchLocation.y ||
-               velocity.y < 0 && position.y + velocity.y < touchLocation.y)
-                velocity.y = touchLocation.y - position.y;
+                //Validation for Y
+                if(velocity.y > 0 && position.y + velocity.y > touchLocation.y ||
+                        velocity.y < 0 && position.y + velocity.y < touchLocation.y)
+                    velocity.y = touchLocation.y - position.y;
 
-            if(position.y == touchLocation.y)
-                velocity.y = 0;
+                if(position.y == touchLocation.y)
+                    velocity.y = 0;
 
-            if(velocity.y > 0 && position.y + velocity.y > Starling.current.viewPort.height)
-                velocity.y = Starling.current.viewPort.height - position.y;
+                //Validation for X
+                if(velocity.x > 0 && position.x + velocity.x > touchLocation.x ||
+                        velocity.x < 0 && position.x + velocity.x < touchLocation.x)
+                    velocity.x = touchLocation.x - position.x;
 
-            if(velocity.y < 0 && position.y + velocity.y < 0)
-                velocity.y = 0 - position.y;
+                if(position.x == touchLocation.x)
+                    velocity.x = 0;
+            }
 
-            //Validation for X
-            if(velocity.x > 0 && position.x + velocity.x > touchLocation.x ||
-               velocity.x < 0 && position.x + velocity.x < touchLocation.x)
-                velocity.x = touchLocation.x - position.x;
+            if(velocity.y > 0 && position.y + velocity.y > Starling.current.viewPort.height - 128)
+                velocity.y = Starling.current.viewPort.height - 128 - position.y;
 
-            if(position.x == touchLocation.x)
-                velocity.x = 0;
+            if(velocity.y < 0 && position.y + velocity.y < 128)
+                velocity.y = 128 - position.y;
 
             if(velocity.x > 0 && position.x + velocity.x > Starling.current.viewPort.width/2)
                 velocity.x = Starling.current.viewPort.width/2 - position.y;
 
-            if(velocity.x < 0 && position.x + velocity.x < 0)
-                velocity.x = 0 - position.x;
+            if(velocity.x < 0 && position.x + velocity.x < 128)
+                velocity.x = 128 - position.x;
         }
 
         public function move(deltaTime:Number, position:Point):Point

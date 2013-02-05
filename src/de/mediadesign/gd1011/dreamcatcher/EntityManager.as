@@ -1,5 +1,6 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.MovementPlayer;
 
     public class EntityManager
     {
@@ -26,7 +27,7 @@ package de.mediadesign.gd1011.dreamcatcher
 
 	    private function creatPlayer():void
 	    {
-		    _entities.push(new Entity(GameConstants.playerName,GameConstants.playerStartPosition, AssetManager.playerWalkCycle()));
+		    _entities.push(new Entity(GameConstants.playerName,GameConstants.playerStartPosition, AssetManager.playerWalkCycle(), new MovementPlayer()));
 	    }
 
 	    public function getEntity(name:String):Entity

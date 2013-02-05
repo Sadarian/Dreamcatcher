@@ -1,10 +1,8 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
 
-	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
-	import starling.text.TextField;
 
 
 
@@ -20,18 +18,21 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		public function Game()
         {
-	        var background:Image = new Image(Assets.getTexture("Background"));
-	        addChild(background);
-
-            entityManager = new EntityManager();
+	        entityManager = new EntityManager();
 	        moveProcess = new MoveProcess();
+	        shootingProcess = new ShootingProcess();
 	        collision = new Collision();
 	        renderProcess = new RenderProcess();
+
+			var player:Entity = entityManager.getEntity(GameConstants.playerName);
+	        addChild(AssetManager.background());
+	        addChild(player.getMoviClip());
 
 	        startGame();
 		}
 
-		private function startGame():void {
+		private function startGame():void
+		{
 			time = new Date();
 			deltaTime = time.time;
 			addEventListener(Event.ENTER_FRAME, update);
@@ -42,8 +43,8 @@ package de.mediadesign.gd1011.dreamcatcher
 			time = new Date();
 			deltaTime = time.time - deltaTime;
 
-			//shootingProcess.update(entityManager, deltaTime);
 			moveProcess.update(entityManager, deltaTime);
+			shootingProcess.update(entityManager, deltaTime);
 			collision.update(entityManager);
 			renderProcess.update(entityManager);
 

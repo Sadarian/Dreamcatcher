@@ -15,9 +15,11 @@ package de.mediadesign.gd1011.dreamcatcher {
 	public class Assets
 	{
 //Font for the game
-		[Embed(source = "/../assets/Background.png")]
+		[Embed(source = "/../assets/Interface Dummy.png")]
 		public static const Background:Class;
 
+		[Embed(source = "/../assets/DC_dummyWalkcycleCharacter.png")]
+		public static const PlayerWalkCycle:Class;
 
 
 //Texture cache

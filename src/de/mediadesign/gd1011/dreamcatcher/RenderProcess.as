@@ -11,7 +11,12 @@ package de.mediadesign.gd1011.dreamcatcher {
 		}
 
 		public function update(entityManager:EntityManager):void {
-			
+			var entities:Vector.<Entity> = entityManager.entities
+
+			for each (var entity:Entity in entities)
+			{
+				entity.render();
+			}
 		}
 	}
 }

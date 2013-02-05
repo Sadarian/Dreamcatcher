@@ -13,6 +13,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		{
 		}
 
+<<<<<<< HEAD
 		public function update(entityManager:EntityManager, deltaTime:Number):void
 		{
 			var entities:Vector.<Entity> = entityManager.entities
@@ -21,6 +22,11 @@ package de.mediadesign.gd1011.dreamcatcher
 			{
 				entity.move(deltaTime);
 			}
+=======
+		public function update(entityManager:EntityManager, deltaTime:Number):void {
+			for each (var entity:Entity in entityManager.entites);
+                entity.move(deltaTime);
+>>>>>>> feature/Movement
 		}
 	}
 }

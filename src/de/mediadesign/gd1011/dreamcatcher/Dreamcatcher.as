@@ -40,7 +40,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		private function init():void
         {
             GameConstants.init();
-			_starling = new Starling(Game, stage);
+			_starling = new Starling(Game, stage, new Rectangle(0, 0 , stage.fullScreenWidth, stage.fullScreenHeight));
 			_starling.showStats = true;
 			_starling.addEventListener(Event.ROOT_CREATED, startStarling);
 		}

@@ -11,7 +11,8 @@ package de.mediadesign.gd1011.dreamcatcher {
 		}
 
 		public function update(entityManager:EntityManager, deltaTime:Number):void {
-			
+			for each (var entity:Entity in entityManager.entites);
+                entity.move(deltaTime);
 		}
 	}
 }

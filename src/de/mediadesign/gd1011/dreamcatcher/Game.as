@@ -1,12 +1,13 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
 
-	import starling.display.Image;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.MovementPlayer;
+    import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
-	import starling.text.TextField;
-
-
+    import starling.events.Touch;
+    import starling.events.TouchEvent;
+    import starling.events.TouchPhase;
 
 	public class Game extends Sprite
     {
@@ -35,6 +36,7 @@ package de.mediadesign.gd1011.dreamcatcher
 			time = new Date();
 			deltaTime = time.time;
 			addEventListener(Event.ENTER_FRAME, update);
+            addEventListener(TouchEvent.TOUCH, onTouch);
 		}
 
 		private function update(event:Event):void
@@ -49,5 +51,15 @@ package de.mediadesign.gd1011.dreamcatcher
 
 			deltaTime = time.time;
 		}
-	}
+
+        private function onTouch(e:TouchEvent):void
+        {
+            var touches:Vector.<Touch> = new Vector.<Touch>();
+            e.getTouches(stage, TouchPhase.BEGAN, touches);
+            e.getTouches(stage, TouchPhase.MOVED, touches);
+            e.getTouches(stage, TouchPhase.STATIONARY, touches);
+
+            MovementPlayer.setTouch(touches);
+        }
+    }
 }

@@ -4,6 +4,6 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces
 
     public interface IMovement
     {
-        function move(deltaTime:Number, position:Point):Point
+        function move(deltaTime:Number, position:Point, speed:Number):Point
     }
 }

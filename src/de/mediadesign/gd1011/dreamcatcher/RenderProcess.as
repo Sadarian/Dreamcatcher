@@ -1,22 +1,18 @@
-/**
- * Created with IntelliJ IDEA.
- * User: tofrey
- * Date: 04.02.13
- * Time: 13:11
- * To change this template use File | Settings | File Templates.
- */
-package de.mediadesign.gd1011.dreamcatcher {
-	public class RenderProcess {
-		public function RenderProcess() {
-		}
+package de.mediadesign.gd1011.dreamcatcher
+{
+	public class RenderProcess
+    {
+        private var manager:EntityManager;
 
-		public function update(entityManager:EntityManager):void {
-			var entities:Vector.<Entity> = entityManager.entities
+        public function RenderProcess(manager:EntityManager):void
+        {
+            this.manager = manager
+        }
 
-			for each (var entity:Entity in entities)
-			{
+        public function update():void
+        {
+            for each (var entity:Entity in manager.entities)
 				entity.render();
-			}
 		}
 	}
 }

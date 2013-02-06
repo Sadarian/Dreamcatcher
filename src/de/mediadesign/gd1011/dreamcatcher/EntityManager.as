@@ -1,15 +1,25 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.MovementBullet;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.MovementPlayer;
+
+    import flash.geom.Point;
 
     public class EntityManager
     {
+        private static var _singleton:EntityManager;
         private var _entities:Vector.<Entity>;
 
         public function EntityManager()
         {
+            _singleton = this;
             _entities = new Vector.<Entity>();
 	        creatPlayer();
+        }
+
+        public static function get singleton():EntityManager
+        {
+            return _singleton;
         }
 
         public function destroyAllEntities():void
@@ -25,16 +35,21 @@ package de.mediadesign.gd1011.dreamcatcher
 	    {
 		}
 
+        public function createBullet(type:String, position:Point, target:Point):void
+        {
+           // _entities.push(new Entity(type, position, AssetsManager.getAnimatedModel(type), new MovementBullet(target)))
+        }
+
 	    private function creatPlayer():void
 	    {
-		    _entities.push(new Entity(GameConstants.playerName,GameConstants.playerStartPosition, AssetManager.playerWalkCycle(), new MovementPlayer()));
+		    _entities.push(new Entity(GameConstants.getData(GameConstants.PLAYER_DATA), GameConstants.playerStartPosition));
 	    }
 
 	    public function getEntity(name:String):Entity
 	    {
 		    for each (var entity:Entity in _entities)
 		    {
-			    if (entity.getName() == GameConstants.playerName )
+			    if (entity.getName() == "Player" )
 			    {
 				    return entity
 			    }

@@ -3,62 +3,98 @@ package de.mediadesign.gd1011.dreamcatcher
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.IMovement;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.IWeapon;
 
-	import flash.geom.Point;
+    import flash.geom.Point;
 
 	import starling.display.MovieClip;
 
 	public class Entity
     {
+        //JSON-Config Data:
+        private var _name:String;
+        private var _health:Number;
+        private var _movementSystem:IMovement;
+        private var _movementSpeed:Number;
+        private var _weaponSystem:IWeapon;
+        private var _weaponSpeed:Number;
+        private var _bulletSpeed:Number;
+        private var _bulletDamage:Number;
+        private var _collisionMode:String;
+        private var _movieClip:MovieClip; //added via JSON but it isn't in the Config!
 
-        private var movementSystem:IMovement;
-		private var weaponSystem:IWeapon;
-	    private var _name:String;
-		private var _position:Point;
-		private var _moviClip:MovieClip;
+        //Additional Constructor Data:
+        private var _position:Point;
 
-        public function Entity(name:String, position:Point, movieClip:MovieClip, movementSystem:IMovement = null, weaponSystem:IWeapon = null)
+        //Initialization during construction
+        private var fireTime:Number;
+        private var target:Point;
+
+        public function Entity(jsonConfig:Array, position:Point)
         {
-	        this._name = name;
-	        this._position = position;
-	        this._moviClip = movieClip;
-	        this.movementSystem = movementSystem;
-	        this.weaponSystem = weaponSystem;
+	        _name = jsonConfig[0];
+            _health = jsonConfig[1];
+            _movementSystem = jsonConfig[2];
+            _movementSpeed = jsonConfig[3];
+            _weaponSystem = jsonConfig[4];
+            _weaponSpeed = jsonConfig[5];
+            _bulletSpeed = jsonConfig[6];
+            _bulletDamage = jsonConfig[7];
+            _collisionMode = jsonConfig[8];
+            _movieClip = jsonConfig[9];
+
+            _position = position;
+
+            fireTime = 0;
+            target = null;
+
 	        init();
         }
 
 		private function init():void
 		{
-			_moviClip.x = _position.x - _moviClip.width/2;
-			_moviClip.y = _position.y - _moviClip.height/2;
+			_movieClip.x = _position.x - _movieClip.width/2;
+			_movieClip.y = _position.y - _movieClip.height/2;
 		}
 
         public function move(deltaTime:Number):void
         {
-	        _position = movementSystem.move(deltaTime, _position);
+            if(_movementSystem)
+	            _position = _movementSystem.move(deltaTime, _position, _movementSpeed);
         }
 
         public function render():void
         {
-	        _moviClip.x = _position.x - _moviClip.width/2;
-	        _moviClip.y = _position.y - _moviClip.height/2;
+            if(_movementSystem)
+            {
+                _movieClip.x = _position.x - _movieClip.width/2;
+                _movieClip.y = _position.y - _movieClip.height/2;
+            }
         }
 
-		public function shoot():void
+		public function shoot(deltaTime:Number):void
 		{
-		}
+            if(_weaponSystem)
+            {
+                fireTime += deltaTime;
+                if (fireTime>=_weaponSpeed)
+                {
+                    fireTime -= _weaponSpeed;
+                    _weaponSystem.shoot(_position, (_name!="Player")?target:null);
+                }
+            }
+        }
 
 		public function switchMovement(movementSystem:IMovement):void {
-			this.movementSystem = movementSystem;
+			this._movementSystem = movementSystem;
 		}
 
 		public function switchWeapon(weaponSystem:IWeapon):void {
-			this.weaponSystem = weaponSystem;
+			this._weaponSystem = weaponSystem;
 		}
 
 		public function destroy():void
 		{
-			movementSystem = null;
-			weaponSystem = null;
+			_movementSystem = null;
+			_weaponSystem = null;
 		}
 
 	    public function getName():String
@@ -67,7 +103,17 @@ package de.mediadesign.gd1011.dreamcatcher
 	    }
 
 		public function getMoviClip():MovieClip {
-			return _moviClip;
+			return _movieClip;
 		}
-	}
+
+        public function get collisionMode():String
+        {
+            return _collisionMode;
+        }
+
+        public function setTargetPoint(point:Point):void
+        {
+            target = point;
+        }
+    }
 }

@@ -2,7 +2,9 @@ package de.mediadesign.gd1011.dreamcatcher
 {
 
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.MovementPlayer;
-	import starling.display.Sprite;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.WeaponPlayer;
+
+    import starling.display.Sprite;
 	import starling.events.Event;
     import starling.events.Touch;
     import starling.events.TouchEvent;
@@ -21,12 +23,12 @@ package de.mediadesign.gd1011.dreamcatcher
 		public function Game()
         {
 	        entityManager = new EntityManager();
-	        moveProcess = new MoveProcess();
-	        shootingProcess = new ShootingProcess();
+	        moveProcess = new MoveProcess(entityManager);
+	        shootingProcess = new ShootingProcess(entityManager);
 	        collision = new Collision();
-	        renderProcess = new RenderProcess();
+	        renderProcess = new RenderProcess(entityManager);
 
-			var player:Entity = entityManager.getEntity(GameConstants.playerName);
+			var player:Entity = entityManager.getEntity("player");
 	        addChild(AssetManager.background());
 	        addChild(player.getMoviClip());
 
@@ -46,10 +48,10 @@ package de.mediadesign.gd1011.dreamcatcher
 			time = new Date();
 			deltaTime = time.time - deltaTime;
 
-			moveProcess.update(entityManager, deltaTime);
-			shootingProcess.update(entityManager, deltaTime);
+			moveProcess.update(deltaTime);
+			shootingProcess.update(deltaTime);
 			collision.update(entityManager);
-			renderProcess.update(entityManager);
+			renderProcess.update();
 
 			deltaTime = time.time;
 		}
@@ -62,6 +64,7 @@ package de.mediadesign.gd1011.dreamcatcher
             e.getTouches(stage, TouchPhase.STATIONARY, touches);
 
             MovementPlayer.setTouch(touches);
+            WeaponPlayer.setTouch(touches);
         }
     }
 }

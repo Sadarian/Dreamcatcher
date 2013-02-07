@@ -8,6 +8,7 @@
 package de.mediadesign.gd1011.dreamcatcher.Interfaces
 {
 	import de.mediadesign.gd1011.dreamcatcher.Entity;
+	import de.mediadesign.gd1011.dreamcatcher.EntityManager;
 
 	public class IdenticalCollision implements ICollision
 	{

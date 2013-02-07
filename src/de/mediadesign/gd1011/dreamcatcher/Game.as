@@ -22,7 +22,7 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		public function Game()
         {
-	        entityManager = new EntityManager();
+	        entityManager = EntityManager.entityManager;
 	        moveProcess = new MoveProcess(entityManager);
 	        shootingProcess = new ShootingProcess(entityManager);
 	        collision = new Collision(entityManager);
@@ -30,10 +30,12 @@ package de.mediadesign.gd1011.dreamcatcher
 
             addChild(AssetManager.background());
 
-			var player:Entity = entityManager.getEntity("Player");
+			var player:Entity = entityManager.createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
 	        addChild(player.movieClip);
-	        //var boss:Entity = entityManager.getEntity(GameConstants.bossName);
-	        //addChild(boss.movieClip);
+	        entityManager.test()
+	        var boss:Entity = entityManager.createEntity(GameConstants.BOSS);
+	        addChild(boss.movieClip);
+	        entityManager.test();
 
 	        startGame();
 		}

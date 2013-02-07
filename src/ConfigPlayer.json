@@ -5,7 +5,7 @@
     "movementSpeed":5,
     "weaponSystem":"WeaponPlayer",
     "weaponSpeed":250,
-    "bulletSpeed":30,
-    "bulletDamage":8,
-    "collisionMode":"CollisionRectangle"
+    "collisionMode":"CollisionRectangle",
+    "collisionPoint":[0, 0],
+    "collisionValues":[50, 192]
 }

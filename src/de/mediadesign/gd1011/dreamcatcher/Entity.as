@@ -16,9 +16,9 @@ package de.mediadesign.gd1011.dreamcatcher
         private var _movementSpeed:Number;
         private var _weaponSystem:IWeapon;
         private var _weaponSpeed:Number;
-        private var _bulletSpeed:Number;
-        private var _bulletDamage:Number;
         private var _collisionMode:String;
+        private var _collisionPoint:Point;
+        private var _collisionValues:Array;
         private var _movieClip:MovieClip; //added via JSON but it isn't in the Config!
 
         //Additional Constructor Data:
@@ -36,9 +36,9 @@ package de.mediadesign.gd1011.dreamcatcher
             _movementSpeed = jsonConfig[3];
             _weaponSystem = jsonConfig[4];
             _weaponSpeed = jsonConfig[5];
-            _bulletSpeed = jsonConfig[6];
-            _bulletDamage = jsonConfig[7];
-            _collisionMode = jsonConfig[8];
+            _collisionMode = jsonConfig[6];
+            _collisionPoint = jsonConfig[7];
+            _collisionValues = jsonConfig[8];
             _movieClip = jsonConfig[9];
 
             _position = position;
@@ -97,7 +97,7 @@ package de.mediadesign.gd1011.dreamcatcher
 			_weaponSystem = null;
 		}
 
-	    public function getName():String
+	    public function get name():String
 	    {
 		    return _name;
 	    }

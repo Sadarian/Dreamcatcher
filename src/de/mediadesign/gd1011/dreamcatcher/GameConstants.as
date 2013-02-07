@@ -60,9 +60,9 @@ package de.mediadesign.gd1011.dreamcatcher
             if(data.movementSystem) dataArray[4] = new(getDefinitionByName("de.mediadesign.gd1011.dreamcatcher.Interfaces." + data.weaponSystem) as Class)();
                 else throw new ArgumentError(type + " has no weaponSystem declared!");
             if(data.weaponSpeed) dataArray[5] = (data.weaponSpeed as Number); else throw new ArgumentError(type + " has no weaponSpeed declared!");
-            if(data.bulletSpeed) dataArray[6] = (data.bulletSpeed as Number); else throw new ArgumentError(type + " has no bulletSpeed declared!");
-            if(data.bulletDamage) dataArray[7] = (data.bulletDamage as Number); else throw new ArgumentError(type + " has no bulletDamage declared!");
-            if(data.collisionMode) dataArray[8] = (data.collisionMode as String); else throw new ArgumentError(type + " has no collisionMode declared!");
+            if(data.collisionMode) dataArray[6] = (data.collisionMode as String); else throw new ArgumentError(type + " has no collisionMode declared!");
+            if(data.collisionPoint) dataArray[7] = new Point(data.collisionPoint[0], data.collisionPoint[1]); else throw new ArgumentError(type + " has no collisionPoint declared!");
+            if(data.collisionValues) dataArray[8] = (data.collisionValues as Array); else throw new ArgumentError(type + " has no collisionValues declared!");
             dataArray[9] = AssetManager.playerWalkCycle();
 
             stream.close();

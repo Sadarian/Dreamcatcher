@@ -49,7 +49,7 @@ package de.mediadesign.gd1011.dreamcatcher
 	    {
 		    for each (var entity:Entity in _entities)
 		    {
-			    if (entity.getName() == "Player" )
+			    if (entity.name == "Player" )
 			    {
 				    return entity
 			    }

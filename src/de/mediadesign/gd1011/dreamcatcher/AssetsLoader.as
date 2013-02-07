@@ -24,11 +24,12 @@ package de.mediadesign.gd1011.dreamcatcher {
 		[Embed(source="/../assets/audio/testSound.mp3")]
 		private static const TestSound:Class;
 
+//BitmMapFonts
+
 //Texture cache
 		private static var sContentScaleFactor:int = 1;
 		private static var sTextures:Dictionary = new Dictionary();
 		private static var sTextureAtlas:TextureAtlas;
-		private static var sBitmapFontsLoaded:Boolean;
 		private static var sSounds:Dictionary = new Dictionary();
 
 //This sets the single Frames of an Animation-Sprite and stores it in the atlas?
@@ -83,7 +84,6 @@ package de.mediadesign.gd1011.dreamcatcher {
 					sTextures[name] = Texture.fromAtfData(data as ByteArray, sContentScaleFactor);
 				else throw new ArgumentError("Texure not found: " + name);
 			}
-
 			return sTextures[name];
 		}
 
@@ -99,33 +99,23 @@ package de.mediadesign.gd1011.dreamcatcher {
 			return XML[name];
 		}
 
-		public static function getTextureAtlas():TextureAtlas
+		public static function getTextureAtlas(textureName:String,xmlName:String):TextureAtlas
 		{
 			if (sTextureAtlas == null)
 			{
-				var texture:Texture = getTexture("TargetTexture");
-				var xml:XML = XML(createTextureClass("TargetXml"));
+				var texture:Texture = getTexture(textureName);
+				var xml:XML = XML(createTextureClass(xmlName));
 				sTextureAtlas = new TextureAtlas(texture, xml);
 			}
-
 			return sTextureAtlas;
 		}
 
 //Prepares Fonts for Usage
-		public static function loadBitmapFonts():void
+		public static function loadBitmapFonts(fontTextureName:String,fontXmlName:String):void
 		{
-			if (!sBitmapFontsLoaded)
-			{
-				var texture:Texture = getTexture("DesyrelTexture");
-				var xml:XML = XML(createTextureClass("DesyrelXml"));
+				var texture:Texture = getTexture(fontTextureName);
+				var xml:XML = XML(createTextureClass(fontXmlName));
 				TextField.registerBitmapFont(new BitmapFont(texture, xml));
-				sBitmapFontsLoaded = true;
-			}
-		}
-
-		public static function loadBitmap():void
-		{
-
 		}
 
 		private static function createTextureClass(name:String):Object

@@ -1,22 +1,20 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
+	import de.mediadesign.gd1011.dreamcatcher.SoundHandler;
 
-	import flash.display3D.Context3DTextureFormat;
 	import flash.media.Sound;
-
-	import starling.core.Starling;
 
 	import starling.display.Image;
 	import starling.display.MovieClip;
-	import starling.display.MovieClip;
 	import starling.display.Sprite;
 	import starling.events.Event;
-	import starling.extensions.PDParticleSystem;
 	import starling.extensions.ParticleSystem;
+	import starling.text.BitmapFont;
 	import starling.text.TextField;
-	import starling.textures.Texture;
-	import starling.utils.AssetManager;
+	import starling.utils.Color;
 
+
+	;
 
 	public class Game extends Sprite
     {
@@ -27,46 +25,49 @@ package de.mediadesign.gd1011.dreamcatcher
 		private var renderProcess:RenderProcess;
 		private var time:Date;
 		private var deltaTime:Number;
-		private var mParticleSystems:Vector.<ParticleSystem>;
 		private var mParticleSystem:ParticleSystem;
 
-		private var Player1:MovieClip;
-		private var Player2:MovieClip;
+		private var Enemy:MovieClip;
 
 		public function Game()
         {
 			//Testing AssetsHandling
 			AssetsManager.start();
+			//Textures/Images
+			var background:Image = AssetsManager.getImage("Background");
+			addChild(background);
 
 			//Fonts
 			var testText:TextField = new TextField(600,600,"Lonely Boy is Dancing","TestFont",40,0xff0000,true)
 			testText.x = 0;
 			testText.y = 0;
-
-			//Sound
-			var testSound:Sound = AssetsManager.getSound("TestSound");
-			testSound.play(0,0);
-
-			//Textures
-			var background:Image = AssetsManager.getImage("Background");
-			 addChild(background);
 			addChild(testText);
 
+			//BitMapFonts
+			var bmpFontTF:TextField = new TextField(300, 150,"It is very easy to use Bitmap fonts,\nas well!", "testBitmapFont");
+			bmpFontTF.fontSize = 40;
+			bmpFontTF.color = Color.WHITE;
+			addChild(bmpFontTF);
+
+			//Sound
+			var testSound:Sound = AssetsLoader.getSound("TestSound");
+			SoundExtended.playSound(testSound,true, 30);
+
+
 			//Particles
-
-
-			mParticleSystem = AssetsManager.getParticle("testParticleConfig","testParticleTexture");
+			ParticleManager.start();
+			mParticleSystem = ParticleManager.getParticleSystem("Particle");
 			mParticleSystem.emitterX = 620;
 			mParticleSystem.emitterY = 340;
 
-			addChild(mParticleSystem);
 
+			addChild(mParticleSystem);
 			//Animation
-			Player2 = AssetsManager.getMovieClip("testAnimation", 6, 1, 6, 12);
-			Player2.x = 530;
-			Player2.y = 340;
-			addChild(Player2);
-			trace(Player2.isPlaying);
+			Enemy = AssetsManager.getMovieClip("Enemy");
+			Enemy.x = 430;
+			Enemy.y = 340;
+			addChild(Enemy)
+
 
 			//Filter
 
@@ -74,7 +75,6 @@ package de.mediadesign.gd1011.dreamcatcher
 	        moveProcess = new MoveProcess();
 	        collision = new Collision();
 	        renderProcess = new RenderProcess();
-
 	        startGame();
 		}
 

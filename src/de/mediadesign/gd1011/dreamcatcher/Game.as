@@ -21,14 +21,16 @@ package de.mediadesign.gd1011.dreamcatcher
 		public function Game()
         {
 	        entityManager = new EntityManager();
-	        moveProcess = new MoveProcess();
-	        shootingProcess = new ShootingProcess();
-	        collision = new Collision();
-	        renderProcess = new RenderProcess();
+	        moveProcess = new MoveProcess(entityManager);
+	        shootingProcess = new ShootingProcess(entityManager);
+	        collision = new Collision(entityManager);
+	        renderProcess = new RenderProcess(entityManager);
 
 			var player:Entity = entityManager.getEntity(GameConstants.playerName);
 	        addChild(AssetManager.background());
 	        addChild(player.getMoviClip());
+	        var boss:Entity = entityManager.getEntity(GameConstants.bossName);
+	        addChild(boss.getMoviClip());
 
 	        startGame();
 		}
@@ -46,10 +48,10 @@ package de.mediadesign.gd1011.dreamcatcher
 			time = new Date();
 			deltaTime = time.time - deltaTime;
 
-			moveProcess.update(entityManager, deltaTime);
-			shootingProcess.update(entityManager, deltaTime);
-			collision.update(entityManager);
-			renderProcess.update(entityManager);
+			moveProcess.update(deltaTime);
+			shootingProcess.update(deltaTime);
+			collision.update();
+			renderProcess.update();
 
 			deltaTime = time.time;
 		}
@@ -57,9 +59,9 @@ package de.mediadesign.gd1011.dreamcatcher
         private function onTouch(e:TouchEvent):void
         {
             var touches:Vector.<Touch> = new Vector.<Touch>();
-            e.getTouches(stage, TouchPhase.BEGAN, touches);
-            e.getTouches(stage, TouchPhase.MOVED, touches);
-            e.getTouches(stage, TouchPhase.STATIONARY, touches);
+	        e.getTouches(stage, TouchPhase.BEGAN, touches);
+	        e.getTouches(stage, TouchPhase.MOVED, touches);
+	        e.getTouches(stage, TouchPhase.STATIONARY, touches);
 
             MovementPlayer.setTouch(touches);
         }

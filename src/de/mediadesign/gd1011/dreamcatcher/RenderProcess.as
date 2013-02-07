@@ -6,11 +6,17 @@
  * To change this template use File | Settings | File Templates.
  */
 package de.mediadesign.gd1011.dreamcatcher {
-	public class RenderProcess {
-		public function RenderProcess() {
+	public class RenderProcess
+	{
+		private var entityManager:EntityManager;
+
+		public function RenderProcess(entityManager:EntityManager)
+		{
+			this.entityManager = entityManager;
 		}
 
-		public function update(entityManager:EntityManager):void {
+		public function update():void
+		{
 			var entities:Vector.<Entity> = entityManager.entities
 
 			for each (var entity:Entity in entities)

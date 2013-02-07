@@ -2,8 +2,9 @@ package de.mediadesign.gd1011.dreamcatcher
 {
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.IMovement;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.IWeapon;
+//    import de.mediadesign.gd1011.dreamcatcher.Interfaces.WeaponPlayer;
 
-	import flash.geom.Point;
+    import flash.geom.Point;
 
 	import starling.display.MovieClip;
 
@@ -14,38 +15,57 @@ package de.mediadesign.gd1011.dreamcatcher
 		private var weaponSystem:IWeapon;
 	    private var _name:String;
 		private var _position:Point;
-		private var _moviClip:MovieClip;
+		private var _movieClip:MovieClip;
+        private var fireRate:Number;
+        private var fireTime:Number;
+        private var _collisionMode:String;
 
-        public function Entity(name:String, position:Point, movieClip:MovieClip, movementSystem:IMovement = null, weaponSystem:IWeapon = null)
+
+        public function Entity(name:String, position:Point, movieClip:MovieClip, movementSystem:IMovement = null, weaponSystem:IWeapon = null, fireRate:Number = 0)
         {
 	        this._name = name;
 	        this._position = position;
-	        this._moviClip = movieClip;
+	        this._movieClip = movieClip;
 	        this.movementSystem = movementSystem;
 	        this.weaponSystem = weaponSystem;
+            this.fireRate = fireRate;
 	        init();
+
+            //Test for Player:
+            this.fireRate = 250;
+//            this.weaponSystem = new WeaponPlayer();
         }
 
 		private function init():void
 		{
-			_moviClip.x = _position.x - _moviClip.width/2;
-			_moviClip.y = _position.y - _moviClip.height/2;
+			_movieClip.x = _position.x - _movieClip.width/2;
+			_movieClip.y = _position.y - _movieClip.height/2;
 		}
 
         public function move(deltaTime:Number):void
         {
-	        _position = movementSystem.move(deltaTime, _position);
+            if(movementSystem)
+	            _position = movementSystem.move(deltaTime, _position);
         }
 
         public function render():void
         {
-	        _moviClip.x = _position.x - _moviClip.width/2;
-	        _moviClip.y = _position.y - _moviClip.height/2;
+	        _movieClip.x = _position.x - _movieClip.width/2;
+	        _movieClip.y = _position.y - _movieClip.height/2;
         }
 
-		public function shoot():void
+		public function shoot(deltaTime:Number):void
 		{
-		}
+//            if(weaponSystem)
+//            {
+//                fireTime += deltaTime;
+//                if (fireTime>=fireRate)
+//                {
+//                    fireTime -= fireRate;
+//                    weaponSystem.shoot(_position);
+//                }
+//            }
+        }
 
 		public function switchMovement(movementSystem:IMovement):void {
 			this.movementSystem = movementSystem;
@@ -67,7 +87,12 @@ package de.mediadesign.gd1011.dreamcatcher
 	    }
 
 		public function getMoviClip():MovieClip {
-			return _moviClip;
+			return _movieClip;
 		}
-	}
+
+        public function get collisionMode():String
+        {
+            return _collisionMode;
+        }
+    }
 }

@@ -9,7 +9,11 @@ package de.mediadesign.gd1011.dreamcatcher
 {
 	public class MoveProcess
 	{
-		public function update(entityManager:EntityManager, deltaTime:Number):void
+		private var entityManager:EntityManager;
+		public function MoveProcess(entityManager:EntityManager) {
+			this.entityManager = entityManager;
+		}
+		public function update(deltaTime:Number):void
         {
 			for each (var entity:Entity in entityManager.entities);
                 entity.move(deltaTime);

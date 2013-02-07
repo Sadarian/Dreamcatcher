@@ -9,11 +9,14 @@ package de.mediadesign.gd1011.dreamcatcher
 {
 	public class ShootingProcess
 	{
-		public function ShootingProcess()
+		private var entityManager:EntityManager;
+
+		public function ShootingProcess(entityManager:EntityManager)
 		{
+			this.entityManager = entityManager;
 		}
 
-		public function update(entityManager:EntityManager, deltaTime:Number):void
+		public function update(deltaTime:Number):void
 		{
 		}
 	}

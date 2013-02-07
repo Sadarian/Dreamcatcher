@@ -20,7 +20,7 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		public static function playerWalkCycle():MovieClip
 		{
-			var playerWalkCycle:MovieClip = new MovieClip(Assets.createAtlasAnim("PlayerWalkCycle", 6, 1, 6).getTextures(),12);
+			var playerWalkCycle:MovieClip = new MovieClip(Assets.createAtlasAnim("PlayerOnly", 4, 2, 6).getTextures(),12);
 			Starling.juggler.add(playerWalkCycle);
 			playerWalkCycle.play();
 			return playerWalkCycle;
@@ -30,6 +30,14 @@ package de.mediadesign.gd1011.dreamcatcher
 		{
 			var background:Image = new Image(Assets.getTexture("Background"));
 			return background;
+		}
+
+		public static function bossImage():MovieClip
+		{
+			var boss:MovieClip = new MovieClip(Assets.createAtlasAnim("Boss", 3, 2, 6).getTextures(),10);
+			Starling.juggler.add(boss);
+			boss.play();
+			return boss;
 		}
 	}
 }

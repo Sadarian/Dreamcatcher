@@ -26,7 +26,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces
             if(touch != null)
             {
                 tempPoint.copyFrom(touch.getLocation(Starling.current.stage));
-                var tempVelocity = tempPoint;
+                var tempVelocity:Point = tempPoint;
                 tempVelocity.subtract(position);
                 velocity.x = (tempPoint.x < position.x) ? Math.max(-maxSpeed, -tempVelocity.x) : Math.min(maxSpeed, tempVelocity.x);
                 velocity.y = (tempPoint.y < position.y) ? Math.max(-maxSpeed, -tempVelocity.y) : Math.min(maxSpeed, tempVelocity.y);

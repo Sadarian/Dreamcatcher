@@ -12,6 +12,7 @@ package de.mediadesign.gd1011.dreamcatcher
          They shouldn't be changed from anywhere else!
          */
 	    private static var _player:String;
+		private static var _bossName:String;
 	    private static var _playerStartPosition:Point;
 
         /*
@@ -30,6 +31,7 @@ package de.mediadesign.gd1011.dreamcatcher
         {
             if(data.playerStartXPosition && data.playerStartYPosition) _playerStartPosition = new Point(data.playerStartXPosition, data.playerStartYPosition);
 	        _player = "Player";
+	        _bossName = "Boss";
         }
 
 	    public static function get playerName():String
@@ -39,6 +41,10 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		public static function get playerStartPosition():Point {
 			return _playerStartPosition;
+		}
+
+		public static function get bossName():String {
+			return _bossName;
 		}
 	}
 }

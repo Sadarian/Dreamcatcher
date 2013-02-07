@@ -1,8 +1,10 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
-    import de.mediadesign.gd1011.dreamcatcher.Interfaces.MovementPlayer;
+	import de.mediadesign.gd1011.dreamcatcher.Interfaces.MovementPlayer;
 
-    public class EntityManager
+	import flash.geom.Point;
+
+	public class EntityManager
     {
         private var _entities:Vector.<Entity>;
 
@@ -10,6 +12,7 @@ package de.mediadesign.gd1011.dreamcatcher
         {
             _entities = new Vector.<Entity>();
 	        creatPlayer();
+	        creatEntities();
         }
 
         public function destroyAllEntities():void
@@ -23,6 +26,7 @@ package de.mediadesign.gd1011.dreamcatcher
 
 	    private function creatEntities():void
 	    {
+		    _entities.push(new Entity(GameConstants.bossName, new Point(500, 400), AssetManager.bossImage()));
 		}
 
 	    private function creatPlayer():void
@@ -34,7 +38,7 @@ package de.mediadesign.gd1011.dreamcatcher
 	    {
 		    for each (var entity:Entity in _entities)
 		    {
-			    if (entity.getName() == GameConstants.playerName )
+			    if (entity.getName() == name)
 			    {
 				    return entity
 			    }

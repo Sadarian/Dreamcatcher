@@ -17,6 +17,11 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces
                     WeaponPlayer.touch = touch;
         }
 
+        public function set speed(value:Number):void
+        {
+
+        }
+
         public function shoot(position:Point, target:Object):void
         {
 

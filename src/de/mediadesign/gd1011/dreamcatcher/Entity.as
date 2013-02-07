@@ -11,9 +11,7 @@ package de.mediadesign.gd1011.dreamcatcher
         private var _name:String;
         private var _health:Number;
         private var _movementSystem:IMovement;
-        private var _movementSpeed:Number;
         private var _weaponSystem:IWeapon;
-        private var _weaponSpeed:Number;
         private var _collisionMode:String;
         private var _collisionPoint:Point;
         private var _collisionValues:Array;
@@ -22,27 +20,26 @@ package de.mediadesign.gd1011.dreamcatcher
        //Additional Constructor Data:
         private var _position:Point;
 
-        //Initialization during construction
-        private var fireTime:Number;
-        private var target:Point;
-
         public function Entity(jsonConfig:Array, position:Point)
         {
 	        _name = jsonConfig[0];
             _health = jsonConfig[1];
+
             _movementSystem = jsonConfig[2];
-            _movementSpeed = jsonConfig[3];
+            if(_movementSystem)
+                _movementSystem.speed = jsonConfig[3];
+
             _weaponSystem = jsonConfig[4];
-            _weaponSpeed = jsonConfig[5];
+            if(_weaponSystem)
+                _weaponSystem.speed = jsonConfig[5];
+
             _collisionMode = jsonConfig[6];
             _collisionPoint = jsonConfig[7];
             _collisionValues = jsonConfig[8];
+
             _movieClip = jsonConfig[9];
 
             _position = position;
-
-            fireTime = 0;
-            target = null;
 
 	        init();
         }
@@ -56,7 +53,7 @@ package de.mediadesign.gd1011.dreamcatcher
         public function move(deltaTime:Number):void
         {
             if(_movementSystem)
-	            _position = _movementSystem.move(deltaTime, _position, _movementSpeed);
+	            _position = _movementSystem.move(deltaTime, _position);
         }
 
         public function render():void
@@ -71,14 +68,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		public function shoot(deltaTime:Number):void
 		{
             if(_weaponSystem)
-            {
-                fireTime += deltaTime;
-                if (fireTime>=_weaponSpeed)
-                {
-                    fireTime -= _weaponSpeed;
-                    _weaponSystem.shoot(_position, (_name!="Player")?target:null);
-                }
-            }
+                _weaponSystem.shoot(_position, null);
         }
 
 		public function switchMovement(movementSystem:IMovement):void {
@@ -108,11 +98,6 @@ package de.mediadesign.gd1011.dreamcatcher
         public function get collisionMode():String
         {
             return _collisionMode;
-        }
-
-        public function setTargetPoint(point:Point):void
-        {
-            target = point;
         }
     }
 }

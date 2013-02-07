@@ -15,6 +15,8 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces
         private static var touch:Touch = null;
         private var velocity:Point = new Point();
 
+        private var _speed:Number;
+
         public static function setTouch(touchList:Vector.<Touch>):void
         {
             MovementPlayer.touch = null;
@@ -23,7 +25,12 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces
                     MovementPlayer.touch = touch;
         }
 
-        private function calculateVelocity(position:Point, speed:Number):void
+        public function set speed(value:Number):void
+        {
+            _speed = value;
+        }
+
+        private function calculateVelocity(position:Point):void
         {
             var tempPoint:Point = new Point();
             if(touch != null)
@@ -31,8 +38,8 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces
                 tempPoint.copyFrom(touch.getLocation(Starling.current.stage));
                 var tempVelocity:Point = tempPoint;
                 tempVelocity.subtract(position);
-                velocity.x = (tempPoint.x < position.x) ? Math.max(-speed, -tempVelocity.x) : Math.min(speed, tempVelocity.x);
-                velocity.y = (tempPoint.y < position.y) ? Math.max(-speed, -tempVelocity.y) : Math.min(speed, tempVelocity.y);
+                velocity.x = (tempPoint.x < position.x) ? Math.max(-_speed, -tempVelocity.x) : Math.min(_speed, tempVelocity.x);
+                velocity.y = (tempPoint.y < position.y) ? Math.max(-_speed, -tempVelocity.y) : Math.min(_speed, tempVelocity.y);
             }
             else
                 velocity.copyFrom(tempPoint);
@@ -74,9 +81,9 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces
                 velocity.x = BORDER.left - position.x;
         }
 
-        public function move(deltaTime:Number, position:Point, speed:Number):Point
+        public function move(deltaTime:Number, position:Point):Point
         {
-            calculateVelocity(position, speed);
+            calculateVelocity(position);
             validateVelocity(position);
             return (position.add(velocity));
         }

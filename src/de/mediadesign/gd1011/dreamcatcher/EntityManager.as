@@ -27,7 +27,7 @@ package de.mediadesign.gd1011.dreamcatcher
 
 	    private function createPlayer():void
 	    {
-		    _entities.push(new Entity(GameConstants.getData(GameConstants.PLAYER_DATA), GameConstants.playerStartPosition));
+		    _entities.push(new Entity(GameConstants.getData(GameConstants.PLAYER), GameConstants.playerStartPosition));
 	    }
 
 	    public function getEntity(name:String):Entity

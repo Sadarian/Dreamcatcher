@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * Created with IntelliJ IDEA.
  * User: tofrey
@@ -18,11 +19,23 @@ package de.mediadesign.gd1011.dreamcatcher {
 		public function update():void
 		{
 			var entities:Vector.<Entity> = entityManager.entities
+=======
+package de.mediadesign.gd1011.dreamcatcher
+{
+	public class RenderProcess
+    {
+        private var manager:EntityManager;
 
-			for each (var entity:Entity in entities)
-			{
+        public function RenderProcess(manager:EntityManager):void
+        {
+            this.manager = manager
+        }
+>>>>>>> feature/shooting
+
+        public function update():void
+        {
+            for each (var entity:Entity in manager.entities)
 				entity.render();
-			}
 		}
 	}
 }

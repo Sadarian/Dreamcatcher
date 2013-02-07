@@ -1,0 +1,11 @@
+{
+    "name":"Player",
+    "health":100,
+    "movementSystem":"MovementPlayer",
+    "movementSpeed":5,
+    "weaponSystem":"WeaponPlayer",
+    "weaponSpeed":250,
+    "collisionMode":"CollisionRectangle",
+    "collisionPoint":[0, 0],
+    "collisionValues":[50, 192]
+}

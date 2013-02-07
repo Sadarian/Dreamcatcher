@@ -1,4 +1,4 @@
 {
-    "playerStartXPosition":100,
-    "playerStartYPosition":400
+    "playerMovementBorder":[128, 128, 544, 512],
+    "playerStartPosition":[100, 400]
 }

@@ -17,7 +17,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces
 
         }
 
-        public function move(deltaTime:Number, position:Point):Point
+        public function move(deltaTime:Number, position:Point, speed:Number):Point
         {
             return (position.add(velocity));
         }

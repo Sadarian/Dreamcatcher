@@ -15,24 +15,9 @@ package de.mediadesign.gd1011.dreamcatcher
 
         public static const PLAYER_DATA:String = "ConfigPlayer.json";
 
-        /*
-         All variables are private, with an public getter.
-         They shouldn't be changed from anywhere else!
-         */
-<<<<<<< HEAD
-	    private static var _player:String;
-		private static var _bossName:String;
-	    private static var _playerStartPosition:Point;
-=======
-
 	    private static var _playerMovementBorder:Rectangle;
         private static var _playerStartPosition:Point;
->>>>>>> feature/shooting
 
-        /*
-         Allows the usage of custom configs, but normally uses Config.json,
-         also it will only overwrite data of the config which exists!
-         */
         public static function init(path:String = "Config.json"):void
         {
             var stream:FileStream = new FileStream();
@@ -43,11 +28,6 @@ package de.mediadesign.gd1011.dreamcatcher
 
         private static function setConstants(data:Object):void
         {
-<<<<<<< HEAD
-            if(data.playerStartXPosition && data.playerStartYPosition) _playerStartPosition = new Point(data.playerStartXPosition, data.playerStartYPosition);
-	        _player = "Player";
-	        _bossName = "Boss";
-=======
             if(data.playerMovementBorder) _playerMovementBorder = new Rectangle(data.playerMovementBorder[0],
                                                                                 data.playerMovementBorder[1],
                                                                                 data.playerMovementBorder[2],
@@ -78,7 +58,6 @@ package de.mediadesign.gd1011.dreamcatcher
 
             stream.close();
             return dataArray;
->>>>>>> feature/shooting
         }
 
         public static function get playerMovementBorder():Rectangle
@@ -86,20 +65,9 @@ package de.mediadesign.gd1011.dreamcatcher
             return _playerMovementBorder;
         }
 
-<<<<<<< HEAD
-		public static function get playerStartPosition():Point {
-			return _playerStartPosition;
-		}
-
-		public static function get bossName():String {
-			return _bossName;
-		}
-	}
-=======
         public static function get playerStartPosition():Point
         {
             return _playerStartPosition;
         }
     }
->>>>>>> feature/shooting
 }

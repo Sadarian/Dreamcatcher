@@ -2,10 +2,7 @@ package de.mediadesign.gd1011.dreamcatcher
 {
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.IMovement;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.IWeapon;
-//    import de.mediadesign.gd1011.dreamcatcher.Interfaces.WeaponPlayer;
-
     import flash.geom.Point;
-
 	import starling.display.MovieClip;
 
 	public class Entity
@@ -22,27 +19,7 @@ package de.mediadesign.gd1011.dreamcatcher
         private var _collisionValues:Array;
         private var _movieClip:MovieClip; //added via JSON but it isn't in the Config!
 
-<<<<<<< HEAD
-        private var movementSystem:IMovement;
-		private var weaponSystem:IWeapon;
-	    private var _name:String;
-		private var _position:Point;
-		private var _movieClip:MovieClip;
-        private var fireRate:Number;
-        private var fireTime:Number;
-        private var _collisionMode:String;
-
-
-        public function Entity(name:String, position:Point, movieClip:MovieClip, movementSystem:IMovement = null, weaponSystem:IWeapon = null, fireRate:Number = 0)
-        {
-	        this._name = name;
-	        this._position = position;
-	        this._movieClip = movieClip;
-	        this.movementSystem = movementSystem;
-	        this.weaponSystem = weaponSystem;
-            this.fireRate = fireRate;
-=======
-        //Additional Constructor Data:
+       //Additional Constructor Data:
         private var _position:Point;
 
         //Initialization during construction
@@ -67,12 +44,7 @@ package de.mediadesign.gd1011.dreamcatcher
             fireTime = 0;
             target = null;
 
->>>>>>> feature/shooting
 	        init();
-
-            //Test for Player:
-            this.fireRate = 250;
-//            this.weaponSystem = new WeaponPlayer();
         }
 
 		private function init():void
@@ -83,42 +55,21 @@ package de.mediadesign.gd1011.dreamcatcher
 
         public function move(deltaTime:Number):void
         {
-<<<<<<< HEAD
-            if(movementSystem)
-	            _position = movementSystem.move(deltaTime, _position);
-=======
             if(_movementSystem)
 	            _position = _movementSystem.move(deltaTime, _position, _movementSpeed);
->>>>>>> feature/shooting
         }
 
         public function render():void
         {
-<<<<<<< HEAD
-	        _movieClip.x = _position.x - _movieClip.width/2;
-	        _movieClip.y = _position.y - _movieClip.height/2;
-=======
             if(_movementSystem)
             {
                 _movieClip.x = _position.x - _movieClip.width/2;
                 _movieClip.y = _position.y - _movieClip.height/2;
             }
->>>>>>> feature/shooting
         }
 
 		public function shoot(deltaTime:Number):void
 		{
-<<<<<<< HEAD
-//            if(weaponSystem)
-//            {
-//                fireTime += deltaTime;
-//                if (fireTime>=fireRate)
-//                {
-//                    fireTime -= fireRate;
-//                    weaponSystem.shoot(_position);
-//                }
-//            }
-=======
             if(_weaponSystem)
             {
                 fireTime += deltaTime;
@@ -128,7 +79,6 @@ package de.mediadesign.gd1011.dreamcatcher
                     _weaponSystem.shoot(_position, (_name!="Player")?target:null);
                 }
             }
->>>>>>> feature/shooting
         }
 
 		public function switchMovement(movementSystem:IMovement):void {
@@ -150,7 +100,8 @@ package de.mediadesign.gd1011.dreamcatcher
 		    return _name;
 	    }
 
-		public function getMoviClip():MovieClip {
+		public function get movieClip():MovieClip
+        {
 			return _movieClip;
 		}
 
@@ -158,13 +109,10 @@ package de.mediadesign.gd1011.dreamcatcher
         {
             return _collisionMode;
         }
-<<<<<<< HEAD
-=======
 
         public function setTargetPoint(point:Point):void
         {
             target = point;
         }
->>>>>>> feature/shooting
     }
 }

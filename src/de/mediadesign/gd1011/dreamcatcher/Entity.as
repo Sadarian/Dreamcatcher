@@ -28,7 +28,7 @@ package de.mediadesign.gd1011.dreamcatcher
 	        init();
         }
 
-		private function setData(jsonConfig:Array, position:Point):void {
+		public function setData(jsonConfig:Array, position:Point):void {
 			_name = jsonConfig[0];
 			_health = jsonConfig[1];
 

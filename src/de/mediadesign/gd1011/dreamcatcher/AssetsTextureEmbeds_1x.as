@@ -21,6 +21,12 @@ package de.mediadesign.gd1011.dreamcatcher {
 		[Embed(source = "/../assets/textures/DC_sprite_Sheet_Boss_walk_small.png")]
 		public static const Boss:Class;
 
+		[Embed(source = "/../assets/textures/Stage.png")]
+		public static const Stage:Class;
+
+		[Embed(source = "/../assets/textures/StageBushFront.png")]
+		public static const StageFront:Class;
+
 		// Particle Configurations
 		[Embed(source="/../assets/particles/testParticle.pex", mimeType="application/octet-stream")]
 		public static const testParticleConfig:Class;

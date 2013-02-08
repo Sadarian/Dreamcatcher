@@ -15,6 +15,12 @@ package de.mediadesign.gd1011.dreamcatcher {
 		[Embed(source = "/../assets/textures/DC_dummyWalkcycleCharacter.png")]
 		public static const testAnimation:Class;
 
+		[Embed(source = "/../assets/textures/StageBushFront.png")]
+		public static const StageFront:Class;
+
+		[Embed(source = "/../assets/textures/Stage.png")]
+		public static const Stage:Class;
+
 		// Particle Configurations
 		[Embed(source="/../assets/particles/testParticle.pex", mimeType="application/octet-stream")]
 		public static const testParticleConfig:Class;

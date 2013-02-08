@@ -13,6 +13,8 @@ package de.mediadesign.gd1011.dreamcatcher
         public static const COLLISION_CIRCLE:String = "CollisionCircle";
 
 		public static const BACKGROUND:String = "Background";
+		public static const GAME_STAGE:String ="Stage";
+		public static const GAME_STAGE_FRONT:String ="StageFront";
 
 		public static const ENEMY:String = "Enemy";
 		public static const ENEMY_ANIM_CONFIG:Vector.<int> = new <int>[4,2,7,8];

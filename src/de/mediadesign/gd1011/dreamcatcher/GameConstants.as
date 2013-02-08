@@ -3,22 +3,25 @@ package de.mediadesign.gd1011.dreamcatcher
     import flash.filesystem.File;
     import flash.filesystem.FileMode;
     import flash.filesystem.FileStream;
-	[SWF(width="1280", height="800", frameRate="60", backgroundColor="#ffffff")]
+    import flash.geom.Point;
+    import flash.geom.Rectangle;
+    import flash.utils.getDefinitionByName;
+
     public class GameConstants
     {
-        /*
-         All variables are private, with an public getter.
-         They shouldn't be changed from anywhere else!
-         */
-        private static var _testNumber:Number;
-        private static var _testString:String;
-        private static var _testBoolean:Boolean;
-	    private static var _player:String;
+        public static const COLLISION_RECTANGLE:String = "CollisionRectangle";
+        public static const COLLISION_CIRCLE:String = "CollisionCircle";
 
-        /*
-         Allows the usage of custom configs, but normally uses Config.json,
-         also it will only overwrite data of the config which exists!
-         */
+        public static const PLAYER:String = "Player";
+        public static const BULLET_PLAYER:String = "PlayerBullet";
+        public static const ENEMY:String = "Enemy";
+        public static const BULLET_ENEMY:String = "EnemyBullet";
+        public static const VICTIM:String = "Victim";
+        public static const BOSS:String = "Boss";
+
+	    private static var _playerMovementBorder:Rectangle;
+        private static var _playerStartPosition:Point;
+
         public static function init(path:String = "Config.json"):void
         {
             var stream:FileStream = new FileStream();
@@ -29,30 +32,46 @@ package de.mediadesign.gd1011.dreamcatcher
 
         private static function setConstants(data:Object):void
         {
-            if(data.testNumber) _testNumber = data.testNumber;
-            if(data.testString) _testString = data.testString;
-            if(data.testBoolean) _testBoolean = data.testBoolean;
-	        _player = "Player";
+            if(data.playerMovementBorder) _playerMovementBorder = new Rectangle(data.playerMovementBorder[0],
+                                                                                data.playerMovementBorder[1],
+                                                                                data.playerMovementBorder[2],
+                                                                                data.playerMovementBorder[3]);
+            if(data.playerStartPosition) _playerStartPosition = new Point(data.playerStartPosition[0],
+                                                                          data.playerStartPosition[1]);
         }
 
-        public static function get testNumber():Number
+        public static function getData(type:String):Array
         {
-            return _testNumber;
+            var dataArray:Array = [];
+            var stream:FileStream = new FileStream();
+            stream.open(File.applicationDirectory.resolvePath("Config"+type+".json"), FileMode.READ);
+            var data:Object = JSON.parse(stream.readUTFBytes(stream.bytesAvailable));
+
+            if(data.name) dataArray[0] = (data.name as String); else throw new ArgumentError(type + " has no name declared!");
+            if(data.health) dataArray[1] = (data.health as Number); else throw new ArgumentError(type + " has no health declared!");
+            if(data.movementSystem) dataArray[2] = (data.movementSystem == "null")?null:new(getDefinitionByName("de.mediadesign.gd1011.dreamcatcher.Interfaces." + data.movementSystem) as Class)();
+                else throw new ArgumentError(type + " has no movementSystem declared!");
+            if(data.movementSpeed) dataArray[3] = (data.movementSpeed as Number); else throw new ArgumentError(type + " has no movementSpeed declared!");
+            if(data.weaponSystem) dataArray[4] = (data.weaponSystem == "null")?null:new(getDefinitionByName("de.mediadesign.gd1011.dreamcatcher.Interfaces." + data.weaponSystem) as Class)();
+                else throw new ArgumentError(type + " has no weaponSystem declared!");
+            if(data.weaponSpeed) dataArray[5] = (data.weaponSpeed as Number); else throw new ArgumentError(type + " has no weaponSpeed declared!");
+            if(data.collisionMode) dataArray[6] = (data.collisionMode as String); else throw new ArgumentError(type + " has no collisionMode declared!");
+            if(data.collisionPoint) dataArray[7] = new Point(data.collisionPoint[0], data.collisionPoint[1]); else throw new ArgumentError(type + " has no collisionPoint declared!");
+            if(data.collisionValues) dataArray[8] = (data.collisionValues as Array); else throw new ArgumentError(type + " has no collisionValues declared!");
+            dataArray[9] = AssetManager.playerWalkCycle();
+
+            stream.close();
+            return dataArray;
         }
 
-        public static function get testString():String
+        public static function get playerMovementBorder():Rectangle
         {
-            return _testString;
+            return _playerMovementBorder;
         }
 
-        public static function get testBoolean():Boolean
+        public static function get playerStartPosition():Point
         {
-            return _testBoolean;
+            return _playerStartPosition;
         }
-
-	    public static function get playerName():String
-	    {
-		    return _player;
-	    }
     }
 }

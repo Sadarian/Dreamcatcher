@@ -1,4 +1,5 @@
-package de.mediadesign.gd1011.dreamcatcher {
+package de.mediadesign.gd1011.dreamcatcher
+{
 
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
@@ -28,7 +29,8 @@ package de.mediadesign.gd1011.dreamcatcher {
 			init();
 		}
 
-		private function handelScaling():void {
+		private function handelScaling():void
+		{
 			var guiSize:Rectangle = new Rectangle(0, 0, 1280, 800);
 			var deviceSize:Rectangle = new Rectangle(0, 0,
 					Math.max(stage.fullScreenWidth, stage.fullScreenHeight),
@@ -38,7 +40,7 @@ package de.mediadesign.gd1011.dreamcatcher {
 		private function init():void
         {
             GameConstants.init();
-			_starling = new Starling(Game, stage);
+			_starling = new Starling(Game, stage, new Rectangle(0, 0 , stage.fullScreenWidth, stage.fullScreenHeight));
 			_starling.showStats = true;
 			_starling.addEventListener(Event.ROOT_CREATED, startStarling);
 		}

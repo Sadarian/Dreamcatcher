@@ -1,12 +1,14 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
 
-	import starling.display.Image;
-	import starling.display.Sprite;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.MovementPlayer;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.WeaponPlayer;
+
+    import starling.display.Sprite;
 	import starling.events.Event;
-	import starling.text.TextField;
-
-
+    import starling.events.Touch;
+    import starling.events.TouchEvent;
+    import starling.events.TouchPhase;
 
 	public class Game extends Sprite
     {
@@ -20,21 +22,30 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		public function Game()
         {
-	        var background:Image = new Image(Assets.getTexture("Background"));
-	        addChild(background);
+	        entityManager = EntityManager.entityManager;
+	        moveProcess = new MoveProcess(entityManager);
+	        shootingProcess = new ShootingProcess(entityManager);
+	        collision = new Collision(entityManager);
+	        renderProcess = new RenderProcess(entityManager);
 
-            entityManager = new EntityManager();
-	        moveProcess = new MoveProcess();
-	        collision = new Collision();
-	        renderProcess = new RenderProcess();
+            addChild(AssetManager.background());
+
+			var player:Entity = entityManager.createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
+	        addChild(player.movieClip);
+	        entityManager.test()
+	        var boss:Entity = entityManager.createEntity(GameConstants.BOSS);
+	        addChild(boss.movieClip);
+	        entityManager.test();
 
 	        startGame();
 		}
 
-		private function startGame():void {
+		private function startGame():void
+		{
 			time = new Date();
 			deltaTime = time.time;
 			addEventListener(Event.ENTER_FRAME, update);
+            addEventListener(TouchEvent.TOUCH, onTouch);
 		}
 
 		private function update(event:Event):void
@@ -42,12 +53,23 @@ package de.mediadesign.gd1011.dreamcatcher
 			time = new Date();
 			deltaTime = time.time - deltaTime;
 
-			//shootingProcess.update(entityManager, deltaTime);
-			moveProcess.update(entityManager, deltaTime);
-			collision.update(entityManager);
-			renderProcess.update(entityManager);
+			moveProcess.update(deltaTime);
+			shootingProcess.update(deltaTime);
+			collision.update();
+			renderProcess.update();
 
 			deltaTime = time.time;
 		}
-	}
+
+        private function onTouch(e:TouchEvent):void
+        {
+            var touches:Vector.<Touch> = new Vector.<Touch>();
+	        e.getTouches(stage, TouchPhase.BEGAN, touches);
+	        e.getTouches(stage, TouchPhase.MOVED, touches);
+	        e.getTouches(stage, TouchPhase.STATIONARY, touches);
+
+            MovementPlayer.setTouch(touches);
+            WeaponPlayer.setTouch(touches);
+        }
+    }
 }

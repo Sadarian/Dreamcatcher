@@ -1,38 +1,95 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
+	import de.mediadesign.gd1011.dreamcatcher.Entity;
 
-	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
+	import flash.geom.Point;
 
-	import org.osmf.media.MediaPlayer;
-
-	import starling.display.Sprite;
-    import starling.events.Event;
-
-    public class EntityManager
+	public class EntityManager
     {
-        private var entities:Vector.<Entity>;
-	    private var player:Entity
+        private var _entities:Vector.<Entity>;
+		private var _unusedEntities:Vector.<Entity>;
+		private static var self:EntityManager = null;
 
         public function EntityManager()
         {
-            entities = new Vector.<Entity>();
-	        //creatEntities();
+            _entities = new Vector.<Entity>();
+	        _unusedEntities = new Vector.<Entity>();
+	        initGame(new Array(GameConstants.BOSS, GameConstants.PLAYER));
+	        test()
         }
 
-	    private function creatEntities():void {
-		    entities.concat(new Entity(GameConstants.playerName));
+		public function test():void {
+			for each (var o:Entity in _unusedEntities) {
+				trace(o.name);
+			}
+		}
+
+		public static function get entityManager():EntityManager
+		{
+			if(self == null)
+			{
+				self = new EntityManager();
+			}
+			return self;
+		}
+
+		private function initGame(initEntities:Array):void {
+			for each (var name:String in initEntities) {
+				_unusedEntities.push(new Entity(GameConstants.getData(name), new Point(0, 0)));
+			}
+		}
+
+	    public function createEntity(name:String, position:Point = null):Entity
+	    {
+		    if (position == null)
+		    {
+			    position = new Point(0, 0);
+		    }
+		    var tempEntity:Entity
+		    if(_unusedEntities.length != 0)
+		    {
+			    tempEntity = _unusedEntities.shift();
+			    tempEntity.setData(GameConstants.getData(name), position);
+			    _entities.push(tempEntity);
+			    return tempEntity;
+		    }
+		    else
+		    {
+			    tempEntity = new Entity(GameConstants.getData(name), position);
+				_entities.push(tempEntity);
+			    return tempEntity;
+		    }
+		}
+
+	    private function createPlayer():void
+	    {
+
 	    }
 
-        public function update():void
-        {
-            for (var i:int = 0;i<entities.length;i++)
-                entities[i].update()
-        }
+	    public function getEntity(name:String):Entity
+	    {
+		    for each (var entity:Entity in _entities)
+		    {
+			    if (entity.name == name)
+			    {
+				    return entity;
+			    }
+		    }
+		    return null;
+	    }
 
-        public function destroy():void
+		public function get entities():Vector.<Entity>
         {
-            for (var i:int=0;i<entities.length;i++)
-                entities[i].destroy();
-        }
-    }
+			return _entities;
+		}
+
+		public function destroyAllEntities():void
+		{
+			for each (var entity:Entity in _entities)
+			{
+				entity.destroy();
+				entity = null;
+			}
+		}
+	}
 }

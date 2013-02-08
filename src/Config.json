@@ -1,5 +1,4 @@
 {
-    "testNumber": 200,
-    "testString": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
-    "testBoolean": true
+    "playerMovementBorder":[128, 128, 544, 512],
+    "playerStartPosition":[100, 400]
 }

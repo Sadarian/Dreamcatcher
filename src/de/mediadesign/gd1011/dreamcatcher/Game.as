@@ -54,6 +54,7 @@ package de.mediadesign.gd1011.dreamcatcher
 			//Sound
 			SoundManager.createChannels();
 			var testSound:SoundChannel = SoundManager.getSoundChannel("TestSound");
+			SoundManager.addSound(testSound,SoundManager.TEST_SOUND);
 
 			//Particles
 			ParticleManager.start();

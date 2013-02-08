@@ -41,7 +41,7 @@ package de.mediadesign.gd1011.dreamcatcher
 						var givenSound:Sound = LoadedSoundList.shift() as Sound;
 						trace("Number of Sounds"+LoadedSoundList.length);
 						var newSoundChannel:SoundChannel = intoChannel(givenSound);
-						trace("TEST_SOUND SoundChannel was given from the ChanelList");
+						trace("TEST_SOUND SoundChannel was given from the LoadedSoundList");
 						return  newSoundChannel;
 					}
 					else
@@ -49,7 +49,7 @@ package de.mediadesign.gd1011.dreamcatcher
 						LoadedSoundList.push(AssetsManager.getSound(item));
 						var newSound:Sound = LoadedSoundList.shift();
 						var newSoundChannel:SoundChannel = intoChannel(newSound);
-						trace("TEST_SOUND was created");
+						trace("TEST_SOUND SoundChannel was created");
 						return newSoundChannel;
 					}
 				}
@@ -69,17 +69,22 @@ package de.mediadesign.gd1011.dreamcatcher
 			return newSoundChannel;
 		}
 
+		private static function intoSound(soundObject:SoundChannel):Sound
+		{
+			var newSound:Sound = soundObject.stop() as Sound;
+			return newSound;
+		}
+
 		public static  function  addSound(soundChannelObject:SoundChannel,item:String):void
 		{
-				switch (item)
+			switch (item)
+			{
+				case TEST_SOUND:
 				{
-					case TEST_SOUND:
-					{
-						LoadedSoundList.push(soundChannelObject);
-						trace("TEST_SOUND was added to ChannelList")
-					}
-
+					LoadedSoundList.push(intoSound(soundChannelObject));
+					trace("TEST_SOUND was added to LoadedSoundList")
 				}
+			}
         }
 	}
 }

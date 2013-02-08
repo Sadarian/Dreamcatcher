@@ -15,20 +15,20 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const BACKGROUND:String = "Background";
 
 		public static const ENEMY:String = "Enemy";
-		public static const ENEMY_ANIM_CONFIG:Vector.<int> = new <int>[4,2,7,8];
-		public static const ENEMY_TEXTURE_NAME:String = "testAnimation";
+		public static const ENEMY_ANIM_CONFIG:Vector.<int> = new <int>[4,2,8,10];
+		public static const ENEMY_TEXTURE_NAME:String = "EnemyWalk";
 
 		public static const BOSS:String = "Boss";
-		public static const BOSS_ANIM_CONFIG:Vector.<int> = new <int>[6,1,6,12];
-		public static const BOSS_TEXTURE_NAME:String = "testAnimation";
+		public static const BOSS_ANIM_CONFIG:Vector.<int> = new <int>[3,2,6,8];
+		public static const BOSS_TEXTURE_NAME:String = "BossWalk";
 
 		public static const PLAYER:String = "Player";
 		public static const PLAYER_ANIM_CONFIG:Vector.<int> = new <int>[4,2,6,12];
 		public static const PLAYER_TEXTURE_NAME:String = "PlayerOnly";
 
 		public static const VICTIM:String = "Victim";
-		public static const VICTIM_ANIM_CONFIG:Vector.<int> = new <int>[6,1,6,12];
-		public static const VICTIM_TEXTURE_NAME:String = "testAnimation";
+		public static const VICTIM_ANIM_CONFIG:Vector.<int> = new <int>[4,2,6,12];
+		public static const VICTIM_TEXTURE_NAME:String = "VictimWalk";
 
 		public static const BULLET:String = "Bullet";
 		public static const BULLET_ANIM_CONFIG:Vector.<int> = new <int>[6,1,6,12];
@@ -44,6 +44,8 @@ package de.mediadesign.gd1011.dreamcatcher
 	    private static var _playerMovementBorder:Rectangle;
         private static var _playerStartPosition:Point;
 	    private static var _bossStartPosition:Point;
+	    private static var _enemyStartPosition:Point;
+	    private static var _victimStartPosition:Point;
 
         public static function init(path:String = "Config.json"):void
         {
@@ -63,6 +65,10 @@ package de.mediadesign.gd1011.dreamcatcher
                                                                           data.playerStartPosition[1]);
 	        if(data.bossStartPosition) _bossStartPosition = new Point(data.bossStartPosition[0],
 			                                                          data.bossStartPosition[1]);
+	        if(data.enemyStartPosition) _enemyStartPosition = new Point(data.enemyStartPosition[0],
+			                                                            data.enemyStartPosition[1]);
+	        if(data.victimStartPosition) _victimStartPosition = new Point(data.victimStartPosition[0],
+			                                                              data.victimStartPosition[1]);
         }
 
         public static function getData(type:String):Array
@@ -83,7 +89,7 @@ package de.mediadesign.gd1011.dreamcatcher
             if(data.collisionMode) dataArray[6] = (data.collisionMode as String); else throw new ArgumentError(type + " has no collisionMode declared!");
             if(data.collisionPoint) dataArray[7] = new Point(data.collisionPoint[0], data.collisionPoint[1]); else throw new ArgumentError(type + " has no collisionPoint declared!");
 	        if(data.collisionValues) dataArray[8] = new Point(data.collisionValues[0], data.collisionValues[1]); else throw new ArgumentError(type + " has no collisionValues declared!");
-            dataArray[9] = AssetsManager.getMovieClip(PLAYER);
+            dataArray[9] = AssetsManager.getMovieClip(type);
 
             stream.close();
             return dataArray;
@@ -101,6 +107,14 @@ package de.mediadesign.gd1011.dreamcatcher
 
 	    public static function get bossStartPosition():Point {
 		    return _bossStartPosition;
+	    }
+
+	    public static function get enemyStartPosition():Point {
+		    return _enemyStartPosition;
+	    }
+
+	    public static function get victimStartPosition():Point {
+		    return _victimStartPosition;
 	    }
     }
 }

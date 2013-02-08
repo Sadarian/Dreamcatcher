@@ -32,10 +32,12 @@ package de.mediadesign.gd1011.dreamcatcher
 
 			var player:Entity = entityManager.createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
 	        addChild(player.movieClip);
-	        entityManager.test()
 	        var boss:Entity = entityManager.createEntity(GameConstants.BOSS, GameConstants.bossStartPosition);
 	        addChild(boss.movieClip);
-	        entityManager.test();
+	        var enemy:Entity = entityManager.createEntity(GameConstants.ENEMY, GameConstants.enemyStartPosition);
+	        addChild(enemy.movieClip);
+	        var victim:Entity = entityManager.createEntity(GameConstants.VICTIM, GameConstants.victimStartPosition);
+	        addChild(victim.movieClip);
 
 	        startGame();
 		}

@@ -12,14 +12,20 @@ package de.mediadesign.gd1011.dreamcatcher {
 		[Embed(source = "/../assets/textures/Background.png")]
 		public static const Background:Class;
 
-		[Embed(source = "/../assets/textures/DC_sprite_Sheet_Boss_attack_distant_small.png")]
-		public static const testAnimation:Class;
-
 		[Embed(source = "/../assets/textures/DC_spriteSheetCharacterSmaller.png")]
 		public static const PlayerOnly:Class;
 
+		[Embed(source = "/../assets/textures/DC_sprite_Sheet_Boss_attack_distant_small.png")]
+		public static const BossShooting:Class;
+
 		[Embed(source = "/../assets/textures/DC_sprite_Sheet_Boss_walk_small.png")]
-		public static const Boss:Class;
+		public static const BossWalk:Class;
+
+		[Embed(source = "/../assets/textures/DC_dummySpriteSheeWalkcycleEnemysmaller.png")]
+		public static const EnemyWalk:Class;
+
+		[Embed(source = "/../assets/textures/DC_spriteSheetVictimRunSmall.png")]
+		public static const VictimWalk:Class;
 
 		// Particle Configurations
 		[Embed(source="/../assets/particles/testParticle.pex", mimeType="application/octet-stream")]

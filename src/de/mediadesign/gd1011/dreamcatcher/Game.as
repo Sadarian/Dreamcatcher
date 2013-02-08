@@ -1,8 +1,9 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
-	import de.mediadesign.gd1011.dreamcatcher.SoundHandler;
+	import de.mediadesign.gd1011.dreamcatcher.SoundManager;
 
 	import flash.media.Sound;
+	import flash.media.SoundChannel;
 
 	import starling.display.Image;
 	import starling.display.MovieClip;
@@ -33,6 +34,7 @@ package de.mediadesign.gd1011.dreamcatcher
         {
 			//Testing AssetsHandling
 			AssetsManager.start();
+
 			//Textures/Images
 			var background:Image = AssetsManager.getImage("Background");
 			addChild(background);
@@ -50,9 +52,8 @@ package de.mediadesign.gd1011.dreamcatcher
 			addChild(bmpFontTF);
 
 			//Sound
-			var testSound:Sound = AssetsLoader.getSound("TestSound");
-			SoundExtended.playSound(testSound,true, 30);
-
+			SoundManager.createChannels();
+			var testSound:SoundChannel = SoundManager.getSoundChannel("TestSound");
 
 			//Particles
 			ParticleManager.start();

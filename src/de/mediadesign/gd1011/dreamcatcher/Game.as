@@ -28,7 +28,7 @@ package de.mediadesign.gd1011.dreamcatcher
 	        collision = new Collision(entityManager);
 	        renderProcess = new RenderProcess(entityManager);
 
-            addChild(AssetManager.background());
+            addChild(AssetsManager.getImage(GameConstants.BACKGROUND));
 
 			var player:Entity = entityManager.getEntity("Player");
 	        addChild(player.movieClip);

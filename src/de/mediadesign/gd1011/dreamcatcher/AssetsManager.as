@@ -1,5 +1,7 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
+	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
+
 	import flash.media.Sound;
 	import starling.core.Starling;
 	import starling.display.Image;
@@ -19,40 +21,13 @@ package de.mediadesign.gd1011.dreamcatcher
 		private static var BulletList:Vector.<MovieClip> = new Vector.<MovieClip>();
 		private static var ParticleList:Vector.<ParticleSystem> = new Vector.<ParticleSystem>();
 
-		public static const ENEMY:String = "Enemy";
-		public static const ENEMY_ANIM_CONFIG:Vector.<int> = new <int>[4,2,7,8];
-		public static const ENEMY_TEXTURE_NAME:String = "testAnimation";
-
-		public static const BOSS:String = "Boss";
-		public static const BOSS_ANIM_CONFIG:Vector.<int> = new <int>[6,1,6,12];
-		public static const BOSS_TEXTURE_NAME:String = "testAnimation";
-
-		public static const PLAYER:String = "Player";
-		public static const PLAYER_ANIM_CONFIG:Vector.<int> = new <int>[6,1,6,12];
-		public static const PLAYER_TEXTURE_NAME:String = "testAnimation";
-
-		public static const VICTIM:String = "Victim";
-		public static const VICTIM_ANIM_CONFIG:Vector.<int> = new <int>[6,1,6,12];
-		public static const VICTIM_TEXTURE_NAME:String = "testAnimation";
-
-		public static const BULLET:String = "Bullet";
-		public static const BULLET_ANIM_CONFIG:Vector.<int> = new <int>[6,1,6,12];
-		public static const BULLET_TEXTURE_NAME:String = "testAnimation";
-
-		public static const PARTICLE:String = "Particle";
-		public static const PARTICLE_CONFIG:String = "testParticleConfig";
-		public static const PARTICLE_TEXTURE:String = "testParticleTexture";
-
-		public static const BITMAP_FONT_TEXTURE:String = "testBitmapFont";
-		public static const BITMAP_FONT_CONFIG:String = "testBitmapFontXml";
-
 
 		public static function start():void
 		{
 			//Preparing BitMapFonts
 			if (!BitmapFontsLoaded)
 			{
-				AssetsLoader.loadBitmapFonts(BITMAP_FONT_TEXTURE,BITMAP_FONT_CONFIG);
+				AssetsLoader.loadBitmapFonts(GameConstants.BITMAP_FONT_TEXTURE,GameConstants.BITMAP_FONT_CONFIG);
 				BitmapFontsLoaded = true;
 			}
 			//Preparing Animation
@@ -60,31 +35,31 @@ package de.mediadesign.gd1011.dreamcatcher
 			//Enemy
 			while ( EnemyList.length < 10)
 			{
-				EnemyList.push(createMovieClip(ENEMY_TEXTURE_NAME,ENEMY_ANIM_CONFIG));
+				EnemyList.push(createMovieClip(GameConstants.ENEMY_TEXTURE_NAME,GameConstants.ENEMY_ANIM_CONFIG));
 			}
 
 			//Boss
 			while ( BossList.length < 1)
 			{
-				BossList.push(createMovieClip(BOSS_TEXTURE_NAME,BOSS_ANIM_CONFIG));
+				BossList.push(createMovieClip(GameConstants.BOSS_TEXTURE_NAME,GameConstants.BOSS_ANIM_CONFIG));
 			}
 
 			//Victim
 			while ( VictimList.length < 1)
 			{
-				VictimList.push(createMovieClip(VICTIM_TEXTURE_NAME,VICTIM_ANIM_CONFIG));
+				VictimList.push(createMovieClip(GameConstants.VICTIM_TEXTURE_NAME,GameConstants.VICTIM_ANIM_CONFIG));
 			}
 
 			//Player
 			while ( PlayerList.length < 1)
 			{
-				PlayerList.push(createMovieClip(PLAYER_TEXTURE_NAME,PLAYER_ANIM_CONFIG));
+				PlayerList.push(createMovieClip(GameConstants.PLAYER_TEXTURE_NAME,GameConstants.PLAYER_ANIM_CONFIG));
 			}
 
 			//Bullet
 			while ( BulletList.length < 15)
 			{
-					BulletList.push(createMovieClip(BULLET_TEXTURE_NAME,BULLET_ANIM_CONFIG));
+					BulletList.push(createMovieClip(GameConstants.BULLET_TEXTURE_NAME,GameConstants.BULLET_ANIM_CONFIG));
 			}
 
 			//Preparing Sounds
@@ -95,7 +70,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		{
 			switch (item)
 			{
-				case ENEMY:
+				case GameConstants.ENEMY:
 				{
 					if (EnemyList.length != 0 )
 					{
@@ -104,13 +79,13 @@ package de.mediadesign.gd1011.dreamcatcher
 					}
 					else
 					{
-						EnemyList.push(createMovieClip(ENEMY_TEXTURE_NAME,ENEMY_ANIM_CONFIG));
+						EnemyList.push(createMovieClip(GameConstants.ENEMY_TEXTURE_NAME,GameConstants.ENEMY_ANIM_CONFIG));
 						trace("Enemy was created")
 						return EnemyList.shift();
 					}
 				}
 
-				case VICTIM:
+				case GameConstants.VICTIM:
 				{
 					if (VictimList.length != 0 )
 					{
@@ -119,13 +94,13 @@ package de.mediadesign.gd1011.dreamcatcher
 					}
 					else
 					{
-						VictimList.push(createMovieClip(VICTIM_TEXTURE_NAME,VICTIM_ANIM_CONFIG));
+						VictimList.push(createMovieClip(GameConstants.VICTIM_TEXTURE_NAME,GameConstants.VICTIM_ANIM_CONFIG));
 						trace("Victim was created")
 						return VictimList.shift();
 					}
 				}
 
-				case BOSS:
+				case GameConstants.BOSS:
 				{
 					if (BossList.length != 0 )
 					{
@@ -134,13 +109,13 @@ package de.mediadesign.gd1011.dreamcatcher
 					}
 					else
 					{
-						BossList.push(createMovieClip(BOSS_TEXTURE_NAME,BOSS_ANIM_CONFIG));
+						BossList.push(createMovieClip(GameConstants.BOSS_TEXTURE_NAME,GameConstants.BOSS_ANIM_CONFIG));
 						trace("Boss was created")
 						return BossList.shift();
 					}
 				}
 
-				case PLAYER:
+				case GameConstants.PLAYER:
 				{
 					if (PlayerList.length != 0 )
 					{
@@ -149,13 +124,13 @@ package de.mediadesign.gd1011.dreamcatcher
 					}
 					else
 					{
-						PlayerList.push(createMovieClip(PLAYER_TEXTURE_NAME,PLAYER_ANIM_CONFIG));
+						PlayerList.push(createMovieClip(GameConstants.PLAYER_TEXTURE_NAME,GameConstants.PLAYER_ANIM_CONFIG));
 						trace("Player was created")
 						return PlayerList.shift();
 					}
 				}
 
-				case BULLET:
+				case GameConstants.BULLET:
 				{
 					if (BulletList.length != 0 )
 					{
@@ -164,7 +139,7 @@ package de.mediadesign.gd1011.dreamcatcher
 					}
 					else
 					{
-						BulletList.push(createMovieClip(PLAYER_TEXTURE_NAME,PLAYER_ANIM_CONFIG));
+						BulletList.push(createMovieClip(GameConstants.PLAYER_TEXTURE_NAME,GameConstants.PLAYER_ANIM_CONFIG));
 						trace("Bullet was created")
 						return BulletList.shift();
 					}
@@ -189,7 +164,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		{
 			switch (item)
 			{
-				case PARTICLE:
+				case GameConstants.PARTICLE:
 				{
 					if (ParticleList.length != 0 )
 					{
@@ -198,7 +173,7 @@ package de.mediadesign.gd1011.dreamcatcher
 					}
 					else
 					{
-						ParticleList.push(createParticleSystem(PARTICLE_CONFIG,PARTICLE_TEXTURE));
+						ParticleList.push(createParticleSystem(GameConstants.PARTICLE_CONFIG,GameConstants.PARTICLE_TEXTURE));
 						trace("Particle System created")
 						return ParticleList.shift();
 					}
@@ -242,31 +217,31 @@ package de.mediadesign.gd1011.dreamcatcher
 		{
 			switch (item)
 			{
-				case ENEMY:
+				case GameConstants.ENEMY:
 				{
 					EnemyList.push(clip);
 					trace("Enemy was added to EnemyList")
 				}
 
-				case VICTIM:
+				case GameConstants.VICTIM:
 				{
 					VictimList.push(clip);
 					trace("Victim was added to VictimList")
 				}
 
-				case BOSS:
+				case GameConstants.BOSS:
 				{
 					BossList.push(clip);
 					trace("Boss was added to BossList")
 				}
 
-				case PLAYER:
+				case GameConstants.PLAYER:
 				{
 					PlayerList.push(clip);
 					trace("Player was added to PlayerList")
 				}
 
-				case BULLET:
+				case GameConstants.BULLET:
 				{
 					BulletList.push(clip);
 					trace("Bullet was added to PlayerList")

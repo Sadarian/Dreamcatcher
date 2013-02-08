@@ -13,7 +13,7 @@ package de.mediadesign.gd1011.dreamcatcher {
 		private var gameStageFrontPartOne:Image;
 		private var gameStageFrontPartTwo:Image;
 
-		private var particleAnimPlaceholder:ParticleSystem;
+		private var particleAnimPlaceholderOne:ParticleSystem;
 
 		public var player:Entity;
 
@@ -29,10 +29,10 @@ package de.mediadesign.gd1011.dreamcatcher {
 
 			//AnimationLayer behind the GameStage
 			ParticleManager.start();
-			particleAnimPlaceholder = ParticleManager.getParticleSystem(GameConstants.PARTICLE);
-			particleAnimPlaceholder.emitterX =1000;
-			particleAnimPlaceholder.emitterY =200;
-			addChild(particleAnimPlaceholder);
+			particleAnimPlaceholderOne = ParticleManager.getParticleSystem(GameConstants.PARTICLE);
+			particleAnimPlaceholderOne.emitterX =1000;
+			particleAnimPlaceholderOne.emitterY =400;
+			addChild(particleAnimPlaceholderOne);
 
 			//GameStage On which the Actor move
 
@@ -60,14 +60,34 @@ package de.mediadesign.gd1011.dreamcatcher {
 
 		}
 
-		public function move(speed:Number = 5):void
+		private function moveBaseStage(speed:Number = 5):void
 		{
 			var resizedSpeed:Number = Math.min(100, speed);
 			(gameStagePartOne.x>-gameStagePartOne.width)?gameStagePartOne.x -= resizedSpeed:gameStagePartOne.x = gameStagePartTwo.x - resizedSpeed;
 			(gameStagePartTwo.x>0)?gameStagePartTwo.x -= resizedSpeed:gameStagePartTwo.x = gameStagePartOne.x+(gameStagePartOne.width*2) - resizedSpeed;
 
+		}
+
+		private function moveGameStageFront(speed:Number = 2):void
+		{
+			var resizedSpeed:Number = Math.min(100, speed);
+
 			(gameStageFrontPartOne.x>-gameStageFrontPartOne.width)?gameStageFrontPartOne.x -= resizedSpeed:gameStageFrontPartOne.x = gameStageFrontPartTwo.x - resizedSpeed;
 			(gameStageFrontPartTwo.x>0)?gameStageFrontPartTwo.x -= resizedSpeed:gameStageFrontPartTwo.x = gameStageFrontPartOne.x+(gameStageFrontPartOne.width*2) - resizedSpeed;
+		}
+
+		private function moveAnimLayer (speed:Number = 2):void
+		{
+			var resizedSpeed:Number = Math.min(100, speed);
+			(gameStagePartOne.x>-gameStagePartOne.width)?particleAnimPlaceholderOne.emitterX -= resizedSpeed:particleAnimPlaceholderOne.emitterX = gameStagePartTwo.x - resizedSpeed;
+		}
+
+		public function moveGameStage(speedBaseStage:Number,speedGameStageFront:Number,speedAnimLayer:Number):void {
+
+			moveBaseStage(speedBaseStage);
+			moveGameStageFront(speedGameStageFront);
+			moveAnimLayer(speedAnimLayer);
+
 		}
 	}
 }

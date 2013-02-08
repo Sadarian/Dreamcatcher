@@ -15,14 +15,16 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const BACKGROUND:String = "Background";
 		public static const GAME_STAGE:String ="Stage";
 		public static const GAME_STAGE_FRONT:String ="StageFront";
+		public static const GAME_STAGE_ANIM:String ="AnimLayer";
+		public static const GAME_STAGE_MOVMENT_SPEEDS:Vector.<Number> = new <Number>[5,2,1];
 
 		public static const ENEMY:String = "Enemy";
 		public static const ENEMY_ANIM_CONFIG:Vector.<int> = new <int>[4,2,7,8];
 		public static const ENEMY_TEXTURE_NAME:String = "testAnimation";
 
 		public static const BOSS:String = "Boss";
-		public static const BOSS_ANIM_CONFIG:Vector.<int> = new <int>[6,1,6,12];
-		public static const BOSS_TEXTURE_NAME:String = "testAnimation";
+		public static const BOSS_ANIM_CONFIG:Vector.<int> = new <int>[3,2,6,12];
+		public static const BOSS_TEXTURE_NAME:String = "Boss";
 
 		public static const PLAYER:String = "Player";
 		public static const PLAYER_ANIM_CONFIG:Vector.<int> = new <int>[4,2,6,12];

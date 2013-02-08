@@ -54,7 +54,7 @@ package de.mediadesign.gd1011.dreamcatcher
 			shootingProcess.update(deltaTime);
 			collision.update();
 			renderProcess.update();
-			gameStage.moveGameStage(5,2,3);
+			gameStage.moveGameStage(GameConstants.GAME_STAGE_MOVMENT_SPEEDS);
 			deltaTime = time.time;
 		}
 

@@ -27,6 +27,9 @@ package de.mediadesign.gd1011.dreamcatcher {
 		[Embed(source = "/../assets/textures/StageBushFront.png")]
 		public static const StageFront:Class;
 
+		[Embed(source = "/../assets/textures/AnimLayer.png")]
+		public static const AnimLayer:Class;
+
 		// Particle Configurations
 		[Embed(source="/../assets/particles/testParticle.pex", mimeType="application/octet-stream")]
 		public static const testParticleConfig:Class;

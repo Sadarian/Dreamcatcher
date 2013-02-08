@@ -1,4 +1,6 @@
 package de.mediadesign.gd1011.dreamcatcher {
+	import de.mediadesign.gd1011.dreamcatcher.AssetsTextureEmbeds_1x;
+
 	import flash.display.Bitmap;
 	import flash.geom.Rectangle;
 	import flash.media.Sound;
@@ -11,9 +13,9 @@ package de.mediadesign.gd1011.dreamcatcher {
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
 
-
-	public class Assets
+	public class AssetsLoader
 	{
+<<<<<<< HEAD:src/de/mediadesign/gd1011/dreamcatcher/Assets.as
 //Font for the game
 		[Embed(source = "/../assets/Interface Dummy.png")]
 		public static const Background:Class;
@@ -23,15 +25,24 @@ package de.mediadesign.gd1011.dreamcatcher {
 
 		[Embed(source = "/../assets/DC_sprite_Sheet_Boss_walk_small.png")]
 		public static const Boss:Class;
+=======
 
+// TTF-Fonts
+		[Embed(source="/../assets/fonts/defused.ttf", embedAsCFF="false", fontFamily="TestFont")]
+		private static const TestFont:Class;
+
+// Sounds
+		[Embed(source="/../assets/audio/testSound.mp3")]
+		private static const TestSound:Class;
+>>>>>>> refs/heads/feature/AssestHandeling:src/de/mediadesign/gd1011/dreamcatcher/AssetsLoader.as
+
+//BitmMapFonts
 
 //Texture cache
 		private static var sContentScaleFactor:int = 1;
 		private static var sTextures:Dictionary = new Dictionary();
 		private static var sTextureAtlas:TextureAtlas;
-		private static var sBitmapFontsLoaded:Boolean;
 		private static var sSounds:Dictionary = new Dictionary();
-
 
 //This sets the single Frames of an Animation-Sprite and stores it in the atlas?
 		public static function createAtlasAnim(name:String,w:int,h:int,frames:int):TextureAtlas
@@ -41,7 +52,6 @@ package de.mediadesign.gd1011.dreamcatcher {
 			var atlas:TextureAtlas = new TextureAtlas (texture);
 			var hNew:int = texture.height / h;
 			var wNew:int = texture.width / w;
-
 
 			for (var i:int = 0; i < frames; i++)
 			{
@@ -55,11 +65,8 @@ package de.mediadesign.gd1011.dreamcatcher {
 				}
 				atlas.addRegion(name+nameNew, new Rectangle(x*wNew,y*hNew, wNew, hNew));
 
-
 			}
-
 			return atlas;
-
 		}
 
 //Prepares the Sounds for the game
@@ -70,11 +77,10 @@ package de.mediadesign.gd1011.dreamcatcher {
 			else throw new ArgumentError("Sound not found: " + name);
 		}
 
-// public static function prepareSounds():void
-// {
-// sSounds["PlayerSound"] = new PlayerSound();
-// }
-
+		public static function prepareSounds():void
+		{
+			sSounds["TestSound"] = new TestSound();
+		}
 
 
 //Gets the texture from files (Target,Player, etc..)
@@ -82,7 +88,7 @@ package de.mediadesign.gd1011.dreamcatcher {
 		{
 			if (sTextures[name] == undefined)
 			{
-				var data:Object = create(name);
+				var data:Object = createTextureClass(name);
 
 				if (data is Bitmap)
 					sTextures[name] = Texture.fromBitmap(data as Bitmap, true, false, sContentScaleFactor);
@@ -90,7 +96,6 @@ package de.mediadesign.gd1011.dreamcatcher {
 					sTextures[name] = Texture.fromAtfData(data as ByteArray, sContentScaleFactor);
 				else throw new ArgumentError("Texure not found: " + name);
 			}
-
 			return sTextures[name];
 		}
 
@@ -98,45 +103,38 @@ package de.mediadesign.gd1011.dreamcatcher {
 		{
 			if (XML[name] == undefined)
 			{
-				XML[name] = XML(create(name));
+				XML[name] = XML(createTextureClass(name));
 				if(XML[name] != undefined)
-					trace("XML created");
-				else throw new ArgumentError("XML not created: " + name);
+					trace(name+" XML created");
+				else throw new ArgumentError(name+" XML not created: " + name);
 			}
 			return XML[name];
 		}
 
-		public static function getTextureAtlas():TextureAtlas
+		public static function getTextureAtlas(textureName:String,xmlName:String):TextureAtlas
 		{
 			if (sTextureAtlas == null)
 			{
-				var texture:Texture = getTexture("TargetTexture");
-				var xml:XML = XML(create("TargetXml"));
+				var texture:Texture = getTexture(textureName);
+				var xml:XML = XML(createTextureClass(xmlName));
 				sTextureAtlas = new TextureAtlas(texture, xml);
 			}
-
 			return sTextureAtlas;
 		}
 
 //Prepares Fonts for Usage
-		public static function loadBitmapFonts():void
+		public static function loadBitmapFonts(fontTextureName:String,fontXmlName:String):void
 		{
-			if (!sBitmapFontsLoaded)
-			{
-				var texture:Texture = getTexture("DesyrelTexture");
-				var xml:XML = XML(create("DesyrelXml"));
+				var texture:Texture = getTexture(fontTextureName);
+				var xml:XML = XML(createTextureClass(fontXmlName));
 				TextField.registerBitmapFont(new BitmapFont(texture, xml));
-				sBitmapFontsLoaded = true;
-			}
 		}
 
-		private static function create(name:String):Object
+		private static function createTextureClass(name:String):Object
 		{
-			var textureClass:Class = Assets;
+			var textureClass:Class = sContentScaleFactor == 1 ? AssetsTextureEmbeds_1x : AssetsTextureEmbeds_2x;
 			return new textureClass[name];
 		}
-
-
 
 	}
 }

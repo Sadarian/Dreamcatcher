@@ -9,7 +9,12 @@ package de.mediadesign.gd1011.dreamcatcher {
 
 	public class GameStage  extends Sprite {
 
+		private static var gameStagesLoaded:Boolean =false;
+
 		private var entityManager:EntityManager;
+
+		private static var gameStagesList:Vector.<Image> = new Vector.<Image>();
+
 		private var gameStagePartOne:Image;
 		private var gameStagePartTwo:Image;
 
@@ -19,17 +24,10 @@ package de.mediadesign.gd1011.dreamcatcher {
 		private var animLayerContainerOne:Sprite;
 		private var animLayerContainerTwo:Sprite;
 
-		public var player:Entity;
-
 		public function GameStage(){
 
 			entityManager = new EntityManager();
-
-			player = entityManager.createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
-			//entityManager.test()
-			var boss:Entity = entityManager.createEntity(GameConstants.BOSS, GameConstants.bossStartPosition);
-			//entityManager.test();
-			//var scrollingSpeed:int = player.movementSystem.speed ;
+			var player:Entity = entityManager.createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
 
 			//GameStage On which the Actor move
 
@@ -38,7 +36,7 @@ package de.mediadesign.gd1011.dreamcatcher {
 
 			gameStagePartTwo = AssetsManager.getImage(GameConstants.GAME_STAGE);
 			gameStagePartTwo.pivotX = gameStagePartTwo.width;
-			gameStagePartTwo.x = gameStagePartOne.width*2 - 1;
+			gameStagePartTwo.x = gameStagePartOne.width*2;
 			addChild(gameStagePartTwo);
 
 			//AnimationLayer on the GameStage in one Container
@@ -50,7 +48,7 @@ package de.mediadesign.gd1011.dreamcatcher {
 			animLayerContainerTwo.width = 1280;
 			animLayerContainerTwo.height = 800;
 			animLayerContainerTwo.scaleX= -1;
-			animLayerContainerTwo.x = animLayerContainerOne.width*2 -1;
+			animLayerContainerTwo.x = animLayerContainerOne.width*2;
 
 			//Filling the first Container
 			var animPlaceHolder:Image = AssetsManager.getImage(GameConstants.GAME_STAGE_ANIM);
@@ -75,7 +73,6 @@ package de.mediadesign.gd1011.dreamcatcher {
 			addChild(animLayerContainerOne);
 			addChild(animLayerContainerTwo);
 
-
 			//Front Part of the GameStage behind Actors can hide
 
 			gameStageFrontPartOne = AssetsManager.getImage(GameConstants.GAME_STAGE_FRONT);
@@ -83,18 +80,17 @@ package de.mediadesign.gd1011.dreamcatcher {
 
 			gameStageFrontPartTwo = AssetsManager.getImage(GameConstants.GAME_STAGE_FRONT);
 			gameStageFrontPartTwo.pivotX = gameStageFrontPartTwo.width;
-			gameStageFrontPartTwo.x = gameStageFrontPartOne.width*2 - 1;
+			gameStageFrontPartTwo.x = gameStageFrontPartOne.width*2;
 			addChild(gameStageFrontPartTwo);
 
-
-			//addChild(player.movieClip);
-			addChild(boss.movieClip);
+			addChild(player.movieClip);
 
 		}
 
 		private function moveBaseStage(speed:Number = 5):void
 		{
-			var resizedSpeed:Number = Math.min(100, speed);
+			var resizedSpeed:Number = resizeSpeed(speed);
+
 			(gameStagePartOne.x>-gameStagePartOne.width)?gameStagePartOne.x -= resizedSpeed:gameStagePartOne.x = gameStagePartTwo.x - resizedSpeed;
 			(gameStagePartTwo.x>0)?gameStagePartTwo.x -= resizedSpeed:gameStagePartTwo.x = gameStagePartOne.x+(gameStagePartOne.width*2) - resizedSpeed;
 
@@ -102,7 +98,7 @@ package de.mediadesign.gd1011.dreamcatcher {
 
 		private function moveGameStageFront(speed:Number = 2):void
 		{
-			var resizedSpeed:Number = Math.min(100, speed);
+			var resizedSpeed:Number = resizeSpeed(speed);;
 
 			(gameStageFrontPartOne.x>-gameStageFrontPartOne.width)?gameStageFrontPartOne.x -= resizedSpeed:gameStageFrontPartOne.x = gameStageFrontPartTwo.x - resizedSpeed;
 			(gameStageFrontPartTwo.x>0)?gameStageFrontPartTwo.x -= resizedSpeed:gameStageFrontPartTwo.x = gameStageFrontPartOne.x+(gameStageFrontPartOne.width*2) - resizedSpeed;
@@ -110,10 +106,36 @@ package de.mediadesign.gd1011.dreamcatcher {
 
 		private function moveAnimLayer (speed:Number = 2):void
 		{
-			var resizedSpeed:Number = Math.min(100, speed);
+			var resizedSpeed:Number = resizeSpeed(speed);
 			(animLayerContainerOne.x>-animLayerContainerOne.width)?animLayerContainerOne.x -= resizedSpeed:animLayerContainerOne.x = animLayerContainerTwo.x - resizedSpeed;
 			(animLayerContainerTwo.x>0)?animLayerContainerTwo.x -= resizedSpeed:animLayerContainerTwo.x = animLayerContainerOne.x+(animLayerContainerOne.width*2) - resizedSpeed;
 		}
+
+		private function  resizeSpeed(speed:Number):Number
+		{
+			var newSpeed:Number = Math.min(100, speed);
+			return newSpeed;
+		}
+
+//		public static function createGame():void
+//		{
+//			if(!gameStagesLoaded)
+//			{
+//				for each (var gameStageEntry:String in GameConstants.GAME_STAGE_LIST)
+//				{
+//					var gameStagePartOne:Image = AssetsManager.getImage(GameConstants.GAME_STAGE);
+//					gameStagesList.push(gameStagePartOne)
+//
+//					var gameStagePartTwo = AssetsManager.getImage(GameConstants.GAME_STAGE);
+//					gameStagePartTwo.pivotX = gameStagePartTwo.width;
+//					gameStagePartTwo.x = gameStagePartOne.width*2;
+//					gameStagesList.push(gameStagePartTwo)
+//
+//				}
+//
+//				gameStagesLoaded = true;
+//			}
+//		}
 
 		public function moveGameStage(movementSpeedVector:Vector.<Number>):void
 		{

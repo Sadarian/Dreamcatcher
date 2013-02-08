@@ -22,13 +22,13 @@ package de.mediadesign.gd1011.dreamcatcher {
 		public static const Boss:Class;
 
 		[Embed(source = "/../assets/textures/Stage.png")]
-		public static const Stage:Class;
+		public static const GameStage:Class;
 
 		[Embed(source = "/../assets/textures/StageBushFront.png")]
-		public static const StageFront:Class;
+		public static const GameStageFront:Class;
 
 		[Embed(source = "/../assets/textures/AnimLayer.png")]
-		public static const AnimLayer:Class;
+		public static const GameStageAnimLayer:Class;
 
 		// Particle Configurations
 		[Embed(source="/../assets/particles/testParticle.pex", mimeType="application/octet-stream")]

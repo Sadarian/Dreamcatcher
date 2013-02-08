@@ -32,7 +32,6 @@ package de.mediadesign.gd1011.dreamcatcher
 
             addChild(AssetsManager.getImage(GameConstants.BACKGROUND));
 			addChild(gameStage = new GameStage())
-			addChild(gameStage.player.movieClip);
 
 	        startGame();
 		}
@@ -54,8 +53,8 @@ package de.mediadesign.gd1011.dreamcatcher
 			shootingProcess.update(deltaTime);
 			collision.update();
 			renderProcess.update();
-			gameStage.moveGameStage(GameConstants.GAME_STAGE_MOVMENT_SPEEDS);
 			deltaTime = time.time;
+			gameStage.moveGameStage(GameConstants.GAME_STAGE_MOVMENT_SPEEDS);
 		}
 
         private function onTouch(e:TouchEvent):void

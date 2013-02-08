@@ -12,6 +12,5 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces
 	public interface ICollision
 	{
 		function checkCollision(entityA:Entity, entityB:Entity):Boolean
-
 	}
 }

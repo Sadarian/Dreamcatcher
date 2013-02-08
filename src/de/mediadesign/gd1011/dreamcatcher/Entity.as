@@ -14,7 +14,7 @@ package de.mediadesign.gd1011.dreamcatcher
         private var _weaponSystem:IWeapon;
         private var _collisionMode:String;
         private var _collisionPoint:Point;
-        private var _collisionValues:Array;
+        private var _collisionValues:Point;
         private var _movieClip:MovieClip; //added via JSON but it isn't in the Config!
 
        //Additional Constructor Data:
@@ -63,17 +63,14 @@ package de.mediadesign.gd1011.dreamcatcher
 
         public function render():void
         {
-            if(_movementSystem)
-            {
-                _movieClip.x = _position.x - _movieClip.width/2;
-                _movieClip.y = _position.y - _movieClip.height/2;
-            }
+            _movieClip.x = _position.x - _movieClip.width/2;
+            _movieClip.y = _position.y - _movieClip.height/2;
         }
 
 		public function shoot(deltaTime:Number):void
 		{
-            if(_weaponSystem)
-                _weaponSystem.shoot(deltaTime, _position, null);
+//            if(_weaponSystem)
+//                _weaponSystem.shoot(deltaTime, _position, null);
         }
 
 		public function switchMovement(movementSystem:IMovement):void {
@@ -107,6 +104,18 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		public function get movementSystem():IMovement {
 			return _movementSystem;
+		}
+
+		public function get collisionPoint():Point {
+			return _collisionPoint;
+		}
+
+		public function get collisionValues():Point {
+			return _collisionValues;
+		}
+
+		public function get position():Point {
+			return _position;
 		}
 	}
 }

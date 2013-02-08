@@ -1,4 +1,5 @@
 {
     "playerMovementBorder":[128, 128, 544, 512],
-    "playerStartPosition":[100, 400]
+    "playerStartPosition":[100, 400],
+    "bossStartPosition":[500, 400]
 }

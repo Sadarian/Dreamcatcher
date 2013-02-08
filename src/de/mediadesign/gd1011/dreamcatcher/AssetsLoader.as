@@ -15,17 +15,17 @@ package de.mediadesign.gd1011.dreamcatcher {
 
 	public class AssetsLoader
 	{
-<<<<<<< HEAD:src/de/mediadesign/gd1011/dreamcatcher/Assets.as
+
 //Font for the game
-		[Embed(source = "/../assets/Interface Dummy.png")]
+		[Embed(source="/../assets/textures/Interface Dummy.png")]
 		public static const Background:Class;
 
-		[Embed(source = "/../assets/DC_spriteSheetCharacterSmaller.png")]
+		[Embed(source="/../assets/textures/DC_spriteSheetCharacterSmaller.png")]
 		public static const PlayerOnly:Class;
 
-		[Embed(source = "/../assets/DC_sprite_Sheet_Boss_walk_small.png")]
+		[Embed(source="/../assets/textures/DC_sprite_Sheet_Boss_walk_small.png")]
 		public static const Boss:Class;
-=======
+
 
 // TTF-Fonts
 		[Embed(source="/../assets/fonts/defused.ttf", embedAsCFF="false", fontFamily="TestFont")]
@@ -34,7 +34,7 @@ package de.mediadesign.gd1011.dreamcatcher {
 // Sounds
 		[Embed(source="/../assets/audio/testSound.mp3")]
 		private static const TestSound:Class;
->>>>>>> refs/heads/feature/AssestHandeling:src/de/mediadesign/gd1011/dreamcatcher/AssetsLoader.as
+
 
 //BitmMapFonts
 

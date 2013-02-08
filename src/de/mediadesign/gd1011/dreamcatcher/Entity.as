@@ -2,7 +2,8 @@ package de.mediadesign.gd1011.dreamcatcher
 {
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.IMovement;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.IWeapon;
-    import flash.geom.Point;
+
+	import flash.geom.Point;
 	import starling.display.MovieClip;
 
 	public class Entity
@@ -14,7 +15,7 @@ package de.mediadesign.gd1011.dreamcatcher
         private var _weaponSystem:IWeapon;
         private var _collisionMode:String;
         private var _collisionPoint:Point;
-        private var _collisionValues:Array;
+        private var _collisionValues:Point;
         private var _movieClip:MovieClip; //added via JSON but it isn't in the Config!
 
        //Additional Constructor Data:
@@ -22,27 +23,31 @@ package de.mediadesign.gd1011.dreamcatcher
 
         public function Entity(jsonConfig:Array, position:Point)
         {
-	        _name = jsonConfig[0];
-            _health = jsonConfig[1];
-
-            _movementSystem = jsonConfig[2];
-            if(_movementSystem)
-                _movementSystem.speed = jsonConfig[3];
-
-            _weaponSystem = jsonConfig[4];
-            if(_weaponSystem)
-                _weaponSystem.speed = jsonConfig[5];
-
-            _collisionMode = jsonConfig[6];
-            _collisionPoint = jsonConfig[7];
-            _collisionValues = jsonConfig[8];
-
-            _movieClip = jsonConfig[9];
-
-            _position = position;
+	        setData(jsonConfig, position);
 
 	        init();
         }
+
+		private function setData(jsonConfig:Array, position:Point):void {
+			_name = jsonConfig[0];
+			_health = jsonConfig[1];
+
+			_movementSystem = jsonConfig[2];
+			if(_movementSystem)
+				_movementSystem.speed = jsonConfig[3];
+
+			_weaponSystem = jsonConfig[4];
+			if(_weaponSystem)
+				_weaponSystem.speed = jsonConfig[5];
+
+			_collisionMode = jsonConfig[6];
+			_collisionPoint = jsonConfig[7];
+			_collisionValues = jsonConfig[8];
+
+			_movieClip = jsonConfig[9];
+
+			_position = position;
+		}
 
 		private function init():void
 		{
@@ -58,17 +63,14 @@ package de.mediadesign.gd1011.dreamcatcher
 
         public function render():void
         {
-            if(_movementSystem)
-            {
-                _movieClip.x = _position.x - _movieClip.width/2;
-                _movieClip.y = _position.y - _movieClip.height/2;
-            }
+            _movieClip.x = _position.x - _movieClip.width/2;
+            _movieClip.y = _position.y - _movieClip.height/2;
         }
 
 		public function shoot(deltaTime:Number):void
 		{
-            if(_weaponSystem)
-                _weaponSystem.shoot(_position, null);
+//            if(_weaponSystem)
+//                _weaponSystem.shoot(deltaTime, _position, null);
         }
 
 		public function switchMovement(movementSystem:IMovement):void {
@@ -99,5 +101,21 @@ package de.mediadesign.gd1011.dreamcatcher
         {
             return _collisionMode;
         }
-    }
+
+		public function get movementSystem():IMovement {
+			return _movementSystem;
+		}
+
+		public function get collisionPoint():Point {
+			return _collisionPoint;
+		}
+
+		public function get collisionValues():Point {
+			return _collisionValues;
+		}
+
+		public function get position():Point {
+			return _position;
+		}
+	}
 }

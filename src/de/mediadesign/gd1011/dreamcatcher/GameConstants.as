@@ -43,6 +43,7 @@ package de.mediadesign.gd1011.dreamcatcher
 
 	    private static var _playerMovementBorder:Rectangle;
         private static var _playerStartPosition:Point;
+	    private static var _bossStartPosition:Point;
 
         public static function init(path:String = "Config.json"):void
         {
@@ -60,6 +61,8 @@ package de.mediadesign.gd1011.dreamcatcher
                                                                                 data.playerMovementBorder[3]);
             if(data.playerStartPosition) _playerStartPosition = new Point(data.playerStartPosition[0],
                                                                           data.playerStartPosition[1]);
+	        if(data.bossStartPosition) _bossStartPosition = new Point(data.bossStartPosition[0],
+			                                                          data.bossStartPosition[1]);
         }
 
         public static function getData(type:String):Array
@@ -79,7 +82,7 @@ package de.mediadesign.gd1011.dreamcatcher
             if(data.weaponSpeed) dataArray[5] = (data.weaponSpeed as Number); else throw new ArgumentError(type + " has no weaponSpeed declared!");
             if(data.collisionMode) dataArray[6] = (data.collisionMode as String); else throw new ArgumentError(type + " has no collisionMode declared!");
             if(data.collisionPoint) dataArray[7] = new Point(data.collisionPoint[0], data.collisionPoint[1]); else throw new ArgumentError(type + " has no collisionPoint declared!");
-            if(data.collisionValues) dataArray[8] = (data.collisionValues as Array); else throw new ArgumentError(type + " has no collisionValues declared!");
+	        if(data.collisionValues) dataArray[8] = new Point(data.collisionValues[0], data.collisionValues[1]); else throw new ArgumentError(type + " has no collisionValues declared!");
             dataArray[9] = AssetsManager.getMovieClip(PLAYER);
 
             stream.close();
@@ -95,5 +98,9 @@ package de.mediadesign.gd1011.dreamcatcher
         {
             return _playerStartPosition;
         }
+
+	    public static function get bossStartPosition():Point {
+		    return _bossStartPosition;
+	    }
     }
 }

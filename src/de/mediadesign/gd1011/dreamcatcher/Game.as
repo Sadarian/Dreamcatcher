@@ -30,10 +30,12 @@ package de.mediadesign.gd1011.dreamcatcher
 
             addChild(AssetsManager.getImage(GameConstants.BACKGROUND));
 
-			var player:Entity = entityManager.getEntity("Player");
+			var player:Entity = entityManager.getEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
 	        addChild(player.movieClip);
-	        //var boss:Entity = entityManager.getEntity(GameConstants.bossName);
-	        //addChild(boss.movieClip);
+	        entityManager.test()
+	        var boss:Entity = entityManager.createEntity(GameConstants.BOSS, GameConstants.bossStartPosition);
+	        addChild(boss.movieClip);
+	        entityManager.test();
 
 	        startGame();
 		}

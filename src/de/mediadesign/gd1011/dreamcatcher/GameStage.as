@@ -20,8 +20,7 @@ package de.mediadesign.gd1011.dreamcatcher {
 		private var gameStageContainerOne:Sprite;
 		private var gameStageContainerTwo:Sprite;
 
-		private var gameStageContainerOneContent:Image;
-		private var gameStageContainerTwoContent:Image;
+		private var gameStageContentList:Vector.<Image> = new Vector.<Image>;
 
 		private var gameStageFrontPartOne:Image;
 		private var gameStageFrontPartTwo:Image;
@@ -52,10 +51,15 @@ package de.mediadesign.gd1011.dreamcatcher {
 			gameStagePartTree = AssetsManager.getImage(GameConstants.GAME_STAGE3);
 
 			this.addChild(gameStagePartOne);
-			gameStageContainerOne.addChild(gameStagePartOne);
-
 			this.addChild(gameStagePartTwo);
-			gameStageContainerTwo.addChild(gameStagePartTwo);
+			this.addChild(gameStagePartTree);
+
+			gameStageContentList.push(gameStagePartOne);
+			gameStageContentList.push(gameStagePartTwo);
+			gameStageContentList.push(gameStagePartTree);
+
+			gameStageContainerOne.addChild(gameStageContentList.shift());
+			gameStageContainerTwo.addChild(gameStageContentList.shift());
 
 
 			addChild(gameStageContainerOne);
@@ -112,12 +116,43 @@ package de.mediadesign.gd1011.dreamcatcher {
 		private function swapGameStageContainerTwo():void
 		{
 			trace("Content in Container TWO is swapped");
+			var randomNumber:Number = Math.random()*10;
+			var resizedInt:int = int(randomNumber);
+
+			if (resizedInt <= 4)
+			{
+				gameStageContentList.push(gameStageContainerOne.removeChildAt(0));
+				gameStageContainerOne.addChildAt(gameStageContentList.shift(),0);
+			}
+			else
+			{
+				gameStageContentList.push(gameStageContainerOne.removeChildAt(0));
+				gameStageContainerOne.addChildAt(gameStageContentList.pop(),0);
+			}
+
+
 		}
 
 		private function swapGameStageContainerOne():void
 		{
 			trace("Content in Container ONE is swapped");
+			var randomNumber:Number = Math.random()*10;
+			var resizedInt:int = int(randomNumber);
+
+			if (resizedInt <= 4)
+			{
+				gameStageContentList.push(gameStageContainerOne.removeChildAt(0));
+				gameStageContainerOne.addChildAt(gameStageContentList.shift(),0);
+			}
+			else
+			{
+				gameStageContentList.push(gameStageContainerOne.removeChildAt(0));
+				gameStageContainerOne.addChildAt(gameStageContentList.pop(),0);
+			}
+
+
 		}
+
 
 		private function moveBaseStage(speed:Number = 5):void
 		{
@@ -149,25 +184,6 @@ package de.mediadesign.gd1011.dreamcatcher {
 			return newSpeed;
 		}
 
-//		public static function createGame():void
-//		{
-//			if(!gameStagesLoaded)
-//			{
-//				for each (var gameStageEntry:String in GameConstants.GAME_STAGE_LIST)
-//				{
-//					var gameStagePartOne:Image = AssetsManager.getImage(GameConstants.GAME_STAGE);
-//					gameStagesList.push(gameStagePartOne)
-//
-//					var gameStagePartTwo = AssetsManager.getImage(GameConstants.GAME_STAGE);
-//					gameStagePartTwo.pivotX = gameStagePartTwo.width;
-//					gameStagePartTwo.x = gameStagePartOne.width*2;
-//					gameStagesList.push(gameStagePartTwo)
-//
-//				}
-//
-//				gameStagesLoaded = true;
-//			}
-//		}
 
 		public function moveGameStage(movementSpeedVector:Vector.<Number>):void
 		{
@@ -181,12 +197,10 @@ package de.mediadesign.gd1011.dreamcatcher {
 			{
 				swapGameStageContainerOne();
 			}
-			else if (gameStageContainerTwo.x == -1280)
+			else if (gameStageContainerTwo.x == -gameStageContainerTwo.width)
 			{
 				swapGameStageContainerTwo();
 			}
-			//else
-			//trace("Nothing was swapped");
 		}
 	}
 }

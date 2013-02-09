@@ -15,8 +15,6 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const TEST_SOUND:String = "TestSound";
 		public static const SOUND_LIST:Vector.<String> = new <String>[TEST_SOUND];
 
-		public static const GAME_STAGE_LIST:Vector.<String> = new <String>[GAME_STAGE,GAME_STAGE_FRONT];
-
 		public static const BACKGROUND:String = "Background";
 		public static const GAME_STAGE:String ="GameStage";
 		public static const GAME_STAGE2:String ="GameStage2";

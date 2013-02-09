@@ -1,6 +1,7 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
+	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
@@ -34,7 +35,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		{
 			switch (item)
 			{
-				case TEST_SOUND:
+				case GameConstants.TEST_SOUND:
 				{
 					if (LoadedSoundList.length != 0 )
 					{
@@ -79,7 +80,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		{
 			switch (item)
 			{
-				case TEST_SOUND:
+				case GameConstants.TEST_SOUND:
 				{
 					LoadedSoundList.push(intoSound(soundChannelObject));
 					trace("TEST_SOUND was added to LoadedSoundList")

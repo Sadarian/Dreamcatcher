@@ -1,11 +1,9 @@
 package de.mediadesign.gd1011.dreamcatcher {
 
-	import starling.display.MovieClip;
-	import starling.display.Sprite;
+	import de.mediadesign.gd1011.dreamcatcher.GameStage;
 
 	import starling.display.Image;
 	import starling.display.Sprite;
-	import starling.extensions.ParticleSystem;
 
 	public class GameStage  extends Sprite {
 
@@ -17,6 +15,13 @@ package de.mediadesign.gd1011.dreamcatcher {
 
 		private var gameStagePartOne:Image;
 		private var gameStagePartTwo:Image;
+		private var gameStagePartTree:Image;
+
+		private var gameStageContainerOne:Sprite;
+		private var gameStageContainerTwo:Sprite;
+
+		private var gameStageContainerOneContent:Image;
+		private var gameStageContainerTwoContent:Image;
 
 		private var gameStageFrontPartOne:Image;
 		private var gameStageFrontPartTwo:Image;
@@ -31,13 +36,30 @@ package de.mediadesign.gd1011.dreamcatcher {
 
 			//GameStage On which the Actor move
 
-			gameStagePartOne = AssetsManager.getImage(GameConstants.GAME_STAGE);
-			addChild(gameStagePartOne);
+			gameStageContainerOne = new Sprite();
+			gameStageContainerOne.width = 1280;
+			gameStageContainerOne.height = 800;
+			gameStageContainerOne.x = 0;
 
-			gameStagePartTwo = AssetsManager.getImage(GameConstants.GAME_STAGE);
-			gameStagePartTwo.pivotX = gameStagePartTwo.width;
-			gameStagePartTwo.x = gameStagePartOne.width*2;
-			addChild(gameStagePartTwo);
+
+			gameStageContainerTwo = new Sprite();
+			gameStageContainerTwo.width = 1280;
+			gameStageContainerTwo.height = 800;
+			gameStageContainerTwo.x =1280;
+
+			gameStagePartOne = AssetsManager.getImage(GameConstants.GAME_STAGE);
+			gameStagePartTwo = AssetsManager.getImage(GameConstants.GAME_STAGE2);
+			gameStagePartTree = AssetsManager.getImage(GameConstants.GAME_STAGE3);
+
+			this.addChild(gameStagePartOne);
+			gameStageContainerOne.addChild(gameStagePartOne);
+
+			this.addChild(gameStagePartTwo);
+			gameStageContainerTwo.addChild(gameStagePartTwo);
+
+
+			addChild(gameStageContainerOne);
+			addChild(gameStageContainerTwo);
 
 			//AnimationLayer on the GameStage in one Container
 			animLayerContainerOne = new Sprite();
@@ -87,18 +109,28 @@ package de.mediadesign.gd1011.dreamcatcher {
 
 		}
 
+		private function swapGameStageContainerTwo():void
+		{
+			trace("Content in Container TWO is swapped");
+		}
+
+		private function swapGameStageContainerOne():void
+		{
+			trace("Content in Container ONE is swapped");
+		}
+
 		private function moveBaseStage(speed:Number = 5):void
 		{
 			var resizedSpeed:Number = resizeSpeed(speed);
 
-			(gameStagePartOne.x>-gameStagePartOne.width)?gameStagePartOne.x -= resizedSpeed:gameStagePartOne.x = gameStagePartTwo.x - resizedSpeed;
-			(gameStagePartTwo.x>0)?gameStagePartTwo.x -= resizedSpeed:gameStagePartTwo.x = gameStagePartOne.x+(gameStagePartOne.width*2) - resizedSpeed;
+			(gameStageContainerOne.x>-gameStageContainerOne.width)? gameStageContainerOne.x -= resizedSpeed:gameStageContainerOne.x = gameStageContainerTwo.x +(gameStageContainerOne.width) - resizedSpeed;
+			(gameStageContainerTwo.x>-gameStageContainerTwo.width)?gameStageContainerTwo.x -= resizedSpeed:gameStageContainerTwo.x = gameStageContainerOne.x+(gameStageContainerOne.width) - resizedSpeed;
 
 		}
 
 		private function moveGameStageFront(speed:Number = 2):void
 		{
-			var resizedSpeed:Number = resizeSpeed(speed);;
+			var resizedSpeed:Number = resizeSpeed(speed);
 
 			(gameStageFrontPartOne.x>-gameStageFrontPartOne.width)?gameStageFrontPartOne.x -= resizedSpeed:gameStageFrontPartOne.x = gameStageFrontPartTwo.x - resizedSpeed;
 			(gameStageFrontPartTwo.x>0)?gameStageFrontPartTwo.x -= resizedSpeed:gameStageFrontPartTwo.x = gameStageFrontPartOne.x+(gameStageFrontPartOne.width*2) - resizedSpeed;
@@ -142,6 +174,19 @@ package de.mediadesign.gd1011.dreamcatcher {
 			moveBaseStage(movementSpeedVector[0]);
 			moveGameStageFront(movementSpeedVector[1]);
 			moveAnimLayer(movementSpeedVector[2]);
+			//trace("Position of Container ONE " + gameStageContainerOne.x);
+			//trace("Position of Container TWO: " + gameStageContainerTwo.x);
+
+			if (gameStageContainerOne.x == -gameStageContainerOne.width)
+			{
+				swapGameStageContainerOne();
+			}
+			else if (gameStageContainerTwo.x == -1280)
+			{
+				swapGameStageContainerTwo();
+			}
+			//else
+			//trace("Nothing was swapped");
 		}
 	}
 }

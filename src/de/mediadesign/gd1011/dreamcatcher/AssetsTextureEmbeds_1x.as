@@ -21,8 +21,14 @@ package de.mediadesign.gd1011.dreamcatcher {
 		[Embed(source = "/../assets/textures/DC_sprite_Sheet_Boss_walk_small.png")]
 		public static const Boss:Class;
 
-		[Embed(source = "/../assets/textures/Stage.png")]
+		[Embed(source = "/../assets/textures/GameStage.png")]
 		public static const GameStage:Class;
+
+		[Embed(source = "/../assets/textures/GameStage2.png")]
+		public static const GameStage2:Class;
+
+		[Embed(source = "/../assets/textures/GameStage3.png")]
+		public static const GameStage3:Class;
 
 		[Embed(source = "/../assets/textures/StageBushFront.png")]
 		public static const GameStageFront:Class;

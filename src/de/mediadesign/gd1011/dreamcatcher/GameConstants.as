@@ -19,6 +19,8 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		public static const BACKGROUND:String = "Background";
 		public static const GAME_STAGE:String ="GameStage";
+		public static const GAME_STAGE2:String ="GameStage2";
+		public static const GAME_STAGE3:String ="GameStage3";
 		public static const GAME_STAGE_FRONT:String ="GameStageFront";
 		public static const GAME_STAGE_ANIM:String ="GameStageAnimLayer";
 		public static const GAME_STAGE_MOVMENT_SPEEDS:Vector.<Number> = new <Number>[5,2,1];

@@ -20,14 +20,17 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const GAME_STAGE:String ="GameStage";
 		public static const GAME_STAGE2:String ="GameStage2";
 		public static const GAME_STAGE3:String ="GameStage3";
+		public static const GAME_STAGE_IMAGE_LIST:Vector.<String> = new <String>["GameStage","GameStage2","GameStage3"];
 
 		public static const GAME_STAGE_FRONT:String ="GameStageFront";
 		public static const GAME_STAGE_FRONT2:String ="GameStageFront2";
 		public static const GAME_STAGE_FRONT3:String ="GameStageFront3";
+		public static const GAME_STAGE_FRONT_IMAGE_LIST:Vector.<String> = new <String>["GameStageFront","GameStageFront2","GameStageFront3"];
 
 		public static const GAME_STAGE_ANIMATIONS:String ="GameStageAnimLayer";
 		public static const GAME_STAGE_ANIMATIONS2:String ="GameStageAnimLayer2";
 		public static const GAME_STAGE_ANIMATIONS3:String ="GameStageAnimLayer3";
+		public static const GAME_STAGE_ANIMATIONS_IMAGE_LIST:Vector.<String> = new <String>["GameStageAnimLayer","GameStageAnimLayer2","GameStageAnimLayer3"];
 
 		public static const GAME_STAGE_MOVMENT_SPEEDS:Vector.<Number> = new <Number>[5,1,3];
 

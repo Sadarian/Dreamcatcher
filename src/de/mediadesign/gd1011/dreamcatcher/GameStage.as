@@ -1,5 +1,5 @@
-package de.mediadesign.gd1011.dreamcatcher {
-
+package de.mediadesign.gd1011.dreamcatcher
+{
 	import starling.display.DisplayObjectContainer;
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -7,18 +7,6 @@ package de.mediadesign.gd1011.dreamcatcher {
 	public class GameStage  extends Sprite {
 
 		private var entityManager:EntityManager;
-
-		private var gameStagePartOne:Image;
-		private var gameStagePartTwo:Image;
-		private var gameStagePartTree:Image;
-
-		private var animPlaceHolder:Image;
-		private var animPlaceHolderTwo:Image;
-		private var animPLaceHolderTree:Image;
-
-		private var gameStageFrontPartOne:Image;
-		private var gameStageFrontPartTwo:Image;
-		private var gameStageFrontPartTree:Image;
 
 		private var animLayerPartContainerOne:Sprite;
 		private var animLayerPartContainerTwo:Sprite;
@@ -37,10 +25,12 @@ package de.mediadesign.gd1011.dreamcatcher {
 		private var gameStageFrontContainerOne:Sprite;
 		private var gameStageFrontContainerTwo:Sprite;
 
+		private var player:Entity;
+
 		public function GameStage(){
 
 			entityManager = new EntityManager();
-			var player:Entity = entityManager.createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
+			player = entityManager.createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
 
 			//GameStage On which the Actors move
 
@@ -53,20 +43,6 @@ package de.mediadesign.gd1011.dreamcatcher {
 			gameStageContainerTwo.width = 1280;
 			gameStageContainerTwo.height = 800;
 			gameStageContainerTwo.x = 1280;
-
-			gameStagePartOne = AssetsManager.getImage(GameConstants.GAME_STAGE);
-			gameStagePartTwo = AssetsManager.getImage(GameConstants.GAME_STAGE2);
-			gameStagePartTree = AssetsManager.getImage(GameConstants.GAME_STAGE3);
-
-			gameStageContentList.push(gameStagePartOne);
-			gameStageContentList.push(gameStagePartTwo);
-			gameStageContentList.push(gameStagePartTree);
-
-			gameStageContainerOne.addChild(gameStageContentList.shift());
-			gameStageContainerTwo.addChild(gameStageContentList.shift());
-
-			addChild(gameStageContainerOne);
-			addChild(gameStageContainerTwo);
 
 			//AnimationLayer on the GameStage
 
@@ -84,24 +60,6 @@ package de.mediadesign.gd1011.dreamcatcher {
 			animLayerPartContainerTwo = new Sprite();
 			animLayerPartContainerTree = new Sprite();
 
-			animPlaceHolder = AssetsManager.getImage(GameConstants.GAME_STAGE_ANIMATIONS);
-			animPlaceHolderTwo = AssetsManager.getImage(GameConstants.GAME_STAGE_ANIMATIONS2);
-			animPLaceHolderTree = AssetsManager.getImage(GameConstants.GAME_STAGE_ANIMATIONS3);
-
-			animLayerPartContainerOne.addChild(animPlaceHolder);
-			animLayerPartContainerTwo.addChild(animPlaceHolderTwo);
-			animLayerPartContainerTree.addChild(animPLaceHolderTree);
-
-			animatedLayerContentList.push(animLayerPartContainerOne);
-			animatedLayerContentList.push(animLayerPartContainerTwo);
-			animatedLayerContentList.push(animLayerPartContainerTree);
-
-			animLayerContainerOne.addChild(animatedLayerContentList.shift());
-			animLayerContainerTwo.addChild(animatedLayerContentList.shift());
-
-			addChild(animLayerContainerOne);
-			addChild(animLayerContainerTwo);
-
 			//Front Part of the GameStage behind Actors can hide
 
 			gameStageFrontContainerOne = new Sprite();
@@ -114,151 +72,137 @@ package de.mediadesign.gd1011.dreamcatcher {
 			gameStageFrontContainerTwo.height = 800;
 			gameStageFrontContainerTwo.x = 1280;
 
-			gameStageFrontPartOne = AssetsManager.getImage(GameConstants.GAME_STAGE_FRONT);
-			gameStageFrontPartTwo = AssetsManager.getImage(GameConstants.GAME_STAGE_FRONT2);
-			gameStageFrontPartTree = AssetsManager.getImage(GameConstants.GAME_STAGE_FRONT3);
 
-			gameStageFrontContentList.push(gameStageFrontPartOne);
-			gameStageFrontContentList.push(gameStageFrontPartTwo);
-			gameStageFrontContentList.push(gameStageFrontPartTree);
+		}
+
+		public function loadLevel(levelIndex:int = 1):void
+		{
+			switch(levelIndex)
+			{
+				case 1:
+				{
+					createLevel(GameConstants.GAME_STAGE_IMAGE_LIST,GameConstants.GAME_STAGE_ANIMATIONS_IMAGE_LIST,GameConstants.GAME_STAGE_FRONT_IMAGE_LIST);
+				}
+			}
+		}
+
+		private function createLevel(gameStageImageList:Vector.<String>,gameStageAnimImageList:Vector.<String>,gameStageFrontImageList:Vector.<String>):void
+		{
+			var containerIndex:int = 0;
+
+			for each ( var ImageEntry:String in gameStageImageList )
+			{
+				var newGameStageImage:Image = AssetsManager.getImage(ImageEntry)
+				gameStageContentList.push(newGameStageImage);
+			}
+
+			for each ( var ImageEntry:String in gameStageAnimImageList )
+			{
+				containerIndex++
+				var newGameStageImage:Image = AssetsManager.getImage(ImageEntry)
+
+					if(containerIndex == 1)
+					{
+						animLayerPartContainerOne.addChild(newGameStageImage);
+						trace("ANIMLAYER ONE");
+						trace(containerIndex)
+					}
+					else if (containerIndex == 2)
+					{
+						animLayerPartContainerTwo.addChild(newGameStageImage);
+						trace("ANIMLAYER TWO");
+						trace(containerIndex)
+					}
+					else if (containerIndex == 3)
+					{
+						animLayerPartContainerTree.addChild(newGameStageImage);
+						trace("ANIMLAYER TREE");
+						containerIndex =0;
+						trace(containerIndex)
+					}
+
+
+			}
+
+				animatedLayerContentList.push(animLayerPartContainerOne);
+				animatedLayerContentList.push(animLayerPartContainerTwo);
+				animatedLayerContentList.push(animLayerPartContainerTree);
+
+			for each ( var ImageEntry:String in gameStageFrontImageList )
+			{
+				var newGameStageFrontImage:Image = AssetsManager.getImage(ImageEntry)
+				gameStageFrontContentList.push(newGameStageFrontImage);
+			}
+
+			gameStageContainerOne.addChild(gameStageContentList.shift());
+			gameStageContainerTwo.addChild(gameStageContentList.shift());
+
+			animLayerContainerOne.addChild(animatedLayerContentList.shift());
+			animLayerContainerTwo.addChild(animatedLayerContentList.shift());
 
 			gameStageFrontContainerOne.addChild(gameStageFrontContentList.shift());
 			gameStageFrontContainerTwo.addChild(gameStageFrontContentList.shift());
 
+			addChild(gameStageContainerOne);
+			addChild(gameStageContainerTwo);
+
+			addChild(animLayerContainerOne);
+			addChild(animLayerContainerTwo)
+
 			addChild(gameStageFrontContainerOne);
 			addChild(gameStageFrontContainerTwo);
 
-
 			addChild(player.movieClip);
+
 		}
 
-		private function swapGameStageContainerTwo():void
+		private function swapContainerContent(container:DisplayObjectContainer,
+											  ContentImageList:Vector.<Image>,
+											  ContentContainerList:Vector.<DisplayObjectContainer> = null):void
 		{
-			var randomNumber:Number = Math.random()*10;
-			var resizedInt:int = int(randomNumber);
-
-			if (resizedInt <= 4)
+			if (ContentImageList)
 			{
-				gameStageContentList.push(gameStageContainerTwo.removeChildAt(0));
-				gameStageContainerTwo.addChildAt(gameStageContentList.shift(),0);
+				trace("Swaping Image");
+				var randomNumber:Number = Math.random()*10;
+				var resizedInt:int = int(randomNumber);
+
+				if (resizedInt <= 4)
+				{
+					ContentImageList.push(container.removeChildAt(0));
+					container.addChildAt(ContentImageList.shift(),0);
+				}
+				else
+				{
+					ContentImageList.push(container.removeChildAt(0));
+					container.addChildAt(ContentImageList.pop(),0);
+				}
 			}
-			else
+			else if (ContentContainerList)
 			{
-				gameStageContentList.push(gameStageContainerTwo.removeChildAt(0));
-				gameStageContainerTwo.addChildAt(gameStageContentList.pop(),0);
-			}
+				trace("Swaping Container");
+				var randomNumber:Number = Math.random()*10;
+				var resizedInt:int = int(randomNumber);
 
-		}
-
-		private function swapGameStageContainerOne():void
-		{
-			var randomNumber:Number = Math.random()*10;
-			var resizedInt:int = int(randomNumber);
-
-			if (resizedInt <= 4)
-			{
-				gameStageContentList.push(gameStageContainerOne.removeChildAt(0));
-				gameStageContainerOne.addChildAt(gameStageContentList.shift(),0);
-			}
-			else
-			{
-				gameStageContentList.push(gameStageContainerOne.removeChildAt(0));
-				gameStageContainerOne.addChildAt(gameStageContentList.pop(),0);
-			}
-
-
-		}
-
-		private function swapGameStageFrontContainerOne():void
-		{
-			var randomNumber:Number = Math.random()*10;
-			var resizedInt:int = int(randomNumber);
-
-			if (resizedInt <= 4)
-			{
-				gameStageFrontContentList.push(gameStageFrontContainerOne.removeChildAt(0));
-				gameStageFrontContainerOne.addChildAt(gameStageFrontContentList.shift(),0);
-			}
-			else
-			{
-				gameStageFrontContentList.push(gameStageFrontContainerOne.removeChildAt(0));
-				gameStageFrontContainerOne.addChildAt(gameStageFrontContentList.pop(),0);
+				if (resizedInt <= 4)
+				{
+					ContentContainerList.push(container.removeChildAt(0));
+					container.addChildAt(ContentContainerList.shift(),0);
+				}
+				else
+				{
+					ContentContainerList.push(container.removeChildAt(0));
+					container.addChildAt(ContentContainerList.pop(),0);
+				}
 			}
 		}
 
-		private function swapGameStageFrontContainerTwo():void
-		{
-			var randomNumber:Number = Math.random()*10;
-			var resizedInt:int = int(randomNumber);
-
-			if (resizedInt <= 4)
-			{
-				gameStageFrontContentList.push(gameStageFrontContainerTwo.removeChildAt(0));
-				gameStageFrontContainerTwo.addChildAt(gameStageFrontContentList.shift(),0);
-			}
-			else
-			{
-				gameStageFrontContentList.push(gameStageFrontContainerTwo.removeChildAt(0));
-				gameStageFrontContainerTwo.addChildAt(gameStageFrontContentList.pop(),0);
-			}
-		}
-
-		private function swapGameStageAnimatedContainerOne():void
-		{
-			var randomNumber:Number = Math.random()*10;
-			var resizedInt:int = int(randomNumber);
-
-			if (resizedInt <= 4)
-			{
-				animatedLayerContentList.push(animLayerContainerOne.removeChildAt(0));
-				animLayerContainerOne.addChildAt(animatedLayerContentList.shift(),0);
-			}
-			else
-			{
-				animatedLayerContentList.push(animLayerContainerOne.removeChildAt(0));
-				animLayerContainerOne.addChildAt(animatedLayerContentList.pop(),0);
-			}
-		}
-
-		private function swapGameStageAnimatedContainerTwo():void
-		{
-			var randomNumber:Number = Math.random()*10;
-			var resizedInt:int = int(randomNumber);
-
-			if (resizedInt <= 4)
-			{
-				animatedLayerContentList.push(animLayerContainerTwo.removeChildAt(0));
-				animLayerContainerTwo.addChildAt(animatedLayerContentList.shift(),0);
-			}
-			else
-			{
-				animatedLayerContentList.push(animLayerContainerTwo.removeChildAt(0));
-				animLayerContainerTwo.addChildAt(animatedLayerContentList.pop(),0);
-			}
-		}
-
-		private function moveBaseStage(speed:Number = 5):void
+		private function moveContainer(containerOne:DisplayObjectContainer,containerTwo:DisplayObjectContainer,speed:Number):void
 		{
 			var resizedSpeed:Number = resizeSpeed(speed);
 
-			(gameStageContainerOne.x>-gameStageContainerOne.width)? gameStageContainerOne.x -= resizedSpeed:gameStageContainerOne.x = gameStageContainerTwo.x+(gameStageContainerOne.width) -resizedSpeed;
-			(gameStageContainerTwo.x>-gameStageContainerTwo.width)?gameStageContainerTwo.x -= resizedSpeed:gameStageContainerTwo.x = gameStageContainerOne.x+(gameStageContainerOne.width) - resizedSpeed;
+			(containerOne.x>-containerOne.width)? containerOne.x -= resizedSpeed:containerOne.x = containerTwo.x+(containerOne.width) -resizedSpeed;
+			(containerTwo.x>-containerTwo.width)?containerTwo.x -= resizedSpeed:containerTwo.x = containerOne.x+(containerOne.width) - resizedSpeed;
 
-		}
-
-		private function moveGameStageFront(speed:Number = 2):void
-		{
-			var resizedSpeed:Number = resizeSpeed(speed);
-
-			(gameStageFrontContainerOne.x>-gameStageFrontContainerOne.width)?gameStageFrontContainerOne.x -= resizedSpeed:gameStageFrontContainerOne.x = gameStageFrontContainerTwo.x +(gameStageFrontContainerOne.width) - resizedSpeed;
-			(gameStageFrontContainerTwo.x>-gameStageFrontContainerTwo.width)?gameStageFrontContainerTwo.x -= resizedSpeed:gameStageFrontContainerTwo.x = gameStageFrontContainerOne.x+(gameStageFrontContainerOne.width) - resizedSpeed;
-		}
-
-		private function moveAnimLayer (speed:Number = 2):void
-		{
-			var resizedSpeed:Number = resizeSpeed(speed);
-			(animLayerContainerOne.x>-animLayerContainerOne.width)?animLayerContainerOne.x -= resizedSpeed:animLayerContainerOne.x = animLayerContainerTwo.x +(animLayerContainerOne.width) -resizedSpeed;
-			(animLayerContainerTwo.x>-animLayerContainerTwo.width)?animLayerContainerTwo.x -= resizedSpeed:animLayerContainerTwo.x = animLayerContainerOne.x +(animLayerContainerOne.width) -resizedSpeed;
 		}
 
 		private function  resizeSpeed(speed:Number):Number
@@ -269,35 +213,36 @@ package de.mediadesign.gd1011.dreamcatcher {
 
 		public function moveGameStage(movementSpeedVector:Vector.<Number>):void
 		{
-			moveBaseStage(movementSpeedVector[0]);
-			moveGameStageFront(movementSpeedVector[1]);
-			moveAnimLayer(movementSpeedVector[2]);
+			moveContainer(gameStageContainerOne,gameStageContainerTwo,movementSpeedVector[0]);
+			moveContainer(gameStageFrontContainerOne,gameStageFrontContainerTwo,movementSpeedVector[1]);
+			moveContainer(animLayerContainerOne,animLayerContainerTwo,movementSpeedVector[2]);
+
 
 			if (gameStageContainerOne.x == -gameStageContainerOne.width)
 			{
-				swapGameStageContainerOne();
+				swapContainerContent(gameStageContainerOne,gameStageContentList);
 			}
 			else if (gameStageContainerTwo.x == -gameStageContainerTwo.width)
 			{
-				swapGameStageContainerTwo();
+				swapContainerContent(gameStageContainerTwo,gameStageContentList);
 			}
 
 			if (gameStageFrontContainerOne.x == -gameStageFrontContainerOne.width)
 			{
-				swapGameStageFrontContainerOne();
+				swapContainerContent(gameStageFrontContainerOne,gameStageFrontContentList);
 			}
 			else if (gameStageFrontContainerTwo.x == -gameStageFrontContainerTwo.width)
 			{
-				swapGameStageFrontContainerTwo();
+				swapContainerContent(gameStageFrontContainerTwo,gameStageFrontContentList);
 			}
 
 			if (animLayerContainerOne.x == -animLayerContainerOne.width)
 			{
-				swapGameStageAnimatedContainerOne();
+				swapContainerContent(animLayerContainerOne,null,animatedLayerContentList);
 			}
 			else if (animLayerContainerTwo.x == -animLayerContainerTwo.width)
 			{
-				swapGameStageAnimatedContainerTwo();
+				swapContainerContent(animLayerContainerOne,null,animatedLayerContentList);
 			}
 		}
 	}

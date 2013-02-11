@@ -44,14 +44,14 @@ package de.mediadesign.gd1011.dreamcatcher
 
 			var viewPort:Rectangle = Starling.current.viewPort;
 
-			for each (var container in firstContainerList)
+			for each (var container:DisplayObjectContainer in firstContainerList)
 			{
 				container.width  	= viewPort.width;
 				container.height 	= viewPort.height;
 				container.x			= 0;
 			}
 
-			for each (var container in secondContainerList)
+			for each (container in secondContainerList)
 			{
 				container.width  	= viewPort.width;
 				container.height 	= viewPort.height;
@@ -82,10 +82,10 @@ package de.mediadesign.gd1011.dreamcatcher
 				gameStageContentList.push(newGameStageImage);
 			}
 
-			for each ( var ImageEntry:String in gameStageAnimImageList )
+			for each (ImageEntry in gameStageAnimImageList )
 			{
 				containerIndex++
-				var newGameStageImage:Image = AssetsManager.getImage(ImageEntry)
+				newGameStageImage = AssetsManager.getImage(ImageEntry)
 
 					if(containerIndex == 1)
 					{
@@ -114,7 +114,7 @@ package de.mediadesign.gd1011.dreamcatcher
 				animatedLayerContentList.push(animLayerPartContainerTwo);
 				animatedLayerContentList.push(animLayerPartContainerTree);
 
-			for each ( var ImageEntry:String in gameStageFrontImageList )
+			for each (ImageEntry in gameStageFrontImageList )
 			{
 				var newGameStageFrontImage:Image = AssetsManager.getImage(ImageEntry)
 				gameStageFrontContentList.push(newGameStageFrontImage);

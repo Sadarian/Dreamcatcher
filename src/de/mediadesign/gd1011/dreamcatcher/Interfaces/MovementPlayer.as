@@ -12,17 +12,14 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces
     {
         private static var BORDER:Rectangle = GameConstants.playerMovementBorder;
 
-        private static var touch:Touch = null;
+        private static var _touch:Touch = null;
+
+        private var _speed:Number = 0;
         private var velocity:Point = new Point();
 
-        private var _speed:Number;
-
-        public static function setTouch(touchList:Vector.<Touch>):void
+        public static function set touch(touch:Touch):void
         {
-            MovementPlayer.touch = null;
-            for each (var touch:Touch in touchList)
-                if(touch.getLocation(Starling.current.stage).x < Starling.current.viewPort.width/2)
-                    MovementPlayer.touch = touch;
+            _touch = touch;
         }
 
         public function set speed(value:Number):void
@@ -33,9 +30,9 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces
         private function calculateVelocity(position:Point):void
         {
             var tempPoint:Point = new Point();
-            if(touch != null)
+            if(_touch != null)
             {
-                tempPoint.copyFrom(touch.getLocation(Starling.current.stage));
+                tempPoint.copyFrom(_touch.getLocation(Starling.current.stage));
                 var tempVelocity:Point = tempPoint;
                 tempVelocity.subtract(position);
                 velocity.x = (tempPoint.x < position.x) ? Math.max(-_speed, -tempVelocity.x) : Math.min(_speed, tempVelocity.x);
@@ -47,9 +44,9 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces
 
         private function validateVelocity(position:Point):void
         {
-            if(touch != null)
+            if(_touch != null)
             {
-                var touchLocation:Point = touch.getLocation(Starling.current.stage);
+                var touchLocation:Point = _touch.getLocation(Starling.current.stage);
 
                 //Validation for Y
                 if(velocity.y > 0 && position.y + velocity.y > touchLocation.y ||

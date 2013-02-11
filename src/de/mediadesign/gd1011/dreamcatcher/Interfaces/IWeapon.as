@@ -6,6 +6,6 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces
     {
         function set speed(value:Number):void
 
-        function shoot(position:Point, target:Object):void
+        function shoot(deltaTime:Number, position:Point, target:Object):void
 	}
 }

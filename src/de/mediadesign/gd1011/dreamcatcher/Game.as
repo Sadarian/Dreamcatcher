@@ -33,7 +33,6 @@ package de.mediadesign.gd1011.dreamcatcher
             addChild(AssetsManager.getImage(GameConstants.BACKGROUND));
 			addChild(gameStage = new GameStage())
 			gameStage.loadLevel();
-
 	        startGame();
 		}
 

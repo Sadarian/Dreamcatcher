@@ -17,38 +17,29 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		public static const BACKGROUND:String = "Background";
 
-		public static const GAME_STAGE:String ="GameStage";
-		public static const GAME_STAGE2:String ="GameStage2";
-		public static const GAME_STAGE3:String ="GameStage3";
 		public static const GAME_STAGE_IMAGE_LIST:Vector.<String> = new <String>["GameStage","GameStage2","GameStage3"];
 
-		public static const GAME_STAGE_FRONT:String ="GameStageFront";
-		public static const GAME_STAGE_FRONT2:String ="GameStageFront2";
-		public static const GAME_STAGE_FRONT3:String ="GameStageFront3";
 		public static const GAME_STAGE_FRONT_IMAGE_LIST:Vector.<String> = new <String>["GameStageFront","GameStageFront2","GameStageFront3"];
 
-		public static const GAME_STAGE_ANIMATIONS:String ="GameStageAnimLayer";
-		public static const GAME_STAGE_ANIMATIONS2:String ="GameStageAnimLayer2";
-		public static const GAME_STAGE_ANIMATIONS3:String ="GameStageAnimLayer3";
 		public static const GAME_STAGE_ANIMATIONS_IMAGE_LIST:Vector.<String> = new <String>["GameStageAnimLayer","GameStageAnimLayer2","GameStageAnimLayer3"];
 
 		public static const GAME_STAGE_MOVMENT_SPEEDS:Vector.<Number> = new <Number>[5,1,3];
 
 		public static const ENEMY:String = "Enemy";
-		public static const ENEMY_ANIM_CONFIG:Vector.<int> = new <int>[4,2,7,8];
-		public static const ENEMY_TEXTURE_NAME:String = "testAnimation";
+		public static const ENEMY_ANIM_CONFIG:Vector.<int> = new <int>[4,2,8,10];
+		public static const ENEMY_TEXTURE_NAME:String = "EnemyWalk";
 
 		public static const BOSS:String = "Boss";
-		public static const BOSS_ANIM_CONFIG:Vector.<int> = new <int>[3,2,6,12];
-		public static const BOSS_TEXTURE_NAME:String = "Boss";
+		public static const BOSS_ANIM_CONFIG:Vector.<int> = new <int>[3,2,6,8];
+		public static const BOSS_TEXTURE_NAME:String = "BossWalk";
 
 		public static const PLAYER:String = "Player";
 		public static const PLAYER_ANIM_CONFIG:Vector.<int> = new <int>[4,2,6,12];
 		public static const PLAYER_TEXTURE_NAME:String = "PlayerOnly";
 
 		public static const VICTIM:String = "Victim";
-		public static const VICTIM_ANIM_CONFIG:Vector.<int> = new <int>[6,1,6,12];
-		public static const VICTIM_TEXTURE_NAME:String = "testAnimation";
+		public static const VICTIM_ANIM_CONFIG:Vector.<int> = new <int>[4,2,6,12];
+		public static const VICTIM_TEXTURE_NAME:String = "VictimWalk";
 
 		public static const BULLET:String = "Bullet";
 		public static const BULLET_ANIM_CONFIG:Vector.<int> = new <int>[6,1,6,12];
@@ -64,6 +55,8 @@ package de.mediadesign.gd1011.dreamcatcher
 	    private static var _playerMovementBorder:Rectangle;
         private static var _playerStartPosition:Point;
 	    private static var _bossStartPosition:Point;
+	    private static var _enemyStartPosition:Point;
+	    private static var _victimStartPosition:Point;
 
         public static function init(path:String = "Config.json"):void
         {
@@ -83,6 +76,10 @@ package de.mediadesign.gd1011.dreamcatcher
                                                                           data.playerStartPosition[1]);
 	        if(data.bossStartPosition) _bossStartPosition = new Point(data.bossStartPosition[0],
 			                                                          data.bossStartPosition[1]);
+	        if(data.enemyStartPosition) _enemyStartPosition = new Point(data.enemyStartPosition[0],
+			                                                            data.enemyStartPosition[1]);
+	        if(data.victimStartPosition) _victimStartPosition = new Point(data.victimStartPosition[0],
+			                                                              data.victimStartPosition[1]);
         }
 
         public static function getData(type:String):Array
@@ -99,7 +96,7 @@ package de.mediadesign.gd1011.dreamcatcher
             if(data.movementSpeed) dataArray[3] = (data.movementSpeed as Number); else throw new ArgumentError(type + " has no movementSpeed declared!");
             if(data.weaponSystem) dataArray[4] = (data.weaponSystem == "null")?null:new(getDefinitionByName("de.mediadesign.gd1011.dreamcatcher.Interfaces." + data.weaponSystem) as Class)();
                 else throw new ArgumentError(type + " has no weaponSystem declared!");
-            if(data.weaponSpeed) dataArray[5] = (data.weaponSpeed as Number); else throw new ArgumentError(type + " has no weaponSpeed declared!");
+            if(data.weaponSpeed) dataArray[5] = (data.weaponSpeed == 0)?0:(data.weaponSpeed as Number); else throw new ArgumentError(type + " has no weaponSpeed declared!");
             if(data.collisionMode) dataArray[6] = (data.collisionMode as String); else throw new ArgumentError(type + " has no collisionMode declared!");
             if(data.collisionPoint) dataArray[7] = new Point(data.collisionPoint[0], data.collisionPoint[1]); else throw new ArgumentError(type + " has no collisionPoint declared!");
 	        if(data.collisionValues) dataArray[8] = new Point(data.collisionValues[0], data.collisionValues[1]); else throw new ArgumentError(type + " has no collisionValues declared!");
@@ -122,6 +119,14 @@ package de.mediadesign.gd1011.dreamcatcher
 	    public static function get bossStartPosition():Point
 		{
 		    return _bossStartPosition;
+	    }
+
+	    public static function get enemyStartPosition():Point {
+		    return _enemyStartPosition;
+	    }
+
+	    public static function get victimStartPosition():Point {
+		    return _victimStartPosition;
 	    }
     }
 }

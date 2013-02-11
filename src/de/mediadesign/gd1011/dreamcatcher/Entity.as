@@ -73,18 +73,18 @@ package de.mediadesign.gd1011.dreamcatcher
                 _weaponSystem.shoot(deltaTime, _position, null);
         }
 
+		public function removeMoviclip():void
+		{
+			AssetsManager.addMovieClip(_movieClip, _name)
+			_movieClip = null;
+		}
+
 		public function switchMovement(movementSystem:IMovement):void {
 			this._movementSystem = movementSystem;
 		}
 
 		public function switchWeapon(weaponSystem:IWeapon):void {
 			this._weaponSystem = weaponSystem;
-		}
-
-		public function destroy():void
-		{
-			_movementSystem = null;
-			_weaponSystem = null;
 		}
 
 	    public function get name():String
@@ -116,6 +116,14 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		public function get position():Point {
 			return _position;
+		}
+
+		public function get health():Number {
+			return _health;
+		}
+
+		public function set health(value:Number):void {
+			_health = value;
 		}
 	}
 }

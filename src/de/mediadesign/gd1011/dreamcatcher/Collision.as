@@ -27,14 +27,26 @@ package de.mediadesign.gd1011.dreamcatcher {
 						{
 							if (identicalCollision.checkCollision(entityA, entityB))
 							{
-								trace("Hell Yeah!");
+								if (entityA.name == GameConstants.PLAYER_BULLET)
+								{
+									entityB.health = entityB.health - entityA.health;
+									entityA.health = 0;
+								}
+								else
+								{
+									entityA.health = entityA.health - entityB.health;
+									entityB.health = 0;
+								}
 							}
 						}
 						else
 						{
-							if (differentailCollision.checkCollision(entityA, entityB))
+							if (!(entityA.name.search(GameConstants.PLAYER) >= 0 && entityB.name.search(GameConstants.PLAYER) >= 0))
 							{
-								trace("Yeeeeeeeha!!");
+								if (differentailCollision.checkCollision(entityA, entityB))
+								{
+									trace("Yeeeeeeeha!!");
+								}
 							}
 						}
 					}

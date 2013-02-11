@@ -21,6 +21,8 @@ package de.mediadesign.gd1011.dreamcatcher
 		private var renderProcess:RenderProcess;
 		private var time:Date;
 		private var deltaTime:Number;
+		private var gameStage:GameStage;
+
 
 		public function Game()
         {
@@ -31,16 +33,8 @@ package de.mediadesign.gd1011.dreamcatcher
 	        renderProcess = new RenderProcess(entityManager);
 
             addChild(AssetsManager.getImage(GameConstants.BACKGROUND));
-
-			var player:Entity = entityManager.createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
-	        addChild(player.movieClip);
-	        var boss:Entity = entityManager.createEntity(GameConstants.BOSS, GameConstants.bossStartPosition);
-	        addChild(boss.movieClip);
-	        var enemy:Entity = entityManager.createEntity(GameConstants.ENEMY, GameConstants.enemyStartPosition);
-	        addChild(enemy.movieClip);
-	        var victim:Entity = entityManager.createEntity(GameConstants.VICTIM, GameConstants.victimStartPosition);
-	        addChild(victim.movieClip);
-
+			addChild(gameStage = new GameStage())
+			gameStage.loadLevel();
 	        startGame();
 		}
 
@@ -49,7 +43,7 @@ package de.mediadesign.gd1011.dreamcatcher
 			time = new Date();
 			deltaTime = time.time;
 			addEventListener(Event.ENTER_FRAME, update);
-            addEventListener(TouchEvent.TOUCH, onTouch);
+			addEventListener(TouchEvent.TOUCH, onTouch);
 		}
 
 		private function update(event:Event):void
@@ -61,8 +55,8 @@ package de.mediadesign.gd1011.dreamcatcher
 			shootingProcess.update(deltaTime);
 			collision.update();
 			renderProcess.update();
-
 			deltaTime = time.time;
+			gameStage.moveGameStage(GameConstants.GAME_STAGE_MOVMENT_SPEEDS);
 		}
 
         private function onTouch(e:TouchEvent):void

@@ -12,7 +12,18 @@ package de.mediadesign.gd1011.dreamcatcher
         public static const COLLISION_RECTANGLE:String = "CollisionRectangle";
         public static const COLLISION_CIRCLE:String = "CollisionCircle";
 
+		public static const TEST_SOUND:String = "TestSound";
+		public static const SOUND_LIST:Vector.<String> = new <String>[TEST_SOUND];
+
 		public static const BACKGROUND:String = "Background";
+
+		public static const GAME_STAGE_IMAGE_LIST:Vector.<String> = new <String>["GameStage","GameStage2","GameStage3"];
+
+		public static const GAME_STAGE_FRONT_IMAGE_LIST:Vector.<String> = new <String>["GameStageFront","GameStageFront2","GameStageFront3"];
+
+		public static const GAME_STAGE_ANIMATIONS_IMAGE_LIST:Vector.<String> = new <String>["GameStageAnimLayer","GameStageAnimLayer2","GameStageAnimLayer3"];
+
+		public static const GAME_STAGE_MOVMENT_SPEEDS:Vector.<Number> = new <Number>[5,1,3];
 
 		public static const ENEMY:String = "Enemy";
 		public static const ENEMY_ANIM_CONFIG:Vector.<int> = new <int>[4,2,8,10];
@@ -105,7 +116,8 @@ package de.mediadesign.gd1011.dreamcatcher
             return _playerStartPosition;
         }
 
-	    public static function get bossStartPosition():Point {
+	    public static function get bossStartPosition():Point
+		{
 		    return _bossStartPosition;
 	    }
 

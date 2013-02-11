@@ -2,9 +2,9 @@
     "name":"Player",
     "health":100,
     "movementSystem":"MovementPlayer",
-    "movementSpeed":5,
+    "movementSpeed":750,
     "weaponSystem":"WeaponPlayer",
-    "weaponSpeed":250,
+    "weaponSpeed":750,
     "collisionMode":"CollisionRectangle",
     "collisionPoint":[0, 0],
     "collisionValues":[50, 192]

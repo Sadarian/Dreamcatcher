@@ -2,8 +2,6 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces
 {
     import flash.geom.Point;
 
-    import starling.core.Starling;
-
     public class MovementBullet implements IMovement
     {
         private var _speed:Number = 0;
@@ -29,7 +27,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces
 
         public function move(deltaTime:Number, position:Point):Point
         {
-            return (position.add(new Point(velocity.x / deltaTime, velocity.y / deltaTime)));
+            return (position.add(new Point(velocity.x / (1000/deltaTime), velocity.y / (1000/deltaTime))));
         }
     }
 }

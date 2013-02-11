@@ -33,12 +33,16 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		private var player:Entity;
 		private var boss:Entity;
+        private var enemy:Entity;
+        private var victim:Entity;
 
 		public function GameStage()
 		{
 			entityManager = EntityManager.entityManager;
 			player = entityManager.createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
 			boss = entityManager.createEntity(GameConstants.BOSS, GameConstants.bossStartPosition);
+            enemy = entityManager.createEntity(GameConstants.ENEMY, GameConstants.enemyStartPosition);
+            victim = entityManager.createEntity(GameConstants.VICTIM, GameConstants.victimStartPosition);
 
 			//GameStage On which the Actors move
 
@@ -137,6 +141,8 @@ package de.mediadesign.gd1011.dreamcatcher
 
 			addChild(player.movieClip);
 			addChild(boss.movieClip);
+            addChild(enemy.movieClip);
+            addChild(victim.movieClip);
 
 			addChild(gameStageFrontContainerOne);
 			addChild(gameStageFrontContainerTwo);

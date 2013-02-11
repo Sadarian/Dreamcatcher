@@ -1,5 +1,12 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.MovementBullet;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.MovementEnemy;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.MovementPlayer;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.MovementVictim;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.WeaponEnemy;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.WeaponPlayer;
+
     import flash.filesystem.File;
     import flash.filesystem.FileMode;
     import flash.filesystem.FileStream;
@@ -60,6 +67,11 @@ package de.mediadesign.gd1011.dreamcatcher
 
         public static function init(path:String = "Config.json"):void
         {
+            new MovementBullet();
+            new MovementEnemy();
+            new MovementVictim();
+            new WeaponEnemy();
+
             var stream:FileStream = new FileStream();
             stream.open(File.applicationDirectory.resolvePath(path), FileMode.READ);
             setConstants(JSON.parse(stream.readUTFBytes(stream.bytesAvailable)));

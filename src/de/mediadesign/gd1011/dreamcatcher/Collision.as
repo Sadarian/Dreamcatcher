@@ -27,14 +27,12 @@ package de.mediadesign.gd1011.dreamcatcher {
 						{
 							if (identicalCollision.checkCollision(entityA, entityB))
 							{
-								trace("Hell Yeah!");
 							}
 						}
 						else
 						{
 							if (differentailCollision.checkCollision(entityA, entityB))
 							{
-								trace("Yeeeeeeeha!!");
 							}
 						}
 					}

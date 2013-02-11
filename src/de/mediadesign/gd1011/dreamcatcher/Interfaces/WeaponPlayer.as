@@ -2,7 +2,6 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces
 {
     import de.mediadesign.gd1011.dreamcatcher.Entity;
     import de.mediadesign.gd1011.dreamcatcher.EntityManager;
-    import de.mediadesign.gd1011.dreamcatcher.Game;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 
     import flash.geom.Point;
@@ -29,7 +28,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces
 
         public function shoot(deltaTime:Number, position:Point, target:Object):void
         {
-            sumTime += _speed/deltaTime;
+            sumTime += 1000/deltaTime;
             if(sumTime>=_speed)
             {
                 sumTime -= _speed;

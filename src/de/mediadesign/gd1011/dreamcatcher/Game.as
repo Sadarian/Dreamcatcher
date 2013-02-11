@@ -24,7 +24,7 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		public function Game()
         {
-	        entityManager = new EntityManager();
+	        entityManager = EntityManager.entityManager;
 	        moveProcess = new MoveProcess(entityManager);
 	        shootingProcess = new ShootingProcess(entityManager);
 	        collision = new Collision(entityManager);

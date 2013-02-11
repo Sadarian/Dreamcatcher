@@ -1,5 +1,8 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
+	import flash.geom.Rectangle;
+
+	import starling.core.Starling;
 	import starling.display.DisplayObjectContainer;
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -8,71 +11,52 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		private var entityManager:EntityManager;
 
-		private var animLayerPartContainerOne:Sprite;
-		private var animLayerPartContainerTwo:Sprite;
-		private var animLayerPartContainerTree:Sprite;
+		private var animLayerPartContainerOne:Sprite = new Sprite();
+		private var animLayerPartContainerTwo:Sprite = new Sprite();
+		private var animLayerPartContainerTree:Sprite = new Sprite();
 
 		private var gameStageContentList:Vector.<Image> = new Vector.<Image>;
 		private var gameStageFrontContentList:Vector.<Image> = new Vector.<Image>;
 		private var animatedLayerContentList:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>;
 
-		private var gameStageContainerOne:Sprite;
-		private var gameStageContainerTwo:Sprite;
+		private var gameStageContainerOne:Sprite = new Sprite();
+		private var gameStageContainerTwo:Sprite = new Sprite();
 
-		private var animLayerContainerOne:Sprite;
-		private var animLayerContainerTwo:Sprite;
+		private var animLayerContainerOne:Sprite = new Sprite();
+		private var animLayerContainerTwo:Sprite = new Sprite();
 
-		private var gameStageFrontContainerOne:Sprite;
-		private var gameStageFrontContainerTwo:Sprite;
+		private var gameStageFrontContainerOne:Sprite = new Sprite();
+		private var gameStageFrontContainerTwo:Sprite = new Sprite();
+
+		private var firstContainerList:Vector.<DisplayObjectContainer> = new <DisplayObjectContainer>[gameStageContainerOne,animLayerContainerOne,gameStageFrontContainerOne];
+		private var secondContainerList:Vector.<DisplayObjectContainer> = new <DisplayObjectContainer>[gameStageContainerTwo,animLayerContainerTwo,gameStageFrontContainerTwo];
 
 		private var player:Entity;
+		private var boss:Entity;
 
-		public function GameStage(){
-
-			entityManager = new EntityManager();
+		public function GameStage()
+		{
+			entityManager = EntityManager.entityManager;
 			player = entityManager.createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
+			boss = entityManager.createEntity(GameConstants.BOSS, GameConstants.bossStartPosition);
 
 			//GameStage On which the Actors move
 
-			gameStageContainerOne = new Sprite();
-			gameStageContainerOne.width = 1280;
-			gameStageContainerOne.height = 800;
-			gameStageContainerOne.x = 0;
+			var viewPort:Rectangle = Starling.current.viewPort;
 
-			gameStageContainerTwo = new Sprite();
-			gameStageContainerTwo.width = 1280;
-			gameStageContainerTwo.height = 800;
-			gameStageContainerTwo.x = 1280;
+			for each (var container in firstContainerList)
+			{
+				container.width  	= viewPort.width;
+				container.height 	= viewPort.height;
+				container.x			= 0;
+			}
 
-			//AnimationLayer on the GameStage
-
-			animLayerContainerOne = new Sprite();
-			animLayerContainerOne.width = 1280;
-			animLayerContainerOne.height = 800;
-			animLayerContainerOne.x =0;
-
-			animLayerContainerTwo = new Sprite();
-			animLayerContainerTwo.width = 1280;
-			animLayerContainerTwo.height = 800;
-			animLayerContainerTwo.x = 1280;
-
-			animLayerPartContainerOne = new Sprite();
-			animLayerPartContainerTwo = new Sprite();
-			animLayerPartContainerTree = new Sprite();
-
-			//Front Part of the GameStage behind Actors can hide
-
-			gameStageFrontContainerOne = new Sprite();
-			gameStageFrontContainerOne.width = 1280;
-			gameStageFrontContainerOne.height = 800;
-			gameStageFrontContainerOne.x =0;
-
-			gameStageFrontContainerTwo = new Sprite();
-			gameStageFrontContainerTwo.width = 1280;
-			gameStageFrontContainerTwo.height = 800;
-			gameStageFrontContainerTwo.x = 1280;
-
-
+			for each (var container in secondContainerList)
+			{
+				container.width  	= viewPort.width;
+				container.height 	= viewPort.height;
+				container.x			= viewPort.width;
+			}
 		}
 
 		public function loadLevel(levelIndex:int = 1):void
@@ -86,7 +70,9 @@ package de.mediadesign.gd1011.dreamcatcher
 			}
 		}
 
-		private function createLevel(gameStageImageList:Vector.<String>,gameStageAnimImageList:Vector.<String>,gameStageFrontImageList:Vector.<String>):void
+		private function createLevel(gameStageImageList:Vector.<String>,
+									 gameStageAnimImageList:Vector.<String>,
+									 gameStageFrontImageList:Vector.<String>):void
 		{
 			var containerIndex:int = 0;
 
@@ -149,10 +135,11 @@ package de.mediadesign.gd1011.dreamcatcher
 			addChild(animLayerContainerOne);
 			addChild(animLayerContainerTwo)
 
+			addChild(player.movieClip);
+			addChild(boss.movieClip);
+
 			addChild(gameStageFrontContainerOne);
 			addChild(gameStageFrontContainerTwo);
-
-			addChild(player.movieClip);
 
 		}
 
@@ -196,7 +183,8 @@ package de.mediadesign.gd1011.dreamcatcher
 			}
 		}
 
-		private function moveContainer(containerOne:DisplayObjectContainer,containerTwo:DisplayObjectContainer,speed:Number):void
+		private function moveContainer(containerOne:DisplayObjectContainer,
+									   containerTwo:DisplayObjectContainer,speed:Number):void
 		{
 			var resizedSpeed:Number = resizeSpeed(speed);
 
@@ -242,7 +230,7 @@ package de.mediadesign.gd1011.dreamcatcher
 			}
 			else if (animLayerContainerTwo.x == -animLayerContainerTwo.width)
 			{
-				swapContainerContent(animLayerContainerOne,null,animatedLayerContentList);
+				swapContainerContent(animLayerContainerTwo,null,animatedLayerContentList);
 			}
 		}
 	}

@@ -1,15 +1,18 @@
 package de.mediadesign.gd1011.dreamcatcher {
+	import de.mediadesign.gd1011.dreamcatcher.Interfaces.DifferentialCollision;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.IdenticalCollision;
 
 	public class Collision
 	{
 		private var entityManager:EntityManager;
 		private var identicalCollision:IdenticalCollision;
+		private var differentailCollision:DifferentialCollision;
 
 		public function Collision(entityManager:EntityManager)
 		{
 			this.entityManager = entityManager;
-			identicalCollision = new IdenticalCollision()
+			identicalCollision = new IdenticalCollision();
+			differentailCollision = new DifferentialCollision();
 		}
 
 		public function update():void
@@ -24,7 +27,14 @@ package de.mediadesign.gd1011.dreamcatcher {
 						{
 							if (identicalCollision.checkCollision(entityA, entityB))
 							{
-								trace("Hell Yeah!")
+								trace("Hell Yeah!");
+							}
+						}
+						else
+						{
+							if (differentailCollision.checkCollision(entityA, entityB))
+							{
+								trace("Yeeeeeeeha!!");
 							}
 						}
 					}

@@ -51,7 +51,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces
 		}
 
 		private function checkCollisionCircle(entityA:Entity, entityB:Entity):Boolean {
-			var distanceAB:Point;
+			var distanceAB:Point = new Point(0, 0);
 			var distance:Number;
 			distanceAB.x = (entityA.position.x - entityB.position.x);
 			distanceAB.y = (entityA.position.y - entityB.position.y);

@@ -5,7 +5,7 @@
     "movementSpeed":5,
     "weaponSystem":"null",
     "weaponSpeed":250,
-    "collisionMode":"CollisionCircle",
+    "collisionMode":"CollisionRectangle",
     "collisionPoint":[0, 0],
     "collisionValues":[50, 192]
 }

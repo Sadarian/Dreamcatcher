@@ -72,7 +72,7 @@ package de.mediadesign.gd1011.dreamcatcher
 			{
 				case GameConstants.ENEMY:
 				{
-					if (EnemyList.length != 0 )
+					if (EnemyList.length > 0 )
 					{
 						trace("Enemy was given from List");
 						return EnemyList.shift();
@@ -83,11 +83,12 @@ package de.mediadesign.gd1011.dreamcatcher
 						trace("Enemy was created")
 						return EnemyList.shift();
 					}
+					break;
 				}
 
 				case GameConstants.VICTIM:
 				{
-					if (VictimList.length != 0 )
+					if (VictimList.length > 0 )
 					{
 						trace("Victim was given from List");
 						return VictimList.shift();
@@ -98,11 +99,12 @@ package de.mediadesign.gd1011.dreamcatcher
 						trace("Victim was created")
 						return VictimList.shift();
 					}
+					break;
 				}
 
 				case GameConstants.BOSS:
 				{
-					if (BossList.length != 0 )
+					if (BossList.length > 0 )
 					{
 						trace("Boss was given from List");
 						return BossList.shift();
@@ -113,11 +115,12 @@ package de.mediadesign.gd1011.dreamcatcher
 						trace("Boss was created")
 						return BossList.shift();
 					}
+					break;
 				}
 
 				case GameConstants.PLAYER:
 				{
-					if (PlayerList.length != 0 )
+					if (PlayerList.length > 0 )
 					{
 						trace("Player was given from List");
 						return PlayerList.shift();
@@ -128,13 +131,14 @@ package de.mediadesign.gd1011.dreamcatcher
 						trace("Player was created")
 						return PlayerList.shift();
 					}
+					break;
 				}
 
-				case GameConstants.BULLET:
+				case GameConstants.PLAYER_BULLET:
 				{
-					if (BulletList.length != 0 )
+					if (BulletList.length > 0 )
 					{
-						trace("Bullet was given from List");
+						//trace("Bullet was given from List");
 						return BulletList.shift();
 					}
 					else
@@ -143,15 +147,14 @@ package de.mediadesign.gd1011.dreamcatcher
 						trace("Bullet was created")
 						return BulletList.shift();
 					}
+					break;
 				}
 
 				default :
 				{
 				throw new ArgumentError(item+" does not Exist! Only Player,Enemy,Boss or Victim");
-				return null;
 				}
 			}
-			return null;
 		}
 
 		public static function getImage(item:String):Image
@@ -177,15 +180,14 @@ package de.mediadesign.gd1011.dreamcatcher
 						trace("Particle System created")
 						return ParticleList.shift();
 					}
+					break;
 				}
 
 				default :
 				{
 					throw new ArgumentError(item+" does not Exist! Only 'Particle' is valid");
-					return null;
 				}
 			}
-			return null;
 		}
 
 		public static function getSound(item:String):Sound
@@ -221,30 +223,35 @@ package de.mediadesign.gd1011.dreamcatcher
 				{
 					EnemyList.push(clip);
 					trace("Enemy was added to EnemyList")
+					break;
 				}
 
 				case GameConstants.VICTIM:
 				{
 					VictimList.push(clip);
 					trace("Victim was added to VictimList")
+					break;
 				}
 
 				case GameConstants.BOSS:
 				{
 					BossList.push(clip);
 					trace("Boss was added to BossList")
+					break;
 				}
 
 				case GameConstants.PLAYER:
 				{
 					PlayerList.push(clip);
-					trace("Player was added to PlayerList")
+					trace("Player was added to PlayerList");
+					break;
 				}
 
-				case GameConstants.BULLET:
+				case GameConstants.PLAYER_BULLET:
 				{
 					BulletList.push(clip);
-					trace("Bullet was added to PlayerList")
+					//trace("Bullet was added to BulletList")
+					break;
 				}
 
 				default :

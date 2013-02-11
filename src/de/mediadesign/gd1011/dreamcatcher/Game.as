@@ -1,7 +1,10 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
 
-    import de.mediadesign.gd1011.dreamcatcher.Interfaces.MovementPlayer;
+	import de.mediadesign.gd1011.dreamcatcher.GameStage;
+	import de.mediadesign.gd1011.dreamcatcher.GameStage;
+	import de.mediadesign.gd1011.dreamcatcher.GameStage;
+	import de.mediadesign.gd1011.dreamcatcher.Interfaces.MovementPlayer;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.WeaponPlayer;
 
     import starling.core.Starling;
@@ -20,21 +23,25 @@ package de.mediadesign.gd1011.dreamcatcher
 		private var collision:Collision;
 		private var renderProcess:RenderProcess;
 		private var time:Date;
+		private var destroyProcess:DestroyProcess;
 		private var deltaTime:Number;
-		private var gameStage:GameStage;
 
 
 		public function Game()
         {
+	        AssetsManager.start();
 	        entityManager = EntityManager.entityManager;
 	        moveProcess = new MoveProcess(entityManager);
 	        shootingProcess = new ShootingProcess(entityManager);
 	        collision = new Collision(entityManager);
+	        destroyProcess = new DestroyProcess(entityManager);
 	        renderProcess = new RenderProcess(entityManager);
 
+
+
             addChild(AssetsManager.getImage(GameConstants.BACKGROUND));
-			addChild(gameStage = new GameStage())
-			gameStage.loadLevel();
+			addChild(GameStage.gameStage)
+			GameStage.gameStage.loadLevel();
 	        startGame();
 		}
 
@@ -54,9 +61,10 @@ package de.mediadesign.gd1011.dreamcatcher
 			moveProcess.update(deltaTime);
 			shootingProcess.update(deltaTime);
 			collision.update();
+			destroyProcess.update();
 			renderProcess.update();
+			GameStage.gameStage.moveGameStage(GameConstants.GAME_STAGE_MOVMENT_SPEEDS);
 			deltaTime = time.time;
-			gameStage.moveGameStage(GameConstants.GAME_STAGE_MOVMENT_SPEEDS);
 		}
 
         private function onTouch(e:TouchEvent):void

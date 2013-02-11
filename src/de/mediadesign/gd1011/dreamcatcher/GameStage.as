@@ -1,15 +1,18 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
+	import de.mediadesign.gd1011.dreamcatcher.EntityManager;
+
 	import flash.geom.Rectangle;
+	import flash.trace.Trace;
 
 	import starling.core.Starling;
 	import starling.display.DisplayObjectContainer;
 	import starling.display.Image;
+	import starling.display.MovieClip;
 	import starling.display.Sprite;
 
 	public class GameStage  extends Sprite {
-
-		private var entityManager:EntityManager;
+		private static var self:GameStage;
 
 		private var animLayerPartContainerOne:Sprite = new Sprite();
 		private var animLayerPartContainerTwo:Sprite = new Sprite();
@@ -43,6 +46,8 @@ package de.mediadesign.gd1011.dreamcatcher
 			boss = entityManager.createEntity(GameConstants.BOSS, GameConstants.bossStartPosition);
             enemy = entityManager.createEntity(GameConstants.ENEMY, GameConstants.enemyStartPosition);
             victim = entityManager.createEntity(GameConstants.VICTIM, GameConstants.victimStartPosition);
+			player = EntityManager.entityManager.createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
+			boss = EntityManager.entityManager.createEntity(GameConstants.BOSS, GameConstants.bossStartPosition);
 
 			//GameStage On which the Actors move
 
@@ -70,6 +75,7 @@ package de.mediadesign.gd1011.dreamcatcher
 				case 1:
 				{
 					createLevel(GameConstants.GAME_STAGE_IMAGE_LIST,GameConstants.GAME_STAGE_ANIMATIONS_IMAGE_LIST,GameConstants.GAME_STAGE_FRONT_IMAGE_LIST);
+					break;
 				}
 			}
 		}
@@ -94,21 +100,15 @@ package de.mediadesign.gd1011.dreamcatcher
 					if(containerIndex == 1)
 					{
 						animLayerPartContainerOne.addChild(newGameStageImage);
-						trace("ANIMLAYER ONE");
-						trace(containerIndex)
 					}
 					else if (containerIndex == 2)
 					{
 						animLayerPartContainerTwo.addChild(newGameStageImage);
-						trace("ANIMLAYER TWO");
-						trace(containerIndex)
 					}
 					else if (containerIndex == 3)
 					{
 						animLayerPartContainerTree.addChild(newGameStageImage);
-						trace("ANIMLAYER TREE");
 						containerIndex =0;
-						trace(containerIndex)
 					}
 
 
@@ -140,6 +140,7 @@ package de.mediadesign.gd1011.dreamcatcher
 			addChild(animLayerContainerTwo)
 
 			addChild(player.movieClip);
+			trace(getChildIndex(player.movieClip) + " Player");
 			addChild(boss.movieClip);
             addChild(enemy.movieClip);
             addChild(victim.movieClip);
@@ -238,6 +239,19 @@ package de.mediadesign.gd1011.dreamcatcher
 			{
 				swapContainerContent(animLayerContainerTwo,null,animatedLayerContentList);
 			}
+		}
+
+		public static function get gameStage():GameStage {
+			if(self == null)
+			{
+				self = new GameStage();
+			}
+			return self;
+		}
+
+		public function removeActor(movieClip:MovieClip):void
+		{
+			removeChild(movieClip);
 		}
 	}
 }

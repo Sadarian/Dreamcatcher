@@ -15,14 +15,7 @@ package de.mediadesign.gd1011.dreamcatcher
             _entities = new Vector.<Entity>();
 	        _unusedEntities = new Vector.<Entity>();
 	        initGame(new Array(GameConstants.BOSS, GameConstants.PLAYER));
-	        test()
         }
-
-		public function test():void {
-			for each (var o:Entity in _unusedEntities) {
-				trace(o.name);
-			}
-		}
 
 		public static function get entityManager():EntityManager
 		{
@@ -46,9 +39,13 @@ package de.mediadesign.gd1011.dreamcatcher
 			    position = new Point(0, 0);
 		    }
 		    var tempEntity:Entity
-		    if(_unusedEntities.length != 0)
+		    if(_unusedEntities.length > 0)
 		    {
 			    tempEntity = _unusedEntities.shift();
+			    if (tempEntity.movieClip)
+			    {
+				    tempEntity.removeMoviclip();
+			    }
 			    tempEntity.setData(GameConstants.getData(name), position);
 			    _entities.push(tempEntity);
 			    return tempEntity;
@@ -61,10 +58,11 @@ package de.mediadesign.gd1011.dreamcatcher
 		    }
 		}
 
-	    private function createPlayer():void
-	    {
-
-	    }
+		public function addUnusedEntity(entity:Entity):void
+		{
+			_entities.splice(_entities.indexOf(entity),1);
+			_unusedEntities.push(entity);
+		}
 
 	    public function getEntity(name:String):Entity
 	    {
@@ -81,15 +79,6 @@ package de.mediadesign.gd1011.dreamcatcher
 		public function get entities():Vector.<Entity>
         {
 			return _entities;
-		}
-
-		public function destroyAllEntities():void
-		{
-			for each (var entity:Entity in _entities)
-			{
-				entity.destroy();
-				entity = null;
-			}
 		}
 	}
 }

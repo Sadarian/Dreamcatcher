@@ -69,8 +69,8 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		public function shoot(deltaTime:Number):void
 		{
-//            if(_weaponSystem)
-//                _weaponSystem.shoot(deltaTime, _position, null);
+            if(_weaponSystem)
+                _weaponSystem.shoot(deltaTime, _position, null);
         }
 
 		public function switchMovement(movementSystem:IMovement):void {

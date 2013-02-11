@@ -1,11 +1,11 @@
 {
-    "name":"PlayerBullet",
+    "name":"Bullet",
     "health":8,
     "movementSystem":"MovementBullet",
     "movementSpeed":300,
     "weaponSystem":"null",
     "weaponSpeed":1,
-    "collisionMode":"CollisionCircle",
+    "collisionMode":"CollisionRectangle",
     "collisionPoint":[0, 0],
     "collisionValues":[32, 32]
 }

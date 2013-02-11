@@ -29,11 +29,11 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces
 
         public function shoot(deltaTime:Number, position:Point, target:Object):void
         {
-            sumTime += deltaTime;
+            sumTime += _speed/deltaTime;
             if(sumTime>=_speed)
             {
                 sumTime -= _speed;
-                var entity:Entity = EntityManager.entityManager.createEntity(GameConstants.BULLET_PLAYER, position);
+                var entity:Entity = EntityManager.entityManager.createEntity(GameConstants.BULLET, position);
                 (entity.movementSystem as MovementBullet).target = (_touch != null)?_touch.getLocation(Starling.current.stage):new Point(Starling.current.viewPort.width , position.y);
                 (entity.movementSystem as MovementBullet).calculateVelocity(position);
                 Starling.current.stage.addChild(entity.movieClip);

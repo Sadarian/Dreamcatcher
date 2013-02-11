@@ -139,7 +139,7 @@ package de.mediadesign.gd1011.dreamcatcher
 					}
 					else
 					{
-						BulletList.push(createMovieClip(GameConstants.PLAYER_TEXTURE_NAME,GameConstants.PLAYER_ANIM_CONFIG));
+						BulletList.push(createMovieClip(GameConstants.BULLET_TEXTURE_NAME,GameConstants.BULLET_ANIM_CONFIG));
 						trace("Bullet was created")
 						return BulletList.shift();
 					}

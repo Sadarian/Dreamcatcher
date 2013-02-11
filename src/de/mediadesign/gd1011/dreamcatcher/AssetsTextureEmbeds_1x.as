@@ -27,6 +27,9 @@ package de.mediadesign.gd1011.dreamcatcher {
 		[Embed(source = "/../assets/textures/DC_spriteSheetVictimRunSmall.png")]
 		public static const VictimWalk:Class;
 
+        [Embed(source = "/../assets/textures/DC_sprite_Sheet_Boss_cobweb_fly.png")]
+        public static const BulletWalk:Class;
+
 		// Particle Configurations
 		[Embed(source="/../assets/particles/testParticle.pex", mimeType="application/octet-stream")]
 		public static const testParticleConfig:Class;

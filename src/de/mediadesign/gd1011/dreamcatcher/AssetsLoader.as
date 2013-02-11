@@ -20,13 +20,6 @@ package de.mediadesign.gd1011.dreamcatcher {
 		[Embed(source="/../assets/textures/Interface Dummy.png")]
 		public static const Background:Class;
 
-		[Embed(source="/../assets/textures/DC_spriteSheetCharacterSmaller.png")]
-		public static const PlayerOnly:Class;
-
-		[Embed(source="/../assets/textures/DC_sprite_Sheet_Boss_walk_small.png")]
-		public static const Boss:Class;
-
-
 // TTF-Fonts
 		[Embed(source="/../assets/fonts/defused.ttf", embedAsCFF="false", fontFamily="TestFont")]
 		private static const TestFont:Class;
@@ -34,7 +27,6 @@ package de.mediadesign.gd1011.dreamcatcher {
 // Sounds
 		[Embed(source="/../assets/audio/testSound.mp3")]
 		private static const TestSound:Class;
-
 
 //BitmMapFonts
 

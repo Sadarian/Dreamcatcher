@@ -784,7 +784,6 @@ package starling.core
         }
         
         /** The Starling stage object, which is the root of the display tree that is rendered. */
-        public function get stage():Stage
         {
             return mStage;
         }

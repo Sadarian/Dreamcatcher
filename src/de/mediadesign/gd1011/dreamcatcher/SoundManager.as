@@ -1,15 +1,16 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
+	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
+	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
+
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
 
 	public class SoundManager
     {
-		public static const TEST_SOUND:String = "TestSound";
 
 		private static var soundsLoaded:Boolean = false;
 		private static var LoadedSoundList:Vector.<Sound> = new Vector.<Sound>();
-		private static var SoundList:Vector.<String> = new <String>[TEST_SOUND];
 
 
 		public function SoundManager()
@@ -20,7 +21,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		{
 			if(!soundsLoaded)
 			{
-				for each (var SoundEntry:String in SoundList)
+				for each (var SoundEntry:String in GameConstants.SOUND_LIST)
 				{
 
 					LoadedSoundList.push(AssetsManager.getSound(SoundEntry));
@@ -34,7 +35,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		{
 			switch (item)
 			{
-				case TEST_SOUND:
+				case GameConstants.TEST_SOUND:
 				{
 					if (LoadedSoundList.length != 0 )
 					{
@@ -79,7 +80,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		{
 			switch (item)
 			{
-				case TEST_SOUND:
+				case GameConstants.TEST_SOUND:
 				{
 					LoadedSoundList.push(intoSound(soundChannelObject));
 					trace("TEST_SOUND was added to LoadedSoundList")

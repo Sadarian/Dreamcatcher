@@ -12,15 +12,35 @@ package de.mediadesign.gd1011.dreamcatcher
         public static const COLLISION_RECTANGLE:String = "CollisionRectangle";
         public static const COLLISION_CIRCLE:String = "CollisionCircle";
 
+		public static const TEST_SOUND:String = "TestSound";
+		public static const SOUND_LIST:Vector.<String> = new <String>[TEST_SOUND];
+
 		public static const BACKGROUND:String = "Background";
+
+		public static const GAME_STAGE:String ="GameStage";
+		public static const GAME_STAGE2:String ="GameStage2";
+		public static const GAME_STAGE3:String ="GameStage3";
+		public static const GAME_STAGE_IMAGE_LIST:Vector.<String> = new <String>["GameStage","GameStage2","GameStage3"];
+
+		public static const GAME_STAGE_FRONT:String ="GameStageFront";
+		public static const GAME_STAGE_FRONT2:String ="GameStageFront2";
+		public static const GAME_STAGE_FRONT3:String ="GameStageFront3";
+		public static const GAME_STAGE_FRONT_IMAGE_LIST:Vector.<String> = new <String>["GameStageFront","GameStageFront2","GameStageFront3"];
+
+		public static const GAME_STAGE_ANIMATIONS:String ="GameStageAnimLayer";
+		public static const GAME_STAGE_ANIMATIONS2:String ="GameStageAnimLayer2";
+		public static const GAME_STAGE_ANIMATIONS3:String ="GameStageAnimLayer3";
+		public static const GAME_STAGE_ANIMATIONS_IMAGE_LIST:Vector.<String> = new <String>["GameStageAnimLayer","GameStageAnimLayer2","GameStageAnimLayer3"];
+
+		public static const GAME_STAGE_MOVMENT_SPEEDS:Vector.<Number> = new <Number>[5,1,3];
 
 		public static const ENEMY:String = "Enemy";
 		public static const ENEMY_ANIM_CONFIG:Vector.<int> = new <int>[4,2,7,8];
 		public static const ENEMY_TEXTURE_NAME:String = "testAnimation";
 
 		public static const BOSS:String = "Boss";
-		public static const BOSS_ANIM_CONFIG:Vector.<int> = new <int>[6,1,6,12];
-		public static const BOSS_TEXTURE_NAME:String = "testAnimation";
+		public static const BOSS_ANIM_CONFIG:Vector.<int> = new <int>[3,2,6,12];
+		public static const BOSS_TEXTURE_NAME:String = "Boss";
 
 		public static const PLAYER:String = "Player";
 		public static const PLAYER_ANIM_CONFIG:Vector.<int> = new <int>[4,2,6,12];
@@ -83,7 +103,7 @@ package de.mediadesign.gd1011.dreamcatcher
             if(data.collisionMode) dataArray[6] = (data.collisionMode as String); else throw new ArgumentError(type + " has no collisionMode declared!");
             if(data.collisionPoint) dataArray[7] = new Point(data.collisionPoint[0], data.collisionPoint[1]); else throw new ArgumentError(type + " has no collisionPoint declared!");
 	        if(data.collisionValues) dataArray[8] = new Point(data.collisionValues[0], data.collisionValues[1]); else throw new ArgumentError(type + " has no collisionValues declared!");
-            dataArray[9] = AssetsManager.getMovieClip(PLAYER);
+            dataArray[9] = AssetsManager.getMovieClip(type);
 
             stream.close();
             return dataArray;
@@ -99,7 +119,8 @@ package de.mediadesign.gd1011.dreamcatcher
             return _playerStartPosition;
         }
 
-	    public static function get bossStartPosition():Point {
+	    public static function get bossStartPosition():Point
+		{
 		    return _bossStartPosition;
 	    }
     }

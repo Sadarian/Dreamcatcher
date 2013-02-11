@@ -1,6 +1,9 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
 	import de.mediadesign.gd1011.dreamcatcher.EntityManager;
+	import de.mediadesign.gd1011.dreamcatcher.EntityManager;
+	import de.mediadesign.gd1011.dreamcatcher.EntityManager;
+	import de.mediadesign.gd1011.dreamcatcher.EntityManager;
 
 	import flash.geom.Rectangle;
 	import flash.trace.Trace;
@@ -41,14 +44,10 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		public function GameStage()
 		{
-			entityManager = EntityManager.entityManager;
-			player = entityManager.createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
-			boss = entityManager.createEntity(GameConstants.BOSS, GameConstants.bossStartPosition);
-            enemy = entityManager.createEntity(GameConstants.ENEMY, GameConstants.enemyStartPosition);
-            victim = entityManager.createEntity(GameConstants.VICTIM, GameConstants.victimStartPosition);
 			player = EntityManager.entityManager.createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
 			boss = EntityManager.entityManager.createEntity(GameConstants.BOSS, GameConstants.bossStartPosition);
-
+            enemy = EntityManager.entityManager.createEntity(GameConstants.ENEMY, GameConstants.enemyStartPosition);
+            victim = EntityManager.entityManager.createEntity(GameConstants.VICTIM, GameConstants.victimStartPosition);
 			//GameStage On which the Actors move
 
 			var viewPort:Rectangle = Starling.current.viewPort;
@@ -140,7 +139,6 @@ package de.mediadesign.gd1011.dreamcatcher
 			addChild(animLayerContainerTwo)
 
 			addChild(player.movieClip);
-			trace(getChildIndex(player.movieClip) + " Player");
 			addChild(boss.movieClip);
             addChild(enemy.movieClip);
             addChild(victim.movieClip);

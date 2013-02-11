@@ -1,6 +1,6 @@
 {
     "name":"Enemy",
-    "health":100,
+    "health":50,
     "movementSystem":"MovementEnemy",
     "movementSpeed":500,
     "weaponSystem":"WeaponEnemy",

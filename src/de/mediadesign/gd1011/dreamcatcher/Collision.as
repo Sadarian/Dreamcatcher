@@ -45,7 +45,7 @@ package de.mediadesign.gd1011.dreamcatcher {
 							{
 								if (differentailCollision.checkCollision(entityA, entityB))
 								{
-									trace("Yeeeeeeeha!!");
+
 								}
 							}
 						}

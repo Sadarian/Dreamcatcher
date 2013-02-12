@@ -75,7 +75,7 @@ package de.mediadesign.gd1011.dreamcatcher {
 		[Embed(source = "/../assets/textures/GameStageStagForeground.png")]
 		public static const ScrollingForeground:Class;
 
-		[Embed(source = "/../assets/textures/GameStageStagForeground.png")]
+		[Embed(source = "/../assets/textures/GameStageStagForegroundBoss.png")]
 		public static const ScrollingForegroundBoss:Class;
 
 		[Embed(source = "/../assets/textures/Button.png")]

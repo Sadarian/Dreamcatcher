@@ -58,12 +58,12 @@ package de.mediadesign.gd1011.dreamcatcher
 			deltaTime = time.time;
 			addEventListener(Event.ENTER_FRAME, update);
 			addEventListener(TouchEvent.TOUCH, onTouch);
-			BossButton.addEventListener(Event.TRIGGERED, onClick);
+			BossButton.addEventListener(Event.TRIGGERED, onButtonClick);
 		}
 
-		private function onClick(event:Event):void {
+		private function onButtonClick(event:Event):void {
 			trace("Boss is Spawning!")
-			GameStage.gameStage.changeSetting();
+			GameStage.gameStage.bossStage = true;
 			removeChild(BossButton,true);
 		}
 

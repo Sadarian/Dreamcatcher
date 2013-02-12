@@ -7,5 +7,5 @@
     "weaponSpeed":3000,
     "collisionMode":"CollisionRectangle",
     "collisionPoint":[0, 0],
-    "collisionValues":[50, 192]
+    "collisionValues":[10, 10]
 }

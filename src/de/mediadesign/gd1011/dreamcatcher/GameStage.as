@@ -1,7 +1,6 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
 	import flash.geom.Rectangle;
-
 	import starling.core.Starling;
 	import starling.display.DisplayObjectContainer;
 	import starling.display.Image;
@@ -36,6 +35,9 @@ package de.mediadesign.gd1011.dreamcatcher
 		private var foregroundContainerOne:Sprite = new Sprite();
 		private var foregroundContainerTwo:Sprite = new Sprite();
 
+		public var bossStage:Boolean = false;
+
+
 		private var firstContainerList:Vector.<DisplayObjectContainer> = new <DisplayObjectContainer>[	mainStageContainerOne,
 																										animationContainerOne,
 																										bushContainerOne,
@@ -59,7 +61,6 @@ package de.mediadesign.gd1011.dreamcatcher
 			boss = EntityManager.entityManager.createEntity(GameConstants.BOSS, GameConstants.bossStartPosition);
             enemy = EntityManager.entityManager.createEntity(GameConstants.ENEMY, GameConstants.enemyStartPosition);
             victim = EntityManager.entityManager.createEntity(GameConstants.VICTIM, GameConstants.victimStartPosition);
-			//GameStage On which the Actors move
 
 			var viewPort:Rectangle = Starling.current.viewPort;
 
@@ -78,10 +79,29 @@ package de.mediadesign.gd1011.dreamcatcher
 			}
 		}
 
-		public function changeSetting():void
+		public function changeSetting(ContentImageList:Vector.<Image>,
+									  ContentContainerList:Vector.<DisplayObjectContainer> = null):void
 		{
-			trace("Setting is Changing");
-
+			if(ContentImageList == mainStageContentList )
+			{
+				fillLists(GameConstants.MAIN_STAGE_IMAGE_LIST_BOSS,mainStageContentList);
+			}
+			if(ContentImageList == bushContentList)
+			{
+				fillLists(GameConstants.BUSH_IMAGE_LIST_BOSS,bushContentList);
+			}
+			if(ContentImageList == backgroundContentList)
+			{
+				fillLists(GameConstants.BACKGROUND_IMAGE_LIST_BOSS,backgroundContentList);
+			}
+			if(ContentImageList == foregroundContentList)
+			{
+				fillLists(GameConstants.FOREGROUND_IMAGE_LIST_BOSS,foregroundContentList);
+			}
+			if(ContentContainerList == animationContentList)
+			{
+				fillLists(GameConstants.ANIMATIONS_LIST_BOSS,null,animationContentList);
+			}
 
 		}
 
@@ -101,39 +121,25 @@ package de.mediadesign.gd1011.dreamcatcher
 			}
 		}
 
-		private function fillImageLists(listsContent:Vector.<String>,imageList:Vector.<Image> = null ,containerList:Vector.<DisplayObjectContainer> = null):void
+		private function fillLists(listsContent:Vector.<String>,imageList:Vector.<Image> = null ,containerList:Vector.<DisplayObjectContainer> = null):void
 		{
+			var Entry:String
+
 			if (imageList)
 			{
-				for each ( var ImageEntry:String in listsContent )
+				for each ( Entry in listsContent )
 				{
-					var newGameStageImage:Image = AssetsManager.getImage(ImageEntry)
+					var newGameStageImage:Image = AssetsManager.getImage(Entry);
 					imageList.push(newGameStageImage);
 				}
 			}
 			else if (containerList)
 			{
-
-			}
-		}
-
-		private function createLevel(gameStageImageList:Vector.<String>,
-									gameStageAnimImageList:Vector.<String>,
-									gameStageFrontImageList:Vector.<String>,
-									backgroundImageList:Vector.<String>,
-									foregroundImageList:Vector.<String>):void
-		{
-			var containerIndex:int = 0;
-
-			fillImageLists(gameStageImageList,mainStageContentList);
-			fillImageLists(backgroundImageList,backgroundContentList);
-			fillImageLists(foregroundImageList,foregroundContentList);
-			fillImageLists(gameStageFrontImageList,bushContentList);
-
-			for each (var ImageEntry in gameStageAnimImageList )
-			{
-				containerIndex++
-				var newGameStageImage = AssetsManager.getImage(ImageEntry)
+				var containerIndex:int = 0;
+				for each ( Entry in listsContent )
+				{
+					containerIndex++
+					var newGameStageImage = AssetsManager.getImage(Entry);
 
 					if(containerIndex == 1)
 					{
@@ -148,11 +154,53 @@ package de.mediadesign.gd1011.dreamcatcher
 						animationBoxTree.addChild(newGameStageImage);
 						containerIndex =0;
 					}
-			}
+				}
 
-				animationContentList.push(animationBoxOne);
-				animationContentList.push(animationBoxTwo);
-				animationContentList.push(animationBoxTree);
+				containerList.push(animationBoxOne);
+				containerList.push(animationBoxTwo);
+				containerList.push(animationBoxTree);
+			}
+		}
+
+		private function emptyLists(imageList:Vector.<Image> = null ,containerList:Vector.<DisplayObjectContainer> = null):void
+		{
+			var ImageEntry:Image;
+			var ContainerEntry:DisplayObjectContainer;
+
+			if (imageList)
+			{
+				for each ( ImageEntry in imageList )
+				{
+					var newGameStageImage:Image = imageList.shift();
+					newGameStageImage.dispose();
+				}
+			}
+			else if (containerList)
+			{
+				var containerIndex:int = 0;
+				for each ( ContainerEntry in containerList )
+				{
+					var animationBox:DisplayObjectContainer = containerList.shift();
+					animationBox.dispose();
+				}
+			}
+		}
+
+
+
+		private function createLevel(gameStageImageList:Vector.<String>,
+									gameStageAnimImageList:Vector.<String>,
+									gameStageFrontImageList:Vector.<String>,
+									backgroundImageList:Vector.<String>,
+									foregroundImageList:Vector.<String>):void
+		{
+			var containerIndex:int = 0;
+
+			fillLists(gameStageImageList,mainStageContentList);
+			fillLists(backgroundImageList,backgroundContentList);
+			fillLists(foregroundImageList,foregroundContentList);
+			fillLists(gameStageFrontImageList,bushContentList);
+			fillLists(gameStageAnimImageList,null,animationContentList);
 
 			backgroundContainerOne.addChild(backgroundContentList.shift());
 			backgroundContainerTwo.addChild(backgroundContentList.shift());
@@ -181,8 +229,8 @@ package de.mediadesign.gd1011.dreamcatcher
 
 			addChild(player.movieClip);
 			addChild(boss.movieClip);
-            addChild(enemy.movieClip);
-            addChild(victim.movieClip);
+			 addChild(enemy.movieClip);
+			 addChild(victim.movieClip);
 
 			addChild(bushContainerOne);
 			addChild(bushContainerTwo);
@@ -198,42 +246,65 @@ package de.mediadesign.gd1011.dreamcatcher
 		{
 			if (ContentImageList)
 			{
-				trace("Swaping Image");
 				var randomNumber:Number = Math.random()*10;
 				var resizedInt:int = int(randomNumber);
 
 				if (resizedInt <= 4)
 				{
 					ContentImageList.push(container.removeChildAt(0));
+					checkForNewContent(ContentImageList);
 					container.addChildAt(ContentImageList.shift(),0);
 				}
 				else
 				{
 					ContentImageList.push(container.removeChildAt(0));
+					checkForNewContent(ContentImageList);
 					container.addChildAt(ContentImageList.pop(),0);
 				}
 			}
 			else if (ContentContainerList)
 			{
-				trace("Swaping Container");
 				var randomNumber:Number = Math.random()*10;
 				var resizedInt:int = int(randomNumber);
 
 				if (resizedInt <= 4)
 				{
 					ContentContainerList.push(container.removeChildAt(0));
+					checkForNewContent(null, ContentContainerList);
 					container.addChildAt(ContentContainerList.shift(),0);
 				}
 				else
 				{
 					ContentContainerList.push(container.removeChildAt(0));
+					checkForNewContent(null,ContentContainerList);
 					container.addChildAt(ContentContainerList.pop(),0);
 				}
 			}
 		}
 
+		private function checkForNewContent(ContentImageList:Vector.<Image>,
+											ContentContainerList:Vector.<DisplayObjectContainer> = null):void
+		{
+			if(bossStage == true)
+			{
+				trace("EMPTYING Lists")
+				if(ContentImageList)
+				{
+					emptyLists(ContentImageList);
+					changeSetting(ContentImageList);
+				}
+				else if(ContentContainerList)
+				{
+					emptyLists(null,ContentContainerList);
+					changeSetting(null,ContentContainerList);
+				}
+			}
+
+		}
+
 		private function moveContainer(containerOne:DisplayObjectContainer,
-									   containerTwo:DisplayObjectContainer,speed:Number):void
+										containerTwo:DisplayObjectContainer,
+										speed:Number):void
 		{
 			var resizedSpeed:Number = resizeSpeed(speed);
 
@@ -242,7 +313,23 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		}
 
-		private function checkContainerPosition(containerOne:DisplayObjectContainer,containerTwo:DisplayObjectContainer,contentImageList:Vector.<Image> = null,contentContainerList:Vector.<DisplayObjectContainer> = null):void
+		private function checkContainerVisibility(containerOne:DisplayObjectContainer):Boolean
+		{
+
+				if (containerOne.x == -containerOne.width)
+				{
+					return false;
+				}
+				else
+				{
+					return true;
+				}
+		}
+
+		private function checkContainerPositionAndSwap(containerOne:DisplayObjectContainer,
+														containerTwo:DisplayObjectContainer,
+														contentImageList:Vector.<Image> = null,
+														contentContainerList:Vector.<DisplayObjectContainer> = null):void
 		{
 			if (contentImageList)
 			{
@@ -276,18 +363,20 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		public function moveGameStage(movementSpeedVector:Vector.<Number>):void
 		{
+
+
 			moveContainer(mainStageContainerOne,mainStageContainerTwo,movementSpeedVector[0]);
 			moveContainer(bushContainerOne,bushContainerTwo,movementSpeedVector[1]);
 			moveContainer(animationContainerOne,animationContainerTwo,movementSpeedVector[2]);
 			moveContainer(backgroundContainerOne,backgroundContainerTwo,movementSpeedVector[3]);
 			moveContainer(foregroundContainerOne,foregroundContainerTwo,movementSpeedVector[4]);
 
-			checkContainerPosition(mainStageContainerOne,mainStageContainerTwo,mainStageContentList);
-			checkContainerPosition(bushContainerOne,bushContainerTwo,bushContentList);
-			checkContainerPosition(animationContainerOne,animationContainerTwo,null,animationContentList);
-			checkContainerPosition(mainStageContainerOne,mainStageContainerTwo,mainStageContentList);
-			checkContainerPosition(backgroundContainerOne,backgroundContainerTwo,backgroundContentList);
-			checkContainerPosition(foregroundContainerOne,foregroundContainerTwo,foregroundContentList );
+			checkContainerPositionAndSwap(mainStageContainerOne,mainStageContainerTwo,mainStageContentList);
+			checkContainerPositionAndSwap(bushContainerOne,bushContainerTwo,bushContentList);
+			checkContainerPositionAndSwap(animationContainerOne,animationContainerTwo,null,animationContentList);
+			checkContainerPositionAndSwap(backgroundContainerOne,backgroundContainerTwo,backgroundContentList);
+			checkContainerPositionAndSwap(foregroundContainerOne,foregroundContainerTwo,foregroundContentList );
+
 
 		}
 

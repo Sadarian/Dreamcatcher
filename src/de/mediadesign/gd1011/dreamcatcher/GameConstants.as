@@ -24,17 +24,13 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		public static const BACKGROUND:String = "Background";
 
-		public static const GAME_STAGE_IMAGE_LIST:Vector.<String> = new <String>["GameStage","GameStage2","GameStage3"];
-
-		public static const GAME_STAGE_FRONT_IMAGE_LIST:Vector.<String> = new <String>["GameStageFront","GameStageFront2","GameStageFront3"];
-
-		public static const GAME_STAGE_ANIMATIONS_IMAGE_LIST:Vector.<String> = new <String>["GameStageAnimLayer","GameStageAnimLayer2","GameStageAnimLayer3"];
-
-		public static const GAME_STAGE_BACKGROUND_IMAGE_LIST:Vector.<String> = new <String>["ScrollingBackground","ScrollingBackground","ScrollingBackground"];
-
-		public static const GAME_STAGE_FOREGROUND_IMAGE_LIST:Vector.<String> = new <String>["ScrollingForeground","ScrollingForeground","ScrollingForeground"];
-
-		public static const GAME_STAGE_MOVMENT_SPEEDS:Vector.<Number> = new <Number>[5,2,3,1,7];
+		//Properties of the GameStage (LVL1)
+		public static const MAIN_STAGE_IMAGE_LIST:Vector.<String> = new <String>["GameStage","GameStage2","GameStage3"];
+		public static const BUSH_IMAGE_LIST:Vector.<String> = new <String>["GameStageFront","GameStageFront2","GameStageFront3"];
+		public static const ANIMATIONS_LIST:Vector.<String> = new <String>["GameStageAnimLayer","GameStageAnimLayer2","GameStageAnimLayer3"];
+		public static const BACKGROUND_IMAGE_LIST:Vector.<String> = new <String>["ScrollingBackground","ScrollingBackground","ScrollingBackground"];
+		public static const FOREGROUND_IMAGE_LIST:Vector.<String> = new <String>["ScrollingForeground","ScrollingForeground","ScrollingForeground"];
+		public static const GAME_STAGE_MOVMENT_SPEEDS:Vector.<Number> = new <Number>[5,6,3,1,7];
 
 		public static const ENEMY:String = "Enemy";
 		public static const ENEMY_ANIM_CONFIG:Vector.<int> = new <int>[4,2,8,10];

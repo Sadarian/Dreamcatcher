@@ -90,11 +90,11 @@ package de.mediadesign.gd1011.dreamcatcher
 			{
 				case 1:
 				{
-					createLevel(GameConstants.GAME_STAGE_IMAGE_LIST,
-								GameConstants.GAME_STAGE_ANIMATIONS_IMAGE_LIST,
-								GameConstants.GAME_STAGE_FRONT_IMAGE_LIST,
-								GameConstants.GAME_STAGE_BACKGROUND_IMAGE_LIST,
-								GameConstants.GAME_STAGE_FOREGROUND_IMAGE_LIST);
+					createLevel(GameConstants.MAIN_STAGE_IMAGE_LIST,
+								GameConstants.ANIMATIONS_LIST,
+								GameConstants.BUSH_IMAGE_LIST,
+								GameConstants.BACKGROUND_IMAGE_LIST,
+								GameConstants.FOREGROUND_IMAGE_LIST);
 					break;
 				}
 			}

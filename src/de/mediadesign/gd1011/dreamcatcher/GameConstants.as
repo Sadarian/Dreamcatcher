@@ -30,7 +30,11 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		public static const GAME_STAGE_ANIMATIONS_IMAGE_LIST:Vector.<String> = new <String>["GameStageAnimLayer","GameStageAnimLayer2","GameStageAnimLayer3"];
 
-		public static const GAME_STAGE_MOVMENT_SPEEDS:Vector.<Number> = new <Number>[5,1,3];
+		public static const GAME_STAGE_BACKGROUND_IMAGE_LIST:Vector.<String> = new <String>["ScrollingBackground","ScrollingBackground","ScrollingBackground"];
+
+		public static const GAME_STAGE_FOREGROUND_IMAGE_LIST:Vector.<String> = new <String>["ScrollingForeground","ScrollingForeground","ScrollingForeground"];
+
+		public static const GAME_STAGE_MOVMENT_SPEEDS:Vector.<Number> = new <Number>[5,2,3,1,7];
 
 		public static const ENEMY:String = "Enemy";
 		public static const ENEMY_ANIM_CONFIG:Vector.<int> = new <int>[4,2,8,10];

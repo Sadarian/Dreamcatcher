@@ -17,25 +17,42 @@ package de.mediadesign.gd1011.dreamcatcher
 	public class GameStage  extends Sprite {
 		private static var self:GameStage;
 
-		private var animLayerPartContainerOne:Sprite = new Sprite();
-		private var animLayerPartContainerTwo:Sprite = new Sprite();
-		private var animLayerPartContainerTree:Sprite = new Sprite();
+		private var animationBoxOne:Sprite = new Sprite();
+		private var animationBoxTwo:Sprite = new Sprite();
+		private var animationBoxTree:Sprite = new Sprite();
 
-		private var gameStageContentList:Vector.<Image> = new Vector.<Image>;
-		private var gameStageFrontContentList:Vector.<Image> = new Vector.<Image>;
-		private var animatedLayerContentList:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>;
+		private var mainStageContentList:Vector.<Image> = new Vector.<Image>;
+		private var bushContentList:Vector.<Image> = new Vector.<Image>;
+		private var backgroundContentList:Vector.<Image> = new Vector.<Image>;
+		private var foregroundContentList:Vector.<Image> = new Vector.<Image>;
+		private var animationContentList:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>;
 
-		private var gameStageContainerOne:Sprite = new Sprite();
-		private var gameStageContainerTwo:Sprite = new Sprite();
+		private var backgroundContainerOne:Sprite = new Sprite();
+		private var backgroundContainerTwo:Sprite = new Sprite();
 
-		private var animLayerContainerOne:Sprite = new Sprite();
-		private var animLayerContainerTwo:Sprite = new Sprite();
+		private var mainStageContainerOne:Sprite = new Sprite();
+		private var mainStageContainerTwo:Sprite = new Sprite();
 
-		private var gameStageFrontContainerOne:Sprite = new Sprite();
-		private var gameStageFrontContainerTwo:Sprite = new Sprite();
+		private var animationContainerOne:Sprite = new Sprite();
+		private var animationContainerTwo:Sprite = new Sprite();
 
-		private var firstContainerList:Vector.<DisplayObjectContainer> = new <DisplayObjectContainer>[gameStageContainerOne,animLayerContainerOne,gameStageFrontContainerOne];
-		private var secondContainerList:Vector.<DisplayObjectContainer> = new <DisplayObjectContainer>[gameStageContainerTwo,animLayerContainerTwo,gameStageFrontContainerTwo];
+		private var bushContainerOne:Sprite = new Sprite();
+		private var bushContainerTwo:Sprite = new Sprite();
+
+		private var foregroundContainerOne:Sprite = new Sprite();
+		private var foregroundContainerTwo:Sprite = new Sprite();
+
+		private var firstContainerList:Vector.<DisplayObjectContainer> = new <DisplayObjectContainer>[	mainStageContainerOne,
+																										animationContainerOne,
+																										bushContainerOne,
+																										foregroundContainerOne,
+																										backgroundContainerOne];
+
+		private var secondContainerList:Vector.<DisplayObjectContainer> = new <DisplayObjectContainer>[	mainStageContainerTwo,
+																										animationContainerTwo,
+																										bushContainerTwo,
+																										foregroundContainerTwo,
+																										backgroundContainerTwo];
 
 		private var player:Entity;
 		private var boss:Entity;
@@ -73,22 +90,38 @@ package de.mediadesign.gd1011.dreamcatcher
 			{
 				case 1:
 				{
-					createLevel(GameConstants.GAME_STAGE_IMAGE_LIST,GameConstants.GAME_STAGE_ANIMATIONS_IMAGE_LIST,GameConstants.GAME_STAGE_FRONT_IMAGE_LIST);
+					createLevel(GameConstants.GAME_STAGE_IMAGE_LIST,
+								GameConstants.GAME_STAGE_ANIMATIONS_IMAGE_LIST,
+								GameConstants.GAME_STAGE_FRONT_IMAGE_LIST,
+								GameConstants.GAME_STAGE_BACKGROUND_IMAGE_LIST,
+								GameConstants.GAME_STAGE_FOREGROUND_IMAGE_LIST);
 					break;
 				}
 			}
 		}
 
 		private function createLevel(gameStageImageList:Vector.<String>,
-									 gameStageAnimImageList:Vector.<String>,
-									 gameStageFrontImageList:Vector.<String>):void
+									gameStageAnimImageList:Vector.<String>,
+									gameStageFrontImageList:Vector.<String>,
+									backgroundImageList:Vector.<String>,
+									foregroundImageList:Vector.<String>):void
 		{
 			var containerIndex:int = 0;
 
 			for each ( var ImageEntry:String in gameStageImageList )
 			{
 				var newGameStageImage:Image = AssetsManager.getImage(ImageEntry)
-				gameStageContentList.push(newGameStageImage);
+				mainStageContentList.push(newGameStageImage);
+			}
+			for each ( var ImageEntry:String in backgroundImageList )
+			{
+				var newGameStageImage:Image = AssetsManager.getImage(ImageEntry)
+				backgroundContentList.push(newGameStageImage);
+			}
+			for each ( var ImageEntry:String in foregroundImageList )
+			{
+				var newGameStageImage:Image = AssetsManager.getImage(ImageEntry)
+				foregroundContentList.push(newGameStageImage);
 			}
 
 			for each (ImageEntry in gameStageAnimImageList )
@@ -98,53 +131,64 @@ package de.mediadesign.gd1011.dreamcatcher
 
 					if(containerIndex == 1)
 					{
-						animLayerPartContainerOne.addChild(newGameStageImage);
+						animationBoxOne.addChild(newGameStageImage);
 					}
 					else if (containerIndex == 2)
 					{
-						animLayerPartContainerTwo.addChild(newGameStageImage);
+						animationBoxTwo.addChild(newGameStageImage);
 					}
 					else if (containerIndex == 3)
 					{
-						animLayerPartContainerTree.addChild(newGameStageImage);
+						animationBoxTree.addChild(newGameStageImage);
 						containerIndex =0;
 					}
-
-
 			}
 
-				animatedLayerContentList.push(animLayerPartContainerOne);
-				animatedLayerContentList.push(animLayerPartContainerTwo);
-				animatedLayerContentList.push(animLayerPartContainerTree);
+				animationContentList.push(animationBoxOne);
+				animationContentList.push(animationBoxTwo);
+				animationContentList.push(animationBoxTree);
 
 			for each (ImageEntry in gameStageFrontImageList )
 			{
 				var newGameStageFrontImage:Image = AssetsManager.getImage(ImageEntry)
-				gameStageFrontContentList.push(newGameStageFrontImage);
+				bushContentList.push(newGameStageFrontImage);
 			}
 
-			gameStageContainerOne.addChild(gameStageContentList.shift());
-			gameStageContainerTwo.addChild(gameStageContentList.shift());
+			backgroundContainerOne.addChild(backgroundContentList.shift());
+			backgroundContainerTwo.addChild(backgroundContentList.shift());
 
-			animLayerContainerOne.addChild(animatedLayerContentList.shift());
-			animLayerContainerTwo.addChild(animatedLayerContentList.shift());
+			mainStageContainerOne.addChild(mainStageContentList.shift());
+			mainStageContainerTwo.addChild(mainStageContentList.shift());
 
-			gameStageFrontContainerOne.addChild(gameStageFrontContentList.shift());
-			gameStageFrontContainerTwo.addChild(gameStageFrontContentList.shift());
+			animationContainerOne.addChild(animationContentList.shift());
+			animationContainerTwo.addChild(animationContentList.shift());
 
-			addChild(gameStageContainerOne);
-			addChild(gameStageContainerTwo);
+			bushContainerOne.addChild(bushContentList.shift());
+			bushContainerTwo.addChild(bushContentList.shift());
 
-			addChild(animLayerContainerOne);
-			addChild(animLayerContainerTwo)
+			foregroundContainerOne.addChild(foregroundContentList.shift());
+			foregroundContainerTwo.addChild(foregroundContentList.shift());
+
+
+			addChild(backgroundContainerOne);
+			addChild(backgroundContainerTwo);
+
+			addChild(mainStageContainerOne);
+			addChild(mainStageContainerTwo);
+
+			addChild(animationContainerOne);
+			addChild(animationContainerTwo)
 
 			addChild(player.movieClip);
 			addChild(boss.movieClip);
             addChild(enemy.movieClip);
             addChild(victim.movieClip);
 
-			addChild(gameStageFrontContainerOne);
-			addChild(gameStageFrontContainerTwo);
+			addChild(bushContainerOne);
+			addChild(bushContainerTwo);
+
+			addChild(foregroundContainerOne);
+			addChild(foregroundContainerTwo);
 
 		}
 
@@ -198,6 +242,32 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		}
 
+		private function checkContainerPosition(containerOne:DisplayObjectContainer,containerTwo:DisplayObjectContainer,contentImageList:Vector.<Image> = null,contentContainerList:Vector.<DisplayObjectContainer> = null):void
+		{
+			if (contentImageList)
+			{
+				if (containerOne.x == -containerOne.width)
+				{
+					swapContainerContent(containerOne,contentImageList);
+				}
+				else if (containerTwo.x == -containerTwo.width)
+				{
+					swapContainerContent(containerTwo,contentImageList);
+				}
+			}
+			else if(contentContainerList)
+			{
+				if (containerOne.x == -containerOne.width)
+				{
+					swapContainerContent(containerOne,null,contentContainerList);
+				}
+				else if (containerTwo.x == -containerTwo.width)
+				{
+					swapContainerContent(containerTwo,null,contentContainerList);
+				}
+			}
+		}
+
 		private function  resizeSpeed(speed:Number):Number
 		{
 			var newSpeed:Number = Math.min(100, speed);
@@ -206,37 +276,19 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		public function moveGameStage(movementSpeedVector:Vector.<Number>):void
 		{
-			moveContainer(gameStageContainerOne,gameStageContainerTwo,movementSpeedVector[0]);
-			moveContainer(gameStageFrontContainerOne,gameStageFrontContainerTwo,movementSpeedVector[1]);
-			moveContainer(animLayerContainerOne,animLayerContainerTwo,movementSpeedVector[2]);
+			moveContainer(mainStageContainerOne,mainStageContainerTwo,movementSpeedVector[0]);
+			moveContainer(bushContainerOne,bushContainerTwo,movementSpeedVector[1]);
+			moveContainer(animationContainerOne,animationContainerTwo,movementSpeedVector[2]);
+			moveContainer(backgroundContainerOne,backgroundContainerTwo,movementSpeedVector[3]);
+			moveContainer(foregroundContainerOne,foregroundContainerTwo,movementSpeedVector[4]);
 
+			checkContainerPosition(mainStageContainerOne,mainStageContainerTwo,mainStageContentList);
+			checkContainerPosition(bushContainerOne,bushContainerTwo,bushContentList);
+			checkContainerPosition(animationContainerOne,animationContainerTwo,null,animationContentList);
+			checkContainerPosition(mainStageContainerOne,mainStageContainerTwo,mainStageContentList);
+			checkContainerPosition(backgroundContainerOne,backgroundContainerTwo,backgroundContentList);
+			checkContainerPosition(foregroundContainerOne,foregroundContainerTwo,foregroundContentList );
 
-			if (gameStageContainerOne.x == -gameStageContainerOne.width)
-			{
-				swapContainerContent(gameStageContainerOne,gameStageContentList);
-			}
-			else if (gameStageContainerTwo.x == -gameStageContainerTwo.width)
-			{
-				swapContainerContent(gameStageContainerTwo,gameStageContentList);
-			}
-
-			if (gameStageFrontContainerOne.x == -gameStageFrontContainerOne.width)
-			{
-				swapContainerContent(gameStageFrontContainerOne,gameStageFrontContentList);
-			}
-			else if (gameStageFrontContainerTwo.x == -gameStageFrontContainerTwo.width)
-			{
-				swapContainerContent(gameStageFrontContainerTwo,gameStageFrontContentList);
-			}
-
-			if (animLayerContainerOne.x == -animLayerContainerOne.width)
-			{
-				swapContainerContent(animLayerContainerOne,null,animatedLayerContentList);
-			}
-			else if (animLayerContainerTwo.x == -animLayerContainerTwo.width)
-			{
-				swapContainerContent(animLayerContainerTwo,null,animatedLayerContentList);
-			}
 		}
 
 		public static function get gameStage():GameStage {

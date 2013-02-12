@@ -57,6 +57,12 @@ package de.mediadesign.gd1011.dreamcatcher {
 		[Embed(source = "/../assets/textures/AnimLayer3.png")]
 		public static const GameStageAnimLayer3:Class;
 
+		[Embed(source = "/../assets/textures/AnimLayerBackground.png")]
+		public static const ScrollingBackground:Class;
+
+		[Embed(source = "/../assets/textures/GameStageStagForeground.png")]
+		public static const ScrollingForeground:Class;
+
 		// Particle Configurations
 		[Embed(source="/../assets/particles/testParticle.pex", mimeType="application/octet-stream")]
 		public static const testParticleConfig:Class;

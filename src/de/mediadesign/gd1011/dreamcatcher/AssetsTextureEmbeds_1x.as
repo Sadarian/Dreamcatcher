@@ -39,6 +39,9 @@ package de.mediadesign.gd1011.dreamcatcher {
 		[Embed(source = "/../assets/textures/GameStage3.png")]
 		public static const GameStage3:Class;
 
+		[Embed(source = "/../assets/textures/GameStageBoss.png")]
+		public static const GameStageBoss:Class;
+
 		[Embed(source = "/../assets/textures/StageBushFront.png")]
 		public static const GameStageFront:Class;
 
@@ -47,6 +50,9 @@ package de.mediadesign.gd1011.dreamcatcher {
 
 		[Embed(source = "/../assets/textures/StageBushFront3.png")]
 		public static const GameStageFront3:Class;
+
+		[Embed(source = "/../assets/textures/StageBushFrontBoss.png")]
+		public static const GameStageFrontBoss:Class;
 
 		[Embed(source = "/../assets/textures/AnimLayer.png")]
 		public static const GameStageAnimLayer:Class;
@@ -57,11 +63,24 @@ package de.mediadesign.gd1011.dreamcatcher {
 		[Embed(source = "/../assets/textures/AnimLayer3.png")]
 		public static const GameStageAnimLayer3:Class;
 
+		[Embed(source = "/../assets/textures/AnimLayeBossr.png")]
+		public static const GameStageAnimLayerBoss:Class;
+
 		[Embed(source = "/../assets/textures/AnimLayerBackground.png")]
 		public static const ScrollingBackground:Class;
 
+		[Embed(source = "/../assets/textures/AnimLayerBackgroundBoss.png")]
+		public static const ScrollingBackgroundBoss:Class;
+
 		[Embed(source = "/../assets/textures/GameStageStagForeground.png")]
 		public static const ScrollingForeground:Class;
+
+		[Embed(source = "/../assets/textures/GameStageStagForeground.png")]
+		public static const ScrollingForegroundBoss:Class;
+
+		[Embed(source = "/../assets/textures/Button.png")]
+		public static const Button:Class;
+
 
 		// Particle Configurations
 		[Embed(source="/../assets/particles/testParticle.pex", mimeType="application/octet-stream")]

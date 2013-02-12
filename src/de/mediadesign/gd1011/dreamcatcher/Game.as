@@ -8,8 +8,9 @@ package de.mediadesign.gd1011.dreamcatcher
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.WeaponPlayer;
 
     import starling.core.Starling;
+	import starling.display.Button;
 
-    import starling.display.Sprite;
+	import starling.display.Sprite;
 	import starling.events.Event;
     import starling.events.Touch;
     import starling.events.TouchEvent;
@@ -25,6 +26,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		private var time:Date;
 		private var destroyProcess:DestroyProcess;
 		private var deltaTime:Number;
+		private var BossButton:Button;
 
 
 		public function Game()
@@ -42,7 +44,12 @@ package de.mediadesign.gd1011.dreamcatcher
             addChild(AssetsManager.getImage(GameConstants.BACKGROUND));
 			addChild(GameStage.gameStage)
 			GameStage.gameStage.loadLevel();
-	        startGame();
+
+			addChild(BossButton = new Button(AssetsLoader.getTexture(GameConstants.BUTTON),"BOSS BUTTON"));
+			BossButton.x = 560;
+			BossButton.fontName = "TestFont";
+
+			startGame();
 		}
 
 		private function startGame():void
@@ -51,6 +58,13 @@ package de.mediadesign.gd1011.dreamcatcher
 			deltaTime = time.time;
 			addEventListener(Event.ENTER_FRAME, update);
 			addEventListener(TouchEvent.TOUCH, onTouch);
+			BossButton.addEventListener(Event.TRIGGERED, onClick);
+		}
+
+		private function onClick(event:Event):void {
+			trace("Boss is Spawning!")
+			GameStage.gameStage.changeSetting();
+			removeChild(BossButton,true);
 		}
 
 		private function update(event:Event):void

@@ -23,6 +23,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const SOUND_LIST:Vector.<String> = new <String>[TEST_SOUND];
 
 		public static const BACKGROUND:String = "Background";
+		public static const BUTTON:String ="Button";
 
 		//Properties of the GameStage (LVL1)
 		public static const MAIN_STAGE_IMAGE_LIST:Vector.<String> = new <String>["GameStage","GameStage2","GameStage3"];
@@ -31,6 +32,12 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const BACKGROUND_IMAGE_LIST:Vector.<String> = new <String>["ScrollingBackground","ScrollingBackground","ScrollingBackground"];
 		public static const FOREGROUND_IMAGE_LIST:Vector.<String> = new <String>["ScrollingForeground","ScrollingForeground","ScrollingForeground"];
 		public static const GAME_STAGE_MOVMENT_SPEEDS:Vector.<Number> = new <Number>[5,6,3,1,7];
+
+		public static const MAIN_STAGE_IMAGE_LIST_BOSS:Vector.<String> = new <String>["GameStageBoss","GameStageBoss","GameStageBoss"];
+		public static const BUSH_IMAGE_LIST_BOSS:Vector.<String> = new <String>["GameStageFrontBoss","GameStageFrontBoss","GameStageFrontBoss"];
+		public static const ANIMATIONS_LIST_BOSS:Vector.<String> = new <String>["GameStageAnimLayerBoss","GameStageAnimLayerBoss","GameStageAnimLayerBoss"];
+		public static const BACKGROUND_IMAGE_LIST_BOSS:Vector.<String> = new <String>["ScrollingBackgroundBoss","ScrollingBackgroundBoss","ScrollingBackgroundBoss"];
+		public static const FOREGROUND_IMAGE_LIST_BOSS:Vector.<String> = new <String>["ScrollingForegroundBoss","ScrollingForegroundBoss","ScrollingForegroundBoss"];
 
 		public static const ENEMY:String = "Enemy";
 		public static const ENEMY_ANIM_CONFIG:Vector.<int> = new <int>[4,2,8,10];

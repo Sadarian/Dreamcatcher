@@ -1,12 +1,6 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
-	import de.mediadesign.gd1011.dreamcatcher.EntityManager;
-	import de.mediadesign.gd1011.dreamcatcher.EntityManager;
-	import de.mediadesign.gd1011.dreamcatcher.EntityManager;
-	import de.mediadesign.gd1011.dreamcatcher.EntityManager;
-
 	import flash.geom.Rectangle;
-	import flash.trace.Trace;
 
 	import starling.core.Starling;
 	import starling.display.DisplayObjectContainer;
@@ -84,6 +78,13 @@ package de.mediadesign.gd1011.dreamcatcher
 			}
 		}
 
+		public function changeSetting():void
+		{
+			trace("Setting is Changing");
+
+
+		}
+
 		public function loadLevel(levelIndex:int = 1):void
 		{
 			switch(levelIndex)
@@ -100,6 +101,22 @@ package de.mediadesign.gd1011.dreamcatcher
 			}
 		}
 
+		private function fillImageLists(listsContent:Vector.<String>,imageList:Vector.<Image> = null ,containerList:Vector.<DisplayObjectContainer> = null):void
+		{
+			if (imageList)
+			{
+				for each ( var ImageEntry:String in listsContent )
+				{
+					var newGameStageImage:Image = AssetsManager.getImage(ImageEntry)
+					imageList.push(newGameStageImage);
+				}
+			}
+			else if (containerList)
+			{
+
+			}
+		}
+
 		private function createLevel(gameStageImageList:Vector.<String>,
 									gameStageAnimImageList:Vector.<String>,
 									gameStageFrontImageList:Vector.<String>,
@@ -108,26 +125,15 @@ package de.mediadesign.gd1011.dreamcatcher
 		{
 			var containerIndex:int = 0;
 
-			for each ( var ImageEntry:String in gameStageImageList )
-			{
-				var newGameStageImage:Image = AssetsManager.getImage(ImageEntry)
-				mainStageContentList.push(newGameStageImage);
-			}
-			for each ( var ImageEntry:String in backgroundImageList )
-			{
-				var newGameStageImage:Image = AssetsManager.getImage(ImageEntry)
-				backgroundContentList.push(newGameStageImage);
-			}
-			for each ( var ImageEntry:String in foregroundImageList )
-			{
-				var newGameStageImage:Image = AssetsManager.getImage(ImageEntry)
-				foregroundContentList.push(newGameStageImage);
-			}
+			fillImageLists(gameStageImageList,mainStageContentList);
+			fillImageLists(backgroundImageList,backgroundContentList);
+			fillImageLists(foregroundImageList,foregroundContentList);
+			fillImageLists(gameStageFrontImageList,bushContentList);
 
-			for each (ImageEntry in gameStageAnimImageList )
+			for each (var ImageEntry in gameStageAnimImageList )
 			{
 				containerIndex++
-				newGameStageImage = AssetsManager.getImage(ImageEntry)
+				var newGameStageImage = AssetsManager.getImage(ImageEntry)
 
 					if(containerIndex == 1)
 					{
@@ -147,12 +153,6 @@ package de.mediadesign.gd1011.dreamcatcher
 				animationContentList.push(animationBoxOne);
 				animationContentList.push(animationBoxTwo);
 				animationContentList.push(animationBoxTree);
-
-			for each (ImageEntry in gameStageFrontImageList )
-			{
-				var newGameStageFrontImage:Image = AssetsManager.getImage(ImageEntry)
-				bushContentList.push(newGameStageFrontImage);
-			}
 
 			backgroundContainerOne.addChild(backgroundContentList.shift());
 			backgroundContainerTwo.addChild(backgroundContentList.shift());

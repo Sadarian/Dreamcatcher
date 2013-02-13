@@ -30,8 +30,8 @@ package de.mediadesign.gd1011.dreamcatcher {
 		[Embed(source = "/../assets/textures/DC_spriteSheetVictimRunSmall.png")]
 		public static const VictimWalk:Class;
 
-        [Embed(source = "/../assets/textures/DC_sprite_Sheet_Boss_cobweb_fly.png")]
-        public static const BulletWalk:Class;
+        [Embed(source = "/../assets/textures/DummyBullet.png")]
+        public static const PlayerBullet:Class;
 
 		[Embed(source = "/../assets/textures/DC_sprite_Sheet_Enemy_Bullet.png")]
 		public static const EnemyBullet:Class;

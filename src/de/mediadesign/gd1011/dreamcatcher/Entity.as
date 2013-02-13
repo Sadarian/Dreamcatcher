@@ -4,6 +4,8 @@ package de.mediadesign.gd1011.dreamcatcher
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.IWeapon;
 
 	import flash.geom.Point;
+
+	import starling.display.DisplayObject;
 	import starling.display.MovieClip;
 
 	public class Entity
@@ -16,7 +18,7 @@ package de.mediadesign.gd1011.dreamcatcher
         private var _collisionMode:String;
         private var _collisionPoint:Point;
         private var _collisionValues:Point;
-        private var _movieClip:MovieClip; //added via JSON but it isn't in the Config!
+        private var _movieClip:DisplayObject; //added via JSON but it isn't in the Config!
 
        //Additional Constructor Data:
         private var _position:Point;
@@ -92,7 +94,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		    return _name;
 	    }
 
-		public function get movieClip():MovieClip
+		public function get movieClip():DisplayObject
         {
 			return _movieClip;
 		}
@@ -102,27 +104,33 @@ package de.mediadesign.gd1011.dreamcatcher
             return _collisionMode;
         }
 
-		public function get movementSystem():IMovement {
+		public function get movementSystem():IMovement
+		{
 			return _movementSystem;
 		}
 
-		public function get collisionPoint():Point {
+		public function get collisionPoint():Point
+		{
 			return _collisionPoint;
 		}
 
-		public function get collisionValues():Point {
+		public function get collisionValues():Point
+		{
 			return _collisionValues;
 		}
 
-		public function get position():Point {
+		public function get position():Point
+		{
 			return _position;
 		}
 
-		public function get health():Number {
+		public function get health():Number
+		{
 			return _health;
 		}
 
-		public function set health(value:Number):void {
+		public function set health(value:Number):void
+		{
 			_health = value;
 		}
 	}

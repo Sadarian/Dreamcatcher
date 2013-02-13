@@ -9,6 +9,7 @@ package de.mediadesign.gd1011.dreamcatcher
 	import flash.trace.Trace;
 
 	import starling.core.Starling;
+	import starling.display.DisplayObject;
 	import starling.display.DisplayObjectContainer;
 	import starling.display.Image;
 	import starling.display.MovieClip;
@@ -250,7 +251,7 @@ package de.mediadesign.gd1011.dreamcatcher
 			return self;
 		}
 
-		public function removeActor(movieClip:MovieClip):void
+		public function removeActor(movieClip:DisplayObject):void
 		{
 			removeChild(movieClip);
 		}

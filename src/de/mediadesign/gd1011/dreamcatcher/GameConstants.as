@@ -54,8 +54,8 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const VICTIM_TEXTURE_NAME:String = "VictimWalk";
 
 		public static const PLAYER_BULLET:String = "Player_Bullet";
-		public static const PLAYER_BULLET_ANIM_CONFIG:Vector.<int> = new <int>[2,1,2,12];
-		public static const PLAYER_BULLET_TEXTURE_NAME:String = "BulletWalk";
+		public static const PLAYER_BULLET_ANIM_CONFIG:Vector.<int> = new <int>[1,1,1,12];
+		public static const PLAYER_BULLET_TEXTURE_NAME:String = "PlayerBullet";
 
 	    public static const ENEMY_BULLET:String = "Enemy_Bullet";
 	    public static const ENEMY_BULLET_ANIM_CONFIG:Vector.<int> = new <int>[2,1,2,12];

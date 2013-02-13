@@ -14,7 +14,7 @@ package de.mediadesign.gd1011.dreamcatcher
         {
             _entities = new Vector.<Entity>();
 	        _unusedEntities = new Vector.<Entity>();
-	        initGame(new Array(GameConstants.BOSS, GameConstants.PLAYER));
+	        initGame(new Array(GameConstants.PLAYER, GameConstants.BOSS));
         }
 
 		public static function get entityManager():EntityManager
@@ -60,6 +60,7 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		public function addUnusedEntity(entity:Entity):void
 		{
+//			trace(entity.name + " was added to unusedEntities")
 			_entities.splice(_entities.indexOf(entity),1);
 			_unusedEntities.push(entity);
 		}

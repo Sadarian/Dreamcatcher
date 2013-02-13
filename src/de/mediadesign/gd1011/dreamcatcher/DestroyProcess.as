@@ -6,22 +6,22 @@
  * To change this template use File | Settings | File Templates.
  */
 package de.mediadesign.gd1011.dreamcatcher {
+	import de.mediadesign.gd1011.dreamcatcher.GameStage;
+
 	public class DestroyProcess {
 		private var entityManager:EntityManager;
-		private var gameStage:GameStage;
 		public function DestroyProcess(entityManager:EntityManager)
 		{
 			this.entityManager = entityManager;
-			gameStage = GameStage.gameStage;
 		}
 
 		public function update():void
 		{
 			for each (var entity:Entity in entityManager.entities)
 			{
-				if (entity.health <= 0 || entity.position.x >= 1350)
+				if (entity.health <= 0 || entity.position.x >= 1350 || entity.position.x <0)
 				{
-					gameStage.removeActor(entity.movieClip);
+					GameStage.gameStage.removeActor(entity.movieClip);
 					entity.removeMoviclip();
 					entityManager.addUnusedEntity(entity);
 				}

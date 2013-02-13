@@ -1,9 +1,9 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
-	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
-
 	import flash.media.Sound;
+
 	import starling.core.Starling;
+	import starling.display.DisplayObject;
 	import starling.display.Image;
 	import starling.display.MovieClip;
 	import starling.extensions.PDParticleSystem;
@@ -18,7 +18,8 @@ package de.mediadesign.gd1011.dreamcatcher
 		private static var VictimList:Vector.<MovieClip> = new Vector.<MovieClip>();
 		private static var BossList:Vector.<MovieClip> = new Vector.<MovieClip>();
 		private static var PlayerList:Vector.<MovieClip> = new Vector.<MovieClip>();
-		private static var BulletList:Vector.<MovieClip> = new Vector.<MovieClip>();
+		private static var PlayerBulletList:Vector.<MovieClip> = new Vector.<MovieClip>();
+		private static var EnemyBulletList:Vector.<MovieClip> = new Vector.<MovieClip>();
 		private static var ParticleList:Vector.<ParticleSystem> = new Vector.<ParticleSystem>();
 
 
@@ -57,16 +58,21 @@ package de.mediadesign.gd1011.dreamcatcher
 			}
 
 			//Bullet
-			while ( BulletList.length < 15)
+			while ( PlayerBulletList.length < 15)
 			{
-					BulletList.push(createMovieClip(GameConstants.BULLET_TEXTURE_NAME,GameConstants.BULLET_ANIM_CONFIG));
+					PlayerBulletList.push(createMovieClip(GameConstants.PLAYER_BULLET_TEXTURE_NAME,GameConstants.PLAYER_BULLET_ANIM_CONFIG));
+			}
+
+			while ( EnemyBulletList.length < 15)
+			{
+				EnemyBulletList.push(createMovieClip(GameConstants.ENEMY_BULLET_TEXTURE_NAME,GameConstants.ENEMY_BULLET_ANIM_CONFIG));
 			}
 
 			//Preparing Sounds
 			AssetsLoader.prepareSounds();
 		}
 
-		public static function getMovieClip(item:String):MovieClip
+		public static function getMovieClip(item:String):DisplayObject
 		{
 			switch (item)
 			{
@@ -74,7 +80,7 @@ package de.mediadesign.gd1011.dreamcatcher
 				{
 					if (EnemyList.length > 0 )
 					{
-						trace("Enemy was given from List");
+//						trace("Enemy was given from List");
 						return EnemyList.shift();
 					}
 					else
@@ -90,7 +96,7 @@ package de.mediadesign.gd1011.dreamcatcher
 				{
 					if (VictimList.length > 0 )
 					{
-						trace("Victim was given from List");
+//						trace("Victim was given from List");
 						return VictimList.shift();
 					}
 					else
@@ -106,7 +112,7 @@ package de.mediadesign.gd1011.dreamcatcher
 				{
 					if (BossList.length > 0 )
 					{
-						trace("Boss was given from List");
+//						trace("Boss was given from List");
 						return BossList.shift();
 					}
 					else
@@ -122,7 +128,7 @@ package de.mediadesign.gd1011.dreamcatcher
 				{
 					if (PlayerList.length > 0 )
 					{
-						trace("Player was given from List");
+//						trace("Player was given from List");
 						return PlayerList.shift();
 					}
 					else
@@ -136,16 +142,32 @@ package de.mediadesign.gd1011.dreamcatcher
 
 				case GameConstants.PLAYER_BULLET:
 				{
-					if (BulletList.length > 0 )
+					if (PlayerBulletList.length > 0 )
 					{
 						//trace("Bullet was given from List");
-						return BulletList.shift();
+						return PlayerBulletList.shift();
 					}
 					else
 					{
-						BulletList.push(createMovieClip(GameConstants.BULLET_TEXTURE_NAME,GameConstants.BULLET_ANIM_CONFIG));
-						trace("Bullet was created")
-						return BulletList.shift();
+						PlayerBulletList.push(createMovieClip(GameConstants.PLAYER_BULLET_TEXTURE_NAME,GameConstants.PLAYER_BULLET_ANIM_CONFIG));
+						trace("Player Bullet was created")
+						return PlayerBulletList.shift();
+					}
+					break;
+				}
+
+				case GameConstants.ENEMY_BULLET:
+				{
+					if (EnemyBulletList.length > 0 )
+					{
+						//trace("Bullet was given from List");
+						return EnemyBulletList.shift();
+					}
+					else
+					{
+						EnemyBulletList.push(createMovieClip(GameConstants.ENEMY_BULLET_TEXTURE_NAME,GameConstants.ENEMY_BULLET_ANIM_CONFIG));
+						trace("Enemy Bullet was created")
+						return EnemyBulletList.shift();
 					}
 					break;
 				}
@@ -249,8 +271,15 @@ package de.mediadesign.gd1011.dreamcatcher
 
 				case GameConstants.PLAYER_BULLET:
 				{
-					BulletList.push(clip);
-					//trace("Bullet was added to BulletList")
+					PlayerBulletList.push(clip);
+					//trace("Player Bullet was added to PlayerBulletList")
+					break;
+				}
+
+				case GameConstants.ENEMY_BULLET:
+				{
+					EnemyBulletList.push(clip);
+					trace("Enemy Bullet was added to EnemyBulletList")
 					break;
 				}
 

@@ -139,8 +139,11 @@ package de.mediadesign.gd1011.dreamcatcher
 			addChild(animLayerContainerTwo)
 
 			addChild(player.movieClip);
+			addChild(CollisionDummyBoxes.getDummy(player))
 			addChild(boss.movieClip);
+			addChild(CollisionDummyBoxes.getDummy(boss))
             addChild(enemy.movieClip);
+			addChild(CollisionDummyBoxes.getDummy(enemy))
             addChild(victim.movieClip);
 
 			addChild(gameStageFrontContainerOne);

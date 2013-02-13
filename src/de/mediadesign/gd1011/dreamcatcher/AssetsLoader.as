@@ -16,10 +16,6 @@ package de.mediadesign.gd1011.dreamcatcher {
 	public class AssetsLoader
 	{
 
-//Font for the game
-		[Embed(source="/../assets/textures/Interface Dummy.png")]
-		public static const Background:Class;
-
 // TTF-Fonts
 		[Embed(source="/../assets/fonts/defused.ttf", embedAsCFF="false", fontFamily="TestFont")]
 		private static const TestFont:Class;

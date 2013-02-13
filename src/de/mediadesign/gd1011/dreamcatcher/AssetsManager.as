@@ -4,8 +4,10 @@ package de.mediadesign.gd1011.dreamcatcher
 
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
+	import starling.display.DisplayObjectContainer;
 	import starling.display.Image;
 	import starling.display.MovieClip;
+	import starling.display.Sprite;
 	import starling.extensions.PDParticleSystem;
 	import starling.extensions.ParticleSystem;
 	import starling.textures.Texture;
@@ -14,12 +16,12 @@ package de.mediadesign.gd1011.dreamcatcher
 	{
 		private static var BitmapFontsLoaded:Boolean;
 
-		private static var EnemyList:Vector.<MovieClip> = new Vector.<MovieClip>();
-		private static var VictimList:Vector.<MovieClip> = new Vector.<MovieClip>();
-		private static var BossList:Vector.<MovieClip> = new Vector.<MovieClip>();
-		private static var PlayerList:Vector.<MovieClip> = new Vector.<MovieClip>();
-		private static var PlayerBulletList:Vector.<MovieClip> = new Vector.<MovieClip>();
-		private static var EnemyBulletList:Vector.<MovieClip> = new Vector.<MovieClip>();
+		private static var EnemyList:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
+		private static var VictimList:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
+		private static var BossList:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
+		private static var PlayerList:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
+		private static var PlayerBulletList:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
+		private static var EnemyBulletList:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
 		private static var ParticleList:Vector.<ParticleSystem> = new Vector.<ParticleSystem>();
 
 
@@ -36,36 +38,44 @@ package de.mediadesign.gd1011.dreamcatcher
 			//Enemy
 			while ( EnemyList.length < 10)
 			{
-				EnemyList.push(createMovieClip(GameConstants.ENEMY_TEXTURE_NAME,GameConstants.ENEMY_ANIM_CONFIG));
+				EnemyList.push(new Sprite());
+				EnemyList[EnemyList.length-1].addChild(createMovieClip(GameConstants.ENEMY_TEXTURE_NAME,GameConstants.ENEMY_ANIM_CONFIG));
+
 			}
 
 			//Boss
 			while ( BossList.length < 1)
 			{
-				BossList.push(createMovieClip(GameConstants.BOSS_TEXTURE_NAME,GameConstants.BOSS_ANIM_CONFIG));
+				BossList.push(new Sprite());
+				BossList[BossList.length-1].addChild(createMovieClip(GameConstants.BOSS_TEXTURE_NAME,GameConstants.BOSS_ANIM_CONFIG));
 			}
 
 			//Victim
 			while ( VictimList.length < 1)
 			{
-				VictimList.push(createMovieClip(GameConstants.VICTIM_TEXTURE_NAME,GameConstants.VICTIM_ANIM_CONFIG));
+				VictimList.push(new Sprite());
+				VictimList[VictimList.length-1].addChild(createMovieClip(GameConstants.VICTIM_TEXTURE_NAME,GameConstants.VICTIM_ANIM_CONFIG));
 			}
 
 			//Player
 			while ( PlayerList.length < 1)
 			{
-				PlayerList.push(createMovieClip(GameConstants.PLAYER_TEXTURE_NAME,GameConstants.PLAYER_ANIM_CONFIG));
+				PlayerList.push(new Sprite());
+				PlayerList[PlayerList.length-1].addChild(createMovieClip(GameConstants.PLAYER_TEXTURE_NAME,GameConstants.PLAYER_ANIM_CONFIG));
+				PlayerList[PlayerList.length-1].addChild(createMovieClip(GameConstants.PLAYER_ARM_TEXTURE_NAME, GameConstants.PLAYER_ARM_ANIM_CONFIG));
 			}
 
 			//Bullet
 			while ( PlayerBulletList.length < 15)
 			{
-					PlayerBulletList.push(createMovieClip(GameConstants.PLAYER_BULLET_TEXTURE_NAME,GameConstants.PLAYER_BULLET_ANIM_CONFIG));
+				PlayerBulletList.push(new Sprite());
+				PlayerBulletList[PlayerBulletList.length-1].addChild(createMovieClip(GameConstants.PLAYER_BULLET_TEXTURE_NAME,GameConstants.PLAYER_BULLET_ANIM_CONFIG));
 			}
 
 			while ( EnemyBulletList.length < 15)
 			{
-				EnemyBulletList.push(createMovieClip(GameConstants.ENEMY_BULLET_TEXTURE_NAME,GameConstants.ENEMY_BULLET_ANIM_CONFIG));
+				EnemyBulletList.push(new Sprite());
+				EnemyBulletList[EnemyBulletList.length-1].addChild(createMovieClip(GameConstants.ENEMY_BULLET_TEXTURE_NAME,GameConstants.ENEMY_BULLET_ANIM_CONFIG));
 			}
 
 			//Preparing Sounds
@@ -85,7 +95,8 @@ package de.mediadesign.gd1011.dreamcatcher
 					}
 					else
 					{
-						EnemyList.push(createMovieClip(GameConstants.ENEMY_TEXTURE_NAME,GameConstants.ENEMY_ANIM_CONFIG));
+						EnemyList.push(new Sprite());
+						EnemyList[EnemyList.length-1].addChild(createMovieClip(GameConstants.ENEMY_TEXTURE_NAME,GameConstants.ENEMY_ANIM_CONFIG));
 						trace("Enemy was created")
 						return EnemyList.shift();
 					}
@@ -101,7 +112,8 @@ package de.mediadesign.gd1011.dreamcatcher
 					}
 					else
 					{
-						VictimList.push(createMovieClip(GameConstants.VICTIM_TEXTURE_NAME,GameConstants.VICTIM_ANIM_CONFIG));
+						VictimList.push(new Sprite());
+						VictimList[VictimList.length-1].addChild(createMovieClip(GameConstants.VICTIM_TEXTURE_NAME,GameConstants.VICTIM_ANIM_CONFIG));
 						trace("Victim was created")
 						return VictimList.shift();
 					}
@@ -117,7 +129,8 @@ package de.mediadesign.gd1011.dreamcatcher
 					}
 					else
 					{
-						BossList.push(createMovieClip(GameConstants.BOSS_TEXTURE_NAME,GameConstants.BOSS_ANIM_CONFIG));
+						BossList.push(new Sprite());
+						BossList[BossList.length-1].addChild(createMovieClip(GameConstants.BOSS_TEXTURE_NAME,GameConstants.BOSS_ANIM_CONFIG));
 						trace("Boss was created")
 						return BossList.shift();
 					}
@@ -133,7 +146,9 @@ package de.mediadesign.gd1011.dreamcatcher
 					}
 					else
 					{
-						PlayerList.push(createMovieClip(GameConstants.PLAYER_TEXTURE_NAME,GameConstants.PLAYER_ANIM_CONFIG));
+						PlayerList.push(new Sprite());
+						PlayerList[PlayerList.length-1].addChild(createMovieClip(GameConstants.PLAYER_TEXTURE_NAME,GameConstants.PLAYER_ANIM_CONFIG));
+						PlayerList[PlayerList.length-1].addChild(createMovieClip(GameConstants.PLAYER_ARM_TEXTURE_NAME, GameConstants.PLAYER_ARM_ANIM_CONFIG));
 						trace("Player was created")
 						return PlayerList.shift();
 					}
@@ -149,7 +164,8 @@ package de.mediadesign.gd1011.dreamcatcher
 					}
 					else
 					{
-						PlayerBulletList.push(createMovieClip(GameConstants.PLAYER_BULLET_TEXTURE_NAME,GameConstants.PLAYER_BULLET_ANIM_CONFIG));
+						PlayerBulletList.push(new Sprite());
+						PlayerBulletList[PlayerBulletList.length-1].addChild(createMovieClip(GameConstants.PLAYER_BULLET_TEXTURE_NAME,GameConstants.PLAYER_BULLET_ANIM_CONFIG));
 						trace("Player Bullet was created")
 						return PlayerBulletList.shift();
 					}
@@ -165,7 +181,8 @@ package de.mediadesign.gd1011.dreamcatcher
 					}
 					else
 					{
-						EnemyBulletList.push(createMovieClip(GameConstants.ENEMY_BULLET_TEXTURE_NAME,GameConstants.ENEMY_BULLET_ANIM_CONFIG));
+						EnemyBulletList.push(new Sprite());
+						EnemyBulletList[EnemyBulletList.length-1].addChild(createMovieClip(GameConstants.ENEMY_BULLET_TEXTURE_NAME,GameConstants.ENEMY_BULLET_ANIM_CONFIG));
 						trace("Enemy Bullet was created")
 						return EnemyBulletList.shift();
 					}
@@ -218,7 +235,7 @@ package de.mediadesign.gd1011.dreamcatcher
 			return newSound;
 		}
 
-		private static function createMovieClip(assetName:String, v:Vector.<int>):MovieClip
+		private static function createMovieClip(assetName:String, v:Vector.<int>):DisplayObject
 		{
 			var newClip:MovieClip;
 			var frames:Vector.<Texture> = AssetsLoader.createAtlasAnim(assetName,v[0],v[1],v[2]).getTextures(assetName);
@@ -237,7 +254,7 @@ package de.mediadesign.gd1011.dreamcatcher
 			return newPDParticleSystem;
 		}
 
-		public static function addMovieClip(clip:MovieClip,item:String):void
+		public static function addMovieClip(clip:DisplayObject,item:String):void
 		{
 			switch (item)
 			{

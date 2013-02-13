@@ -33,7 +33,8 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces
             if(sumTime>=_speed)
             {
                 sumTime -= _speed;
-                var entity:Entity = EntityManager.entityManager.createEntity(GameConstants.PLAYER_BULLET, position);
+                var temPosition:Point = new Point(position.x - -125, position.y - -33)
+	            var entity:Entity = EntityManager.entityManager.createEntity(GameConstants.PLAYER_BULLET, temPosition);
                 (entity.movementSystem as MovementBullet).target = (_touch != null)?_touch.getLocation(Starling.current.stage):new Point(Starling.current.viewPort.width , position.y);
                 (entity.movementSystem as MovementBullet).calculateVelocity(position);
                 GameStage.gameStage.addChild(entity.movieClip);

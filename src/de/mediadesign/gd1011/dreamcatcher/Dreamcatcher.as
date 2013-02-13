@@ -18,7 +18,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		public function Dreamcatcher()
         {
 			Starling.handleLostContext = true;
-
+            Starling.multitouchEnabled = true;
 
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
@@ -40,7 +40,9 @@ package de.mediadesign.gd1011.dreamcatcher
 		private function init():void
         {
             GameConstants.init();
-			_starling = new Starling(Game, stage, new Rectangle(0, 0 , stage.fullScreenWidth, stage.fullScreenHeight));
+            stage.stageHeight = stage.fullScreenHeight;
+            stage.stageWidth = stage.fullScreenWidth;
+			_starling = new Starling(Game, stage, new Rectangle(0, 0 , 1280, 800));
 			_starling.showStats = true;
 			_starling.addEventListener(Event.ROOT_CREATED, startStarling);
 		}

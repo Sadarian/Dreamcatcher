@@ -27,6 +27,8 @@ package de.mediadesign.gd1011.dreamcatcher {
 						{
 							if (identicalCollision.checkCollision(entityA, entityB))
 							{
+                                MeleeCombat(entityA, entityB);
+
 								if (entityA.name.search(GameConstants.BULLET) >= 0)
 								{
 									entityB.health = entityB.health - entityA.health;
@@ -45,6 +47,8 @@ package de.mediadesign.gd1011.dreamcatcher {
 							{
 								if (differentailCollision.checkCollision(entityA, entityB))
 								{
+                                    MeleeCombat(entityA, entityB);
+
 									if (entityA.name.search(GameConstants.BULLET) >= 0)
 									{
 										entityB.health = entityB.health - entityA.health;
@@ -55,7 +59,6 @@ package de.mediadesign.gd1011.dreamcatcher {
 										entityA.health = entityA.health - entityB.health;
 										entityB.health = 0;
 									}
-									trace(entityA.name + " " + entityA.health + " " + entityB.name + " " + entityB.health);
 								}
 							}
 						}
@@ -63,5 +66,19 @@ package de.mediadesign.gd1011.dreamcatcher {
 				}
 			}
 		}
+
+        private function MeleeCombat(entityA:Entity, entityB:Entity):void
+        {
+            if(entityA.name == GameConstants.PLAYER && ((entityB.name == GameConstants.ENEMY) || (entityB.name == GameConstants.BOSS)))
+            {
+                entityA.health -= GameConstants.meleeDamage(entityB.name);
+                entityB.health -= GameConstants.meleeDamage(entityA.name);
+            }
+            else if(entityB.name == GameConstants.PLAYER && ((entityA.name == GameConstants.ENEMY) || (entityA.name == GameConstants.BOSS)))
+            {
+                entityA.health -= GameConstants.meleeDamage(entityB.name);
+                entityB.health -= GameConstants.meleeDamage(entityA.name);
+            }
+        }
 	}
 }

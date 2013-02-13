@@ -71,7 +71,7 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		public function shoot(deltaTime:Number):void
 		{
-            if(_weaponSystem)
+            if(_weaponSystem && EntityManager.entityManager.getEntity(GameConstants.PLAYER))
                 _weaponSystem.shoot(deltaTime, _position, EntityManager.entityManager.getEntity(GameConstants.PLAYER).position);
         }
 

@@ -7,10 +7,16 @@ package de.mediadesign.gd1011.dreamcatcher
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.MovementPlayer;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.WeaponPlayer;
 
+    import flash.geom.Point;
+
+    import flash.geom.Rectangle;
+    import flash.ui.Keyboard;
+
     import starling.core.Starling;
 
     import starling.display.Sprite;
 	import starling.events.Event;
+    import starling.events.KeyboardEvent;
     import starling.events.Touch;
     import starling.events.TouchEvent;
     import starling.events.TouchPhase;
@@ -27,6 +33,9 @@ package de.mediadesign.gd1011.dreamcatcher
 		private var deltaTime:Number;
 
 
+        //DEBUG:
+        private var touchPosition:Point = new Point();
+
 		public function Game()
         {
 	        AssetsManager.start();
@@ -40,8 +49,10 @@ package de.mediadesign.gd1011.dreamcatcher
 
 
             addChild(AssetsManager.getImage(GameConstants.BACKGROUND));
-			addChild(GameStage.gameStage)
+			addChild(GameStage.gameStage);
+
 			GameStage.gameStage.loadLevel();
+
 	        startGame();
 		}
 
@@ -51,6 +62,8 @@ package de.mediadesign.gd1011.dreamcatcher
 			deltaTime = time.time;
 			addEventListener(Event.ENTER_FRAME, update);
 			addEventListener(TouchEvent.TOUCH, onTouch);
+
+            Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, debugFunction);
 		}
 
 		private function update(event:Event):void
@@ -82,6 +95,23 @@ package de.mediadesign.gd1011.dreamcatcher
                     MovementPlayer.touch = touch;
                 else
                     WeaponPlayer.touch = touch;
+
+            //DEBUG:
+            if(e.getTouch(stage, TouchPhase.HOVER))
+                touchPosition = e.getTouch(stage, TouchPhase.HOVER).getLocation(stage);
+        }
+
+        //DEBUG:
+        private function debugFunction(e:KeyboardEvent):void
+        {
+            if(e.keyCode==Keyboard.F1 && (EntityManager.entityManager.getEntity(GameConstants.PLAYER) == null))
+                EntityManager.entityManager.createEntity(GameConstants.PLAYER, touchPosition);
+            if(e.keyCode==Keyboard.F2)
+                EntityManager.entityManager.createEntity(GameConstants.ENEMY, touchPosition);
+            if(e.keyCode==Keyboard.F3)
+                EntityManager.entityManager.createEntity(GameConstants.VICTIM, touchPosition);
+            if(e.keyCode==Keyboard.F4)
+                EntityManager.entityManager.createEntity(GameConstants.BOSS, touchPosition);
         }
     }
 }

@@ -7,8 +7,10 @@ package de.mediadesign.gd1011.dreamcatcher {
 	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
 
+    import starling.core.Starling;
 
-	import starling.text.BitmapFont;
+
+    import starling.text.BitmapFont;
 	import starling.text.TextField;
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
@@ -27,7 +29,7 @@ package de.mediadesign.gd1011.dreamcatcher {
 //BitmMapFonts
 
 //Texture cache
-		private static var sContentScaleFactor:int = 1;
+		private static var sContentScaleFactor:int = Starling.current.contentScaleFactor;
 		private static var sTextures:Dictionary = new Dictionary();
 		private static var sTextureAtlas:TextureAtlas;
 		private static var sSounds:Dictionary = new Dictionary();

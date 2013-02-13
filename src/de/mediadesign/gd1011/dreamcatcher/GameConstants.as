@@ -68,6 +68,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const BITMAP_FONT_TEXTURE:String = "testBitmapFont";
 		public static const BITMAP_FONT_CONFIG:String = "testBitmapFontXml";
 
+        private static var _meleeDamage:Vector.<Number>;
 	    private static var _playerMovementBorder:Rectangle;
         private static var _playerStartPosition:Point;
 	    private static var _bossStartPosition:Point;
@@ -89,6 +90,10 @@ package de.mediadesign.gd1011.dreamcatcher
 
         private static function setConstants(data:Object):void
         {
+            _meleeDamage = new Vector.<Number>();
+            if(data.playerMeleeDamage) _meleeDamage.push(data.playerMeleeDamage);
+            if(data.enemyMeleeDamage) _meleeDamage.push(data.enemyMeleeDamage);
+            if(data.bossMeleeDamage) _meleeDamage.push(data.bossMeleeDamage);
             if(data.playerMovementBorder) _playerMovementBorder = new Rectangle(data.playerMovementBorder[0],
                                                                                 data.playerMovementBorder[1],
                                                                                 data.playerMovementBorder[2],
@@ -149,5 +154,22 @@ package de.mediadesign.gd1011.dreamcatcher
 	    public static function get victimStartPosition():Point {
 		    return _victimStartPosition;
 	    }
+
+        public static function meleeDamage(name:String):Number {
+            var pos:int;
+            switch (name)
+            {
+                case(PLAYER):
+                    pos = 0;
+                    break;
+                case(ENEMY):
+                    pos = 1;
+                    break;
+                case(BOSS):
+                    pos = 2;
+                    break;
+            }
+            return _meleeDamage[pos];
+        }
     }
 }

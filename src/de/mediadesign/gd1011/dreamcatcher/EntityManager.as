@@ -35,27 +35,18 @@ package de.mediadesign.gd1011.dreamcatcher
 	    public function createEntity(name:String, position:Point = null):Entity
 	    {
 		    if (position == null)
-		    {
 			    position = new Point(0, 0);
-		    }
-		    var tempEntity:Entity
+		    var tempEntity:Entity;
 		    if(_unusedEntities.length > 0)
 		    {
 			    tempEntity = _unusedEntities.shift();
 			    if (tempEntity.movieClip)
-			    {
 				    tempEntity.removeMoviclip();
-			    }
-			    tempEntity.setData(GameConstants.getData(name), position);
-			    _entities.push(tempEntity);
-			    return tempEntity;
 		    }
-		    else
-		    {
-			    tempEntity = new Entity(GameConstants.getData(name), position);
-				_entities.push(tempEntity);
-			    return tempEntity;
-		    }
+            tempEntity = new Entity(GameConstants.getData(name), position);
+            _entities.push(tempEntity);
+            GameStage.gameStage.addChildAt(tempEntity.movieClip, GameStage.gameStage.numChildren-3);
+            return tempEntity;
 		}
 
 		public function addUnusedEntity(entity:Entity):void

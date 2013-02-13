@@ -27,12 +27,12 @@ package de.mediadesign.gd1011.dreamcatcher {
 						{
 							if (identicalCollision.checkCollision(entityA, entityB))
 							{
-								if (entityA.name == GameConstants.PLAYER_BULLET)
+								if (entityA.name.search(GameConstants.BULLET) >= 0)
 								{
 									entityB.health = entityB.health - entityA.health;
 									entityA.health = 0;
 								}
-								else
+								else if(entityB.name.search(GameConstants.BULLET) >= 0)
 								{
 									entityA.health = entityA.health - entityB.health;
 									entityB.health = 0;
@@ -41,11 +41,21 @@ package de.mediadesign.gd1011.dreamcatcher {
 						}
 						else
 						{
-							if (!(entityA.name.search(GameConstants.PLAYER) >= 0 && entityB.name.search(GameConstants.PLAYER) >= 0))
+							if (!(entityA.name.search(entityB.name) >= 0) && !(entityB.name.search(entityA.name) >= 0))
 							{
 								if (differentailCollision.checkCollision(entityA, entityB))
 								{
-									trace("Yeeeeeeeha!!");
+									if (entityA.name.search(GameConstants.BULLET) >= 0)
+									{
+										entityB.health = entityB.health - entityA.health;
+										entityA.health = 0;
+									}
+									else if(entityB.name.search(GameConstants.BULLET) >= 0)
+									{
+										entityA.health = entityA.health - entityB.health;
+										entityB.health = 0;
+									}
+									trace(entityA.name + " " + entityA.health + " " + entityB.name + " " + entityB.health);
 								}
 							}
 						}

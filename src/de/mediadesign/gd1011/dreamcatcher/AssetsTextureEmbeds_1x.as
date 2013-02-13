@@ -15,6 +15,9 @@ package de.mediadesign.gd1011.dreamcatcher {
 		[Embed(source = "/../assets/textures/DC_spriteSheetCharacterSmaller.png")]
 		public static const PlayerOnly:Class;
 
+		[Embed(source = "/../assets/textures/DC_spriteSheetGunArmSmaller.png")]
+		public static const PlayerArm:Class;
+
 		[Embed(source = "/../assets/textures/DC_sprite_Sheet_Boss_attack_distant_small.png")]
 		public static const BossShooting:Class;
 
@@ -29,6 +32,9 @@ package de.mediadesign.gd1011.dreamcatcher {
 
         [Embed(source = "/../assets/textures/DC_sprite_Sheet_Boss_cobweb_fly.png")]
         public static const BulletWalk:Class;
+
+		[Embed(source = "/../assets/textures/DC_sprite_Sheet_Enemy_Bullet.png")]
+		public static const EnemyBullet:Class;
 
 		[Embed(source = "/../assets/textures/GameStage.png")]
 		public static const GameStage:Class;
@@ -71,6 +77,16 @@ package de.mediadesign.gd1011.dreamcatcher {
 
 		[Embed(source = "/../assets/fonts/testBitFont.png")]
 		public static const testBitmapFont:Class;
+
+
+
+
+
+		[Embed(source = "/../assets/textures/Circle.png")]
+		public static const Circle:Class;
+
+		[Embed(source = "/../assets/textures/Quad.png")]
+		public static const Quad:Class;
 
 	}
 }

@@ -43,8 +43,8 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces
 
 		private function createRectangle(entity:Entity):Rectangle {
 			var rect:Rectangle;
-			rect = new Rectangle((entity.position.x - entity.collisionPoint.x),
-								 (entity.position.y - entity.collisionPoint.y),
+			rect = new Rectangle((entity.position.x - entity.collisionPoint.x - entity.collisionValues.x),
+								 (entity.position.y - entity.collisionPoint.y - entity.collisionValues.y),
 								  entity.collisionValues.x * 2,
 								  entity.collisionValues.y * 2)
 			return rect;

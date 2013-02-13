@@ -2,10 +2,10 @@
     "name":"Enemy",
     "health":50,
     "movementSystem":"MovementEnemy",
-    "movementSpeed":500,
+    "movementSpeed":300,
     "weaponSystem":"WeaponEnemy",
     "weaponSpeed":3000,
     "collisionMode":"CollisionRectangle",
-    "collisionPoint":[0, 0],
-    "collisionValues":[50, 192]
+    "collisionPoint":[0, -10],
+    "collisionValues":[50, 100]
 }

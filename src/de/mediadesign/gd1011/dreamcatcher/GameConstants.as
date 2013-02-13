@@ -18,6 +18,7 @@ package de.mediadesign.gd1011.dreamcatcher
     {
         public static const COLLISION_RECTANGLE:String = "CollisionRectangle";
         public static const COLLISION_CIRCLE:String = "CollisionCircle";
+	    public static const BULLET:String = "Bullet";
 
 		public static const TEST_SOUND:String = "TestSound";
 		public static const SOUND_LIST:Vector.<String> = new <String>[TEST_SOUND];
@@ -44,13 +45,21 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const PLAYER_ANIM_CONFIG:Vector.<int> = new <int>[4,2,6,12];
 		public static const PLAYER_TEXTURE_NAME:String = "PlayerOnly";
 
+	    public static const PLAYER_ARM:String = "Player_Arm";
+	    public static const PLAYER_ARM_ANIM_CONFIG:Vector.<int> = new <int>[4,2,6,12];
+	    public static const PLAYER_ARM_TEXTURE_NAME:String = "PlayerArm";
+
 		public static const VICTIM:String = "Victim";
 		public static const VICTIM_ANIM_CONFIG:Vector.<int> = new <int>[4,2,6,12];
 		public static const VICTIM_TEXTURE_NAME:String = "VictimWalk";
 
 		public static const PLAYER_BULLET:String = "Player_Bullet";
-		public static const BULLET_ANIM_CONFIG:Vector.<int> = new <int>[2,1,2,12];
-		public static const BULLET_TEXTURE_NAME:String = "BulletWalk";
+		public static const PLAYER_BULLET_ANIM_CONFIG:Vector.<int> = new <int>[2,1,2,12];
+		public static const PLAYER_BULLET_TEXTURE_NAME:String = "BulletWalk";
+
+	    public static const ENEMY_BULLET:String = "Enemy_Bullet";
+	    public static const ENEMY_BULLET_ANIM_CONFIG:Vector.<int> = new <int>[2,1,2,12];
+	    public static const ENEMY_BULLET_TEXTURE_NAME:String = "EnemyBullet";
 
 		public static const PARTICLE:String = "Particle";
 		public static const PARTICLE_CONFIG:String = "testParticleConfig";

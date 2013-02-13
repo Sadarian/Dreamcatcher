@@ -6,6 +6,6 @@
     "weaponSystem":"WeaponPlayer",
     "weaponSpeed":750,
     "collisionMode":"CollisionRectangle",
-    "collisionPoint":[0, 0],
-    "collisionValues":[50, 192]
+    "collisionPoint":[0, -30],
+    "collisionValues":[50, 100]
 }

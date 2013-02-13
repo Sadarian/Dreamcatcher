@@ -43,6 +43,7 @@ package de.mediadesign.gd1011.dreamcatcher
 
             addChild(AssetsManager.getImage(GameConstants.BACKGROUND));
 			addChild(GameStage.gameStage)
+			GameStage.gameStage.init();
 			GameStage.gameStage.loadLevel();
 
 			addChild(BossButton = new Button(AssetsLoader.getTexture(GameConstants.BUTTON),"BOSS BUTTON"));

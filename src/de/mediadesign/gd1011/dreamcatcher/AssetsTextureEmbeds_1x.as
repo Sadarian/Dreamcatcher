@@ -55,7 +55,7 @@ package de.mediadesign.gd1011.dreamcatcher {
 		public static const GameStageFrontBoss:Class;
 
 		[Embed(source = "/../assets/textures/AnimLayer.png")]
-		public static const GameStageAnimLayer:Class;
+		public static const GameStageAnimLayer1:Class;
 
 		[Embed(source = "/../assets/textures/AnimLayer2.png")]
 		public static const GameStageAnimLayer2:Class;

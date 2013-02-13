@@ -13,9 +13,11 @@ package de.mediadesign.gd1011.dreamcatcher
     import flash.geom.Point;
     import flash.geom.Rectangle;
     import flash.utils.getDefinitionByName;
+	import starling.core.Starling;
 
-    public class GameConstants
+	public class GameConstants
     {
+
         public static const COLLISION_RECTANGLE:String = "CollisionRectangle";
         public static const COLLISION_CIRCLE:String = "CollisionCircle";
 
@@ -26,18 +28,18 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const BUTTON:String ="Button";
 
 		//Properties of the GameStage (LVL1)
-		public static const MAIN_STAGE_IMAGE_LIST:Vector.<String> = new <String>["GameStage","GameStage2","GameStage3"];
-		public static const BUSH_IMAGE_LIST:Vector.<String> = new <String>["GameStageFront","GameStageFront2","GameStageFront3"];
-		public static const ANIMATIONS_LIST:Vector.<String> = new <String>["GameStageAnimLayer","GameStageAnimLayer2","GameStageAnimLayer3"];
-		public static const BACKGROUND_IMAGE_LIST:Vector.<String> = new <String>["ScrollingBackground","ScrollingBackground","ScrollingBackground"];
-		public static const FOREGROUND_IMAGE_LIST:Vector.<String> = new <String>["ScrollingForeground","ScrollingForeground","ScrollingForeground"];
+		public static const MAIN_STAGE_IMAGE_LIST:Array = ["GameStage","GameStage2","GameStage3"];
+		public static const BUSH_IMAGE_LIST:Array = ["GameStageFront","GameStageFront2","GameStageFront3"];
+		public static const ANIMATIONS_LIST:Array = [["GameStageAnimLayer1"], ["GameStageAnimLayer2"], ["GameStageAnimLayer3"]];
+		public static const BACKGROUND_IMAGE_LIST:Array = ["ScrollingBackground","ScrollingBackground","ScrollingBackground"];
+		public static const FOREGROUND_IMAGE_LIST:Array = ["ScrollingForeground","ScrollingForeground","ScrollingForeground"];
 		public static const GAME_STAGE_MOVMENT_SPEEDS:Vector.<Number> = new <Number>[5,6,3,1,7];
 
-		public static const MAIN_STAGE_IMAGE_LIST_BOSS:Vector.<String> = new <String>["GameStageBoss","GameStageBoss","GameStageBoss"];
-		public static const BUSH_IMAGE_LIST_BOSS:Vector.<String> = new <String>["GameStageFrontBoss","GameStageFrontBoss","GameStageFrontBoss"];
-		public static const ANIMATIONS_LIST_BOSS:Vector.<String> = new <String>["GameStageAnimLayerBoss","GameStageAnimLayerBoss","GameStageAnimLayerBoss"];
-		public static const BACKGROUND_IMAGE_LIST_BOSS:Vector.<String> = new <String>["ScrollingBackgroundBoss","ScrollingBackgroundBoss","ScrollingBackgroundBoss"];
-		public static const FOREGROUND_IMAGE_LIST_BOSS:Vector.<String> = new <String>["ScrollingForegroundBoss","ScrollingForegroundBoss","ScrollingForegroundBoss"];
+		public static const MAIN_STAGE_IMAGE_LIST_BOSS:Array = ["GameStageBoss","GameStageBoss","GameStageBoss"];
+		public static const BUSH_IMAGE_LIST_BOSS:Array = ["GameStageFrontBoss","GameStageFrontBoss","GameStageFrontBoss"];
+		public static const ANIMATIONS_LIST_BOSS:Array = [["GameStageAnimLayerBoss"],["GameStageAnimLayerBoss"],["GameStageAnimLayerBoss"]];
+		public static const BACKGROUND_IMAGE_LIST_BOSS:Array = ["ScrollingBackgroundBoss","ScrollingBackgroundBoss","ScrollingBackgroundBoss"];
+		public static const FOREGROUND_IMAGE_LIST_BOSS:Array = ["ScrollingForegroundBoss","ScrollingForegroundBoss","ScrollingForegroundBoss"];
 
 		public static const ENEMY:String = "Enemy";
 		public static const ENEMY_ANIM_CONFIG:Vector.<int> = new <int>[4,2,8,10];
@@ -83,6 +85,7 @@ package de.mediadesign.gd1011.dreamcatcher
             stream.open(File.applicationDirectory.resolvePath(path), FileMode.READ);
             setConstants(JSON.parse(stream.readUTFBytes(stream.bytesAvailable)));
             stream.close();
+
         }
 
         private static function setConstants(data:Object):void

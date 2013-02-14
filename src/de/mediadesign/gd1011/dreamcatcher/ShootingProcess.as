@@ -1,17 +1,16 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
+
 	public class ShootingProcess
 	{
-        private var manager:EntityManager;
 
-        public function ShootingProcess(manager:EntityManager):void
+        public function ShootingProcess():void
         {
-            this.manager = manager
         }
 
 		public function update(deltaTime:Number):void
 		{
-            for each (var entity:Entity in manager.entities)
+            for each (var entity:Entity in EntityManager.entityManager.entities)
                 entity.shoot(deltaTime);
 		}
 	}

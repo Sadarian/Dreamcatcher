@@ -1,25 +1,25 @@
 package de.mediadesign.gd1011.dreamcatcher {
+	import de.mediadesign.gd1011.dreamcatcher.EntityManager;
+	import de.mediadesign.gd1011.dreamcatcher.EntityManager;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.DifferentialCollision;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.IdenticalCollision;
 
 	public class Collision
 	{
-		private var entityManager:EntityManager;
 		private var identicalCollision:IdenticalCollision;
 		private var differentailCollision:DifferentialCollision;
 
-		public function Collision(entityManager:EntityManager)
+		public function Collision()
 		{
-			this.entityManager = entityManager;
 			identicalCollision = new IdenticalCollision();
 			differentailCollision = new DifferentialCollision();
 		}
 
 		public function update():void
 		{
-			for each (var entityA:Entity in entityManager.entities)
+			for each (var entityA:Entity in EntityManager.entityManager.entities)
 			{
-				for each (var entityB:Entity in entityManager.entities)
+				for each (var entityB:Entity in EntityManager.entityManager.entities)
 				{
 					if (entityA != entityB && entityA.name != entityB.name)
 					{
@@ -39,6 +39,7 @@ package de.mediadesign.gd1011.dreamcatcher {
 									entityA.health = entityA.health - entityB.health;
 									entityB.health = 0;
 								}
+								lifeBarUpdate();
 							}
 						}
 						else
@@ -59,11 +60,18 @@ package de.mediadesign.gd1011.dreamcatcher {
 										entityA.health = entityA.health - entityB.health;
 										entityB.health = 0;
 									}
+									lifeBarUpdate()
 								}
 							}
 						}
 					}
 				}
+			}
+		}
+
+		private function lifeBarUpdate():void {
+			for each (var lifeBar:LifeBarHandling in EntityManager.entityManager.lifeBars) {
+				lifeBar.updateHealthBar();
 			}
 		}
 

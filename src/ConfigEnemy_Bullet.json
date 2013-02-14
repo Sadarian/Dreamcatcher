@@ -7,5 +7,5 @@
     "weaponSpeed":0.5,
     "collisionMode":"CollisionCircle",
     "collisionPoint":[0, 0],
-    "collisionValues":[32, 32]
+    "collisionValues":[25, 25]
 }

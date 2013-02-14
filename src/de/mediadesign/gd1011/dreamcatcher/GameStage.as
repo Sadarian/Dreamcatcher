@@ -71,6 +71,7 @@ package de.mediadesign.gd1011.dreamcatcher
 			boss = EntityManager.entityManager.createEntity(GameConstants.BOSS, GameConstants.bossStartPosition);
 			enemy = EntityManager.entityManager.createEntity(GameConstants.ENEMY, GameConstants.enemyStartPosition);
 			victim = EntityManager.entityManager.createEntity(GameConstants.VICTIM, GameConstants.victimStartPosition);
+
 		}
 
 		public function loadLevel(levelIndex:int = 1):void

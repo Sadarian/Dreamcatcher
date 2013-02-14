@@ -26,8 +26,10 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces
             {
                 sumTime -= _speed;
                 var entity:Entity = EntityManager.entityManager.createEntity(GameConstants.ENEMY_BULLET, position);
-                (entity.movementSystem as MovementBullet).target = (target != null)?new Point(target.x, target.y):new Point(0 , position.y);
+	            var targetPosition:Point = (target != null)?new Point(target.x, target.y):new Point(0 , position.y);
+			    (entity.movementSystem as MovementBullet).target = targetPosition;
                 (entity.movementSystem as MovementBullet).calculateVelocity(position);
+	            entity.movieClip.rotation = Math.atan2(targetPosition.y - position.y, targetPosition.x - position.x);
                 GameStage.gameStage.addChild(entity.movieClip);
             }
         }

@@ -198,7 +198,7 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		public static function getImage(item:String):Image
 		{
-			var newImage:Image = new Image(AssetsLoader.getTexture(item));;
+			var newImage:Image = new Image(AssetsLoader.getTexture(item));
 			return newImage;
 		}
 

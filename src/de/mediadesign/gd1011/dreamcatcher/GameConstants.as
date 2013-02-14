@@ -13,9 +13,11 @@ package de.mediadesign.gd1011.dreamcatcher
     import flash.geom.Point;
     import flash.geom.Rectangle;
     import flash.utils.getDefinitionByName;
+	import starling.core.Starling;
 
-    public class GameConstants
+	public class GameConstants
     {
+
         public static const COLLISION_RECTANGLE:String = "CollisionRectangle";
         public static const COLLISION_CIRCLE:String = "CollisionCircle";
 	    public static const BULLET:String = "Bullet";
@@ -24,14 +26,24 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const SOUND_LIST:Vector.<String> = new <String>[TEST_SOUND];
 
 		public static const BACKGROUND:String = "Background";
+		public static const BUTTON:String ="Button";
 
-		public static const GAME_STAGE_IMAGE_LIST:Vector.<String> = new <String>["GameStage","GameStage2","GameStage3"];
+		//Properties of the GameStage (LVL1)
+		public static const MAIN_STAGE_IMAGE_LIST:Array = ["GameStage","GameStage2","GameStage3"];
+		public static const BUSH_IMAGE_LIST:Array = ["GameStageFront","GameStageFront2","GameStageFront3"];
+		public static const ANIMATIONS_LIST:Array = [["GameStageAnimLayer1"], ["GameStageAnimLayer2"], ["GameStageAnimLayer3"]];
+		public static const FOG_LIST:Array = [["GameStageFog"],["GameStageFog2"],["GameStageFog3"]];
+		public static const BACKGROUND_IMAGE_LIST:Array = ["ScrollingBackground","ScrollingBackground","ScrollingBackground"];
+		public static const FOREGROUND_IMAGE_LIST:Array = ["ScrollingForeground","ScrollingForeground2","ScrollingForeground3","ScrollingForeground4","ScrollingForeground5"];
+		public static const GAME_STAGE_MOVMENT_SPEEDS:Vector.<Number> = new <Number>[1,2,3,6,7,8];
 
-		public static const GAME_STAGE_FRONT_IMAGE_LIST:Vector.<String> = new <String>["GameStageFront","GameStageFront2","GameStageFront3"];
-
-		public static const GAME_STAGE_ANIMATIONS_IMAGE_LIST:Vector.<String> = new <String>["GameStageAnimLayer","GameStageAnimLayer2","GameStageAnimLayer3"];
-
-		public static const GAME_STAGE_MOVMENT_SPEEDS:Vector.<Number> = new <Number>[5,1,3];
+		public static const MAIN_STAGE_IMAGE_LIST_BOSS:Array = ["GameStageBoss","GameStageBoss","GameStageBoss"];
+		public static const BUSH_IMAGE_LIST_BOSS:Array = ["GameStageFrontBoss","GameStageFrontBoss","GameStageFrontBoss"];
+		public static const ANIMATIONS_LIST_BOSS:Array = [["GameStageAnimLayerBoss"],["GameStageAnimLayerBoss"],["GameStageAnimLayerBoss"]];
+		public static const FOG_LIST_BOSS:Array = [["GameStageFog"],["GameStageFog2"],["GameStageFog3"]];
+		public static const BACKGROUND_IMAGE_LIST_BOSS:Array = ["ScrollingBackgroundBoss","ScrollingBackgroundBoss","ScrollingBackgroundBoss"];
+		public static const FOREGROUND_IMAGE_LIST_BOSS:Array = ["ScrollingForegroundBoss","ScrollingForegroundBoss","ScrollingForegroundBoss"];
+		public static const BOSS_SPEED_REDUCTION:Number = 150;
 
 		public static const ENEMY:String = "Enemy";
 		public static const ENEMY_ANIM_CONFIG:Vector.<int> = new <int>[4,2,8,10];
@@ -86,6 +98,7 @@ package de.mediadesign.gd1011.dreamcatcher
             stream.open(File.applicationDirectory.resolvePath(path), FileMode.READ);
             setConstants(JSON.parse(stream.readUTFBytes(stream.bytesAvailable)));
             stream.close();
+
         }
 
         private static function setConstants(data:Object):void
@@ -118,10 +131,10 @@ package de.mediadesign.gd1011.dreamcatcher
             if(data.name) dataArray[0] = (data.name as String); else throw new ArgumentError(type + " has no name declared!");
             if(data.health) dataArray[1] = (data.health as Number); else throw new ArgumentError(type + " has no health declared!");
             if(data.movementSystem) dataArray[2] = (data.movementSystem == "null")?null:new(getDefinitionByName("de.mediadesign.gd1011.dreamcatcher.Interfaces." + data.movementSystem) as Class)();
-                else throw new ArgumentError(type + " has no movementSystem declared!");
+              //  else throw new ArgumentError(type + " has no movementSystem declared!");
             if(data.movementSpeed) dataArray[3] = (data.movementSpeed as Number); else throw new ArgumentError(type + " has no movementSpeed declared!");
             if(data.weaponSystem) dataArray[4] = (data.weaponSystem == "null")?null:new(getDefinitionByName("de.mediadesign.gd1011.dreamcatcher.Interfaces." + data.weaponSystem) as Class)();
-                else throw new ArgumentError(type + " has no weaponSystem declared!");
+             //   else throw new ArgumentError(type + " has no weaponSystem declared!");
             if(data.weaponSpeed) dataArray[5] = (data.weaponSpeed == 0)?0:(data.weaponSpeed as Number); else throw new ArgumentError(type + " has no weaponSpeed declared!");
             if(data.collisionMode) dataArray[6] = (data.collisionMode as String); else throw new ArgumentError(type + " has no collisionMode declared!");
             if(data.collisionPoint) dataArray[7] = new Point(data.collisionPoint[0], data.collisionPoint[1]); else throw new ArgumentError(type + " has no collisionPoint declared!");

@@ -1,7 +1,7 @@
 {
     "name":"Victim",
     "health":100,
-    "movementSystem":"MovementVictim",
+    "movementSystem":"null",
     "movementSpeed":250,
     "weaponSystem":"null",
     "weaponSpeed":250,

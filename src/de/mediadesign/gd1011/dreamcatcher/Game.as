@@ -13,8 +13,9 @@ package de.mediadesign.gd1011.dreamcatcher
     import flash.ui.Keyboard;
 
     import starling.core.Starling;
+	import starling.display.Button;
 
-    import starling.display.Sprite;
+	import starling.display.Sprite;
 	import starling.events.Event;
     import starling.events.KeyboardEvent;
     import starling.events.Touch;
@@ -31,6 +32,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		private var time:Date;
 		private var destroyProcess:DestroyProcess;
 		private var deltaTime:Number;
+		private var BossButton:Button;
 
 
         //DEBUG:
@@ -47,13 +49,19 @@ package de.mediadesign.gd1011.dreamcatcher
 	        renderProcess = new RenderProcess(entityManager);
 
 
-
             addChild(AssetsManager.getImage(GameConstants.BACKGROUND));
 			addChild(GameStage.gameStage);
 
+	        startGame();
+			addChild(GameStage.gameStage)
+			GameStage.gameStage.init();
 			GameStage.gameStage.loadLevel();
 
-	        startGame();
+			addChild(BossButton = new Button(AssetsLoader.getTexture(GameConstants.BUTTON),"BOSS BUTTON"));
+			BossButton.x = 560;
+			BossButton.fontName = "TestFont";
+
+			startGame();
 		}
 
 		private function startGame():void
@@ -64,6 +72,13 @@ package de.mediadesign.gd1011.dreamcatcher
 			addEventListener(TouchEvent.TOUCH, onTouch);
 
             Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, debugFunction);
+			BossButton.addEventListener(Event.TRIGGERED, onButtonClick);
+		}
+
+		private function onButtonClick(event:Event):void {
+			trace("Boss is Spawning!")
+			GameStage.gameStage.switchToBoss();
+			removeChild(BossButton,true);
 		}
 
 		private function update(event:Event):void
@@ -77,7 +92,8 @@ package de.mediadesign.gd1011.dreamcatcher
 			destroyProcess.update();
 			renderProcess.update();
 			CollisionDummyBoxes.update()
-			GameStage.gameStage.moveGameStage(GameConstants.GAME_STAGE_MOVMENT_SPEEDS);
+			GameStage.gameStage.moveGameStage();
+
 			deltaTime = time.time;
 		}
 

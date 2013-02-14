@@ -76,6 +76,10 @@ package de.mediadesign.gd1011.dreamcatcher
 			for (var i:int = 0; i < containers.length; i++)
 				if(!boss)
 					containers[i].addChild(contentList.shift());
+			for (i=0;i<contentList.length;i++)
+				contentList[i].name = "normal";
+			for (i=0;i<contentListBoss.length;i++)
+				contentListBoss[i].name = "boss";
 		}
 
 		public function move(speed:Number):void
@@ -89,27 +93,23 @@ package de.mediadesign.gd1011.dreamcatcher
 		{
 			for (var i:int = 0; i < containers.length; i++)
 			{
-				if(containers[i].x == -containers[i].width)
+				if(containers[i].x <= -containers[i].width)
 				{
 					if(!boss)
 					{
+						trace("SWAP XD");
 						contentList.push(containers[i].removeChildAt(0));
 						containers[i].addChild(contentList.splice(Math.floor(Math.random()*contentList.length), 1)[0]);
 					}
 					else
 					{
-						contentListBoss.push(containers[i].removeChildAt(0, true));
+						if(containers[i].getChildAt(0).name == "boss")
+							contentListBoss.push(containers[i].removeChildAt(0));
+						else
+							containers[i].removeChildAt(0);
 						containers[i].addChild(contentListBoss.splice(Math.floor(Math.random()*contentListBoss.length), 1)[0]);
 					}
 				}
-			}
-		}
-
-		public function checkForNewContent():void
-		{
-			if(GameStage.gameStage.bossStage = true)
-			{
-
 			}
 		}
 	}

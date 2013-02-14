@@ -1,9 +1,9 @@
 {
     "name":"Enemy",
     "health":50,
-    "movementSystem":"MovementEnemy",
+    "movementSystem":"null",
     "movementSpeed":500,
-    "weaponSystem":"WeaponEnemy",
+    "weaponSystem":"null",
     "weaponSpeed":3000,
     "collisionMode":"CollisionRectangle",
     "collisionPoint":[0, 0],

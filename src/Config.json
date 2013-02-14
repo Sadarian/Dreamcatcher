@@ -3,5 +3,5 @@
     "playerStartPosition":[100, 400],
     "bossStartPosition":[500, 400],
     "enemyStartPosition":[800, 200],
-    "victimStartPosition":[1100, 600]
+    "victimStartPosition":[1100, 400]
 }

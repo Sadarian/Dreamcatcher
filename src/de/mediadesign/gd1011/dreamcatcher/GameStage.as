@@ -65,7 +65,7 @@ package de.mediadesign.gd1011.dreamcatcher
 			{
 				containerGroup[i].fill(vector[i], false);
 				containerGroup[i].fill(vectorBoss[i], true);
-				this.addChild(containerGroup[i]);
+				addChild(containerGroup[i]);
 			}
 			addChild(player.movieClip);
 			addChild(boss.movieClip);

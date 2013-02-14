@@ -12,6 +12,9 @@ package de.mediadesign.gd1011.dreamcatcher {
 		[Embed(source = "/../assets/textures/Background.png")]
 		public static const Background:Class;
 
+		[Embed(source = "/../assets/textures/Dummy_Life_Bar.png")]
+		public static const LifeBar:Class;
+
 		[Embed(source = "/../assets/textures/DC_spriteSheetCharacterSmaller.png")]
 		public static const PlayerOnly:Class;
 

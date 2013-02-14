@@ -8,13 +8,15 @@ package de.mediadesign.gd1011.dreamcatcher
     {
         private var _entities:Vector.<Entity>;
 		private var _unusedEntities:Vector.<Entity>;
+		private var _lifeBars:Vector.<LifeBarHandling>;
 		private static var self:EntityManager = null;
 
         public function EntityManager()
         {
             _entities = new Vector.<Entity>();
 	        _unusedEntities = new Vector.<Entity>();
-	        initGame(new Array(GameConstants.PLAYER, GameConstants.BOSS));
+	        _lifeBars = new Vector.<LifeBarHandling>();
+	        initGame(new Array(GameConstants.ENEMY, GameConstants.ENEMY));
         }
 
 		public static function get entityManager():EntityManager
@@ -49,15 +51,29 @@ package de.mediadesign.gd1011.dreamcatcher
 				    tempEntity.removeMoviclip();
 		    }
             tempEntity = new Entity(GameConstants.getData(name), position);
+
             _entities.push(tempEntity);
+
+		    if (name == GameConstants.PLAYER || name == GameConstants.BOSS)
+		    {
+			    _lifeBars.push(new LifeBarHandling(tempEntity));
+		    }
+
+		    GameStage.gameStage.addChild(CollisionDummyBoxes.getDummy(tempEntity));
             GameStage.gameStage.addChildAt(tempEntity.movieClip, GameStage.gameStage.numChildren-3);
             return tempEntity;
 		}
 
 		public function addUnusedEntity(entity:Entity):void
 		{
-//			trace(entity.name + " was added to unusedEntities")
 			_entities.splice(_entities.indexOf(entity),1);
+			for each (var image:CollisionImage in CollisionDummyBoxes.dummies) {
+				if (entity.name == image.entityName) {
+					GameStage.gameStage.removeChild(image);
+					CollisionDummyBoxes.dummies.splice(CollisionDummyBoxes.dummies.indexOf(image), 1);
+					image.dispose();
+				}
+			}
 			_unusedEntities.push(entity);
 		}
 
@@ -76,6 +92,10 @@ package de.mediadesign.gd1011.dreamcatcher
 		public function get entities():Vector.<Entity>
         {
 			return _entities;
+		}
+
+		public function get lifeBars():Vector.<LifeBarHandling> {
+			return _lifeBars;
 		}
 	}
 }

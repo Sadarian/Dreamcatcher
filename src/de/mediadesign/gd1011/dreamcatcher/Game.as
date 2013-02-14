@@ -5,7 +5,7 @@ package de.mediadesign.gd1011.dreamcatcher
 	import de.mediadesign.gd1011.dreamcatcher.GameStage;
 	import de.mediadesign.gd1011.dreamcatcher.GameStage;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.MovementPlayer;
-    import de.mediadesign.gd1011.dreamcatcher.Interfaces.WeaponPlayer;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.WeaponPlayerControllable;
 
     import flash.geom.Point;
 
@@ -42,11 +42,11 @@ package de.mediadesign.gd1011.dreamcatcher
         {
 	        AssetsManager.start();
 	        entityManager = EntityManager.entityManager;
-	        moveProcess = new MoveProcess(entityManager);
-	        shootingProcess = new ShootingProcess(entityManager);
-	        collision = new Collision(entityManager);
-	        destroyProcess = new DestroyProcess(entityManager);
-	        renderProcess = new RenderProcess(entityManager);
+	        moveProcess = new MoveProcess();
+	        shootingProcess = new ShootingProcess();
+	        collision = new Collision();
+	        destroyProcess = new DestroyProcess();
+	        renderProcess = new RenderProcess();
 
 
             addChild(AssetsManager.getImage(GameConstants.BACKGROUND));
@@ -103,12 +103,12 @@ package de.mediadesign.gd1011.dreamcatcher
 	        e.getTouches(stage, TouchPhase.STATIONARY, touches);
 
             MovementPlayer.touch = null;
-            WeaponPlayer.touch = null;
+            WeaponPlayerControllable.touch = null;
             for each(var touch:Touch in touches)
                 if(touch.getLocation(stage).x < Starling.current.viewPort.width/2)
                     MovementPlayer.touch = touch;
                 else
-                    WeaponPlayer.touch = touch;
+                    WeaponPlayerControllable.touch = touch;
 
             //DEBUG:
             if(e.getTouch(stage, TouchPhase.HOVER))

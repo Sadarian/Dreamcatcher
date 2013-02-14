@@ -11,7 +11,7 @@ package de.mediadesign.gd1011.dreamcatcher {
 
 
 	public class CollisionDummyBoxes {
-		private static var dummies:Vector.<CollisionImage> = new Vector.<CollisionImage>();
+		private static var _dummies:Vector.<CollisionImage> = new Vector.<CollisionImage>();
 
 		public function CollisionDummyBoxes() {
 
@@ -41,15 +41,17 @@ package de.mediadesign.gd1011.dreamcatcher {
 			}else{
 				image = createCircle(entityCollisionValues.x*2, entity.name);
 			}
-			
-			dummies.push(image);
-			image.x = entityPosition.x - entityCollisionValues.x - entity.collisionPoint.x;
-			image.y = entityPosition.y - entityCollisionValues.y - entity.collisionPoint.y;
+			var position:Point = new Point(entityPosition.x - entityCollisionValues.x + entity.collisionPoint.x, entityPosition.y - entityCollisionValues.y + entity.collisionPoint.y)
+
+			image.x = position.x;
+			image.y = position.y;
+
+			_dummies.push(image);
 			return image;
 		}
 
 		public static function update():void {
-			for each (var dummyImage:CollisionImage in dummies) {
+			for each (var dummyImage:CollisionImage in _dummies) {
 				for each (var entity:Entity in EntityManager.entityManager.entities) {
 					if (dummyImage.entityName == entity.name) {
 						dummyImage.x = entity.position.x - entity.collisionValues.x - entity.collisionPoint.x;
@@ -57,6 +59,11 @@ package de.mediadesign.gd1011.dreamcatcher {
 					}
 				}
 			}
+		}
+
+		public static function get dummies():Vector.<CollisionImage> {
+			trace(_dummies)
+			return _dummies;
 		}
 	}
 }

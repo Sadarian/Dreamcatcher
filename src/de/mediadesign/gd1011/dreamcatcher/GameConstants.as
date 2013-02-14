@@ -5,9 +5,10 @@ package de.mediadesign.gd1011.dreamcatcher
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.MovementPlayer;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.MovementVictim;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.WeaponEnemy;
-    import de.mediadesign.gd1011.dreamcatcher.Interfaces.WeaponPlayer;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.WeaponPlayerControllable;
+	import de.mediadesign.gd1011.dreamcatcher.Interfaces.WeaponPlayerStraight;
 
-    import flash.filesystem.File;
+	import flash.filesystem.File;
     import flash.filesystem.FileMode;
     import flash.filesystem.FileStream;
     import flash.geom.Point;
@@ -89,6 +90,7 @@ package de.mediadesign.gd1011.dreamcatcher
 
         public static function init(path:String = "Config.json"):void
         {
+	        new WeaponPlayerStraight();
             new MovementBullet();
             new MovementEnemy();
             new MovementVictim();

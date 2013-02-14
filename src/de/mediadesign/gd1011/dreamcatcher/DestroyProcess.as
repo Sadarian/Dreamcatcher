@@ -9,21 +9,19 @@ package de.mediadesign.gd1011.dreamcatcher {
 	import de.mediadesign.gd1011.dreamcatcher.GameStage;
 
 	public class DestroyProcess {
-		private var entityManager:EntityManager;
-		public function DestroyProcess(entityManager:EntityManager)
+		public function DestroyProcess()
 		{
-			this.entityManager = entityManager;
 		}
 
 		public function update():void
 		{
-			for each (var entity:Entity in entityManager.entities)
+			for each (var entity:Entity in EntityManager.entityManager.entities)
 			{
 				if (entity.health <= 0 || entity.position.x >= 1350 || entity.position.x <0)
 				{
 					GameStage.gameStage.removeActor(entity.movieClip);
 					entity.removeMoviclip();
-					entityManager.addUnusedEntity(entity);
+					EntityManager.entityManager.addUnusedEntity(entity);
 				}
 			}
 		}

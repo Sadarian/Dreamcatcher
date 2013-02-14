@@ -64,7 +64,7 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		private function onButtonClick(event:Event):void {
 			trace("Boss is Spawning!")
-			GameStage.gameStage.bossStage = true;
+			GameStage.gameStage.switchToBoss();
 			removeChild(BossButton,true);
 		}
 
@@ -78,7 +78,7 @@ package de.mediadesign.gd1011.dreamcatcher
 			collision.update();
 			destroyProcess.update();
 			renderProcess.update();
-			GameStage.gameStage.moveGameStage(GameConstants.GAME_STAGE_MOVMENT_SPEEDS);
+			GameStage.gameStage.moveGameStage();
 			deltaTime = time.time;
 		}
 

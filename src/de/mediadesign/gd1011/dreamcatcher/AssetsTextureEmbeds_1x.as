@@ -42,7 +42,7 @@ package de.mediadesign.gd1011.dreamcatcher {
 		[Embed(source = "/../assets/textures/GameStageBoss.png")]
 		public static const GameStageBoss:Class;
 
-		[Embed(source = "/../assets/textures/StageBushFront.png")]
+				[Embed(source = "/../assets/textures/StageBushFront.png")]
 		public static const GameStageFront:Class;
 
 		[Embed(source = "/../assets/textures/StageBushFront2.png")]
@@ -53,6 +53,15 @@ package de.mediadesign.gd1011.dreamcatcher {
 
 		[Embed(source = "/../assets/textures/StageBushFrontBoss.png")]
 		public static const GameStageFrontBoss:Class;
+
+		[Embed(source = "/../assets/textures/FogLayer1.png")]
+		public static const GameStageFog:Class;
+
+		[Embed(source = "/../assets/textures/FogLayer2.png")]
+		public static const GameStageFog2:Class;
+
+		[Embed(source = "/../assets/textures/FogLayer3.png")]
+		public static const GameStageFog3:Class;
 
 		[Embed(source = "/../assets/textures/AnimLayer.png")]
 		public static const GameStageAnimLayer1:Class;

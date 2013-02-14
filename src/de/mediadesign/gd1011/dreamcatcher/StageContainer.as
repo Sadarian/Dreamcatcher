@@ -97,7 +97,6 @@ package de.mediadesign.gd1011.dreamcatcher
 				{
 					if(!boss)
 					{
-						trace("SWAP XD");
 						contentList.push(containers[i].removeChildAt(0));
 						containers[i].addChild(contentList.splice(Math.floor(Math.random()*contentList.length), 1)[0]);
 					}

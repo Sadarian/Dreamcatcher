@@ -31,15 +31,18 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const MAIN_STAGE_IMAGE_LIST:Array = ["GameStage","GameStage2","GameStage3"];
 		public static const BUSH_IMAGE_LIST:Array = ["GameStageFront","GameStageFront2","GameStageFront3"];
 		public static const ANIMATIONS_LIST:Array = [["GameStageAnimLayer1"], ["GameStageAnimLayer2"], ["GameStageAnimLayer3"]];
+		public static const FOG_LIST:Array = [["GameStageFog"],["GameStageFog2"],["GameStageFog3"]];
 		public static const BACKGROUND_IMAGE_LIST:Array = ["ScrollingBackground","ScrollingBackground","ScrollingBackground"];
 		public static const FOREGROUND_IMAGE_LIST:Array = ["ScrollingForeground","ScrollingForeground2","ScrollingForeground3","ScrollingForeground4","ScrollingForeground5"];
-		public static const GAME_STAGE_MOVMENT_SPEEDS:Vector.<Number> = new <Number>[1,3,5,6,7];
+		public static const GAME_STAGE_MOVMENT_SPEEDS:Vector.<Number> = new <Number>[1,2,3,6,7,8];
 
 		public static const MAIN_STAGE_IMAGE_LIST_BOSS:Array = ["GameStageBoss","GameStageBoss","GameStageBoss"];
 		public static const BUSH_IMAGE_LIST_BOSS:Array = ["GameStageFrontBoss","GameStageFrontBoss","GameStageFrontBoss"];
 		public static const ANIMATIONS_LIST_BOSS:Array = [["GameStageAnimLayerBoss"],["GameStageAnimLayerBoss"],["GameStageAnimLayerBoss"]];
+		public static const FOG_LIST_BOSS:Array = [["GameStageFog"],["GameStageFog2"],["GameStageFog3"]];
 		public static const BACKGROUND_IMAGE_LIST_BOSS:Array = ["ScrollingBackgroundBoss","ScrollingBackgroundBoss","ScrollingBackgroundBoss"];
 		public static const FOREGROUND_IMAGE_LIST_BOSS:Array = ["ScrollingForegroundBoss","ScrollingForegroundBoss","ScrollingForegroundBoss"];
+		public static const BOSS_SPEED_REDUCTION:Number = 150;
 
 		public static const ENEMY:String = "Enemy";
 		public static const ENEMY_ANIM_CONFIG:Vector.<int> = new <int>[4,2,8,10];

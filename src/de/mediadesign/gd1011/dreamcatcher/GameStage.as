@@ -30,7 +30,10 @@ package de.mediadesign.gd1011.dreamcatcher
 		public function init():void
 		{
 			for(var i:int = 0;i<containerGroup.length;i++)
-				containerGroup[i] = new StageContainer((typeImage[i]?StageContainer.LIST_TYPE_IMAGE:StageContainer.LIST_TYPE_CONTAINER));
+            {
+                containerGroup[i] = new StageContainer((typeImage[i]?StageContainer.LIST_TYPE_IMAGE:StageContainer.LIST_TYPE_CONTAINER));
+                containerGroup[i].touchable = false;
+            }
 		}
 
 		public function loadLevel(levelIndex:int = 1):void

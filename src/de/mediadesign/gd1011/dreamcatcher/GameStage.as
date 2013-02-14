@@ -2,18 +2,7 @@ package de.mediadesign.gd1011.dreamcatcher
 {
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
-
-	import flash.geom.Rectangle;
-	import flash.html.ControlInitializationError;
-	import flash.trace.Trace;
-
-	import starling.core.Starling;
 	import starling.display.DisplayObject;
-	import starling.display.DisplayObjectContainer;
-	import starling.display.Image;
-
-	import org.osmf.events.TimeEvent;
-	import starling.display.MovieClip;
 	import starling.display.Sprite;
 
 	public class GameStage  extends Sprite
@@ -25,11 +14,6 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		public var bossStage:Boolean = false;
 
-		private var player:Entity;
-		private var boss:Entity;
-        private var enemy:Entity;
-        private var victim:Entity;
-
 		private var timer:Timer;
 
 		private var movementSpeeds:Vector.<Number>;
@@ -38,15 +22,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		{
 
 			//GameStage On which the Actors move
-
-			var viewPort:Rectangle = Starling.current.viewPort;
-
 			movementSpeeds = GameConstants.GAME_STAGE_MOVMENT_SPEEDS.concat();
-
-			player = EntityManager.entityManager.createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
-			boss = EntityManager.entityManager.createEntity(GameConstants.BOSS, GameConstants.bossStartPosition);
-            enemy = EntityManager.entityManager.createEntity(GameConstants.ENEMY, GameConstants.enemyStartPosition);
-            victim = EntityManager.entityManager.createEntity(GameConstants.VICTIM, GameConstants.victimStartPosition);
 
 			containerGroup = new Vector.<StageContainer>(6);
 		}
@@ -83,7 +59,6 @@ package de.mediadesign.gd1011.dreamcatcher
 					break;
 				}
 			}
-			init();
 		}
 
 		private function createLevel(vector:Array, vectorBoss:Array):void
@@ -94,12 +69,6 @@ package de.mediadesign.gd1011.dreamcatcher
 				containerGroup[i].fill(vectorBoss[i], true);
 				addChild(containerGroup[i]);
 			}
-
-			addChild(player.movieClip);
-			addChild(boss.movieClip);
-			addChild(enemy.movieClip);
-			addChild(victim.movieClip);
-
 		}
 
 		public function moveGameStage():void
@@ -107,7 +76,7 @@ package de.mediadesign.gd1011.dreamcatcher
 			for(var i:int = 0;i<containerGroup.length;i++)
 			{
 				containerGroup[i].move(movementSpeeds[i]);
-				containerGroup[i].swap(bossStage);
+				//containerGroup[i].swap(bossStage);
 			}
 		}
 
@@ -119,9 +88,9 @@ package de.mediadesign.gd1011.dreamcatcher
 			return self;
 		}
 
-		public function removeActor(movieClip:MovieClip):void
+		public function removeActor(object:DisplayObject):void
 		{
-			removeChild(movieClip);
+			removeChild(object);
 		}
 
 		public function switchToBoss():void

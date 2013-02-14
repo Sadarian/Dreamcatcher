@@ -51,9 +51,6 @@ package de.mediadesign.gd1011.dreamcatcher
 
             addChild(AssetsManager.getImage(GameConstants.BACKGROUND));
 			addChild(GameStage.gameStage);
-
-	        startGame();
-			addChild(GameStage.gameStage)
 			GameStage.gameStage.init();
 			GameStage.gameStage.loadLevel();
 
@@ -61,6 +58,7 @@ package de.mediadesign.gd1011.dreamcatcher
 			BossButton.x = 560;
 			BossButton.fontName = "TestFont";
 
+			EntityManager.entityManager.initGameEntites();
 			startGame();
 		}
 
@@ -76,7 +74,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		}
 
 		private function onButtonClick(event:Event):void {
-			trace("Boss is Spawning!")
+			trace("Boss is Spawning!");
 			GameStage.gameStage.switchToBoss();
 			removeChild(BossButton,true);
 		}
@@ -91,7 +89,7 @@ package de.mediadesign.gd1011.dreamcatcher
 			collision.update();
 			destroyProcess.update();
 			renderProcess.update();
-			CollisionDummyBoxes.update()
+			CollisionDummyBoxes.update();
 			GameStage.gameStage.moveGameStage();
 
 			deltaTime = time.time;

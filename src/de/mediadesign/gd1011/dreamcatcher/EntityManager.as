@@ -32,6 +32,11 @@ package de.mediadesign.gd1011.dreamcatcher
 			}
 		}
 
+		public function initGameEntites():void
+		{
+			createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
+		}
+
 	    public function createEntity(name:String, position:Point = null):Entity
 	    {
 		    if (position == null)

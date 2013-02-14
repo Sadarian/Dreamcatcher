@@ -6,6 +6,7 @@ package de.mediadesign.gd1011.dreamcatcher
 	import de.mediadesign.gd1011.dreamcatcher.EntityManager;
 
 	import flash.geom.Rectangle;
+	import flash.html.ControlInitializationError;
 	import flash.trace.Trace;
 
 	import starling.core.Starling;
@@ -45,10 +46,7 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		public function GameStage()
 		{
-			player = EntityManager.entityManager.createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
-			boss = EntityManager.entityManager.createEntity(GameConstants.BOSS, GameConstants.bossStartPosition);
-            enemy = EntityManager.entityManager.createEntity(GameConstants.ENEMY, GameConstants.enemyStartPosition);
-            victim = EntityManager.entityManager.createEntity(GameConstants.VICTIM, GameConstants.victimStartPosition);
+
 			//GameStage On which the Actors move
 
 			var viewPort:Rectangle = Starling.current.viewPort;
@@ -68,6 +66,13 @@ package de.mediadesign.gd1011.dreamcatcher
 			}
 		}
 
+		private function init():void {
+			player = EntityManager.entityManager.createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
+			boss = EntityManager.entityManager.createEntity(GameConstants.BOSS, GameConstants.bossStartPosition);
+			enemy = EntityManager.entityManager.createEntity(GameConstants.ENEMY, GameConstants.enemyStartPosition);
+			victim = EntityManager.entityManager.createEntity(GameConstants.VICTIM, GameConstants.victimStartPosition);
+		}
+
 		public function loadLevel(levelIndex:int = 1):void
 		{
 			switch(levelIndex)
@@ -78,6 +83,7 @@ package de.mediadesign.gd1011.dreamcatcher
 					break;
 				}
 			}
+			init();
 		}
 
 		private function createLevel(gameStageImageList:Vector.<String>,
@@ -139,13 +145,13 @@ package de.mediadesign.gd1011.dreamcatcher
 			addChild(animLayerContainerOne);
 			addChild(animLayerContainerTwo)
 
-			addChild(player.movieClip);
-			addChild(CollisionDummyBoxes.getDummy(player))
-			addChild(boss.movieClip);
-			addChild(CollisionDummyBoxes.getDummy(boss))
-            addChild(enemy.movieClip);
-			addChild(CollisionDummyBoxes.getDummy(enemy))
-            addChild(victim.movieClip);
+//			addChild(player.movieClip);
+//			addChild(CollisionDummyBoxes.getDummy(player))
+//			addChild(boss.movieClip);
+//			addChild(CollisionDummyBoxes.getDummy(boss))
+//            addChild(enemy.movieClip);
+//			addChild(CollisionDummyBoxes.getDummy(enemy))
+//            addChild(victim.movieClip);
 
 			addChild(gameStageFrontContainerOne);
 			addChild(gameStageFrontContainerTwo);

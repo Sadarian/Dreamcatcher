@@ -21,7 +21,7 @@ package de.mediadesign.gd1011.dreamcatcher {
 			{
 				for each (var entityB:Entity in entityManager.entities)
 				{
-					if (entityA != entityB)
+					if (entityA != entityB && entityA.name != entityB.name)
 					{
 						if(entityA.collisionMode == entityB.collisionMode)
 						{

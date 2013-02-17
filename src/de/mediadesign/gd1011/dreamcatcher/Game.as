@@ -1,20 +1,22 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
-
-	import de.mediadesign.gd1011.dreamcatcher.GameStage;
-	import de.mediadesign.gd1011.dreamcatcher.GameStage;
-	import de.mediadesign.gd1011.dreamcatcher.GameStage;
-	import de.mediadesign.gd1011.dreamcatcher.Interfaces.MovementPlayer;
-    import de.mediadesign.gd1011.dreamcatcher.Interfaces.WeaponPlayerControllable;
-
+    import de.mediadesign.gd1011.dreamcatcher.Assets.AssetsLoader;
+    import de.mediadesign.gd1011.dreamcatcher.Assets.AssetsManager;
+    import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionDummyBoxes;
+    import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
+    import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementPlayer;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerControllable;
+    import de.mediadesign.gd1011.dreamcatcher.Processes.CollisionProcess;
+    import de.mediadesign.gd1011.dreamcatcher.Processes.DestroyProcess;
+    import de.mediadesign.gd1011.dreamcatcher.Processes.MoveProcess;
+    import de.mediadesign.gd1011.dreamcatcher.Processes.RenderProcess;
+    import de.mediadesign.gd1011.dreamcatcher.Processes.ShootingProcess;
     import flash.geom.Point;
-
-    import flash.geom.Rectangle;
     import flash.ui.Keyboard;
-
+    import flash.utils.getTimer;
     import starling.core.Starling;
 	import starling.display.Button;
-
 	import starling.display.Sprite;
 	import starling.events.Event;
     import starling.events.KeyboardEvent;
@@ -24,16 +26,13 @@ package de.mediadesign.gd1011.dreamcatcher
 
 	public class Game extends Sprite
     {
-        private var entityManager:EntityManager;
 		private var shootingProcess:ShootingProcess;
 		private var moveProcess:MoveProcess;
-		private var collision:Collision;
+		private var collisionProcess:CollisionProcess;
 		private var renderProcess:RenderProcess;
-		private var time:Date;
 		private var destroyProcess:DestroyProcess;
-		private var deltaTime:Number;
+		private var lastFrameTimeStamp:Number;
 		private var BossButton:Button;
-
 
         //DEBUG:
         private var touchPosition:Point = new Point();
@@ -41,13 +40,13 @@ package de.mediadesign.gd1011.dreamcatcher
 		public function Game()
         {
 	        AssetsManager.start();
-	        entityManager = EntityManager.entityManager;
+	        var entityManager:EntityManager = EntityManager.entityManager;
+
 	        moveProcess = new MoveProcess();
 	        shootingProcess = new ShootingProcess();
-	        collision = new Collision();
+	        collisionProcess = new CollisionProcess();
 	        destroyProcess = new DestroyProcess();
 	        renderProcess = new RenderProcess();
-
 
             addChild(AssetsManager.getImage(GameConstants.BACKGROUND));
 			addChild(GameStage.gameStage);
@@ -58,20 +57,23 @@ package de.mediadesign.gd1011.dreamcatcher
 			BossButton.x = 560;
 			BossButton.fontName = "TestFont";
 
-			EntityManager.entityManager.initGameEntites();
+            entityManager.initGameEntities();
 			startGame();
 		}
 
 		private function startGame():void
 		{
-			time = new Date();
-			deltaTime = time.time;
 			addEventListener(Event.ENTER_FRAME, update);
 			addEventListener(TouchEvent.TOUCH, onTouch);
 
             Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, debugFunction);
 			BossButton.addEventListener(Event.TRIGGERED, onButtonClick);
 		}
+
+        public function setStartTimeStamp():void
+        {
+            lastFrameTimeStamp = getTimer() / 1000;
+        }
 
 		private function onButtonClick(event:Event):void {
 			trace("Boss is Spawning!");
@@ -81,18 +83,18 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		private function update(event:Event):void
 		{
-			time = new Date();
-			deltaTime = time.time - deltaTime;
+            var now:Number = getTimer() / 1000;
+            var passedTime:Number = now - lastFrameTimeStamp;
+            lastFrameTimeStamp = now;
 
-			moveProcess.update(deltaTime);
-			shootingProcess.update(deltaTime);
-			collision.update();
+			moveProcess.update(passedTime);
+			shootingProcess.update(passedTime);
+			collisionProcess.update();
 			destroyProcess.update();
 			renderProcess.update();
+
 			CollisionDummyBoxes.update();
 			GameStage.gameStage.moveGameStage();
-
-			deltaTime = time.time;
 		}
 
         private function onTouch(e:TouchEvent):void
@@ -126,6 +128,8 @@ package de.mediadesign.gd1011.dreamcatcher
                 EntityManager.entityManager.createEntity(GameConstants.VICTIM, touchPosition);
             if(e.keyCode==Keyboard.F4)
                 EntityManager.entityManager.createEntity(GameConstants.BOSS, touchPosition);
+            if(e.keyCode==Keyboard.F5)
+                EntityManager.entityManager.createSpawnList();
         }
     }
 }

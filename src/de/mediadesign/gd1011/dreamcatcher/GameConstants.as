@@ -1,20 +1,17 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
-    import de.mediadesign.gd1011.dreamcatcher.Interfaces.MovementBullet;
-    import de.mediadesign.gd1011.dreamcatcher.Interfaces.MovementEnemy;
-    import de.mediadesign.gd1011.dreamcatcher.Interfaces.MovementPlayer;
-    import de.mediadesign.gd1011.dreamcatcher.Interfaces.MovementVictim;
-    import de.mediadesign.gd1011.dreamcatcher.Interfaces.WeaponEnemy;
-    import de.mediadesign.gd1011.dreamcatcher.Interfaces.WeaponPlayerControllable;
-	import de.mediadesign.gd1011.dreamcatcher.Interfaces.WeaponPlayerStraight;
-
+    import de.mediadesign.gd1011.dreamcatcher.Assets.AssetsManager;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBullet;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementEnemy;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementVictim;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponEnemy;
+	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerStraight;
 	import flash.filesystem.File;
     import flash.filesystem.FileMode;
     import flash.filesystem.FileStream;
     import flash.geom.Point;
     import flash.geom.Rectangle;
     import flash.utils.getDefinitionByName;
-	import starling.core.Starling;
 
 	public class GameConstants
     {
@@ -44,7 +41,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const FOG_LIST_BOSS:Array = [["GameStageFog"],["GameStageFog2"],["GameStageFog3"]];
 		public static const BACKGROUND_IMAGE_LIST_BOSS:Array = ["ScrollingBackgroundBoss","ScrollingBackgroundBoss","ScrollingBackgroundBoss"];
 		public static const FOREGROUND_IMAGE_LIST_BOSS:Array = ["ScrollingForegroundBoss","ScrollingForegroundBoss","ScrollingForegroundBoss"];
-		public static const BOSS_SPEED_REDUCTION:Number = 150;
+		public static const BOSS_SPEED_REDUCTION:Number = 0.15;
 
 		public static const ENEMY:String = "Enemy";
 		public static const ENEMY_ANIM_CONFIG:Vector.<int> = new <int>[4,2,8,10];
@@ -84,11 +81,9 @@ package de.mediadesign.gd1011.dreamcatcher
         private static var _meleeDamage:Vector.<Number>;
 	    private static var _playerMovementBorder:Rectangle;
         private static var _playerStartPosition:Point;
-	    private static var _bossStartPosition:Point;
-	    private static var _enemyStartPosition:Point;
-	    private static var _victimStartPosition:Point;
+        private static var _victimTimeUntilMid:Number;
 
-        public static function init(path:String = "Config.json"):void
+        public static function init(path:String = "Configs/Config.json"):void
         {
 	        new WeaponPlayerStraight();
             new MovementBullet();
@@ -100,7 +95,6 @@ package de.mediadesign.gd1011.dreamcatcher
             stream.open(File.applicationDirectory.resolvePath(path), FileMode.READ);
             setConstants(JSON.parse(stream.readUTFBytes(stream.bytesAvailable)));
             stream.close();
-
         }
 
         private static function setConstants(data:Object):void
@@ -115,27 +109,22 @@ package de.mediadesign.gd1011.dreamcatcher
                                                                                 data.playerMovementBorder[3]);
             if(data.playerStartPosition) _playerStartPosition = new Point(data.playerStartPosition[0],
                                                                           data.playerStartPosition[1]);
-	        if(data.bossStartPosition) _bossStartPosition = new Point(data.bossStartPosition[0],
-			                                                          data.bossStartPosition[1]);
-	        if(data.enemyStartPosition) _enemyStartPosition = new Point(data.enemyStartPosition[0],
-			                                                            data.enemyStartPosition[1]);
-	        if(data.victimStartPosition) _victimStartPosition = new Point(data.victimStartPosition[0],
-			                                                              data.victimStartPosition[1]);
+            if(data.victimTimeUntilMid) _victimTimeUntilMid = data.victimTimeUntilMid;
         }
 
         public static function getData(type:String):Array
         {
             var dataArray:Array = [];
             var stream:FileStream = new FileStream();
-            stream.open(File.applicationDirectory.resolvePath("Config"+type+".json"), FileMode.READ);
+            stream.open(File.applicationDirectory.resolvePath("Configs/Config"+type+".json"), FileMode.READ);
             var data:Object = JSON.parse(stream.readUTFBytes(stream.bytesAvailable));
 
             if(data.name) dataArray[0] = (data.name as String); else throw new ArgumentError(type + " has no name declared!");
             if(data.health) dataArray[1] = (data.health as Number); else throw new ArgumentError(type + " has no health declared!");
-            if(data.movementSystem) dataArray[2] = (data.movementSystem == "null")?null:new(getDefinitionByName("de.mediadesign.gd1011.dreamcatcher.Interfaces." + data.movementSystem) as Class)();
+            if(data.movementSystem) dataArray[2] = (data.movementSystem == "null")?null:new(getDefinitionByName("de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement." + data.movementSystem) as Class)();
               //  else throw new ArgumentError(type + " has no movementSystem declared!");
             if(data.movementSpeed) dataArray[3] = (data.movementSpeed as Number); else throw new ArgumentError(type + " has no movementSpeed declared!");
-            if(data.weaponSystem) dataArray[4] = (data.weaponSystem == "null")?null:new(getDefinitionByName("de.mediadesign.gd1011.dreamcatcher.Interfaces." + data.weaponSystem) as Class)();
+            if(data.weaponSystem) dataArray[4] = (data.weaponSystem == "null")?null:new(getDefinitionByName("de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon." + data.weaponSystem) as Class)();
              //   else throw new ArgumentError(type + " has no weaponSystem declared!");
             if(data.weaponSpeed) dataArray[5] = (data.weaponSpeed == 0)?0:(data.weaponSpeed as Number); else throw new ArgumentError(type + " has no weaponSpeed declared!");
             if(data.collisionMode) dataArray[6] = (data.collisionMode as String); else throw new ArgumentError(type + " has no collisionMode declared!");
@@ -147,6 +136,14 @@ package de.mediadesign.gd1011.dreamcatcher
             return dataArray;
         }
 
+        public static function loadSpawnData():Array
+        {
+            var stream:FileStream = new FileStream();
+            stream.open(File.applicationDirectory.resolvePath("Configs/ConfigSpawn.json"), FileMode.READ);
+            var data:Object = JSON.parse(stream.readUTFBytes(stream.bytesAvailable));
+            return data.enemies;
+        }
+
         public static function get playerMovementBorder():Rectangle
         {
             return _playerMovementBorder;
@@ -156,19 +153,6 @@ package de.mediadesign.gd1011.dreamcatcher
         {
             return _playerStartPosition;
         }
-
-	    public static function get bossStartPosition():Point
-		{
-		    return _bossStartPosition;
-	    }
-
-	    public static function get enemyStartPosition():Point {
-		    return _enemyStartPosition;
-	    }
-
-	    public static function get victimStartPosition():Point {
-		    return _victimStartPosition;
-	    }
 
         public static function meleeDamage(name:String):Number {
             var pos:int;
@@ -185,6 +169,10 @@ package de.mediadesign.gd1011.dreamcatcher
                     break;
             }
             return _meleeDamage[pos];
+        }
+
+        public static function get victimTimeUntilMid():Number {
+            return _victimTimeUntilMid;
         }
     }
 }

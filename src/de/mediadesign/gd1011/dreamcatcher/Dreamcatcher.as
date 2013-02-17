@@ -1,16 +1,16 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
+    import flash.desktop.NativeApplication;
+    import flash.display.Sprite;
+    import flash.display.StageAlign;
+    import flash.display.StageScaleMode;
+    import flash.events.Event;
+    import flash.geom.Rectangle;
+    import starling.core.Starling;
+    import starling.events.Event;
+    import starling.events.ResizeEvent;
 
-	import flash.display.Sprite;
-	import flash.display.StageAlign;
-	import flash.display.StageScaleMode;
-
-	import flash.geom.Rectangle;
-
-	import starling.core.Starling;
-	import starling.events.Event;
-
-	[SWF(width="1280", height="800", frameRate="60", backgroundColor="#ffffff")]
+    [SWF(width="1280", height="800", frameRate="60", backgroundColor="#ffffff")]
 	public class Dreamcatcher extends Sprite
     {
 		private var _starling:Starling;
@@ -24,17 +24,7 @@ package de.mediadesign.gd1011.dreamcatcher
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.frameRate = 60;
 
-			handelScaling();
-
 			init();
-		}
-
-		private function handelScaling():void
-		{
-			var guiSize:Rectangle = new Rectangle(0, 0, 1280, 800);
-			var deviceSize:Rectangle = new Rectangle(0, 0,
-					Math.max(stage.fullScreenWidth, stage.fullScreenHeight),
-					Math.min(stage.fullScreenWidth, stage.fullScreenHeight));
 		}
 
 		private function init():void
@@ -42,14 +32,38 @@ package de.mediadesign.gd1011.dreamcatcher
             GameConstants.init();
             stage.stageHeight = stage.fullScreenHeight;
             stage.stageWidth = stage.fullScreenWidth;
-			_starling = new Starling(Game, stage, new Rectangle(0, 0 , 1280, 800));
+			_starling = new Starling(Game, stage, new Rectangle(0, 0 , stage.stageWidth, stage.stageHeight));
 			_starling.showStats = true;
-			_starling.addEventListener(Event.ROOT_CREATED, startStarling);
+			_starling.addEventListener(starling.events.Event.ROOT_CREATED, startStarling);
+            //_starling.addEventListener(ResizeEvent.RESIZE, resize)
 		}
 
-		private function startStarling(event:Event):void
+		private function startStarling(event:starling.events.Event):void
         {
 			_starling.start();
+            (_starling.root as Game).setStartTimeStamp();
+            NativeApplication.nativeApplication.addEventListener(flash.events.Event.ACTIVATE, onActivate);
+            NativeApplication.nativeApplication.addEventListener(flash.events.Event.DEACTIVATE, onDeactivate);
+            NativeApplication.nativeApplication.addEventListener(flash.events.Event.EXITING, onExiting);
 		}
+
+        private function onActivate(event:flash.events.Event):void
+        {
+            _starling.start();
+            (_starling.root as Game).setStartTimeStamp();
+        }
+
+        private function onDeactivate(event:flash.events.Event):void
+        {
+            _starling.stop();
+        }
+
+        private function onExiting(event:flash.events.Event):void
+        {
+        }
+
+        private function resize(e:ResizeEvent):void
+        {
+        }
 	}
 }

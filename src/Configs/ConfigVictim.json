@@ -1,0 +1,11 @@
+{
+    "name":"Victim",
+    "health":100,
+    "movementSystem":"MovementVictim",
+    "movementSpeed":250,
+    "weaponSystem":"null",
+    "weaponSpeed":250,
+    "collisionMode":"CollisionRectangle",
+    "collisionPoint":[0, 0],
+    "collisionValues":[50, 192]
+}

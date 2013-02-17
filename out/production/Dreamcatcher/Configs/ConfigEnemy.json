@@ -1,0 +1,11 @@
+{
+    "name":"Enemy",
+    "health":50,
+    "movementSystem":"MovementEnemy",
+    "movementSpeed":600,
+    "weaponSystem":"WeaponEnemy",
+    "weaponSpeed":0.75,
+    "collisionMode":"CollisionRectangle",
+    "collisionPoint":[0, -10],
+    "collisionValues":[50, 100]
+}

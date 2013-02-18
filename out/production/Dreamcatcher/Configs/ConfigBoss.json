@@ -1,11 +1,12 @@
 {
     "name":"Boss",
-    "health":100,
+    "health":300,
     "movementSystem":"null",
     "movementSpeed":5,
     "weaponSystem":"null",
     "weaponSpeed":250,
     "collisionMode":"CollisionCircle",
-    "collisionPoint":[-20, 80],
-    "collisionValues":[80, 80]
+    "collisionPoint":[20, -70],
+    "collisionValues":[100, 100],
+    "points":[100]
 }

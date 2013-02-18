@@ -27,7 +27,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 	            var targetPosition:Point = (target != null)?new Point(target.x, target.y):new Point(0 , position.y);
 			    (entity.movementSystem as MovementBullet).target = targetPosition;
                 (entity.movementSystem as MovementBullet).calculateVelocity(position);
-	            entity.movieClip.rotation = Math.atan2(targetPosition.y - position.y, targetPosition.x - position.x);
+	            entity.movieClip.rotation = Math.atan2(targetPosition.y - position.y, targetPosition.x - position.x)+Math.PI;
                 GameStage.gameStage.addChild(entity.movieClip);
             }
         }

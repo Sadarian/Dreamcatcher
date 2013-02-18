@@ -77,12 +77,9 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 				var data:Object = createTextureClass(name);
 
 				if (data is Bitmap)
-                {
-                    sTextures[name] = Texture.fromBitmap(data as Bitmap, false, false, sContentScaleFactor);
-                    (data as Bitmap).bitmapData.dispose();
-                }
+                    sTextures[name] = Texture.fromBitmap(data as Bitmap, true, false, sContentScaleFactor);
 				else if (data is ByteArray)
-					sTextures[name] = Texture.fromAtfData(data as ByteArray, sContentScaleFactor, false);
+					sTextures[name] = Texture.fromAtfData(data as ByteArray, sContentScaleFactor, true);
 				else throw new ArgumentError("Texure not found: " + name);
 			}
 			return sTextures[name];

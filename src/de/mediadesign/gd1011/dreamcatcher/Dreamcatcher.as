@@ -3,9 +3,12 @@ package de.mediadesign.gd1011.dreamcatcher
     import flash.desktop.NativeApplication;
     import flash.display.Sprite;
     import flash.display.StageAlign;
-    import flash.display.StageScaleMode;
+	import flash.display.StageOrientation;
+	import flash.display.StageScaleMode;
     import flash.events.Event;
-    import flash.geom.Rectangle;
+	import flash.events.StageOrientationEvent;
+	import flash.geom.Orientation3D;
+	import flash.geom.Rectangle;
     import starling.core.Starling;
     import starling.events.Event;
     import starling.events.ResizeEvent;
@@ -24,6 +27,9 @@ package de.mediadesign.gd1011.dreamcatcher
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.frameRate = 60;
 
+			stage.autoOrients = false;
+			stage.setOrientation(StageOrientation.ROTATED_RIGHT);
+
 			init();
 		}
 
@@ -32,10 +38,9 @@ package de.mediadesign.gd1011.dreamcatcher
             GameConstants.init();
             stage.stageHeight = stage.fullScreenHeight;
             stage.stageWidth = stage.fullScreenWidth;
-			_starling = new Starling(Game, stage, new Rectangle(0, 0 , stage.stageWidth, stage.stageHeight));
+			_starling = new Starling(Game, stage, new Rectangle(0, 0 , 1280, 800));
 			_starling.showStats = true;
 			_starling.addEventListener(starling.events.Event.ROOT_CREATED, startStarling);
-            //_starling.addEventListener(ResizeEvent.RESIZE, resize)
 		}
 
 		private function startStarling(event:starling.events.Event):void
@@ -59,10 +64,6 @@ package de.mediadesign.gd1011.dreamcatcher
         }
 
         private function onExiting(event:flash.events.Event):void
-        {
-        }
-
-        private function resize(e:ResizeEvent):void
         {
         }
 	}

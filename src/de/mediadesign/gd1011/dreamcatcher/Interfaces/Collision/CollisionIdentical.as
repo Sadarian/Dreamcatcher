@@ -24,18 +24,18 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Collision
 
 		private static function createRectangle(entity:Entity):Rectangle
         {
-			return (new Rectangle((entity.position.x - entity.collisionPoint.x - entity.collisionValues.x),
-                    (entity.position.y - entity.collisionPoint.y - entity.collisionValues.y),
-                    entity.collisionValues.x * 2,
-                    entity.collisionValues.y * 2));
+			return (new Rectangle((entity.position.x + entity.collisionPoint.x - entity.collisionValues.x),
+								  (entity.position.y + entity.collisionPoint.y - entity.collisionValues.y),
+                                   entity.collisionValues.x * 2,
+                                   entity.collisionValues.y * 2));
 		}
 
 		private static function checkCollisionCircle(entityA:Entity, entityB:Entity):Boolean
         {
 			var distanceAB:Point = new Point(0, 0);
 			var distance:Number;
-			distanceAB.x = (entityA.position.x - entityB.position.x);
-			distanceAB.y = (entityA.position.y - entityB.position.y);
+	        distanceAB.x = ((entityA.position.x + entityA.collisionPoint.x) - (entityB.position.x + entityB.collisionPoint.x));
+	        distanceAB.y = ((entityA.position.y + entityA.collisionPoint.y) - (entityB.position.y + entityB.collisionPoint.y));
 			distance = Math.sqrt(((distanceAB.x*distanceAB.x)+(distanceAB.y*distanceAB.y)));
             return (distance <= (entityA.collisionValues.x + entityB.collisionValues.x));
 		}

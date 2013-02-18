@@ -8,8 +8,6 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 	import starling.display.Image;
 	import starling.display.MovieClip;
 	import starling.display.Sprite;
-	import starling.extensions.PDParticleSystem;
-	import starling.extensions.ParticleSystem;
 	import starling.textures.Texture;
 
 	public class AssetsManager
@@ -22,7 +20,7 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 		private static var PlayerList:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
 		private static var PlayerBulletList:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
 		private static var EnemyBulletList:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
-		private static var ParticleList:Vector.<ParticleSystem> = new Vector.<ParticleSystem>();
+//		private static var ParticleList:Vector.<ParticleSystem> = new Vector.<ParticleSystem>();
 
 
 		public static function start():void
@@ -201,32 +199,32 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 			return new Image(AssetsLoader.getTexture(item));
 		}
 
-		public static function getParticleSystem(item:String):ParticleSystem
-		{
-			switch (item)
-			{
-				case GameConstants.PARTICLE:
-				{
-					if (ParticleList.length != 0 )
-					{
-						trace("Particle System was given from List");
-						return ParticleList.shift();
-					}
-					else
-					{
-						ParticleList.push(createParticleSystem(GameConstants.PARTICLE_CONFIG,GameConstants.PARTICLE_TEXTURE));
-						trace("Particle System created");
-						return ParticleList.shift();
-					}
-					break;
-				}
-
-				default :
-				{
-					throw new ArgumentError(item+" does not Exist! Only 'Particle' is valid");
-				}
-			}
-		}
+//		public static function getParticleSystem(item:String):ParticleSystem
+//		{
+//			switch (item)
+//			{
+//				case GameConstants.PARTICLE:
+//				{
+//					if (ParticleList.length != 0 )
+//					{
+//						trace("Particle System was given from List");
+//						return ParticleList.shift();
+//					}
+//					else
+//					{
+//						ParticleList.push(createParticleSystem(GameConstants.PARTICLE_CONFIG,GameConstants.PARTICLE_TEXTURE));
+//						trace("Particle System created");
+//						return ParticleList.shift();
+//					}
+//					break;
+//				}
+//
+//				default :
+//				{
+//					throw new ArgumentError(item+" does not Exist! Only 'Particle' is valid");
+//				}
+//			}
+//		}
 
 		public static function getSound(item:String):Sound
 		{
@@ -244,14 +242,14 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 			return newClip;
 		}
 
-		private static function createParticleSystem(config:String,texture:String):ParticleSystem
-		{
-			var newConfig:XML = AssetsLoader.getXML(config);
-			var newTexture:Texture = Texture(AssetsLoader.getTexture(texture));
-			var newPDParticleSystem:ParticleSystem = new PDParticleSystem(newConfig, newTexture);
-			Starling.juggler.add(newPDParticleSystem);
-			return newPDParticleSystem;
-		}
+//		private static function createParticleSystem(config:String,texture:String):ParticleSystem
+//		{
+//			var newConfig:XML = AssetsLoader.getXML(config);
+//			var newTexture:Texture = Texture(AssetsLoader.getTexture(texture));
+//			var newPDParticleSystem:ParticleSystem = new PDParticleSystem(newConfig, newTexture);
+//			Starling.juggler.add(newPDParticleSystem);
+//			return newPDParticleSystem;
+//		}
 
 		public static function addMovieClip(clip:DisplayObject,item:String):void
 		{

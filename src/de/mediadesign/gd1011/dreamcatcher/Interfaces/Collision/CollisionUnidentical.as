@@ -18,8 +18,8 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Collision
 			var radius:Number = circle.collisionValues.x;
 			var rectX:Number = rect.collisionValues.x / 2;
 			var rectY:Number = rect.collisionValues.y / 2;
-			var rectPosition:Point = rect.position;
-			var circlePosition:Point = circle.position;
+			var rectPosition:Point = new Point(rect.position.x + rect.collisionPoint.x, rect.position.y + rect.collisionPoint.y);
+			var circlePosition:Point = new Point(circle.position.x + circle.collisionPoint.x, circle.position.y + circle.collisionPoint.y);
 			var distanceAB:Point = new Point(0,0);
 			var distance:Number;
 			var rectRad:Number;

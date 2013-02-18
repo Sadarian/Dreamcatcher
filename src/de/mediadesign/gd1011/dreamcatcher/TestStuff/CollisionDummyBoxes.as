@@ -51,8 +51,8 @@ package de.mediadesign.gd1011.dreamcatcher.TestStuff
 			for each (var dummyImage:CollisionImage in _dummies) {
 				for each (var entity:Entity in EntityManager.entityManager.entities) {
 					if (dummyImage.entityName == entity.name) {
-						dummyImage.x = entity.position.x - entity.collisionValues.x - entity.collisionPoint.x;
-						dummyImage.y = entity.position.y - entity.collisionValues.y - entity.collisionPoint.y;
+						dummyImage.x = entity.position.x - entity.collisionValues.x + entity.collisionPoint.x;
+						dummyImage.y = entity.position.y - entity.collisionValues.y + entity.collisionPoint.y;
 					}
 				}
 			}

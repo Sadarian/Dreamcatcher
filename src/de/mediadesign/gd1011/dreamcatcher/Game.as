@@ -53,9 +53,10 @@ package de.mediadesign.gd1011.dreamcatcher
 			GameStage.gameStage.init();
 			GameStage.gameStage.loadLevel();
 
-			addChild(BossButton = new Button(AssetsLoader.getTexture(GameConstants.BUTTON),"BOSS BUTTON"));
+			addChild(BossButton = new Button(AssetsLoader.getTexture(GameConstants.BUTTON),"RESTART"));
 			BossButton.x = 560;
 			BossButton.fontName = "TestFont";
+			BossButton.enabled = false;
 
             entityManager.initGameEntities();
 			startGame();
@@ -76,13 +77,24 @@ package de.mediadesign.gd1011.dreamcatcher
         }
 
 		private function onButtonClick(event:Event):void {
-			trace("Boss is Spawning!");
-			GameStage.gameStage.switchToBoss();
-			removeChild(BossButton,true);
+
+
+			trace("Restarting Game!");
+
+			EntityManager.entityManager.createSpawnList();
+
+			if(EntityManager.entityManager.getEntity(GameConstants.PLAYER) == null)
+			EntityManager.entityManager.createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
+			BossButton.enabled = false;
+
 		}
 
 		private function update(event:Event):void
 		{
+			if (EntityManager.entityManager.getEntity(GameConstants.PLAYER) == null)
+			{
+				BossButton.enabled = true;
+			}
             var now:Number = getTimer() / 1000;
             var passedTime:Number = now - lastFrameTimeStamp;
             lastFrameTimeStamp = now;
@@ -107,7 +119,7 @@ package de.mediadesign.gd1011.dreamcatcher
             MovementPlayer.touch = null;
             WeaponPlayerControllable.touch = null;
             for each(var touch:Touch in touches)
-                if(touch.getLocation(stage).x < Starling.current.viewPort.width/2)
+                if(touch.getLocation(stage).x < GameConstants.playerMovementBorder.width)
                     MovementPlayer.touch = touch;
                 else
                     WeaponPlayerControllable.touch = touch;

@@ -9,8 +9,9 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 	import starling.display.MovieClip;
 	import starling.display.Sprite;
 	import starling.textures.Texture;
+    import starling.textures.TextureAtlas;
 
-	public class AssetsManager
+    public class AssetsManager
 	{
 		private static var BitmapFontsLoaded:Boolean;
 
@@ -23,8 +24,20 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 //		private static var ParticleList:Vector.<ParticleSystem> = new Vector.<ParticleSystem>();
 
 
+        // Embed the Atlas XML
+        [Embed(source="/../assets/textures/atlases/Background.xml", mimeType="application/octet-stream")]
+        public static const AtlasXml:Class;
+
+        // Embed the Atlas Texture:
+        [Embed(source="/../assets/textures/atlases/Background.png")]
+        public static const AtlasTexture:Class;
+
+        private static var atlas:TextureAtlas;
+
 		public static function start():void
 		{
+            atlas = new TextureAtlas(Texture.fromBitmap(new AtlasTexture()), XML(new AtlasXml()));
+
 			//Preparing BitMapFonts
 			if (!BitmapFontsLoaded)
 			{
@@ -196,6 +209,9 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 
 		public static function getImage(item:String):Image
 		{
+            var texture:Texture = atlas.getTexture(item);
+            if(texture)
+                return new Image(atlas.getTexture(item));
 			return new Image(AssetsLoader.getTexture(item));
 		}
 

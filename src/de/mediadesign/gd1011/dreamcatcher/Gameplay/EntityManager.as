@@ -4,7 +4,9 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
     import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionImage;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.View.LifeBarHandling;
-    import flash.geom.Point;
+	import de.mediadesign.gd1011.dreamcatcher.View.Score;
+
+	import flash.geom.Point;
     import starling.core.Starling;
 
     public class EntityManager
@@ -81,6 +83,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		public function addUnusedEntity(entity:Entity):void
 		{
 			_entities.splice(_entities.indexOf(entity),1);
+			Score.updateScore(entity);
 			for each (var image:CollisionImage in CollisionDummyBoxes.dummies) {
 				if (entity.name == image.entityName) {
 					GameStage.gameStage.removeChild(image);

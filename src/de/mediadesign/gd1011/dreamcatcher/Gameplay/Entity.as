@@ -18,6 +18,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
         private var _collisionPoint:Point;
         private var _collisionValues:Point;
         private var _movieClip:DisplayObject; //added via JSON but it isn't in the Config!
+		private var _points:Number;
 
        //Additional Constructor Data:
         private var _position:Point;
@@ -46,6 +47,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			_collisionValues = jsonConfig[8];
 
 			_movieClip = jsonConfig[9];
+
+			_points = jsonConfig[10];
 
 			_position = position;
 		}
@@ -136,6 +139,10 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		public function set health(value:Number):void
 		{
 			_health = value;
+		}
+
+		public function get points():Number {
+			return _points;
 		}
 	}
 }

@@ -1,5 +1,6 @@
-package de.mediadesign.gd1011.dreamcatcher.Assets
+package de.mediadesign.gd1011.dreamcatcher.Assets.Unused
 {
+import de.mediadesign.gd1011.dreamcatcher.Assets.*;
 	import flash.display.Bitmap;
 	import flash.geom.Rectangle;
 	import flash.media.Sound;
@@ -31,29 +32,7 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 		private static var sSounds:Dictionary = new Dictionary();
 
 //This sets the single Frames of an Animation-Sprite and stores it in the atlas?
-		public static function createAtlasAnim(name:String,w:int,h:int,frames:int):TextureAtlas
-		{
-			var texture:Texture = getTexture(name);
 
-			var atlas:TextureAtlas = new TextureAtlas (texture);
-			var hNew:int = texture.height / h;
-			var wNew:int = texture.width / w;
-
-			for (var i:int = 0; i < frames; i++)
-			{
-				var x:int = i%w;
-				var y:int = i/w;
-
-				var nameNew:String = String(i);
-				while ( nameNew.length < 3 )
-				{
-					nameNew = "0" + nameNew;
-				}
-				atlas.addRegion(name+nameNew, new Rectangle(x*wNew,y*hNew, wNew, hNew));
-
-			}
-			return atlas;
-		}
 
 //Prepares the Sounds for the game
 		public static function getSound(name:String):Sound

@@ -1,5 +1,6 @@
-package de.mediadesign.gd1011.dreamcatcher.Assets
+package de.mediadesign.gd1011.dreamcatcher.Assets.Unused
 {
+import de.mediadesign.gd1011.dreamcatcher.Assets.*;
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import flash.media.Sound;
 	import flash.media.SoundChannel;
@@ -17,7 +18,7 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 				for each (var SoundEntry:String in GameConstants.SOUND_LIST)
 				{
 
-					LoadedSoundList.push(AssetsManager.getSound(SoundEntry));
+					LoadedSoundList.push(GraphicsManager.getSound(SoundEntry));
 					trace("Number of Sounds"+LoadedSoundList.length);
 					soundsLoaded = true;
 				}
@@ -38,7 +39,7 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 					}
 					else
 					{
-						LoadedSoundList.push(AssetsManager.getSound(item));
+						LoadedSoundList.push(GraphicsManager.getSound(item));
 						trace("TEST_SOUND SoundChannel was created");
 						return intoChannel(LoadedSoundList.shift());
 					}

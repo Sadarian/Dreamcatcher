@@ -1,5 +1,6 @@
 package de.mediadesign.gd1011.dreamcatcher.Gameplay
 {
+    import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import starling.animation.DelayedCall;
     import starling.core.Starling;
@@ -19,19 +20,28 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 		public function GameStage()
 		{
-
-			//GameStage On which the Actors move
 			movementSpeeds = GameConstants.GAME_STAGE_MOVMENT_SPEEDS.concat();
-
 			containerGroup = new Vector.<StageContainer>(6);
 		}
 
+        public static function get gameStage():GameStage
+        {
+            if(!self)
+            {
+                self = new GameStage();
+            }
+            return self;
+        }
+
 		public function init():void
 		{
+            addChild(GraphicsManager.graphicsManager.getImage(GameConstants.BACKGROUND));
+
 			for(var i:int = 0;i<containerGroup.length;i++)
             {
                 containerGroup[i] = new StageContainer((typeImage[i]?StageContainer.LIST_TYPE_IMAGE:StageContainer.LIST_TYPE_CONTAINER));
                 containerGroup[i].touchable = false;
+                addChild(containerGroup[i]);
             }
 		}
 
@@ -56,38 +66,23 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 							GameConstants.FOG_LIST_BOSS,
 							GameConstants.BUSH_IMAGE_LIST_BOSS,
 							GameConstants.FOREGROUND_IMAGE_LIST_BOSS);
-
-					createLevel(vector, vectorBoss);
 					break;
 				}
 			}
+            for(var i:int = 0;i<containerGroup.length;i++)
+            {
+                containerGroup[i].fill(vector[i], false);
+                containerGroup[i].fill(vectorBoss[i], true);
+            }
 		}
 
-		private function createLevel(vector:Array, vectorBoss:Array):void
-		{
-			for(var i:int = 0;i<containerGroup.length;i++)
-			{
-				containerGroup[i].fill(vector[i], false);
-				containerGroup[i].fill(vectorBoss[i], true);
-				addChild(containerGroup[i]);
-			}
-		}
-
-		public function moveGameStage():void
+		public function update():void
 		{
 			for(var i:int = 0;i<containerGroup.length;i++)
 			{
 				containerGroup[i].move(movementSpeeds[i]);
 				containerGroup[i].swap(bossStage);
 			}
-		}
-
-		public static function get gameStage():GameStage {
-			if(self == null)
-			{
-				self = new GameStage();
-			}
-			return self;
 		}
 
 		public function removeActor(object:DisplayObject):void

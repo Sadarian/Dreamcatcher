@@ -1,6 +1,6 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
-    import de.mediadesign.gd1011.dreamcatcher.Assets.AssetsManager;
+    import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBullet;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementEnemy;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementVictim;
@@ -130,16 +130,16 @@ package de.mediadesign.gd1011.dreamcatcher
             if(data.collisionMode) dataArray[6] = (data.collisionMode as String); else throw new ArgumentError(type + " has no collisionMode declared!");
             if(data.collisionPoint) dataArray[7] = new Point(data.collisionPoint[0], data.collisionPoint[1]); else throw new ArgumentError(type + " has no collisionPoint declared!");
 	        if(data.collisionValues) dataArray[8] = new Point(data.collisionValues[0], data.collisionValues[1]); else throw new ArgumentError(type + " has no collisionValues declared!");
-            dataArray[9] = AssetsManager.getMovieClip(type);
+            dataArray[9] = GraphicsManager.graphicsManager.getMovieClip(type);
 
             stream.close();
             return dataArray;
         }
 
-        public static function loadSpawnData():Array
+        public static function loadSpawnData(levelIndex:int = 1):Array
         {
             var stream:FileStream = new FileStream();
-            stream.open(File.applicationDirectory.resolvePath("Configs/ConfigSpawn.json"), FileMode.READ);
+            stream.open(File.applicationDirectory.resolvePath("Configs/ConfigSpawnLevel"+levelIndex+".json"), FileMode.READ);
             var data:Object = JSON.parse(stream.readUTFBytes(stream.bytesAvailable));
             return data.enemies;
         }

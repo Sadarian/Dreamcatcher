@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
 <!-- $TexturePacker:SmartUpdate:6f8e384c6b3d466db89b038b0be274a5$ -->
-<TextureAtlas imagePath="Background.png">
+<TextureAtlas imagePath="atlasOneTexture.png">
     <SubTexture name="GameStageAnimLayer1" x="2" y="586" width="1280" height="366" frameX="0" frameY="0" frameWidth="1280" frameHeight="800"/>
     <SubTexture name="GameStageAnimLayer2" x="2" y="586" width="1280" height="366" frameX="0" frameY="0" frameWidth="1280" frameHeight="800"/>
     <SubTexture name="GameStageAnimLayer3" x="2" y="586" width="1280" height="366" frameX="0" frameY="0" frameWidth="1280" frameHeight="800"/>

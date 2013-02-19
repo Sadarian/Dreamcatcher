@@ -21,7 +21,7 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 				if (entity.health <= 0 || entity.position.x >= Starling.current.viewPort.width+entity.movieClip.width/2 || entity.position.x <0)
 				{
 					GameStage.gameStage.removeActor(entity.movieClip);
-					entity.removeMoviclip();
+					entity.removeMovieClip();
                     manager.addUnusedEntity(entity);
 				}
 			}

@@ -1,6 +1,7 @@
-package de.mediadesign.gd1011.dreamcatcher.Assets
+package de.mediadesign.gd1011.dreamcatcher.Assets.Unused
 {
-    import de.mediadesign.gd1011.dreamcatcher.GameConstants;
+import de.mediadesign.gd1011.dreamcatcher.Assets.Unused.AssetsLoader;
+import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import flash.media.Sound;
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
@@ -11,7 +12,7 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 	import starling.textures.Texture;
     import starling.textures.TextureAtlas;
 
-    public class AssetsManager
+    public class GraphicsManager2
 	{
 		private static var BitmapFontsLoaded:Boolean;
 
@@ -25,11 +26,11 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 
 
         // Embed the Atlas XML
-        [Embed(source="/../assets/textures/atlases/Background.xml", mimeType="application/octet-stream")]
+        [Embed(source="/../assets/textures/1x/atlases/atlasOne.xml", mimeType="application/octet-stream")]
         public static const AtlasXml:Class;
 
         // Embed the Atlas Texture:
-        [Embed(source="/../assets/textures/atlases/Background.png")]
+        [Embed(source="/../assets/textures/1x/atlases/atlasOneTexture.png")]
         public static const AtlasTexture:Class;
 
         private static var atlas:TextureAtlas;

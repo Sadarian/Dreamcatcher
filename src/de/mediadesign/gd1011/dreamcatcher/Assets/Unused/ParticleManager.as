@@ -1,5 +1,6 @@
-package de.mediadesign.gd1011.dreamcatcher.Assets
+package de.mediadesign.gd1011.dreamcatcher.Assets.Unused
 {
+import de.mediadesign.gd1011.dreamcatcher.Assets.*;
     import starling.display.Sprite;
     import starling.extensions.ParticleSystem;
 	import starling.core.Starling;
@@ -13,7 +14,7 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 		public static function start():void
         {
 			//Loading ParticleSystems
-			testParticle = AssetsManager.getParticleSystem("Particle");
+			testParticle = GraphicsManager.getParticleSystem("Particle");
         }
 
 		public static function get isUsed():Boolean

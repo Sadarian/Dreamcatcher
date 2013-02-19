@@ -11,14 +11,14 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 	{
         private var manager:EntityManager;
 
-		private var identicalCollision:CollisionIdentical;
-		private var unidenticalCollision:CollisionUnidentical;
+		private var _collisionIdentical:CollisionIdentical;
+		private var _collisionUnidentical:CollisionUnidentical;
 
 		public function CollisionProcess()
 		{
             manager = EntityManager.entityManager;
-			identicalCollision = new CollisionIdentical();
-			unidenticalCollision = new CollisionUnidentical();
+			_collisionIdentical = new CollisionIdentical();
+			_collisionUnidentical = new CollisionUnidentical();
 		}
 
 		public function update():void
@@ -31,20 +31,12 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 					{
 						if(entityA.collisionMode == entityB.collisionMode)
 						{
-							if (identicalCollision.checkCollision(entityA, entityB))
+							if (_collisionIdentical.checkCollision(entityA, entityB))
 							{
                                 MeleeCombat(entityA, entityB);
 
-								if (entityA.name.search(GameConstants.BULLET) >= 0)
-								{
-									entityB.health = entityB.health - entityA.health;
-									entityA.health = 0;
-								}
-								else if(entityB.name.search(GameConstants.BULLET) >= 0)
-								{
-									entityA.health = entityA.health - entityB.health;
-									entityB.health = 0;
-								}
+								rangeCombat(entityA, entityB);
+
 								lifeBarUpdate();
 							}
 						}
@@ -52,20 +44,12 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 						{
 							if (!(entityA.name.search(entityB.name) >= 0) && !(entityB.name.search(entityA.name) >= 0))
 							{
-								if (unidenticalCollision.checkCollision(entityA, entityB))
+								if (_collisionUnidentical.checkCollision(entityA, entityB))
 								{
                                     MeleeCombat(entityA, entityB);
 
-									if (entityA.name.search(GameConstants.BULLET) >= 0)
-									{
-										entityB.health = entityB.health - entityA.health;
-										entityA.health = 0;
-									}
-									else if(entityB.name.search(GameConstants.BULLET) >= 0)
-									{
-										entityA.health = entityA.health - entityB.health;
-										entityB.health = 0;
-									}
+									rangeCombat(entityA, entityB);
+
 									lifeBarUpdate()
 								}
 							}
@@ -76,12 +60,27 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 		}
 
 		private function lifeBarUpdate():void {
-			for each (var lifeBar:LifeBarHandling in manager.lifeBars) {
+			for each (var lifeBar:LifeBarHandling in manager.lifeBars)
+			{
 				lifeBar.updateHealthBar();
 			}
 		}
 
-        private static function MeleeCombat(entityA:Entity, entityB:Entity):void
+	    private function rangeCombat(entityA:Entity, entityB:Entity):void
+	    {
+		    if (entityA.name.search(GameConstants.BULLET) >= 0 && !(entityB.name.search(GameConstants.BULLET) >= 0))
+		    {
+			    entityB.health = entityB.health - entityA.health;
+			    entityA.health = 0;
+		    }
+		    else if(entityB.name.search(GameConstants.BULLET) >= 0 && !(entityA.name.search(GameConstants.BULLET) >= 0))
+		    {
+			    entityA.health = entityA.health - entityB.health;
+			    entityB.health = 0;
+		    }
+	    }
+
+        private function MeleeCombat(entityA:Entity, entityB:Entity):void
         {
             if(entityA.name == GameConstants.PLAYER && ((entityB.name == GameConstants.ENEMY) || (entityB.name == GameConstants.BOSS)))
             {

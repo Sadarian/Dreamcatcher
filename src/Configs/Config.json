@@ -4,5 +4,7 @@
     "bossMeleeDamage":20,
     "playerMovementBorder":[128, 128, 1152, 512],
     "playerStartPosition":[100, 400],
-    "victimTimeUntilMid":2
+    "victimTimeUntilMid":2,
+    "victimMovementBorder":[700, 200],
+    "victimDirectionBorders":[-45, 45]
 }

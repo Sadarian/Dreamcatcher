@@ -3,8 +3,6 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import flash.geom.Point;
 
-	import flashx.textLayout.compose.FlowDamageType;
-
 	import starling.core.Starling;
 
     public class MovementVictim implements IMovement
@@ -13,10 +11,10 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
         private var _speed:Number = 0;
 	    private var directionChange:Number = 0;
 	    private var direction:Number = 0;
-	    private var minDirection:Number = -45;
-	    private var maxDirection:Number = 45;
-	    private var minMovementY:Number = 200;
-	    private var maxMovementY:Number = 700;
+	    private var minDirection:Number = GameConstants.victimDirectionBorderMin;
+	    private var maxDirection:Number = GameConstants.victimDirectionBorderMax;
+	    private var minMovementY:Number = GameConstants.victimMovementBorderMin;
+	    private var maxMovementY:Number = GameConstants.victimMovementBorderMax;
 
         public function set speed(value:Number):void
         {
@@ -27,10 +25,6 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
         {
             if(idleTime<=0)
             {
-
-
-
-				var move:Number;
 
 	            if (maxMovementY <= position.y)
 	            {

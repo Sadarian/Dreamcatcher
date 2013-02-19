@@ -80,6 +80,10 @@ package de.mediadesign.gd1011.dreamcatcher
 
         private static var _meleeDamage:Vector.<Number>;
 	    private static var _playerMovementBorder:Rectangle;
+		private static var _victimMovementBorderMax:Number;
+		private static var _victimMovementBorderMin:Number;
+		private static var _victimDirectionBorderMax:Number;
+		private static var _victimDirectionBorderMin:Number;
         private static var _playerStartPosition:Point;
         private static var _victimTimeUntilMid:Number;
 
@@ -107,6 +111,10 @@ package de.mediadesign.gd1011.dreamcatcher
                                                                                 data.playerMovementBorder[1],
                                                                                 data.playerMovementBorder[2],
                                                                                 data.playerMovementBorder[3]);
+	        if(data.victimMovementBorder) _victimMovementBorderMax = data.victimMovementBorder[0];
+	        if(data.victimMovementBorder) _victimMovementBorderMin = data.victimMovementBorder[1];
+	        if(data.victimDirectionBorders) _victimDirectionBorderMax = data.victimDirectionBorders[0];
+	        if(data.victimDirectionBorders) _victimDirectionBorderMin = data.victimDirectionBorders[1];
             if(data.playerStartPosition) _playerStartPosition = new Point(data.playerStartPosition[0],
                                                                           data.playerStartPosition[1]);
             if(data.victimTimeUntilMid) _victimTimeUntilMid = data.victimTimeUntilMid;
@@ -175,5 +183,24 @@ package de.mediadesign.gd1011.dreamcatcher
         public static function get victimTimeUntilMid():Number {
             return _victimTimeUntilMid;
         }
-    }
+
+		public static function get victimMovementBorderMax():Number {
+			return _victimMovementBorderMax;
+		}
+
+		public static function get victimMovementBorderMin():Number {
+			return _victimMovementBorderMin;
+		}
+
+		public function GameConstants() {
+		}
+
+		public static function get victimDirectionBorderMax():Number {
+			return _victimDirectionBorderMax;
+		}
+
+		public static function get victimDirectionBorderMin():Number {
+			return _victimDirectionBorderMin;
+		}
+	}
 }

@@ -78,6 +78,8 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const BITMAP_FONT_TEXTURE:String = "testBitmapFont";
 		public static const BITMAP_FONT_CONFIG:String = "testBitmapFontXml";
 
+		public static const SHAREDOBJECT:String = "Dreamcatcher";
+
         private static var _meleeDamage:Vector.<Number>;
 	    private static var _playerMovementBorder:Rectangle;
 		private static var _victimMovementBorderMax:Number;

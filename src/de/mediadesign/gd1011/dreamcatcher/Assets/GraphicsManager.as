@@ -1,7 +1,9 @@
 package de.mediadesign.gd1011.dreamcatcher.Assets
 {
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
-    import flash.geom.Rectangle;
+import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
+
+import flash.geom.Rectangle;
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
 	import starling.display.DisplayObjectContainer;

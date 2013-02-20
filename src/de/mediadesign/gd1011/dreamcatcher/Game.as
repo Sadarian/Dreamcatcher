@@ -1,7 +1,6 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
     import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
-	import de.mediadesign.gd1011.dreamcatcher.Assets.Unused.SoundExtended;
 	import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionDummyBoxes;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
@@ -13,7 +12,6 @@ package de.mediadesign.gd1011.dreamcatcher
     import de.mediadesign.gd1011.dreamcatcher.Processes.RenderProcess;
     import de.mediadesign.gd1011.dreamcatcher.Processes.ShootingProcess;
     import flash.geom.Point;
-	import flash.media.Sound;
 	import flash.ui.Keyboard;
     import flash.utils.getTimer;
     import starling.core.Starling;
@@ -40,7 +38,6 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		private var lastFrameTimeStamp:Number;
 		private var BossButton:Button;
-		public var testSound:Sound;
 
         //DEBUG:
         private var touchPosition:Point = new Point();
@@ -74,9 +71,6 @@ package de.mediadesign.gd1011.dreamcatcher
         {
             gameStage.init();
             entityManager.init();
-
-//			GraphicsManager.graphicsManager.addSound("TestSound",testSound);
-//			GraphicsManager.graphicsManager.playSound("TestSound");
 
             startLevel();
 

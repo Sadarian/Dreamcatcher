@@ -76,8 +76,5 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 		//TT-Fonts
 		[Embed(source="/../assets/fonts/defused.ttf", embedAsCFF="false", fontFamily="TestFont")]
 		private static const TestFont:Class;
-		//Sounds
-		[Embed(source="/../assets/audio/testSound.mp3")]
-		private static const TestSound:Class;
 	}
 }

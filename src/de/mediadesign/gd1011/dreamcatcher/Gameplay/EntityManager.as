@@ -1,6 +1,7 @@
 package de.mediadesign.gd1011.dreamcatcher.Gameplay
 {
-    import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionDummyBoxes;
+	import de.mediadesign.gd1011.dreamcatcher.Gameplay.PowerUps.PowerUps;
+	import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionDummyBoxes;
     import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionImage;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.View.LifeBarHandling;
@@ -84,6 +85,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		{
 			_entities.splice(_entities.indexOf(entity),1);
 			Score.updateScore(entity);
+
 			for each (var image:CollisionImage in CollisionDummyBoxes.dummies) {
 				if (entity.name == image.entityName) {
 					GameStage.gameStage.removeChild(image);
@@ -91,6 +93,9 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 					image.dispose();
 				}
 			}
+
+			PowerUps.checkDrop(entity);
+
 			_unusedEntities.push(entity);
 		}
 

@@ -31,13 +31,14 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 					{
 						if(entityA.collisionMode == entityB.collisionMode)
 						{
-							if (_collisionIdentical.checkCollision(entityA, entityB))
-							{
-                                MeleeCombat(entityA, entityB);
+							if (!(entityA.name.search(entityB.name) >= 0) && !(entityB.name.search(entityA.name) >= 0)) {
+								if (_collisionIdentical.checkCollision(entityA, entityB)) {
+									MeleeCombat(entityA, entityB);
 
-								rangeCombat(entityA, entityB);
+									rangeCombat(entityA, entityB);
 
-								lifeBarUpdate();
+									lifeBarUpdate();
+								}
 							}
 						}
 						else

@@ -95,7 +95,7 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 					{
 						EnemyList.push(new Sprite());
 						EnemyList[EnemyList.length-1].addChild(createMovieClip(GameConstants.ENEMY_TEXTURE_NAME,GameConstants.ENEMY_ANIM_CONFIG));
-						trace("Enemy was created");
+//						trace("Enemy was created");
 						return EnemyList.shift();
 					}
                     break;
@@ -112,7 +112,7 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 					{
 						VictimList.push(new Sprite());
 						VictimList[VictimList.length-1].addChild(createMovieClip(GameConstants.VICTIM_TEXTURE_NAME,GameConstants.VICTIM_ANIM_CONFIG));
-						trace("Victim was created");
+//						trace("Victim was created");
 						return VictimList.shift();
 					}
 					break;
@@ -129,7 +129,7 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 					{
 						BossList.push(new Sprite());
 						BossList[BossList.length-1].addChild(createMovieClip(GameConstants.BOSS_TEXTURE_NAME,GameConstants.BOSS_ANIM_CONFIG));
-						trace("Boss was created");
+//						trace("Boss was created");
 						return BossList.shift();
 					}
 					break;
@@ -147,7 +147,7 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 						PlayerList.push(new Sprite());
 						PlayerList[PlayerList.length-1].addChild(createMovieClip(GameConstants.PLAYER_TEXTURE_NAME,GameConstants.PLAYER_ANIM_CONFIG));
 						PlayerList[PlayerList.length-1].addChild(createMovieClip(GameConstants.PLAYER_ARM_TEXTURE_NAME, GameConstants.PLAYER_ARM_ANIM_CONFIG));
-						trace("Player was created");
+//						trace("Player was created");
 						return PlayerList.shift();
 					}
 					break;
@@ -164,7 +164,7 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 					{
 						PlayerBulletList.push(new Sprite());
 						PlayerBulletList[PlayerBulletList.length-1].addChild(createMovieClip(GameConstants.PLAYER_BULLET_TEXTURE_NAME,GameConstants.PLAYER_BULLET_ANIM_CONFIG));
-						trace("Player Bullet was created");
+//						trace("Player Bullet was created");
 						return PlayerBulletList.shift();
 					}
 					break;
@@ -181,7 +181,7 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 					{
 						EnemyBulletList.push(new Sprite());
 						EnemyBulletList[EnemyBulletList.length-1].addChild(createMovieClip(GameConstants.ENEMY_BULLET_TEXTURE_NAME,GameConstants.ENEMY_BULLET_ANIM_CONFIG));
-						trace("Enemy Bullet was created");
+//						trace("Enemy Bullet was created");
 						return EnemyBulletList.shift();
 					}
 					break;
@@ -258,28 +258,28 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 				case GameConstants.ENEMY:
 				{
 					EnemyList.push(clip);
-					trace("Enemy was added to EnemyList");
+//					trace("Enemy was added to EnemyList");
 					break;
 				}
 
 				case GameConstants.VICTIM:
 				{
 					VictimList.push(clip);
-					trace("Victim was added to VictimList");
+//					trace("Victim was added to VictimList");
 					break;
 				}
 
 				case GameConstants.BOSS:
 				{
 					BossList.push(clip);
-					trace("Boss was added to BossList");
+//					trace("Boss was added to BossList");
 					break;
 				}
 
 				case GameConstants.PLAYER:
 				{
 					PlayerList.push(clip);
-					trace("Player was added to PlayerList");
+//					trace("Player was added to PlayerList");
 					break;
 				}
 
@@ -293,7 +293,7 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 				case GameConstants.ENEMY_BULLET:
 				{
 					EnemyBulletList.push(clip);
-					trace("Enemy Bullet was added to EnemyBulletList");
+//					trace("Enemy Bullet was added to EnemyBulletList");
 					break;
 				}
 

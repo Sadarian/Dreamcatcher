@@ -1,0 +1,12 @@
+{
+    "dropChanceFireRateEnemy":3,
+    "dropChanceFireRateSpecial":2.5,
+    "durationFireRate":2,
+    "fireRateIncrease":0.67,
+    "dropChanceFreezeEnemy":5,
+    "dropChanceFreezeSpecial":3.33,
+    "durationFreeze":2,
+    "slowEffect":2,
+    "dropDistance":30,
+    "healthGiven":15
+}

@@ -16,7 +16,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
         private var actual:MovieClip;
         private var defaultType:String;
 
-        public function AnimatedModel(name:String, usedAnimations:Vector.<String>, defaultAnimation:String)
+        public function AnimatedModel(name:String, usedAnimations:Array, defaultAnimation:String)
         {
             if(!name)
                 throw new ArgumentError("Error! Name is not set!");
@@ -50,7 +50,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
         public function playAnimation(animation:String):void
         {
-            if(actual == walk || actual.isComplete)
+            if(actual == walk || actual == this[defaultType] || actual.isComplete)
             {
                 if(this[animation])
                 {

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:bf3be6b22514f9ad5a3c077c15916d00$ -->
+<!-- $TexturePacker:SmartUpdate:8990bce40c9a3ba8fe1559c533fac92d$ -->
 <TextureAtlas imagePath="Background_lvl1_3.png">
-    <SubTexture name="AnimLayer1" x="2" y="388" width="1280" height="382" frameX="0" frameY="0" frameWidth="1280" frameHeight="800"/>
-    <SubTexture name="AnimLayer2" x="2" y="2" width="1280" height="384" frameX="0" frameY="0" frameWidth="1280" frameHeight="800"/>
-    <SubTexture name="AnimLayer3_light1" x="2" y="1072" width="1192" height="298" frameX="-88" frameY="0" frameWidth="1280" frameHeight="800"/>
-    <SubTexture name="AnimLayer3_light2" x="2" y="772" width="1224" height="298" frameX="-56" frameY="0" frameWidth="1280" frameHeight="800"/>
-    <SubTexture name="AnimLayer3_light3" x="2" y="1668" width="1174" height="294" frameX="-98" frameY="0" frameWidth="1280" frameHeight="800"/>
-    <SubTexture name="AnimLayer3_light4" x="2" y="1372" width="1174" height="294" frameX="-93" frameY="0" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="ForestAnim1_01" x="862" y="1394" width="872" height="292" frameX="-137" frameY="0" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="ForestAnim1_02" x="2" y="1692" width="876" height="292" frameX="-134" frameY="0" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="ForestAnim1_03" x="2" y="1394" width="858" height="296" frameX="-136" frameY="0" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="ForestAnim2_01" x="2" y="696" width="1226" height="326" frameX="-51" frameY="0" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="ForestAnim2_02" x="2" y="1024" width="1218" height="368" frameX="-58" frameY="0" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="ForestAnim2_03" x="2" y="356" width="1226" height="338" frameX="-50" frameY="0" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="ForestAnim2_04" x="2" y="2" width="1226" height="352" frameX="-50" frameY="0" frameWidth="1280" frameHeight="800"/>
 </TextureAtlas>

@@ -55,14 +55,14 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 				{
 					vector.push(GameConstants.BACKGROUND_IMAGE_LIST,
 								GameConstants.MAIN_STAGE_IMAGE_LIST,
-								GameConstants.ANIMATIONS_LIST,
+								GameConstants.FOREST_LIST,
 								GameConstants.FOG_LIST,
 								GameConstants.BUSH_IMAGE_LIST,
 								GameConstants.FOREGROUND_IMAGE_LIST);
 
 					vectorBoss.push(GameConstants.BACKGROUND_IMAGE_LIST_BOSS,
 							GameConstants.MAIN_STAGE_IMAGE_LIST_BOSS,
-							GameConstants.ANIMATIONS_LIST_BOSS,
+							GameConstants.FOREST_LIST_BOSS,
 							GameConstants.FOG_LIST_BOSS,
 							GameConstants.BUSH_IMAGE_LIST_BOSS,
 							GameConstants.FOREGROUND_IMAGE_LIST_BOSS);

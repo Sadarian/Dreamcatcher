@@ -29,20 +29,20 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const BUTTON:String ="Button";
 
 		//Properties of the GameStage (LVL1)
-		public static const MAIN_STAGE_IMAGE_LIST:Array = ["GameStage","GameStage2","GameStage3"];
-		public static const BUSH_IMAGE_LIST:Array = ["GameStageFront","GameStageFront2","GameStageFront3"];
-		public static const ANIMATIONS_LIST:Array = [["GameStageAnimLayer1"], ["GameStageAnimLayer2"], ["GameStageAnimLayer3"]];
-		public static const FOG_LIST:Array = [["GameStageFog"],["GameStageFog2"],["GameStageFog3"]];
+		public static const MAIN_STAGE_IMAGE_LIST:Array = ["Main1","Main2","Main3"];
+		public static const BUSH_IMAGE_LIST:Array = ["Bush1","Bush2","Bush3"];
+		public static const FOREST_LIST:Array = [["Forest1"], ["Forest2"], ["Forest3"]];
+		public static const FOG_LIST:Array = [["FogAnim1_01"],["FogAnim1_01"],["FogAnim1_01"]];
 		public static const BACKGROUND_IMAGE_LIST:Array = ["ScrollingBackground","ScrollingBackground","ScrollingBackground"];
-		public static const FOREGROUND_IMAGE_LIST:Array = ["ScrollingForeground","ScrollingForeground2","ScrollingForeground3","ScrollingForeground4","ScrollingForeground5"];
+		public static const FOREGROUND_IMAGE_LIST:Array = ["Front1","Front2","Front3","Front4","Front5"];
 		public static const GAME_STAGE_MOVMENT_SPEEDS:Vector.<Number> = new <Number>[1,2,3,6,7,8];
 
-		public static const MAIN_STAGE_IMAGE_LIST_BOSS:Array = ["GameStageBoss","GameStageBoss","GameStageBoss"];
-		public static const BUSH_IMAGE_LIST_BOSS:Array = ["GameStageFrontBoss","GameStageFrontBoss","GameStageFrontBoss"];
-		public static const ANIMATIONS_LIST_BOSS:Array = [["GameStageAnimLayerBoss"],["GameStageAnimLayerBoss"],["GameStageAnimLayerBoss"]];
-		public static const FOG_LIST_BOSS:Array = [["GameStageFog"],["GameStageFog2"],["GameStageFog3"]];
-		public static const BACKGROUND_IMAGE_LIST_BOSS:Array = ["ScrollingBackgroundBoss","ScrollingBackgroundBoss","ScrollingBackgroundBoss"];
-		public static const FOREGROUND_IMAGE_LIST_BOSS:Array = ["ScrollingForegroundBoss","ScrollingForegroundBoss","ScrollingForegroundBoss"];
+		public static const MAIN_STAGE_IMAGE_LIST_BOSS:Array = ["Main1","Main2","Main3"];
+		public static const BUSH_IMAGE_LIST_BOSS:Array = ["Bush1","Bush2","Bush3"];
+		public static const FOREST_LIST_BOSS:Array = [["Forest1"], ["Forest2"], ["Forest3"]];
+		public static const FOG_LIST_BOSS:Array = [["FogAnim1_01"],["FogAnim1_01"],["FogAnim1_01"]];
+		public static const BACKGROUND_IMAGE_LIST_BOSS:Array = ["ScrollingBackground","ScrollingBackground","ScrollingBackground"];
+		public static const FOREGROUND_IMAGE_LIST_BOSS:Array = ["Front1","Front2","Front3","Front4","Front5"];
 		public static const BOSS_SPEED_REDUCTION:Number = 0.15;
 
 		public static const ENEMY:String = "Enemy";
@@ -57,7 +57,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const PLAYER_ANIM_CONFIG:Vector.<int> = new <int>[4,2,6,12];
 		public static const PLAYER_TEXTURE_NAME:String = "PlayerOnly";
 
-	    public static const PLAYER_ARM:String = "Player_Arm";
+	    public static const PLAYER_ARM:String = "PlayerArm";
 	    public static const PLAYER_ARM_ANIM_CONFIG:Vector.<int> = new <int>[4,2,6,12];
 	    public static const PLAYER_ARM_TEXTURE_NAME:String = "PlayerArm";
 
@@ -65,11 +65,11 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const VICTIM_ANIM_CONFIG:Vector.<int> = new <int>[4,2,6,12];
 		public static const VICTIM_TEXTURE_NAME:String = "VictimWalk";
 
-		public static const PLAYER_BULLET:String = "Player_Bullet";
+		public static const PLAYER_BULLET:String = "PlayerAnimBullet";
 		public static const PLAYER_BULLET_ANIM_CONFIG:Vector.<int> = new <int>[1,1,1,12];
 		public static const PLAYER_BULLET_TEXTURE_NAME:String = "PlayerBullet";
 
-	    public static const ENEMY_BULLET:String = "Enemy_Bullet";
+	    public static const ENEMY_BULLET:String = "EnemyAnimBullet";
 	    public static const ENEMY_BULLET_ANIM_CONFIG:Vector.<int> = new <int>[2,1,2,12];
 	    public static const ENEMY_BULLET_TEXTURE_NAME:String = "EnemyBullet";
 

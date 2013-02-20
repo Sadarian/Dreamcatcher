@@ -13,7 +13,8 @@ package de.mediadesign.gd1011.dreamcatcher
     import de.mediadesign.gd1011.dreamcatcher.Processes.RenderProcess;
     import de.mediadesign.gd1011.dreamcatcher.Processes.ShootingProcess;
     import flash.geom.Point;
-    import flash.ui.Keyboard;
+	import flash.net.SharedObject;
+	import flash.ui.Keyboard;
     import flash.utils.getTimer;
     import starling.core.Starling;
 	import starling.display.Button;
@@ -33,6 +34,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		private var destroyProcess:DestroyProcess;
 		private var lastFrameTimeStamp:Number;
 		private var BossButton:Button;
+		private var soDreamcatcher:SharedObject;
 
         //DEBUG:
         private var touchPosition:Point = new Point();
@@ -41,6 +43,14 @@ package de.mediadesign.gd1011.dreamcatcher
         {
 	        AssetsManager.start();
 	        var entityManager:EntityManager = EntityManager.entityManager;
+
+	        soDreamcatcher = SharedObject.getLocal(GameConstants.SHAREDOBJECT);
+	        soDreamcatcher.data.reachedBoss = false;
+	        if (soDreamcatcher.data.achievedLvl <= 0)
+	        {
+		        soDreamcatcher.data.achievedLvl = 1;
+	        }
+	        soDreamcatcher.flush();
 
 	        moveProcess = new MoveProcess();
 	        shootingProcess = new ShootingProcess();
@@ -143,5 +153,10 @@ package de.mediadesign.gd1011.dreamcatcher
             if(e.keyCode==Keyboard.F5)
                 EntityManager.entityManager.createSpawnList();
         }
+
+		public function destroySharedObject():void
+		{
+			soDreamcatcher.clear();
+		}
     }
 }

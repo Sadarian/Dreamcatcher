@@ -1,7 +1,10 @@
 package de.mediadesign.gd1011.dreamcatcher.Gameplay
 {
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
-    import starling.animation.DelayedCall;
+
+	import flash.net.SharedObject;
+
+	import starling.animation.DelayedCall;
     import starling.core.Starling;
     import starling.display.DisplayObject;
 	import starling.display.Sprite;
@@ -15,6 +18,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 		public var bossStage:Boolean = false;
 
+		private var soDreamcatcher:SharedObject;
+
 		private var movementSpeeds:Vector.<Number>;
 
 		public function GameStage()
@@ -22,6 +27,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 			//GameStage On which the Actors move
 			movementSpeeds = GameConstants.GAME_STAGE_MOVMENT_SPEEDS.concat();
+
+			soDreamcatcher = SharedObject.getLocal(GameConstants.SHAREDOBJECT);
 
 			containerGroup = new Vector.<StageContainer>(6);
 		}
@@ -37,6 +44,11 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 		public function loadLevel(levelIndex:int = 1):void
 		{
+			if (soDreamcatcher.data.achievedLvl < levelIndex)
+			{
+				soDreamcatcher.data.achievedLvl = levelIndex;
+			}
+
 			var vector:Array = [];
 			var vectorBoss:Array = [];
 			switch(levelIndex)
@@ -58,6 +70,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 							GameConstants.FOREGROUND_IMAGE_LIST_BOSS);
 
 					createLevel(vector, vectorBoss);
+					soDreamcatcher.data.reachedBoss = false;
 					break;
 				}
 			}
@@ -97,6 +110,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 		public function switchToBoss():void
 		{
+			soDreamcatcher.data.reachedBoss = true;
+
 			if(containerGroup[0].getChildAt(0).x < containerGroup[0].getChildAt(1).x)
 			{
 				var delay:Number = containerGroup[0].getChildAt(0).x + (2*containerGroup[0].getChildAt(0).width);

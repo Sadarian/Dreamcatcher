@@ -76,13 +76,17 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             }
 		}
 
-		public function update():void
+		public function update(now:Number):void
 		{
 			for(var i:int = 0;i<containerGroup.length;i++)
 			{
 				containerGroup[i].move(movementSpeeds[i]);
 				containerGroup[i].swap(bossStage);
 			}
+            if((!bossStage) && (now.toFixed() == "50"))
+            {
+                switchToBoss();
+            }
 		}
 
 		public function removeActor(object:DisplayObject):void
@@ -92,11 +96,19 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 		public function switchToBoss():void
 		{
+            var delay:Number;
+
 			if(containerGroup[0].getChildAt(0).x < containerGroup[0].getChildAt(1).x)
 			{
-				var delay:Number = containerGroup[0].getChildAt(0).x + (2*containerGroup[0].getChildAt(0).width);
+                delay = containerGroup[0].getChildAt(0).x + (2*containerGroup[0].getChildAt(1).width);
 				delay /= GameConstants.GAME_STAGE_MOVMENT_SPEEDS[0];
 			}
+            else
+            {
+                delay = containerGroup[0].getChildAt(1).x + (2*containerGroup[0].getChildAt(0).width);
+                delay /= GameConstants.GAME_STAGE_MOVMENT_SPEEDS[0];
+            }
+
 			bossStage = true;
             Starling.juggler.delayCall(beginReduction, delay/60);
             function beginReduction():void

@@ -125,7 +125,7 @@ package de.mediadesign.gd1011.dreamcatcher
 			collisionProcess.update();
 			destroyProcess.update();
 			renderProcess.update();
-            gameStage.update();
+            gameStage.update(now);
 
             if(Dreamcatcher.debugMode)
             {

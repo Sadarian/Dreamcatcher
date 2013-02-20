@@ -4,6 +4,7 @@ package de.mediadesign.gd1011.dreamcatcher
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBullet;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementEnemy;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementVictim;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponBoss;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponEnemy;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerStraight;
 	import flash.filesystem.File;
@@ -51,6 +52,10 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const BOSS_ANIM_CONFIG:Vector.<int> = new <int>[3,2,6,8];
 		public static const BOSS_TEXTURE_NAME:String = "BossWalk";
 
+        public static const BOSS_BULLET:String = "Boss_Bullet";
+        public static const BOSS_BULLET_ANIM_CONFIG:Vector.<int> = new <int>[2,1,2,12];
+        public static const BOSS_BULLET_TEXTURE_NAME:String = "EnemyBullet";
+
 		public static const PLAYER:String = "Player";
 		public static const PLAYER_ANIM_CONFIG:Vector.<int> = new <int>[4,2,6,12];
 		public static const PLAYER_TEXTURE_NAME:String = "PlayerOnly";
@@ -82,10 +87,15 @@ package de.mediadesign.gd1011.dreamcatcher
 	    private static var _playerMovementBorder:Rectangle;
         private static var _playerStartPosition:Point;
         private static var _victimTimeUntilMid:Number;
+        private static var _bossShootsUntilCharge:Number;
+        private static var _bossFadingInTime:Number;
+        private static var _bossDistanceBorder:Number;
+        private static var _bossChargeSpeedMultiplier:Number;
 
         public static function init(path:String = "Configs/Config.json"):void
         {
 	        new WeaponPlayerStraight();
+            new WeaponBoss();
             new MovementBullet();
             new MovementEnemy();
             new MovementVictim();
@@ -110,6 +120,10 @@ package de.mediadesign.gd1011.dreamcatcher
             if(data.playerStartPosition) _playerStartPosition = new Point(data.playerStartPosition[0],
                                                                           data.playerStartPosition[1]);
             if(data.victimTimeUntilMid) _victimTimeUntilMid = data.victimTimeUntilMid;
+            if(data.bossShootsUntilCharge) _bossShootsUntilCharge = data.bossShootsUntilCharge;
+            if(data.bossFadingInTime) _bossFadingInTime = data.bossFadingInTime;
+            if(data.bossDistanceBorder) _bossDistanceBorder = data.bossDistanceBorder;
+            if(data.bossChargeSpeedMultiplier) _bossChargeSpeedMultiplier = data.bossChargeSpeedMultiplier;
         }
 
         public static function getData(type:String):Array
@@ -173,6 +187,26 @@ package de.mediadesign.gd1011.dreamcatcher
 
         public static function get victimTimeUntilMid():Number {
             return _victimTimeUntilMid;
+        }
+
+        public static function get bossShootsUntilCharge():Number
+        {
+            return _bossShootsUntilCharge;
+        }
+
+        public static function get bossFadingInTime():Number
+        {
+            return _bossFadingInTime;
+        }
+
+        public static function get bossDistanceBorder():Number
+        {
+            return _bossDistanceBorder;
+        }
+
+        public static function get bossChargeSpeedMultiplier():Number
+        {
+            return _bossChargeSpeedMultiplier;
         }
     }
 }

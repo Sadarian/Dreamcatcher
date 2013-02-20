@@ -24,6 +24,7 @@ import flash.geom.Rectangle;
         private var Enemy_Bullet_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
 		private var Victim_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
 		private var Boss_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
+        private var Boss_Bullet_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
 
         public function GraphicsManager():void
         {
@@ -35,6 +36,7 @@ import flash.geom.Rectangle;
             Enemy_Bullet_List = new Vector.<DisplayObjectContainer>();
             Victim_List = new Vector.<DisplayObjectContainer>();
             Boss_List = new Vector.<DisplayObjectContainer>();
+            Boss_Bullet_List = new Vector.<DisplayObjectContainer>();
         }
 
         public static function get graphicsManager():GraphicsManager

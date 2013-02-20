@@ -40,7 +40,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             var loadingEntities:Array = GameConstants.loadSpawnData(levelIndex);
             for(var i:int = 0;i<loadingEntities.length;i++)
             {
-                Starling.current.juggler.delayCall(createEntity, loadingEntities[i][0], loadingEntities[i][2], new Point(Starling.current.viewPort.width, loadingEntities[i][1]));
+                Starling.juggler.delayCall(createEntity, loadingEntities[i][0], loadingEntities[i][2], new Point(Starling.current.viewPort.width, loadingEntities[i][1]));
             }
         }
 

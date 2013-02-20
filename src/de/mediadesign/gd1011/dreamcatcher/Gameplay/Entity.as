@@ -113,6 +113,11 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			return _movementSystem;
 		}
 
+        public function get weaponSystem():IWeapon
+        {
+            return _weaponSystem;
+        }
+
 		public function get collisionPoint():Point
 		{
 			return _collisionPoint;

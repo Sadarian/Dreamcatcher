@@ -5,9 +5,9 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Collision
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 
-	public class CollisionIdentical implements ICollision
+	public class CollisionIdentical
 	{
-		public function checkCollision(entityA:Entity, entityB:Entity):Boolean
+		public static function checkCollision(entityA:Entity, entityB:Entity):Boolean
 		{
 			if (entityA.collisionMode == GameConstants.COLLISION_RECTANGLE)
 				return checkCollisionRectangle(entityA, entityB);

@@ -6,6 +6,8 @@ package de.mediadesign.gd1011.dreamcatcher
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementVictim;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponEnemy;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerStraight;
+	import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
+
 	import flash.filesystem.File;
     import flash.filesystem.FileMode;
     import flash.filesystem.FileStream;
@@ -130,7 +132,7 @@ package de.mediadesign.gd1011.dreamcatcher
             if(data.collisionMode) dataArray[6] = (data.collisionMode as String); else throw new ArgumentError(type + " has no collisionMode declared!");
             if(data.collisionPoint) dataArray[7] = new Point(data.collisionPoint[0], data.collisionPoint[1]); else throw new ArgumentError(type + " has no collisionPoint declared!");
 	        if(data.collisionValues) dataArray[8] = new Point(data.collisionValues[0], data.collisionValues[1]); else throw new ArgumentError(type + " has no collisionValues declared!");
-            dataArray[9] = GraphicsManager.graphicsManager.getMovieClip(type);
+            dataArray[9] = new AnimatedModel("Victim", [AnimatedModel.DIE, AnimatedModel.WALK], AnimatedModel.WALK);
 
             stream.close();
             return dataArray;

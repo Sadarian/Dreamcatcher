@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:03ade59a5e45301ec7274fada7ab171e$ -->
+<TextureAtlas imagePath="Background_lvl1_2.png">
+    <SubTexture name="GameStage" x="2" y="1170" width="1280" height="582" frameX="0" frameY="-218" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="GameStage2" x="2" y="586" width="1280" height="582" frameX="0" frameY="-218" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="GameStage3" x="2" y="2" width="1280" height="582" frameX="0" frameY="-218" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="GameStageStagForeground" x="1284" y="2" width="532" height="180" frameX="-432" frameY="-620" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="GameStageStagForeground2" x="1284" y="184" width="402" height="284" frameX="-800" frameY="-516" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="GameStageStagForeground3" x="1688" y="184" width="236" height="124" frameX="-90" frameY="-676" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="GameStageStagForeground4" x="1818" y="2" width="184" height="100" frameX="-135" frameY="-700" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="GameStageStagForeground5" x="1284" y="470" width="382" height="208" frameX="-75" frameY="-592" frameWidth="1280" frameHeight="800"/>
+</TextureAtlas>

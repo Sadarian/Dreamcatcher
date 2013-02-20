@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:bf3be6b22514f9ad5a3c077c15916d00$ -->
+<TextureAtlas imagePath="Background_lvl1_3.png">
+    <SubTexture name="AnimLayer1" x="2" y="388" width="1280" height="382" frameX="0" frameY="0" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="AnimLayer2" x="2" y="2" width="1280" height="384" frameX="0" frameY="0" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="AnimLayer3_light1" x="2" y="1072" width="1192" height="298" frameX="-88" frameY="0" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="AnimLayer3_light2" x="2" y="772" width="1224" height="298" frameX="-56" frameY="0" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="AnimLayer3_light3" x="2" y="1668" width="1174" height="294" frameX="-98" frameY="0" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="AnimLayer3_light4" x="2" y="1372" width="1174" height="294" frameX="-93" frameY="0" frameWidth="1280" frameHeight="800"/>
+</TextureAtlas>

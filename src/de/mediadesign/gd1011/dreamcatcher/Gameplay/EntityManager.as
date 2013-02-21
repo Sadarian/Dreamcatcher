@@ -1,12 +1,11 @@
 package de.mediadesign.gd1011.dreamcatcher.Gameplay
 {
+    import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
     import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionDummyBoxes;
     import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionImage;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.View.LifeBarHandling;
-	import de.mediadesign.gd1011.dreamcatcher.View.Score;
-
-	import flash.geom.Point;
+    import flash.geom.Point;
     import starling.core.Starling;
 
     public class EntityManager
@@ -21,37 +20,27 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             _entities = new Vector.<Entity>();
 	        _unusedEntities = new Vector.<Entity>();
 	        _lifeBars = new Vector.<LifeBarHandling>();
-
-	        initGame(new Array(GameConstants.ENEMY, GameConstants.ENEMY));
         }
 		public static function get entityManager():EntityManager
 		{
-			if(self == null)
+			if(!self)
 			{
 				self = new EntityManager();
 			}
 			return self;
 		}
 
-		private function initGame(initEntities:Array):void {
-			for each (var name:String in initEntities) {
-				_unusedEntities.push(new Entity(GameConstants.getData(name), new Point(0, 0)));
-			}
-		}
-
-		public function initGameEntities():void
+		public function init():void
 		{
 			createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
-
-            createSpawnList();
 		}
 
-        public function createSpawnList():void
+        public function loadEntities(levelIndex:int = 1):void
         {
-            var loadingEntities:Array = GameConstants.loadSpawnData();
+            var loadingEntities:Array = GameConstants.loadSpawnData(levelIndex);
             for(var i:int = 0;i<loadingEntities.length;i++)
             {
-                Starling.current.juggler.delayCall(createEntity, loadingEntities[i][0], loadingEntities[i][2], new Point(Starling.current.viewPort.width, loadingEntities[i][1]));
+                Starling.juggler.delayCall(createEntity, loadingEntities[i][0], loadingEntities[i][2], new Point(Starling.current.viewPort.width, loadingEntities[i][1]));
             }
         }
 
@@ -64,7 +53,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		    {
 			    tempEntity = _unusedEntities.shift();
 			    if (tempEntity.movieClip)
-				    tempEntity.removeMoviclip();
+				    tempEntity.removeMovieClip();
 		    }
             tempEntity = new Entity(GameConstants.getData(name), position);
 
@@ -75,22 +64,28 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			    _lifeBars.push(new LifeBarHandling(tempEntity));
 		    }
 
-		    GameStage.gameStage.addChild(CollisionDummyBoxes.getDummy(tempEntity));
-            GameStage.gameStage.addChildAt(tempEntity.movieClip, 3);
+            if(Dreamcatcher.debugMode)
+		        GameStage.gameStage.addChild(CollisionDummyBoxes.getDummy(tempEntity));
+
+            GameStage.gameStage.addChildAt(tempEntity.movieClip, 4);
             return tempEntity;
 		}
 
 		public function addUnusedEntity(entity:Entity):void
 		{
 			_entities.splice(_entities.indexOf(entity),1);
-			Score.updateScore(entity);
-			for each (var image:CollisionImage in CollisionDummyBoxes.dummies) {
-				if (entity.name == image.entityName) {
-					GameStage.gameStage.removeChild(image);
-					CollisionDummyBoxes.dummies.splice(CollisionDummyBoxes.dummies.indexOf(image), 1);
-					image.dispose();
-				}
-			}
+
+            if(Dreamcatcher.debugMode)
+            {
+                for each (var image:CollisionImage in CollisionDummyBoxes.dummies) {
+                    if (entity.name == image.entityName) {
+                        GameStage.gameStage.removeChild(image);
+                        CollisionDummyBoxes.dummies.splice(CollisionDummyBoxes.dummies.indexOf(image), 1);
+                        image.dispose();
+                    }
+                }
+            }
+
 			_unusedEntities.push(entity);
 		}
 

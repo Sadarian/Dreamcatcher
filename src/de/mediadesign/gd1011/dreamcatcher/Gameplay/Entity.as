@@ -1,6 +1,6 @@
 package de.mediadesign.gd1011.dreamcatcher.Gameplay
 {
-    import de.mediadesign.gd1011.dreamcatcher.Assets.AssetsManager;
+    import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.IMovement;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.IWeapon;
@@ -80,9 +80,9 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
                 _weaponSystem.shoot(deltaTime, _position, EntityManager.entityManager.getEntity(GameConstants.PLAYER).position);
         }
 
-		public function removeMoviclip():void
+		public function removeMovieClip():void
 		{
-			AssetsManager.addMovieClip(_movieClip, _name);
+			GraphicsManager.graphicsManager.addMovieClip(_movieClip, _name);
 			_movieClip = null;
 		}
 
@@ -115,6 +115,11 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		{
 			return _movementSystem;
 		}
+
+        public function get weaponSystem():IWeapon
+        {
+            return _weaponSystem;
+        }
 
 		public function get collisionPoint():Point
 		{

@@ -1,9 +1,10 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
-    import de.mediadesign.gd1011.dreamcatcher.Assets.AssetsManager;
+    import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBullet;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementEnemy;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementVictim;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponBoss;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponEnemy;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerStraight;
 	import flash.filesystem.File;
@@ -51,6 +52,10 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const BOSS_ANIM_CONFIG:Vector.<int> = new <int>[3,2,6,8];
 		public static const BOSS_TEXTURE_NAME:String = "BossWalk";
 
+        public static const BOSS_BULLET:String = "Boss_Bullet";
+        public static const BOSS_BULLET_ANIM_CONFIG:Vector.<int> = new <int>[2,1,2,12];
+        public static const BOSS_BULLET_TEXTURE_NAME:String = "EnemyBullet";
+
 		public static const PLAYER:String = "Player";
 		public static const PLAYER_ANIM_CONFIG:Vector.<int> = new <int>[4,2,6,12];
 		public static const PLAYER_TEXTURE_NAME:String = "PlayerOnly";
@@ -78,20 +83,19 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const BITMAP_FONT_TEXTURE:String = "testBitmapFont";
 		public static const BITMAP_FONT_CONFIG:String = "testBitmapFontXml";
 
-		public static const SHAREDOBJECT:String = "Dreamcatcher";
-
         private static var _meleeDamage:Vector.<Number>;
 	    private static var _playerMovementBorder:Rectangle;
-		private static var _victimMovementBorderMax:Number;
-		private static var _victimMovementBorderMin:Number;
-		private static var _victimDirectionBorderMax:Number;
-		private static var _victimDirectionBorderMin:Number;
         private static var _playerStartPosition:Point;
         private static var _victimTimeUntilMid:Number;
+        private static var _bossShootsUntilCharge:Number;
+        private static var _bossFadingInTime:Number;
+        private static var _bossDistanceBorder:Number;
+        private static var _bossChargeSpeedMultiplier:Number;
 
         public static function init(path:String = "Configs/Config.json"):void
         {
 	        new WeaponPlayerStraight();
+            new WeaponBoss();
             new MovementBullet();
             new MovementEnemy();
             new MovementVictim();
@@ -113,13 +117,13 @@ package de.mediadesign.gd1011.dreamcatcher
                                                                                 data.playerMovementBorder[1],
                                                                                 data.playerMovementBorder[2],
                                                                                 data.playerMovementBorder[3]);
-	        if(data.victimMovementBorder) _victimMovementBorderMax = data.victimMovementBorder[0];
-	        if(data.victimMovementBorder) _victimMovementBorderMin = data.victimMovementBorder[1];
-	        if(data.victimDirectionBorders) _victimDirectionBorderMax = data.victimDirectionBorders[0];
-	        if(data.victimDirectionBorders) _victimDirectionBorderMin = data.victimDirectionBorders[1];
             if(data.playerStartPosition) _playerStartPosition = new Point(data.playerStartPosition[0],
                                                                           data.playerStartPosition[1]);
             if(data.victimTimeUntilMid) _victimTimeUntilMid = data.victimTimeUntilMid;
+            if(data.bossShootsUntilCharge) _bossShootsUntilCharge = data.bossShootsUntilCharge;
+            if(data.bossFadingInTime) _bossFadingInTime = data.bossFadingInTime;
+            if(data.bossDistanceBorder) _bossDistanceBorder = data.bossDistanceBorder;
+            if(data.bossChargeSpeedMultiplier) _bossChargeSpeedMultiplier = data.bossChargeSpeedMultiplier;
         }
 
         public static function getData(type:String):Array
@@ -140,17 +144,16 @@ package de.mediadesign.gd1011.dreamcatcher
             if(data.collisionMode) dataArray[6] = (data.collisionMode as String); else throw new ArgumentError(type + " has no collisionMode declared!");
             if(data.collisionPoint) dataArray[7] = new Point(data.collisionPoint[0], data.collisionPoint[1]); else throw new ArgumentError(type + " has no collisionPoint declared!");
 	        if(data.collisionValues) dataArray[8] = new Point(data.collisionValues[0], data.collisionValues[1]); else throw new ArgumentError(type + " has no collisionValues declared!");
-            dataArray[9] = AssetsManager.getMovieClip(type);
-	        if(data.points) dataArray[10] = (data.points[0]); else throw new ArgumentError(type + " has no Points declared!");
+            dataArray[9] = GraphicsManager.graphicsManager.getMovieClip(type);
 
             stream.close();
             return dataArray;
         }
 
-        public static function loadSpawnData():Array
+        public static function loadSpawnData(levelIndex:int = 1):Array
         {
             var stream:FileStream = new FileStream();
-            stream.open(File.applicationDirectory.resolvePath("Configs/ConfigSpawn.json"), FileMode.READ);
+            stream.open(File.applicationDirectory.resolvePath("Configs/ConfigSpawnLevel"+levelIndex+".json"), FileMode.READ);
             var data:Object = JSON.parse(stream.readUTFBytes(stream.bytesAvailable));
             return data.enemies;
         }
@@ -186,23 +189,24 @@ package de.mediadesign.gd1011.dreamcatcher
             return _victimTimeUntilMid;
         }
 
-		public static function get victimMovementBorderMax():Number {
-			return _victimMovementBorderMax;
-		}
+        public static function get bossShootsUntilCharge():Number
+        {
+            return _bossShootsUntilCharge;
+        }
 
-		public static function get victimMovementBorderMin():Number {
-			return _victimMovementBorderMin;
-		}
+        public static function get bossFadingInTime():Number
+        {
+            return _bossFadingInTime;
+        }
 
-		public function GameConstants() {
-		}
+        public static function get bossDistanceBorder():Number
+        {
+            return _bossDistanceBorder;
+        }
 
-		public static function get victimDirectionBorderMax():Number {
-			return _victimDirectionBorderMax;
-		}
-
-		public static function get victimDirectionBorderMin():Number {
-			return _victimDirectionBorderMin;
-		}
-	}
+        public static function get bossChargeSpeedMultiplier():Number
+        {
+            return _bossChargeSpeedMultiplier;
+        }
+    }
 }

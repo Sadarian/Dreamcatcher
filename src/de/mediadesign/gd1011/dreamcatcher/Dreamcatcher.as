@@ -6,16 +6,15 @@ package de.mediadesign.gd1011.dreamcatcher
 	import flash.display.StageOrientation;
 	import flash.display.StageScaleMode;
     import flash.events.Event;
-	import flash.events.StageOrientationEvent;
-	import flash.geom.Orientation3D;
 	import flash.geom.Rectangle;
     import starling.core.Starling;
     import starling.events.Event;
-    import starling.events.ResizeEvent;
 
     [SWF(width="1280", height="800", frameRate="60", backgroundColor="#ffffff")]
 	public class Dreamcatcher extends Sprite
     {
+        public static const debugMode:Boolean = true;
+
 		private var _starling:Starling;
 
 		public function Dreamcatcher()
@@ -26,9 +25,10 @@ package de.mediadesign.gd1011.dreamcatcher
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.frameRate = 60;
-
 			stage.autoOrients = false;
 			stage.setOrientation(StageOrientation.ROTATED_RIGHT);
+            stage.stageHeight = stage.fullScreenHeight;
+            stage.stageWidth = stage.fullScreenWidth;
 
 			init();
 		}
@@ -36,20 +36,21 @@ package de.mediadesign.gd1011.dreamcatcher
 		private function init():void
         {
             GameConstants.init();
-            stage.stageHeight = stage.fullScreenHeight;
-            stage.stageWidth = stage.fullScreenWidth;
+
 			_starling = new Starling(Game, stage, new Rectangle(0, 0 , 1280, 800));
-			_starling.showStats = true;
-			_starling.addEventListener(starling.events.Event.ROOT_CREATED, startStarling);
+			_starling.showStats = debugMode;
+			_starling.addEventListener(starling.events.Event.ROOT_CREATED, onRootCreated);
 		}
 
-		private function startStarling(event:starling.events.Event):void
+		private function onRootCreated(event:starling.events.Event):void
         {
-			_starling.start();
-            (_starling.root as Game).setStartTimeStamp();
             NativeApplication.nativeApplication.addEventListener(flash.events.Event.ACTIVATE, onActivate);
             NativeApplication.nativeApplication.addEventListener(flash.events.Event.DEACTIVATE, onDeactivate);
             NativeApplication.nativeApplication.addEventListener(flash.events.Event.EXITING, onExiting);
+
+			_starling.start();
+            (_starling.root as Game).setStartTimeStamp();
+            (_starling.root as Game).init();
 		}
 
         private function onActivate(event:flash.events.Event):void

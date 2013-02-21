@@ -1,8 +1,7 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
-    import de.mediadesign.gd1011.dreamcatcher.Assets.AssetsLoader;
-    import de.mediadesign.gd1011.dreamcatcher.Assets.AssetsManager;
-    import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionDummyBoxes;
+    import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
+	import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionDummyBoxes;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementPlayer;
@@ -13,7 +12,6 @@ package de.mediadesign.gd1011.dreamcatcher
     import de.mediadesign.gd1011.dreamcatcher.Processes.RenderProcess;
     import de.mediadesign.gd1011.dreamcatcher.Processes.ShootingProcess;
     import flash.geom.Point;
-	import flash.net.SharedObject;
 	import flash.ui.Keyboard;
     import flash.utils.getTimer;
     import starling.core.Starling;
@@ -25,32 +23,30 @@ package de.mediadesign.gd1011.dreamcatcher
     import starling.events.TouchEvent;
     import starling.events.TouchPhase;
 
-	public class Game extends Sprite
+    public class Game extends Sprite
     {
+        private var graphicsManager:GraphicsManager;
+        private var entityManager:EntityManager;
+        private var gameStage:GameStage;
+
+
+        private var moveProcess:MoveProcess;
 		private var shootingProcess:ShootingProcess;
-		private var moveProcess:MoveProcess;
 		private var collisionProcess:CollisionProcess;
+        private var destroyProcess:DestroyProcess;
 		private var renderProcess:RenderProcess;
-		private var destroyProcess:DestroyProcess;
+
 		private var lastFrameTimeStamp:Number;
 		private var BossButton:Button;
-		private var soDreamcatcher:SharedObject;
 
         //DEBUG:
         private var touchPosition:Point = new Point();
 
 		public function Game()
         {
-	        AssetsManager.start();
-	        var entityManager:EntityManager = EntityManager.entityManager;
-
-	        soDreamcatcher = SharedObject.getLocal(GameConstants.SHAREDOBJECT);
-	        soDreamcatcher.data.reachedBoss = false;
-	        if (soDreamcatcher.data.achievedLvl <= 0)
-	        {
-		        soDreamcatcher.data.achievedLvl = 1;
-	        }
-	        soDreamcatcher.flush();
+            graphicsManager = GraphicsManager.graphicsManager;
+            gameStage = GameStage.gameStage;
+	        entityManager = EntityManager.entityManager;
 
 	        moveProcess = new MoveProcess();
 	        shootingProcess = new ShootingProcess();
@@ -58,27 +54,45 @@ package de.mediadesign.gd1011.dreamcatcher
 	        destroyProcess = new DestroyProcess();
 	        renderProcess = new RenderProcess();
 
-            addChild(AssetsManager.getImage(GameConstants.BACKGROUND));
-			addChild(GameStage.gameStage);
-			GameStage.gameStage.init();
-			GameStage.gameStage.loadLevel();
-
-			addChild(BossButton = new Button(AssetsLoader.getTexture(GameConstants.BUTTON),"RESTART"));
-			BossButton.x = 560;
-			BossButton.fontName = "TestFont";
-			BossButton.enabled = false;
-
-            entityManager.initGameEntities();
-			startGame();
+			addChild(gameStage);
 		}
 
-		private function startGame():void
-		{
-			addEventListener(Event.ENTER_FRAME, update);
-			addEventListener(TouchEvent.TOUCH, onTouch);
+        public function init():void
+        {
+            graphicsManager.init();
+            graphicsManager.loadQueue(function(ratio:Number):void
+            {
+                if(ratio==1)
+                    Starling.juggler.delayCall(resumeInit, 0.15);
+            });
+        }
 
-            Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, debugFunction);
-			BossButton.addEventListener(Event.TRIGGERED, onButtonClick);
+        private function resumeInit():void
+        {
+            gameStage.init();
+            entityManager.init();
+
+            startLevel();
+
+            addEventListener(Event.ENTER_FRAME, update);
+            addEventListener(TouchEvent.TOUCH, onTouch);
+
+            if(Dreamcatcher.debugMode)
+            {
+                Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, debugFunction);
+
+                addChild(BossButton = new Button(graphicsManager.getTexture(GameConstants.BUTTON),"RESTART"));
+                BossButton.x = 560;
+                BossButton.fontName = "TestFont";
+                BossButton.enabled = false;
+                BossButton.addEventListener(Event.TRIGGERED, onButtonClick);
+            }
+        }
+
+		private function startLevel(levelIndex:int = 1):void
+		{
+            gameStage.loadLevel(levelIndex);
+            entityManager.loadEntities(levelIndex);
 		}
 
         public function setStartTimeStamp():void
@@ -86,25 +100,22 @@ package de.mediadesign.gd1011.dreamcatcher
             lastFrameTimeStamp = getTimer() / 1000;
         }
 
-		private function onButtonClick(event:Event):void {
+		private function onButtonClick(event:Event):void
+        {
+            if(event.target == BossButton)
+            {
+                trace("Restarting Game!");
 
+                entityManager.loadEntities();
 
-			trace("Restarting Game!");
-
-			EntityManager.entityManager.createSpawnList();
-
-			if(EntityManager.entityManager.getEntity(GameConstants.PLAYER) == null)
-			EntityManager.entityManager.createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
-			BossButton.enabled = false;
-
+                if(entityManager.getEntity(GameConstants.PLAYER) == null)
+                    entityManager.createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
+                BossButton.enabled = false;
+            }
 		}
 
 		private function update(event:Event):void
 		{
-			if (EntityManager.entityManager.getEntity(GameConstants.PLAYER) == null)
-			{
-				BossButton.enabled = true;
-			}
             var now:Number = getTimer() / 1000;
             var passedTime:Number = now - lastFrameTimeStamp;
             lastFrameTimeStamp = now;
@@ -114,9 +125,14 @@ package de.mediadesign.gd1011.dreamcatcher
 			collisionProcess.update();
 			destroyProcess.update();
 			renderProcess.update();
+            gameStage.update(now);
 
-			CollisionDummyBoxes.update();
-			GameStage.gameStage.moveGameStage();
+            if(Dreamcatcher.debugMode)
+            {
+                if (entityManager.getEntity(GameConstants.PLAYER) == null)
+                    BossButton.enabled = true;
+                CollisionDummyBoxes.update();
+            }
 		}
 
         private function onTouch(e:TouchEvent):void
@@ -128,35 +144,31 @@ package de.mediadesign.gd1011.dreamcatcher
 
             MovementPlayer.touch = null;
             WeaponPlayerControllable.touch = null;
+
             for each(var touch:Touch in touches)
                 if(touch.getLocation(stage).x < GameConstants.playerMovementBorder.width)
                     MovementPlayer.touch = touch;
                 else
                     WeaponPlayerControllable.touch = touch;
 
-            //DEBUG:
-            if(e.getTouch(stage, TouchPhase.HOVER))
-                touchPosition = e.getTouch(stage, TouchPhase.HOVER).getLocation(stage);
+            if(Dreamcatcher.debugMode)
+                if(e.getTouch(stage, TouchPhase.HOVER))
+                    touchPosition = e.getTouch(stage, TouchPhase.HOVER).getLocation(stage);
         }
 
         //DEBUG:
         private function debugFunction(e:KeyboardEvent):void
         {
-            if(e.keyCode==Keyboard.F1 && (EntityManager.entityManager.getEntity(GameConstants.PLAYER) == null))
-                EntityManager.entityManager.createEntity(GameConstants.PLAYER, touchPosition);
+            if(e.keyCode==Keyboard.F1 && (entityManager.getEntity(GameConstants.PLAYER) == null))
+                entityManager.createEntity(GameConstants.PLAYER, touchPosition);
             if(e.keyCode==Keyboard.F2)
-                EntityManager.entityManager.createEntity(GameConstants.ENEMY, touchPosition);
+                entityManager.createEntity(GameConstants.ENEMY, touchPosition);
             if(e.keyCode==Keyboard.F3)
-                EntityManager.entityManager.createEntity(GameConstants.VICTIM, touchPosition);
+                entityManager.createEntity(GameConstants.VICTIM, touchPosition);
             if(e.keyCode==Keyboard.F4)
-                EntityManager.entityManager.createEntity(GameConstants.BOSS, touchPosition);
+                entityManager.createEntity(GameConstants.BOSS, touchPosition);
             if(e.keyCode==Keyboard.F5)
-                EntityManager.entityManager.createSpawnList();
+                entityManager.loadEntities();
         }
-
-		public function destroySharedObject():void
-		{
-			soDreamcatcher.clear();
-		}
     }
 }

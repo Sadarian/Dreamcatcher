@@ -1,6 +1,6 @@
 package de.mediadesign.gd1011.dreamcatcher.View
 {
-    import de.mediadesign.gd1011.dreamcatcher.Assets.AssetsManager;
+    import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
@@ -23,7 +23,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			{
 				position = new Point(1100, 30);
 			}
-			lifeBar = AssetsManager.getImage("LifeBar");
+			lifeBar = GraphicsManager.graphicsManager.getImage("LifeBar");
 
 			life = entity.health;
             this.entity = entity;

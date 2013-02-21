@@ -1,6 +1,6 @@
 package de.mediadesign.gd1011.dreamcatcher.TestStuff
 {
-    import de.mediadesign.gd1011.dreamcatcher.Assets.AssetsLoader;
+    import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
@@ -15,14 +15,14 @@ package de.mediadesign.gd1011.dreamcatcher.TestStuff
 		}
 
 		private static function createRect(x:Number, y:Number, name:String):CollisionImage {
-			var temRect:CollisionImage = new CollisionImage(AssetsLoader.getTexture("Quad"),name);
+			var temRect:CollisionImage = new CollisionImage(GraphicsManager.graphicsManager.getTexture("Quad"),name);
 			temRect.scaleX = x/100;
 			temRect.scaleY = y/100;
 			return temRect;
 		}
 
 		private static function createCircle(x:Number, name:String):CollisionImage {
-			var temCircle:CollisionImage = new CollisionImage(AssetsLoader.getTexture("Circle"), name);
+			var temCircle:CollisionImage = new CollisionImage(GraphicsManager.graphicsManager.getTexture("Circle"), name);
 			temCircle.scaleX = x/100;
 			temCircle.scaleY = temCircle.scaleX;
 			return temCircle;

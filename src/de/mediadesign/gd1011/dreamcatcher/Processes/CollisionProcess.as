@@ -3,12 +3,13 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
-    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Collision.CollisionUnidentical;
+	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Collision.CollisionUnidentical;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Collision.CollisionIdentical;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBoss;
     import de.mediadesign.gd1011.dreamcatcher.View.LifeBarHandling;
+	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
 
-    public class CollisionProcess
+	public class CollisionProcess
 	{
         private var manager:EntityManager;
 
@@ -29,13 +30,16 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 					{
 						if(entityA.collisionMode == entityB.collisionMode)
 						{
-							if (CollisionIdentical.checkCollision(entityA, entityB))
+							if (!(entityA.name.search(entityB.name) >= 0) && !(entityB.name.search(entityA.name) >= 0))
 							{
-                                meleeCombat(entityA, entityB);
+								if (CollisionIdentical.checkCollision(entityA, entityB))
+								{
+									MeleeCombat(entityA, entityB);
 
-                                rangeCombat(entityA, entityB);
+									rangeCombat(entityA, entityB);
 
-								lifeBarUpdate();
+									lifeBarUpdate();
+								}
 							}
 						}
 						else
@@ -48,6 +52,8 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 
                                     rangeCombat(entityA, entityB);
 
+									pickUpPowerUp(entityA, entityB);
+
 									lifeBarUpdate()
 								}
 							}
@@ -57,8 +63,26 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 			}
 		}
 
-		private function lifeBarUpdate():void {
-			for each (var lifeBar:LifeBarHandling in manager.lifeBars) {
+	    private function pickUpPowerUp(entityA:Entity, entityB:Entity):void
+	    {
+		    if (entityA.name == GameConstants.PLAYER && (entityB.name.search(GameConstants.POWERUP) >= 0) && entityB.health > 0)
+		    {
+//			    trace(entityB.name + " was picked up on EntityB!" + entityB.health);
+				PowerUpTrigger.addPowerUp(entityB, entityA);
+			    entityB.health = 0;
+		    }
+		    else if (entityB.name == GameConstants.PLAYER && (entityA.name.search(GameConstants.POWERUP) >= 0) && entityA.health > 0)
+		    {
+//			    trace(entityA.name + " was picked up on EntityA!" + entityA.health);
+			    PowerUpTrigger.addPowerUp(entityA, entityB);
+			    entityA.health = 0;
+		    }
+	    }
+
+		private function lifeBarUpdate():void
+		{
+			for each (var lifeBar:LifeBarHandling in manager.lifeBars)
+			{
 				lifeBar.updateHealthBar();
 			}
 		}

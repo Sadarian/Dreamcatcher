@@ -1,6 +1,9 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
     import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
+    import de.mediadesign.gd1011.dreamcatcher.Assets.AssetsLoader;
+    import de.mediadesign.gd1011.dreamcatcher.Assets.AssetsManager;
+	import de.mediadesign.gd1011.dreamcatcher.Processes.ActivePowerUpProcess;
 	import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionDummyBoxes;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
@@ -12,6 +15,10 @@ package de.mediadesign.gd1011.dreamcatcher
     import de.mediadesign.gd1011.dreamcatcher.Processes.RenderProcess;
     import de.mediadesign.gd1011.dreamcatcher.Processes.ShootingProcess;
     import flash.geom.Point;
+	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
+
+	import flash.geom.Point;
+	import flash.net.SharedObject;
 	import flash.ui.Keyboard;
     import flash.utils.getTimer;
     import starling.core.Starling;
@@ -133,6 +140,11 @@ package de.mediadesign.gd1011.dreamcatcher
                     BossButton.enabled = true;
                 CollisionDummyBoxes.update();
             }
+
+			if (PowerUpTrigger.powerUpActive)
+			{
+				ActivePowerUpProcess.update(passedTime);
+			}
 		}
 
         private function onTouch(e:TouchEvent):void

@@ -12,6 +12,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
         //JSON-Config Data:
         private var _name:String;
         private var _health:Number;
+		private var maxHealth:Number;
         private var _movementSystem:IMovement;
         private var _weaponSystem:IWeapon;
         private var _collisionMode:String;
@@ -19,6 +20,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
         private var _collisionValues:Point;
         private var _movieClip:DisplayObject; //added via JSON but it isn't in the Config!
 		private var _points:Number;
+		private var _weaponSpeed:Number;
+		private var _movementSpeed:Number;
 
        //Additional Constructor Data:
         private var _position:Point;
@@ -32,15 +35,22 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 		public function setData(jsonConfig:Array, position:Point):void {
 			_name = jsonConfig[0];
-			_health = jsonConfig[1];
+			maxHealth = jsonConfig[1];
+			_health = maxHealth;
 
 			_movementSystem = jsonConfig[2];
 			if(_movementSystem)
-				_movementSystem.speed = jsonConfig[3];
+			{
+				_movementSpeed = jsonConfig[3];
+				setMovementSpeed();
+			}
 
 			_weaponSystem = jsonConfig[4];
 			if(_weaponSystem)
-				_weaponSystem.speed = jsonConfig[5];
+			{
+				_weaponSpeed = jsonConfig[5];
+				setWeaponSpeed();
+			}
 
 			_collisionMode = jsonConfig[6];
 			_collisionPoint = jsonConfig[7];
@@ -144,10 +154,44 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		public function set health(value:Number):void
 		{
 			_health = value;
+			if (_health > maxHealth)
+			{
+				_health = maxHealth;
+			}
 		}
 
 		public function get points():Number {
 			return _points;
+		}
+
+		public function increaseWeaponSpeed(multiplier:Number):void {
+			if (_weaponSystem != null)
+			{
+				_weaponSystem.increaseSpeed(multiplier);
+			}
+		}
+
+		public function setWeaponSpeed():void
+		{
+			if (_weaponSystem != null)
+			{
+				_weaponSystem.speed = _weaponSpeed
+			}
+		}
+
+		public function increaseMovementSpeed(multiplier:Number):void {
+			if (_movementSystem != null)
+			{
+				_movementSystem.increaseSpeed(multiplier);
+			}
+		}
+
+		public function setMovementSpeed():void
+		{
+			if (_movementSystem != null)
+			{
+				_movementSystem.speed = _movementSpeed;
+			}
 		}
 	}
 }

@@ -13,6 +13,11 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
             _speed = value;
         }
 
+	    public function increaseSpeed(multiplier:Number):void
+	    {
+		    _speed /= multiplier;
+	    }
+
         public function set target(point:Point):void
         {
             _target = point;

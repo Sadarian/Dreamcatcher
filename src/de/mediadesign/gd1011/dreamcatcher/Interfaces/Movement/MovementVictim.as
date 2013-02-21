@@ -21,6 +21,11 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
             _speed = value;
         }
 
+	    public function increaseSpeed(multiplier:Number):void
+	    {
+		    _speed /= multiplier;
+	    }
+
         public function move(deltaTime:Number, position:Point):Point
         {
             if(idleTime<=0)

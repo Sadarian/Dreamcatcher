@@ -2,10 +2,14 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 {
     import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
     import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionDummyBoxes;
+	import de.mediadesign.gd1011.dreamcatcher.Gameplay.PowerUps;
+	import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionDummyBoxes;
     import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionImage;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.View.LifeBarHandling;
-    import flash.geom.Point;
+	import de.mediadesign.gd1011.dreamcatcher.View.Score;
+
+	import flash.geom.Point;
     import starling.core.Starling;
 
     public class EntityManager
@@ -85,6 +89,9 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
                     }
                 }
             }
+			Score.updateScore(entity);
+
+			PowerUps.checkDrop(entity);
 
 			_unusedEntities.push(entity);
 		}

@@ -18,7 +18,12 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
             _speed = value;
         }
 
-        public function shoot(deltaTime:Number, position:Point, target:Object):void
+	    public function increaseSpeed(multiplier:Number):void
+	    {
+		    _speed *= multiplier;
+	    }
+
+	    public function shoot(deltaTime:Number, position:Point, target:Object):void
         {
             sumTime += deltaTime;
             if(sumTime>=_speed)

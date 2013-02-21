@@ -34,7 +34,7 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 							{
 								if (CollisionIdentical.checkCollision(entityA, entityB))
 								{
-									MeleeCombat(entityA, entityB);
+									meleeCombat(entityA, entityB);
 
 									rangeCombat(entityA, entityB);
 
@@ -89,16 +89,19 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 
         private static function rangeCombat(entityA:Entity, entityB:Entity):void
         {
-            if (entityA.name.search(GameConstants.BULLET) >= 0 && !(entityB.name.search(GameConstants.BULLET) >= 0) && (entityA.name.search(entityB.name) == -1))
-            {
-                entityB.health = entityB.health - entityA.health;
-                entityA.health = 0;
-            }
-            else if(entityB.name.search(GameConstants.BULLET) >= 0 && !(entityA.name.search(GameConstants.BULLET) >= 0) && (entityB.name.search(entityA.name) == -1))
-            {
-                entityA.health = entityA.health - entityB.health;
-                entityB.health = 0;
-            }
+	        if (!((entityA.name.search(GameConstants.POWERUP) >= 0) || (entityB.name.search(GameConstants.POWERUP) >= 0)))
+	        {
+		        if (entityA.name.search(GameConstants.BULLET) >= 0 && !(entityB.name.search(GameConstants.BULLET) >= 0) && (entityA.name.search(entityB.name) == -1))
+	            {
+	                entityB.health = entityB.health - entityA.health;
+	                entityA.health = 0;
+	            }
+	            else if(entityB.name.search(GameConstants.BULLET) >= 0 && !(entityA.name.search(GameConstants.BULLET) >= 0) && (entityB.name.search(entityA.name) == -1))
+	            {
+	                entityA.health = entityA.health - entityB.health;
+	                entityB.health = 0;
+	            }
+	        }
         }
 
         private static function meleeCombat(entityA:Entity, entityB:Entity):void

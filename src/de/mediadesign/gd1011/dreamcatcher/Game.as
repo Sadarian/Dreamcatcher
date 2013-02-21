@@ -1,8 +1,6 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
     import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
-    import de.mediadesign.gd1011.dreamcatcher.Assets.AssetsLoader;
-    import de.mediadesign.gd1011.dreamcatcher.Assets.AssetsManager;
 	import de.mediadesign.gd1011.dreamcatcher.Processes.ActivePowerUpProcess;
 	import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionDummyBoxes;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;

@@ -160,11 +160,13 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			}
 		}
 
-		public function get points():Number {
+		public function get points():Number
+		{
 			return _points;
 		}
 
-		public function increaseWeaponSpeed(multiplier:Number):void {
+		public function increaseWeaponSpeed(multiplier:Number):void
+		{
 			if (_weaponSystem != null)
 			{
 				_weaponSystem.increaseSpeed(multiplier);
@@ -179,7 +181,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			}
 		}
 
-		public function increaseMovementSpeed(multiplier:Number):void {
+		public function increaseMovementSpeed(multiplier:Number):void
+		{
 			if (_movementSystem != null)
 			{
 				_movementSystem.increaseSpeed(multiplier);

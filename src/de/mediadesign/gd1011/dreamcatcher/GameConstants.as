@@ -195,6 +195,7 @@ package de.mediadesign.gd1011.dreamcatcher
             if(data.collisionPoint) dataArray[7] = new Point(data.collisionPoint[0], data.collisionPoint[1]); else throw new ArgumentError(type + " has no collisionPoint declared!");
 	        if(data.collisionValues) dataArray[8] = new Point(data.collisionValues[0], data.collisionValues[1]); else throw new ArgumentError(type + " has no collisionValues declared!");
             dataArray[9] = GraphicsManager.graphicsManager.getMovieClip(type);
+			if(data.points) dataArray[10] = (data.points[0]); else throw new ArgumentError(type + " has no Points declared!");
 
             stream.close();
             return dataArray;

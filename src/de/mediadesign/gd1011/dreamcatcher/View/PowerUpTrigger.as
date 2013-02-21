@@ -7,7 +7,7 @@
  */
 package de.mediadesign.gd1011.dreamcatcher.View
 {
-	import de.mediadesign.gd1011.dreamcatcher.Assets.AssetsLoader;
+	import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
@@ -73,7 +73,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			if (activeButton == null)
 			{
 				activeButton = name;
-				powerUpButton = new Button(AssetsLoader.getTexture(name));
+				powerUpButton = new Button(GraphicsManager.graphicsManager.getTexture(name));
 				powerUpButton.x = Starling.current.viewPort.width  - powerUp.collisionValues.x * 2 - 20;
 				powerUpButton.y = Starling.current.viewPort.height - powerUp.collisionValues.y * 2 - 20;
 				GameStage.gameStage.addChild(powerUpButton);

@@ -58,29 +58,46 @@ import flash.geom.Rectangle;
 
 		public function addMovieClip(clip:DisplayObject, item:String):void
 		{
-            if(this[item+"_List"])
-                this[item+"_List"].push(clip);
-            else
-                throw new ArgumentError(item + " does not Exist!");
+			if (clip is Image)
+			{
+				clip.dispose();
+			}
+			else
+			{
+				if(this[item+"_List"])
+					this[item+"_List"].push(clip);
+				else
+					throw new ArgumentError(item + " does not Exist!");
+			}
+
 		}
 
         public function getMovieClip(item:String):DisplayObject
         {
-            if(this[item+"_List"])
-            {
-                if(this[item+"_List"].length > 0)
-                    return this[item+"_List"].shift();
-                else
-                {
-                    var sprite:Sprite = new Sprite();
-                    sprite.addChild(createMovieClip(GameConstants[item.toUpperCase()+"_TEXTURE_NAME"], GameConstants[item.toUpperCase()+"_ANIM_CONFIG"]));
-                    if(item == GameConstants.PLAYER)
-                        sprite.addChild(createMovieClip(GameConstants[item.toUpperCase()+"_ARM_TEXTURE_NAME"], GameConstants[item.toUpperCase()+"_ARM_ANIM_CONFIG"]));
-                    return sprite;
-                }
-            }
-            else
-                throw new ArgumentError(item + " does not Exist!");
+	        if (item.search(GameConstants.POWERUP) >= 0)
+	        {
+		        return getImage(item);
+	        }
+	        else
+	        {
+		        if(this[item+"_List"])
+	            {
+
+
+		            if (this[item + "_List"].length > 0)
+			            return this[item + "_List"].shift();
+		            else {
+			            var sprite:Sprite = new Sprite();
+			            sprite.addChild(createMovieClip(GameConstants[item.toUpperCase() + "_TEXTURE_NAME"], GameConstants[item.toUpperCase() + "_ANIM_CONFIG"]));
+			            if (item == GameConstants.PLAYER)
+				            sprite.addChild(createMovieClip(GameConstants[item.toUpperCase() + "_ARM_TEXTURE_NAME"], GameConstants[item.toUpperCase() + "_ARM_ANIM_CONFIG"]));
+			            return sprite;
+		            }
+
+	            }
+	            else
+	                throw new ArgumentError(item + " does not Exist!");
+	        }
         }
 
         //The following Functions will be removed and/or adjusted after transforming the Animations into Atlases!

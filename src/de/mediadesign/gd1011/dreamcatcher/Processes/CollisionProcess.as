@@ -6,7 +6,8 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Collision.CollisionUnidentical;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Collision.CollisionIdentical;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBoss;
-    import de.mediadesign.gd1011.dreamcatcher.View.LifeBarHandling;
+	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementVictim;
+	import de.mediadesign.gd1011.dreamcatcher.View.LifeBarHandling;
 	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
 
 	public class CollisionProcess
@@ -26,7 +27,9 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 				{
 					if ((entityA != entityB && entityA.name != entityB.name) &&
                             (!(entityA.movementSystem is MovementBoss) || !(entityA.movementSystem as MovementBoss).onInit) &&
-                            (!(entityB.movementSystem is MovementBoss) || !(entityB.movementSystem as MovementBoss).onInit))
+                            (!(entityB.movementSystem is MovementBoss) || !(entityB.movementSystem as MovementBoss).onInit)&&
+							(!(entityA.movementSystem is MovementVictim) || !(entityA.movementSystem as MovementVictim).onInit) &&
+							(!(entityB.movementSystem is MovementVictim) || !(entityB.movementSystem as MovementVictim).onInit))
 					{
 						if(entityA.collisionMode == entityB.collisionMode)
 						{

@@ -6,5 +6,9 @@
     "playerStartPosition":[100, 400],
     "victimTimeUntilMid":2,
     "victimMovementBorder":[700, 200],
-    "victimDirectionBorders":[-45, 45]
+    "victimDirectionBorders":[-45, 45],
+    "bossShootsUntilCharge":15,
+    "bossFadingInTime":2,
+    "bossDistanceBorder":200,
+    "bossChargeSpeedMultiplier":5
 }

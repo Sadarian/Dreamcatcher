@@ -7,9 +7,12 @@
  */
 package de.mediadesign.gd1011.dreamcatcher.View
 {
-	import de.mediadesign.gd1011.dreamcatcher.Gameplay.*;
+    import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
+    import de.mediadesign.gd1011.dreamcatcher.Gameplay.*;
 
-	import starling.core.Starling;
+    import flash.net.SharedObject;
+
+    import starling.core.Starling;
 	import starling.text.TextField;
 
 	public class Score
@@ -54,5 +57,26 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		{
 			GameStage.gameStage.removeChild(scoreField);
 		}
+
+        public static function initHighScore():void
+        {
+            var local:SharedObject = Dreamcatcher.localObject;
+            for(var i:int = 0; i<5; i++)
+            {
+                if(!local.data["Score_"+i])
+                    local.data["Score_"+i] = [10000-i*2000, "Frankenstein the "+i+1+"."];
+            }
+            local.flush();
+        }
+
+        public static function resetHighScore():void
+        {
+            var local:SharedObject = Dreamcatcher.localObject;
+            for(var i:int = 0; i<5; i++)
+            {
+                local.data["Score_"+i] = [10000-i*2000, "Frankenstein the "+i+1+"."];
+            }
+            local.flush();
+        }
 	}
 }

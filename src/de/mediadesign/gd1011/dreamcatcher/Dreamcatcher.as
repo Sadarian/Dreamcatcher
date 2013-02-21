@@ -7,13 +7,19 @@ package de.mediadesign.gd1011.dreamcatcher
 	import flash.display.StageScaleMode;
     import flash.events.Event;
 	import flash.geom.Rectangle;
+    import flash.net.SharedObject;
+    import flash.system.Capabilities;
+
     import starling.core.Starling;
     import starling.events.Event;
+    import starling.events.ResizeEvent;
 
     [SWF(width="1280", height="800", frameRate="60", backgroundColor="#ffffff")]
 	public class Dreamcatcher extends Sprite
     {
         public static const debugMode:Boolean = true;
+
+        public static var localObject:SharedObject = SharedObject.getLocal("Dreamcatcher");
 
 		private var _starling:Starling;
 
@@ -27,8 +33,6 @@ package de.mediadesign.gd1011.dreamcatcher
 			stage.frameRate = 60;
 			stage.autoOrients = false;
 			stage.setOrientation(StageOrientation.ROTATED_RIGHT);
-            stage.stageHeight = stage.fullScreenHeight;
-            stage.stageWidth = stage.fullScreenWidth;
 
 			init();
 		}
@@ -37,7 +41,9 @@ package de.mediadesign.gd1011.dreamcatcher
         {
             GameConstants.init();
 
-			_starling = new Starling(Game, stage, new Rectangle(0, 0 , 1280, 800));
+			_starling = new Starling(Game, stage, new Rectangle(0, 0 ,
+                    Math.max(stage.fullScreenHeight, stage.fullScreenWidth),
+                    Math.min(stage.fullScreenHeight, stage.fullScreenWidth)));
 			_starling.showStats = debugMode;
 			_starling.addEventListener(starling.events.Event.ROOT_CREATED, onRootCreated);
 		}

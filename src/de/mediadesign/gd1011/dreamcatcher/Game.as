@@ -11,8 +11,10 @@ package de.mediadesign.gd1011.dreamcatcher
     import de.mediadesign.gd1011.dreamcatcher.Processes.MoveProcess;
     import de.mediadesign.gd1011.dreamcatcher.Processes.RenderProcess;
     import de.mediadesign.gd1011.dreamcatcher.Processes.ShootingProcess;
+    import de.mediadesign.gd1011.dreamcatcher.View.Score;
+
     import flash.geom.Point;
-	import flash.ui.Keyboard;
+    import flash.ui.Keyboard;
     import flash.utils.getTimer;
     import starling.core.Starling;
 	import starling.display.Button;
@@ -44,6 +46,7 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		public function Game()
         {
+            Score.initHighScore();
             graphicsManager = GraphicsManager.graphicsManager;
             gameStage = GameStage.gameStage;
 	        entityManager = EntityManager.entityManager;
@@ -133,7 +136,7 @@ package de.mediadesign.gd1011.dreamcatcher
                     BossButton.enabled = true;
                 CollisionDummyBoxes.update();
             }
-		}
+        }
 
         private function onTouch(e:TouchEvent):void
         {

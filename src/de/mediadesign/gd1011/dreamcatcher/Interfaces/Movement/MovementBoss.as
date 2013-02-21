@@ -27,7 +27,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
         private var _angle:Number = 0;
         private var _speed:Number = 0;
         private var _direction:Point = new Point();
-        private var _lastMoveUp:Boolean = Math.round(Math.random());
+        private var _lastMoveUp:Boolean = (Math.round(Math.random())==1);
 
         public function set speed(value:Number):void
         {

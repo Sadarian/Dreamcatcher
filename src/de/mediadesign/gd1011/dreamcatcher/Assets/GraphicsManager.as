@@ -24,7 +24,7 @@ import flash.geom.Rectangle;
         private var PlayerBullet_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
 		private var Enemy_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
         private var EnemyBullet_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
-		private var Victim_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
+		private var Victim1_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
 		private var Boss_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
 
         public function GraphicsManager():void
@@ -35,7 +35,7 @@ import flash.geom.Rectangle;
             PlayerBullet_List = new Vector.<DisplayObjectContainer>();
             Enemy_List = new Vector.<DisplayObjectContainer>();
             EnemyBullet_List = new Vector.<DisplayObjectContainer>();
-            Victim_List = new Vector.<DisplayObjectContainer>();
+            Victim1_List = new Vector.<DisplayObjectContainer>();
             Boss_List = new Vector.<DisplayObjectContainer>();
         }
 
@@ -68,9 +68,9 @@ import flash.geom.Rectangle;
         {
             if(this[item+"_List"])
             {
-                if(this[item+"_List"].length > 0)
-                    return this[item+"_List"].shift();
-                else
+              //  if(this[item+"_List"].length > 0)
+              //      return this[item+"_List"].shift();
+              //  else
                 {
                     var sprite:Sprite = new Sprite();
                     sprite.addChild(createMovieClip(item));

@@ -2,8 +2,8 @@
 <!-- Created with TexturePacker http://texturepacker.com-->
 <!-- $TexturePacker:SmartUpdate:ff5121ff1bf83361db76d25a02aaf2b3$ -->
 <TextureAtlas imagePath="Victim_Enemy_lvl1Texture.png">
-    <SubTexture name="EnemyBullet_1" x="724" y="524" width="54" height="74" frameX="-101" frameY="-80" frameWidth="256" frameHeight="256"/>
-    <SubTexture name="EnemyBullet_2" x="582" y="1296" width="64" height="88" frameX="-99" frameY="-80" frameWidth="256" frameHeight="256"/>
+    <SubTexture name="EnemyBulletWalk_1" x="724" y="524" width="54" height="74" frameX="-101" frameY="-80" frameWidth="256" frameHeight="256"/>
+    <SubTexture name="EnemyBulletWalk_2" x="582" y="1296" width="64" height="88" frameX="-99" frameY="-80" frameWidth="256" frameHeight="256"/>
     <SubTexture name="EnemyDeadWalk_1" x="466" y="1170" width="132" height="124" frameX="-69" frameY="-128" frameWidth="256" frameHeight="256"/>
     <SubTexture name="EnemyDeadWalk_2" x="806" y="1078" width="146" height="148" frameX="-71" frameY="-104" frameWidth="256" frameHeight="256"/>
     <SubTexture name="EnemyDeadWalk_3" x="954" y="1078" width="68" height="158" frameX="-97" frameY="-94" frameWidth="256" frameHeight="256"/>

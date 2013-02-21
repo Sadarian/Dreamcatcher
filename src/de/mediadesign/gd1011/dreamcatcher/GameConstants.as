@@ -46,7 +46,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const BOSS_SPEED_REDUCTION:Number = 0.15;
 
 		public static const ENEMY:String = "Enemy";
-		public static const ENEMY_STATES:Array =["Walk","DeadWalk","DieCloseCombat","DieShoot","Hit","CloseCombat"];
+		public static const ENEMY_STATES:Array =["Walk","DeadWalk","DieCloseCombat","DieShoot","Hit"];
 
 		public static const BOSS:String = "Boss";
 		public static const BOSS_STATES:Array =["Walk","CloseCombat","Shoot","Hit"];
@@ -58,7 +58,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const PLAYERARM_STATES:Array =["CloseCombat","Walk","Hit","Die"];
 
 		public static const VICTIM:String = "Victim";
-		public static const VICTIM_ARM_STATES:Array =["Die","Walk","Hit","Fear"];
+		public static const VICTIM1_STATES:Array =["Die","Walk","Eat","Fear"];
 
 		public static const PLAYER_BULLET:String = "PlayerBullet";
 		public static const PLAYERBULLET_STATES:Array =["Walk"];
@@ -121,7 +121,7 @@ package de.mediadesign.gd1011.dreamcatcher
             if(data.collisionMode) dataArray[6] = (data.collisionMode as String); else throw new ArgumentError(type + " has no collisionMode declared!");
             if(data.collisionPoint) dataArray[7] = new Point(data.collisionPoint[0], data.collisionPoint[1]); else throw new ArgumentError(type + " has no collisionPoint declared!");
 	        if(data.collisionValues) dataArray[8] = new Point(data.collisionValues[0], data.collisionValues[1]); else throw new ArgumentError(type + " has no collisionValues declared!");
-            dataArray[9] = GraphicsManager.graphicsManager.getMovieClip(type);
+            dataArray[9] = GraphicsManager.graphicsManager.getMovieClip(dataArray[0]);
 
             stream.close();
             return dataArray;

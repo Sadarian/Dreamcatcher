@@ -7,25 +7,45 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
     public class AnimatedModel extends DisplayObjectContainer
     {
-        public static const WALK:String = "walk";
-        public static const DIE:String = "die";
+        public static const WALK:String = "Walk";
+		public static const DEAD_WALK:String ="DeadWalk";
+        public static const DIE:String = "Die";
+		public static const DIE_CLOSE_COMBAT:String ="DieCloseCombat";
+		public static const DIE_SHOOT:String = "DieShoot";
+		public static const DIE_HEAD:String = "DieHead";
+		public static const CLOSE_COMBAT:String = "CloseCombat";
+		public static const Hit:String ="Hit";
+		public static const SHOOT:String ="Shoot";
+		public static const BULLET:String ="Bullet";
+		public static const EAT:String = "Eat";
+		public static const FEAR:String = "Fear";
 
-        private var die:MovieClip;
-        private var walk:MovieClip;
+        private var Die:MovieClip = null;
+        private var Walk:MovieClip = null;
+		private var DieCloseCombat:MovieClip = null;
+		private var DieShoot:MovieClip = null;
+		private var DieHead:MovieClip = null;
+		private var CloseCombat:MovieClip = null;
+		private var Hit:MovieClip = null;
+		private var Shoot:MovieClip = null;
+		private var Bullet:MovieClip = null;
+		private var Eat:MovieClip = null;
+		private var Fear:MovieClip = null;
+
 
         private var actual:MovieClip;
         private var defaultType:String;
 
-        public function AnimatedModel(name:String, usedAnimations:Array, defaultAnimation:String)
+        public function AnimatedModel(name:String = null, usedAnimations:Array = null, defaultAnimation:String = WALK)
         {
             if(!name)
                 throw new ArgumentError("Error! Name is not set!");
 
             for each (var animation:String in usedAnimations)
             {
-                if(AnimatedModel[animation])
+                if(this[animation] == null)
                 {
-                    this[animation] = new MovieClip(GraphicsManager.graphicsManager.getTextures(name+"_"+animation));
+                    this[animation] = new MovieClip(GraphicsManager.graphicsManager.getTextures(name+animation));
                     this[animation].stop();
                     if(animation != WALK && animation != defaultAnimation);
                     {
@@ -41,6 +61,8 @@ package de.mediadesign.gd1011.dreamcatcher.View
             {
                 defaultType = defaultAnimation;
                 actual = this[defaultType];
+				actual.play();
+				addChild(actual);
             }
 
             else
@@ -50,7 +72,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
         public function playAnimation(animation:String):void
         {
-            if(actual == walk || actual == this[defaultType] || actual.isComplete)
+            if(actual == Walk || actual == this[defaultType] || actual.isComplete)
             {
                 if(this[animation])
                 {

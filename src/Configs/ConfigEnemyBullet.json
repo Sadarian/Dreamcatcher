@@ -1,12 +1,12 @@
 {
-    "name":"Player_Bullet",
+    "name":"EnemyBullet",
     "health":10,
     "movementSystem":"MovementBullet",
-    "movementSpeed":600,
+    "movementSpeed":700,
     "weaponSystem":"null",
     "weaponSpeed":0.5,
     "collisionMode":"CollisionCircle",
-    "collisionPoint":[0, -5],
+    "collisionPoint":[0, 0],
     "collisionValues":[25, 25],
     "points":[0]
 }

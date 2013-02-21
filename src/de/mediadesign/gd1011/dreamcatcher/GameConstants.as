@@ -25,60 +25,49 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const TEST_SOUND:String = "TestSound";
 		public static const SOUND_LIST:Vector.<String> = new <String>[TEST_SOUND];
 
-		public static const BACKGROUND:String = "Background";
+		public static const BACKGROUND:String = "StaticBackground";
 		public static const BUTTON:String ="Button";
 
 		//Properties of the GameStage (LVL1)
-		public static const MAIN_STAGE_IMAGE_LIST:Array = ["Main1","Main2","Main3"];
-		public static const BUSH_IMAGE_LIST:Array = ["Bush1","Bush2","Bush3"];
-		public static const FOREST_LIST:Array = [["Forest1"], ["Forest2"], ["Forest3"]];
-		public static const FOG_LIST:Array = [["FogAnim1_01"],["FogAnim1_01"],["FogAnim1_01"]];
+		public static const MAIN_STAGE_IMAGE_LIST:Array = ["Main_1","Main_2","Main_3"];
+		public static const BUSH_IMAGE_LIST:Array = ["Bush_1","Bush_2","Bush_3"];
+		public static const FOREST_LIST:Array = [["Forest_1"], ["Forest_2"], ["Forest_3"]];
+		public static const FOG_LIST:Array = [["FogAnim1_1"],["FogAnim1_1"],["FogAnim1_1"]];
 		public static const BACKGROUND_IMAGE_LIST:Array = ["ScrollingBackground","ScrollingBackground","ScrollingBackground"];
-		public static const FOREGROUND_IMAGE_LIST:Array = ["Front1","Front2","Front3","Front4","Front5"];
+		public static const FOREGROUND_IMAGE_LIST:Array = ["Front_1","Front_2","Front_3","Front_4","Front_5"];
 		public static const GAME_STAGE_MOVMENT_SPEEDS:Vector.<Number> = new <Number>[1,2,3,6,7,8];
 
-		public static const MAIN_STAGE_IMAGE_LIST_BOSS:Array = ["Main1","Main2","Main3"];
-		public static const BUSH_IMAGE_LIST_BOSS:Array = ["Bush1","Bush2","Bush3"];
-		public static const FOREST_LIST_BOSS:Array = [["Forest1"], ["Forest2"], ["Forest3"]];
-		public static const FOG_LIST_BOSS:Array = [["FogAnim1_01"],["FogAnim1_01"],["FogAnim1_01"]];
+		public static const MAIN_STAGE_IMAGE_LIST_BOSS:Array = ["Main_1","Main_2","Main_3"];
+		public static const BUSH_IMAGE_LIST_BOSS:Array = ["Bush_1","Bush_2","Bush_3"];
+		public static const FOREST_LIST_BOSS:Array = [["Forest_1"], ["Forest_2"], ["Forest_3"]];
+		public static const FOG_LIST_BOSS:Array = [["FogAnim1_1"],["FogAnim1_1"],["FogAnim1_1"]];
 		public static const BACKGROUND_IMAGE_LIST_BOSS:Array = ["ScrollingBackground","ScrollingBackground","ScrollingBackground"];
-		public static const FOREGROUND_IMAGE_LIST_BOSS:Array = ["Front1","Front2","Front3","Front4","Front5"];
+		public static const FOREGROUND_IMAGE_LIST_BOSS:Array = ["Front_1","Front_2","Front_3","Front_4","Front_5"];
 		public static const BOSS_SPEED_REDUCTION:Number = 0.15;
 
 		public static const ENEMY:String = "Enemy";
-		public static const ENEMY_ANIM_CONFIG:Vector.<int> = new <int>[4,2,8,10];
-		public static const ENEMY_TEXTURE_NAME:String = "EnemyWalk";
+		public static const ENEMY_STATES:Array =["Walk","DeadWalk","DieCloseCombat","DieShoot","Hit","CloseCombat"];
 
 		public static const BOSS:String = "Boss";
-		public static const BOSS_ANIM_CONFIG:Vector.<int> = new <int>[3,2,6,8];
-		public static const BOSS_TEXTURE_NAME:String = "BossWalk";
+		public static const BOSS_STATES:Array =["Walk","CloseCombat","Shoot","Hit"];
 
 		public static const PLAYER:String = "Player";
-		public static const PLAYER_ANIM_CONFIG:Vector.<int> = new <int>[4,2,6,12];
-		public static const PLAYER_TEXTURE_NAME:String = "PlayerOnly";
+		public static const PLAYER_STATES:Array =["CloseCombat","Walk","Hit","Die"];
 
-	    public static const PLAYER_ARM:String = "PlayerArm";
-	    public static const PLAYER_ARM_ANIM_CONFIG:Vector.<int> = new <int>[4,2,6,12];
-	    public static const PLAYER_ARM_TEXTURE_NAME:String = "PlayerArm";
+	    public static const PLAYERARM:String = "PlayerArm";
+		public static const PLAYERARM_STATES:Array =["CloseCombat","Walk","Hit","Die"];
 
 		public static const VICTIM:String = "Victim";
-		public static const VICTIM_ANIM_CONFIG:Vector.<int> = new <int>[4,2,6,12];
-		public static const VICTIM_TEXTURE_NAME:String = "VictimWalk";
+		public static const VICTIM_ARM_STATES:Array =["Die","Walk","Hit","Fear"];
 
-		public static const PLAYER_BULLET:String = "PlayerAnimBullet";
-		public static const PLAYER_BULLET_ANIM_CONFIG:Vector.<int> = new <int>[1,1,1,12];
-		public static const PLAYER_BULLET_TEXTURE_NAME:String = "PlayerBullet";
+		public static const PLAYER_BULLET:String = "PlayerBullet";
+		public static const PLAYERBULLET_STATES:Array =["Walk"];
 
-	    public static const ENEMY_BULLET:String = "EnemyAnimBullet";
-	    public static const ENEMY_BULLET_ANIM_CONFIG:Vector.<int> = new <int>[2,1,2,12];
-	    public static const ENEMY_BULLET_TEXTURE_NAME:String = "EnemyBullet";
+	    public static const ENEMY_BULLET:String = "EnemyBullet";
+		public static const ENEMYBULLET_STATES:Array =["Walk"];
 
-		public static const PARTICLE:String = "Particle";
-		public static const PARTICLE_CONFIG:String = "testParticleConfig";
-		public static const PARTICLE_TEXTURE:String = "testParticleTexture";
-
-		public static const BITMAP_FONT_TEXTURE:String = "testBitmapFont";
-		public static const BITMAP_FONT_CONFIG:String = "testBitmapFontXml";
+		public static const BOSS_BULLET:String = "BossBullet";
+		public static const BOSSBULLET_STATES:Array =["Walk"];
 
         private static var _meleeDamage:Vector.<Number>;
 	    private static var _playerMovementBorder:Rectangle;
@@ -132,7 +121,7 @@ package de.mediadesign.gd1011.dreamcatcher
             if(data.collisionMode) dataArray[6] = (data.collisionMode as String); else throw new ArgumentError(type + " has no collisionMode declared!");
             if(data.collisionPoint) dataArray[7] = new Point(data.collisionPoint[0], data.collisionPoint[1]); else throw new ArgumentError(type + " has no collisionPoint declared!");
 	        if(data.collisionValues) dataArray[8] = new Point(data.collisionValues[0], data.collisionValues[1]); else throw new ArgumentError(type + " has no collisionValues declared!");
-            dataArray[9] = new AnimatedModel("Victim", [AnimatedModel.DIE, AnimatedModel.WALK], AnimatedModel.WALK);
+            dataArray[9] = GraphicsManager.graphicsManager.getMovieClip(type);
 
             stream.close();
             return dataArray;

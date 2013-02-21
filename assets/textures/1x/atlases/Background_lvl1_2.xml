@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:8e2d0af2f6a9f05b64d8d58af1760880$ -->
-<TextureAtlas imagePath="Background_lvl1_2.png">
-    <SubTexture name="FogAnim3_01" x="2" y="1510" width="1012" height="168" frameX="-81" frameY="-131" frameWidth="1280" frameHeight="800"/>
-    <SubTexture name="FogAnim3_02" x="1016" y="1340" width="1012" height="168" frameX="-81" frameY="-131" frameWidth="1280" frameHeight="800"/>
-    <SubTexture name="FogAnim3_03" x="2" y="1340" width="1012" height="168" frameX="-81" frameY="-131" frameWidth="1280" frameHeight="800"/>
-    <SubTexture name="FogAnim3_04" x="1016" y="1170" width="1012" height="168" frameX="-81" frameY="-131" frameWidth="1280" frameHeight="800"/>
-    <SubTexture name="FogAnim3_05" x="2" y="1170" width="1012" height="168" frameX="-81" frameY="-131" frameWidth="1280" frameHeight="800"/>
-    <SubTexture name="Front1" x="1284" y="2" width="532" height="180" frameX="-432" frameY="-620" frameWidth="1280" frameHeight="800"/>
-    <SubTexture name="Front2" x="1284" y="184" width="402" height="284" frameX="-800" frameY="-516" frameWidth="1280" frameHeight="800"/>
-    <SubTexture name="Front3" x="1688" y="184" width="236" height="124" frameX="-90" frameY="-676" frameWidth="1280" frameHeight="800"/>
-    <SubTexture name="Front4" x="1818" y="2" width="184" height="100" frameX="-135" frameY="-700" frameWidth="1280" frameHeight="800"/>
-    <SubTexture name="Front5" x="1284" y="470" width="382" height="208" frameX="-75" frameY="-592" frameWidth="1280" frameHeight="800"/>
-    <SubTexture name="Main1" x="2" y="586" width="1280" height="582" frameX="0" frameY="-218" frameWidth="1280" frameHeight="800"/>
-    <SubTexture name="Main2" x="2" y="2" width="1280" height="582" frameX="0" frameY="-218" frameWidth="1280" frameHeight="800"/>
+<!-- $TexturePacker:SmartUpdate:8831b41b350eb1b0dd04a4765b923511$ -->
+<TextureAtlas imagePath="Background_lvl1_2Texture.png">
+    <SubTexture name="FogAnim3_1" x="2" y="1510" width="1012" height="168" frameX="-81" frameY="-131" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="FogAnim3_2" x="1016" y="1340" width="1012" height="168" frameX="-81" frameY="-131" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="FogAnim3_3" x="2" y="1340" width="1012" height="168" frameX="-81" frameY="-131" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="FogAnim3_4" x="1016" y="1170" width="1012" height="168" frameX="-81" frameY="-131" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="FogAnim3_5" x="2" y="1170" width="1012" height="168" frameX="-81" frameY="-131" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="Front_1" x="1284" y="2" width="532" height="180" frameX="-432" frameY="-620" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="Front_2" x="1284" y="184" width="402" height="284" frameX="-800" frameY="-516" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="Front_3" x="1688" y="184" width="236" height="124" frameX="-90" frameY="-676" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="Front_4" x="1818" y="2" width="184" height="100" frameX="-135" frameY="-700" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="Front_5" x="1284" y="470" width="382" height="208" frameX="-75" frameY="-592" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="Main_1" x="2" y="586" width="1280" height="582" frameX="0" frameY="-218" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="Main_2" x="2" y="2" width="1280" height="582" frameX="0" frameY="-218" frameWidth="1280" frameHeight="800"/>
 </TextureAtlas>

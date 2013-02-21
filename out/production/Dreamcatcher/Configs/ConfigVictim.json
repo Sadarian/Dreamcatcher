@@ -1,5 +1,5 @@
 {
-    "name":"Victim",
+    "name":"Victim1",
     "health":5,
     "movementSystem":"MovementVictim",
     "movementSpeed":80,

@@ -1,6 +1,6 @@
 package de.mediadesign.gd1011.dreamcatcher.Gameplay
 {
-	import de.mediadesign.gd1011.dreamcatcher.Gameplay.PowerUps.PowerUps;
+	import de.mediadesign.gd1011.dreamcatcher.Gameplay.PowerUps;
 	import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionDummyBoxes;
     import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionImage;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;

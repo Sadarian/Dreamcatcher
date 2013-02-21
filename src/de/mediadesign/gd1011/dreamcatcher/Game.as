@@ -2,7 +2,8 @@ package de.mediadesign.gd1011.dreamcatcher
 {
     import de.mediadesign.gd1011.dreamcatcher.Assets.AssetsLoader;
     import de.mediadesign.gd1011.dreamcatcher.Assets.AssetsManager;
-    import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionDummyBoxes;
+	import de.mediadesign.gd1011.dreamcatcher.Processes.ActivePowerUpProcess;
+	import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionDummyBoxes;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementPlayer;
@@ -12,7 +13,9 @@ package de.mediadesign.gd1011.dreamcatcher
     import de.mediadesign.gd1011.dreamcatcher.Processes.MoveProcess;
     import de.mediadesign.gd1011.dreamcatcher.Processes.RenderProcess;
     import de.mediadesign.gd1011.dreamcatcher.Processes.ShootingProcess;
-    import flash.geom.Point;
+	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
+
+	import flash.geom.Point;
 	import flash.net.SharedObject;
 	import flash.ui.Keyboard;
     import flash.utils.getTimer;
@@ -114,6 +117,10 @@ package de.mediadesign.gd1011.dreamcatcher
 			collisionProcess.update();
 			destroyProcess.update();
 			renderProcess.update();
+			if (PowerUpTrigger.powerUpActive)
+			{
+				ActivePowerUpProcess.update(passedTime);
+			}
 
 			CollisionDummyBoxes.update();
 			GameStage.gameStage.moveGameStage();

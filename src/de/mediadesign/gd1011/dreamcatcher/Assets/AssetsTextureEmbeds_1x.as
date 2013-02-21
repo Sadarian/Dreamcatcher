@@ -10,6 +10,15 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 		[Embed(source="/../assets/textures/Dummy_Life_Bar.png")]
 		public static const LifeBar:Class;
 
+		[Embed(source="/../assets/textures/PowerUpFirerate.png")]
+		public static const PowerUpFireRate:Class;
+
+		[Embed(source="/../assets/textures/PowerUpFreeze.png")]
+		public static const PowerUpFreeze:Class;
+
+		[Embed(source="/../assets/textures/PowerUpHealth.png")]
+		public static const PowerUpHealth:Class;
+
 		[Embed(source="/../assets/textures/DC_spriteSheetCharacterSmaller.png")]
 		public static const PlayerOnly:Class;
 

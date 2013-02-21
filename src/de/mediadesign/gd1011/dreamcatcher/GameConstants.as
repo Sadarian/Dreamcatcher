@@ -1,9 +1,10 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
 	import de.mediadesign.gd1011.dreamcatcher.Assets.AssetsManager;
-	import de.mediadesign.gd1011.dreamcatcher.Gameplay.PowerUps.PowerUps;
+	import de.mediadesign.gd1011.dreamcatcher.Gameplay.PowerUps;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBullet;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementEnemy;
+	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementPowerUp;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementVictim;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponEnemy;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerStraight;
@@ -21,6 +22,7 @@ package de.mediadesign.gd1011.dreamcatcher
         public static const COLLISION_RECTANGLE:String = "CollisionRectangle";
         public static const COLLISION_CIRCLE:String = "CollisionCircle";
 	    public static const BULLET:String = "Bullet";
+		public static const POWERUP:String = "PowerUp";
 
 		public static const TEST_SOUND:String = "TestSound";
 		public static const SOUND_LIST:Vector.<String> = new <String>[TEST_SOUND];
@@ -73,9 +75,9 @@ package de.mediadesign.gd1011.dreamcatcher
 	    public static const ENEMY_BULLET_ANIM_CONFIG:Vector.<int> = new <int>[2,1,2,12];
 	    public static const ENEMY_BULLET_TEXTURE_NAME:String = "EnemyBullet";
 
-		public static const POWERUP_FIRE_RATE:String = "Fire_Rate";
-		public static const POWERUP_FREEZE:String = "Freeze";
-		public static const POWERUP_HEALTH:String = "Health";
+		public static const POWERUP_FIRE_RATE:String = "PowerUpFireRate";
+		public static const POWERUP_FREEZE:String = "PowerUpFreeze";
+		public static const POWERUP_HEALTH:String = "PowerUpHealth";
 
 		public static const PARTICLE:String = "Particle";
 		public static const PARTICLE_CONFIG:String = "testParticleConfig";
@@ -109,6 +111,7 @@ package de.mediadesign.gd1011.dreamcatcher
         public static function init(path:String = "Configs/"):void
         {
 	        new WeaponPlayerStraight();
+	        new MovementPowerUp();
             new MovementBullet();
             new MovementEnemy();
             new MovementVictim();

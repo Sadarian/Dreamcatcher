@@ -187,6 +187,24 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 					break;
 				}
 
+				case GameConstants.POWERUP_FIRE_RATE:
+				{
+					return getImage(GameConstants.POWERUP_FIRE_RATE);
+					break;
+				}
+
+				case GameConstants.POWERUP_HEALTH:
+				{
+					return getImage(GameConstants.POWERUP_HEALTH);
+					break;
+				}
+
+				case GameConstants.POWERUP_FREEZE:
+				{
+					return getImage(GameConstants.POWERUP_FREEZE);
+					break;
+				}
+
 				default :
 				{
 				throw new ArgumentError(item+" does not Exist! Only Player,Enemy,Boss or Victim");
@@ -294,6 +312,24 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 				{
 					EnemyBulletList.push(clip);
 //					trace("Enemy Bullet was added to EnemyBulletList");
+					break;
+				}
+
+				case GameConstants.POWERUP_FIRE_RATE:
+				{
+					clip.dispose();
+					break;
+				}
+
+				case GameConstants.POWERUP_HEALTH:
+				{
+					clip.dispose();
+					break;
+				}
+
+				case GameConstants.POWERUP_FREEZE:
+				{
+					clip.dispose();
 					break;
 				}
 

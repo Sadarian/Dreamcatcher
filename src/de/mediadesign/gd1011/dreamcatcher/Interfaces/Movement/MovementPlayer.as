@@ -25,6 +25,11 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
             _speed = value;
         }
 
+	    public function increaseSpeed(multiplier:Number):void
+	    {
+		    _speed /= multiplier;
+	    }
+
         private function calculateVelocity(position:Point):void
         {
             if(_touch != null)

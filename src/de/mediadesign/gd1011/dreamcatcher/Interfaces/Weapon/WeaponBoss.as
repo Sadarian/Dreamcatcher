@@ -49,5 +49,8 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
         {
             _canShoot = value;
         }
+
+	    public function increaseSpeed(multiplier:Number):void {
+	    }
     }
 }

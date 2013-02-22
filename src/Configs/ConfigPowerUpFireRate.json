@@ -1,0 +1,12 @@
+{
+    "name":"PowerUpFireRate",
+    "health":5,
+    "movementSystem":"MovementPowerUp",
+    "movementSpeed":120,
+    "weaponSystem":"null",
+    "weaponSpeed":5,
+    "collisionMode":"CollisionCircle",
+    "collisionPoint":[0, 0],
+    "collisionValues":[60, 60],
+    "points":[0]
+}

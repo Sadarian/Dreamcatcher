@@ -11,6 +11,9 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
         private var _speed:Number = 0;
 	    private var directionChange:Number = 0;
 	    private var direction:Number = 0;
+
+	    private var _onInit:Boolean = true;
+
 	    private var minDirection:Number = GameConstants.victimDirectionBorderMin;
 	    private var maxDirection:Number = GameConstants.victimDirectionBorderMax;
 	    private var minMovementY:Number = GameConstants.victimMovementBorderMin;
@@ -21,11 +24,16 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
             _speed = value;
         }
 
+	    public function increaseSpeed(multiplier:Number):void
+	    {
+		    _speed /= multiplier;
+	    }
+
         public function move(deltaTime:Number, position:Point):Point
         {
             if(idleTime<=0)
             {
-
+				_onInit = false;
 	            if (maxMovementY <= position.y)
 	            {
 		            direction = getDirection(0,minDirection, deltaTime);
@@ -62,6 +70,10 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
 			    directionChange -= deltaTime;
 			    return direction;
 		    }
+	    }
+
+	    public function get onInit():Boolean {
+		    return _onInit;
 	    }
     }
 }

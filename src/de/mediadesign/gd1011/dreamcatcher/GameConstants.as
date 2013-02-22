@@ -46,10 +46,10 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const BOSS_SPEED_REDUCTION:Number = 0.15;
 
 		public static const ENEMY:String = "Enemy";
-		public static const ENEMY_STATES:Array =["Walk","DeadWalk","DieCloseCombat","DieShoot","Hit"];
+		public static const ENEMY_STATES:Array =["Walk","DeadWalk","DieCloseCombat","Die","Hit"];
 
 		public static const BOSS:String = "Boss";
-		public static const BOSS_STATES:Array =["Walk","CloseCombat","Shoot","Hit"];
+		public static const BOSS_STATES:Array =["Walk","CloseCombat","Shoot","Die"];
 
 		public static const PLAYER:String = "Player";
 		public static const PLAYER_STATES:Array =["CloseCombat","Walk","Hit","Die"];

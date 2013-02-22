@@ -38,7 +38,7 @@ package de.mediadesign.gd1011.dreamcatcher
             GameConstants.init();
 
 			_starling = new Starling(Game, stage, new Rectangle(0, 0 , 1280, 800));
-			_starling.showStats = debugMode;
+			_starling.showStats = true;
 			_starling.addEventListener(starling.events.Event.ROOT_CREATED, onRootCreated);
 		}
 

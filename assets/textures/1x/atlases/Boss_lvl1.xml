@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:543a9abcb8414d285105419f71d2b909$ -->
+<!-- $TexturePacker:SmartUpdate:a98314532c6aaef206ae23d455296e02$ -->
 <TextureAtlas imagePath="Boss_lvl1Texture.png">
     <SubTexture name="BossBullet_1" x="65" y="2004" width="61" height="37"/>
     <SubTexture name="BossBullet_2" x="2" y="2004" width="61" height="37"/>
@@ -10,11 +10,11 @@
     <SubTexture name="BossCloseCombat_4" x="1169" y="2" width="320" height="351" frameX="-52" frameY="-3" frameWidth="400" frameHeight="391"/>
     <SubTexture name="BossCloseCombat_5" x="1143" y="759" width="372" height="355" frameX="0" frameY="0" frameWidth="400" frameHeight="391"/>
     <SubTexture name="BossCloseCombat_6" x="1159" y="369" width="334" height="353" frameX="-37" frameY="-19" frameWidth="400" frameHeight="391"/>
-    <SubTexture name="BossHit_1" x="275" y="2" width="319" height="398"/>
-    <SubTexture name="BossHit_2" x="2" y="412" width="271" height="408"/>
-    <SubTexture name="BossHit_3" x="275" y="402" width="314" height="393"/>
-    <SubTexture name="BossHit_4" x="2" y="2" width="271" height="408"/>
-    <SubTexture name="BossHit_5" x="2" y="822" width="319" height="398"/>
+    <SubTexture name="BossDie_1" x="275" y="2" width="319" height="398"/>
+    <SubTexture name="BossDie_2" x="2" y="412" width="271" height="408"/>
+    <SubTexture name="BossDie_3" x="275" y="402" width="314" height="393"/>
+    <SubTexture name="BossDie_4" x="2" y="2" width="271" height="408"/>
+    <SubTexture name="BossDie_5" x="2" y="822" width="319" height="398"/>
     <SubTexture name="BossShoot_1" x="278" y="1222" width="311" height="383" frameX="-2" frameY="0" frameWidth="313" frameHeight="383"/>
     <SubTexture name="BossShoot_2" x="323" y="797" width="281" height="383" frameX="-17" frameY="0" frameWidth="313" frameHeight="383"/>
     <SubTexture name="BossShoot_3" x="583" y="1607" width="263" height="383" frameX="-35" frameY="0" frameWidth="313" frameHeight="383"/>

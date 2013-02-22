@@ -19,7 +19,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			{
 				position = new Point(20, 30);
 			}
-			else if (entity.name == GameConstants.BOSS)
+			else if (entity.name == GameConstants.BOSS1)
 			{
 				position = new Point(1100, 30);
 			}

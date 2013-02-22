@@ -33,6 +33,8 @@ package de.mediadesign.gd1011.dreamcatcher
 			stage.frameRate = 60;
 			stage.autoOrients = false;
 			stage.setOrientation(StageOrientation.ROTATED_RIGHT);
+            stage.stageHeight = stage.fullScreenHeight;
+            stage.stageWidth = stage.fullScreenWidth;
 
 			init();
 		}
@@ -44,7 +46,7 @@ package de.mediadesign.gd1011.dreamcatcher
 			_starling = new Starling(Game, stage, new Rectangle(0, 0 ,
                     Math.max(stage.fullScreenHeight, stage.fullScreenWidth),
                     Math.min(stage.fullScreenHeight, stage.fullScreenWidth)));
-			_starling.showStats = debugMode;
+			_starling.showStats = true;
 			_starling.addEventListener(starling.events.Event.ROOT_CREATED, onRootCreated);
 		}
 

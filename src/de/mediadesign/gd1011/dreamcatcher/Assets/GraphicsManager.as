@@ -1,6 +1,6 @@
 package de.mediadesign.gd1011.dreamcatcher.Assets
 {
-    import de.mediadesign.gd1011.dreamcatcher.GameConstants;
+	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
 
 import flash.geom.Rectangle;
@@ -19,11 +19,11 @@ import flash.geom.Rectangle;
         private static var self:GraphicsManager;
 
         private var Player_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
-        private var Player_Bullet_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
+        private var PlayerBullet_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
 		private var Enemy_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
-        private var Enemy_Bullet_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
-		private var Victim_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
-		private var Boss_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
+        private var EnemyBullet_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
+		private var Victim1_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
+		private var Boss1_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
         private var Boss_Bullet_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
 
         public function GraphicsManager():void
@@ -31,11 +31,11 @@ import flash.geom.Rectangle;
             super(Starling.contentScaleFactor, true);
 
             Player_List = new Vector.<DisplayObjectContainer>();
-            Player_Bullet_List = new Vector.<DisplayObjectContainer>();
+            PlayerBullet_List = new Vector.<DisplayObjectContainer>();
             Enemy_List = new Vector.<DisplayObjectContainer>();
-            Enemy_Bullet_List = new Vector.<DisplayObjectContainer>();
-            Victim_List = new Vector.<DisplayObjectContainer>();
-            Boss_List = new Vector.<DisplayObjectContainer>();
+            EnemyBullet_List = new Vector.<DisplayObjectContainer>();
+            Victim1_List = new Vector.<DisplayObjectContainer>();
+            Boss1_List = new Vector.<DisplayObjectContainer>();
             Boss_Bullet_List = new Vector.<DisplayObjectContainer>();
         }
 
@@ -74,65 +74,31 @@ import flash.geom.Rectangle;
 
         public function getMovieClip(item:String):DisplayObject
         {
-	        if (item.search(GameConstants.POWERUP) >= 0)
-	        {
-		        return getImage(item);
-	        }
-	        else
-	        {
-		        if(this[item+"_List"])
-	            {
-
-
-		            if (this[item + "_List"].length > 0)
-			            return this[item + "_List"].shift();
-		            else {
-			            var sprite:Sprite = new Sprite();
-			            sprite.addChild(createMovieClip(GameConstants[item.toUpperCase() + "_TEXTURE_NAME"], GameConstants[item.toUpperCase() + "_ANIM_CONFIG"]));
-			            if (item == GameConstants.PLAYER)
-				            sprite.addChild(createMovieClip(GameConstants[item.toUpperCase() + "_ARM_TEXTURE_NAME"], GameConstants[item.toUpperCase() + "_ARM_ANIM_CONFIG"]));
-			            return sprite;
-		            }
-
-	            }
-	            else
-	                throw new ArgumentError(item + " does not Exist!");
-	        }
+            if(this[item+"_List"])
+            {
+               // if(this[item+"_List"].length > 0)
+               // {
+               //     return this[item+"_List"].shift();
+               // }
+               // else
+                {
+                    var sprite:Sprite = new Sprite();
+                    sprite.addChild(createMovieClip(item));
+                    if(item == GameConstants.PLAYER)
+                        sprite.addChild(createMovieClip(item+"Arm"));
+                    return sprite;
+                }
+            }
+            else
+                throw new ArgumentError(item + " does not Exist!");
         }
 
         //The following Functions will be removed and/or adjusted after transforming the Animations into Atlases!
-        private function createMovieClip(assetName:String, v:Vector.<int>):DisplayObject
+        private function createMovieClip(type:String):DisplayObject
         {
-            var newClip:MovieClip;
-            var frames:Vector.<Texture> = createAtlasAnim(assetName,v[0],v[1],v[2]).getTextures(assetName);
-            newClip = new MovieClip(frames, v[3]);
-            newClip.play();
-            Starling.juggler.add(newClip);
-            return newClip;
-        }
-
-        public function createAtlasAnim(name:String,w:int,h:int,frames:int):TextureAtlas
-        {
-            var texture:Texture = getTexture(name);
-
-            var atlas:TextureAtlas = new TextureAtlas (texture);
-            var hNew:int = texture.height / h;
-            var wNew:int = texture.width / w;
-
-            for (var i:int = 0; i < frames; i++)
-            {
-                var x:int = i%w;
-                var y:int = i/w;
-
-                var nameNew:String = String(i);
-                while ( nameNew.length < 3 )
-                {
-                    nameNew = "0" + nameNew;
-                }
-                atlas.addRegion(name+nameNew, new Rectangle(x*wNew,y*hNew, wNew, hNew));
-
-            }
-            return atlas;
+            var getStates:Array = (GameConstants[type+"_States"])?GameConstants[type+"_States"]:null;
+            var getDefault:String = (GameConstants[type+"_Default"])?GameConstants[type+"_Default"]:AnimatedModel.WALK;
+            return new AnimatedModel(type,  getStates, getDefault);
         }
 	}
 }

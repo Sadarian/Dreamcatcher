@@ -4,7 +4,6 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Collision.CollisionUnidentical;
-    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponBoss;
 
     import flash.geom.Point;
     import starling.core.Starling;
@@ -56,6 +55,8 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
 
                         if(player.movieClip && boss.movieClip.bounds.left - player.movieClip.bounds.right < 50)
                             switchTo(MELEE);
+	                    if(boss.health/boss.maxHealth <= 0.3)
+	                        switchTo(FLEE);
 
                         if(_direction.length != 0 && (((_lastMoveUp) && position.y <= _direction.y) || ((!_lastMoveUp) && position.y >= _direction.y)))
                             _direction = new Point();
@@ -91,6 +92,11 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
                         _angle = Math.atan2(startPoint.y - position.y, startPoint.x - position.x);
                         return (position.add(new Point(_speed * Math.cos(_angle) * deltaTime, _speed * Math.sin(_angle) * deltaTime)));
                     }
+	                case(FLEE):
+	                {
+		                return (position.add(new Point(_speed * Math.cos(0) * deltaTime, _speed * Math.sin(0) * deltaTime)));
+
+	                }
                 }
                 return position;
             }
@@ -121,6 +127,11 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
                 case(MELEE_TO_RANGE):
                     (boss.weaponSystem as WeaponBoss).canShoot = true;
                     break;
+
+	            case(FLEE):
+		            (boss.weaponSystem as WeaponBoss).canShoot = false;
+		            (_speed *= GameConstants.bossChargeSpeedMultiplier)*-1;
+		            break;
 
                 default:
                     throw new ArgumentError("Error! Unsupported phase argument!")

@@ -174,9 +174,9 @@ package de.mediadesign.gd1011.dreamcatcher
             if(e.keyCode==Keyboard.F2)
                 entityManager.createEntity(GameConstants.ENEMY, touchPosition);
             if(e.keyCode==Keyboard.F3)
-                entityManager.createEntity(GameConstants.VICTIM, touchPosition);
+                entityManager.createEntity(GameConstants.VICTIM1, touchPosition);
             if(e.keyCode==Keyboard.F4)
-                entityManager.createEntity(GameConstants.BOSS, touchPosition);
+                entityManager.createEntity(GameConstants.BOSS1, touchPosition);
             if(e.keyCode==Keyboard.F5)
                 entityManager.loadEntities();
         }

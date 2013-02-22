@@ -33,7 +33,9 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
         {
             if(idleTime<=0)
             {
-				_onInit = false;
+                if(_onInit)
+                    _onInit = false;
+
 	            if (maxMovementY <= position.y)
 	            {
 		            direction = getDirection(0,minDirection, deltaTime);

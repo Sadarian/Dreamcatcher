@@ -43,7 +43,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 						break;
 					}
 
-					case GameConstants.VICTIM:
+					case GameConstants.VICTIM1:
 					{
 						dropHealth(entity);
 						break;

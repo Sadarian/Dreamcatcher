@@ -48,21 +48,24 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const FOREGROUND_IMAGE_LIST_BOSS:Array = ["Front_1","Front_2","Front_3","Front_4","Front_5"];
 		public static const BOSS_SPEED_REDUCTION:Number = 0.15;
 
-		public static const ENEMY:String = "Enemy";
-		public static const BOSS1:String = "Boss1";
 		public static const PLAYER:String = "Player";
 	    public static const PLAYERARM:String = "PlayerArm";
 		public static const VICTIM1:String = "Victim1";
+        public static const ENEMY:String = "Enemy";
+        public static const BOSS1:String = "Boss1";
+
 		public static const PLAYER_BULLET:String = "PlayerBullet";
 	    public static const ENEMY_BULLET:String = "EnemyBullet";
         public static const BOSS_BULLET:String = "BossBullet";
+
+        public static const POWERUP_FIRE_RATE:String = "PowerUpFireRate";
+        public static const POWERUP_FREEZE:String = "PowerUpFreeze";
+        public static const POWERUP_HEALTH:String = "PowerUpHealth";
 
         private static var _meleeDamage:Vector.<Number>;
 	    private static var _playerMovementBorder:Rectangle;
         private static var _playerStartPosition:Point;
         private static var _victimTimeUntilMid:Number;
-        public static var victimMovementBorder:Array = [700, 200];
-        public static var victimDirectionBorders:Array = [-45, 45];
 
         //States and Defaults for Animations:
         public static const Player_States:Array =["CloseCombat", "Die", "Hit"];
@@ -100,7 +103,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		private static var _dropDistance:Number;
 		private static var _healthGiven:Number;
 
-        public static function init(path:String = "Configs/Config.json"):void
+        public static function init(path:String = "Configs/"):void
         {
 	        new WeaponPlayerStraight();
             new WeaponBoss();

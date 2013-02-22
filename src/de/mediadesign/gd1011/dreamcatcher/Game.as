@@ -125,6 +125,7 @@ package de.mediadesign.gd1011.dreamcatcher
             var passedTime:Number = now - lastFrameTimeStamp;
             lastFrameTimeStamp = now;
 
+            entityManager.rotatePowerUps(passedTime);
 			moveProcess.update(passedTime);
 			shootingProcess.update(passedTime);
 			collisionProcess.update();

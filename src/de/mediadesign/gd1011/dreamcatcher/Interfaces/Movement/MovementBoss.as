@@ -4,8 +4,9 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Collision.CollisionUnidentical;
+import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponBoss;
 
-    import flash.geom.Point;
+import flash.geom.Point;
     import starling.core.Starling;
 
     public class MovementBoss implements IMovement
@@ -13,6 +14,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
         public static var MELEE:String = "Melee";
         public static var RANGE:String = "Range";
         public static var MELEE_TO_RANGE:String = "MeleeToRange";
+        public static var FLEE:String = "Flee";
 
         private var phase:String = RANGE;
 
@@ -46,7 +48,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
                     {
                         if(_onInit)
                         {
-                            boss = EntityManager.entityManager.getEntity(GameConstants.BOSS);
+                            boss = EntityManager.entityManager.getEntity(GameConstants.BOSS1);
                             player = EntityManager.entityManager.getEntity(GameConstants.PLAYER);
                             startPoint = position;
                             _onInit = false;
@@ -94,6 +96,8 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
                     }
 	                case(FLEE):
 	                {
+                        if(!_onInit)
+                            _onInit = true;
 		                return (position.add(new Point(_speed * Math.cos(0) * deltaTime, _speed * Math.sin(0) * deltaTime)));
 
 	                }

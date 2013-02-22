@@ -6,10 +6,13 @@ package de.mediadesign.gd1011.dreamcatcher.View
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
+import de.mediadesign.gd1011.dreamcatcher.Gameplay.PowerUps;
 
-    import flash.utils.Dictionary;
+import flash.utils.Dictionary;
 
-    import starling.core.Starling;
+import mx.core.FlexMovieClip;
+
+import starling.core.Starling;
     import starling.display.DisplayObjectContainer;
     import starling.display.MovieClip;
     import starling.events.Event;
@@ -107,7 +110,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
                     }
                 }
                 else
-                    trace(animation + "...not found on " + entity);
+                    throw new ArgumentError("Error! No +"+animation+" animation found!");
             }
         }
 
@@ -115,7 +118,6 @@ package de.mediadesign.gd1011.dreamcatcher.View
         {
             Starling.juggler.remove(actual);
             removeChild(actual);
-            trace(name + " ... anim: " + actual.name);
             switch(actual.name)
             {
                 case(HIT):
@@ -138,6 +140,12 @@ package de.mediadesign.gd1011.dreamcatcher.View
                     break;
 
                 case(DIE):
+                    if(!entity.isPlayer && name != GameConstants.PLAYERARM)
+                    {
+                        Score.updateScore(entity);
+                        PowerUps.checkDrop(entity);
+                    }
+
                     if(!entity.isEnemy)
                     {
                         if(!entity.isEnemy && name != GameConstants.PLAYERARM)
@@ -187,6 +195,25 @@ package de.mediadesign.gd1011.dreamcatcher.View
         public function set owner(entity:Entity):void
         {
             this.entity = entity;
+        }
+
+        public function reset():void
+        {
+            entity = null;
+            for each (var animation:MovieClip in mAnimations)
+            {
+                Starling.juggler.remove(animation);
+                animation.stop();
+                removeChild(animation);
+                actual = mAnimations[defaultType];
+            }
+        }
+
+        public function start():void
+        {
+            addChild(actual);
+            actual.play();
+            Starling.juggler.add(actual);
         }
     }
 }

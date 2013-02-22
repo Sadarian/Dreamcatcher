@@ -89,9 +89,6 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
                     }
                 }
             }
-			Score.updateScore(entity);
-
-			PowerUps.checkDrop(entity);
 
             _unusedEntities.push(entity);
 		}
@@ -107,6 +104,25 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		    }
 		    return null;
 	    }
+
+        public function rotatePowerUps(deltaTime:Number):void
+        {
+            var powerUps:Vector.<Entity> =  _entities.filter(allPowerUps);
+            function allPowerUps(item:Entity, index:int, vector:Vector.<Entity>):Boolean
+            {
+                return (item.name.search(GameConstants.POWERUP) != -1)
+            }
+            var i:int = 0;
+            for (i; i<powerUps.length; i++)
+            {
+                powerUps[i].movieClip.scaleX += deltaTime * Number(powerUps[i].movieClip.name);
+                if(powerUps[i].movieClip.scaleX <= -1)
+                    powerUps[i].movieClip.name = "1";
+                else if(powerUps[i].movieClip.scaleX >= 1)
+                    powerUps[i].movieClip.name = "-1";
+            }
+
+        }
 
 		public function get entities():Vector.<Entity>
         {

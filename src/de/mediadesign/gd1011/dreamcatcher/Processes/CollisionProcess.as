@@ -54,7 +54,7 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
                                     {
                                         meleeCombat(entityA, entityB);
 
-                                        //pickUpPowerUp(entityA, entityB);
+                                        pickUpPowerUp(entityA, entityB);
 
                                         lifeBarUpdate()
                                     }
@@ -68,15 +68,13 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 
 	    private function pickUpPowerUp(entityA:Entity, entityB:Entity):void
 	    {
-		    if (entityA.name == GameConstants.PLAYER && (entityB.name.search(GameConstants.POWERUP) >= 0) && entityB.health > 0)
+		    if (entityA.isPlayer && entityB.isPowerUp && entityB.health > 0)
 		    {
-//			    trace(entityB.name + " was picked up on EntityB!" + entityB.health);
 				PowerUpTrigger.addPowerUp(entityB, entityA);
 			    entityB.health = 0;
 		    }
-		    else if (entityB.name == GameConstants.PLAYER && (entityA.name.search(GameConstants.POWERUP) >= 0) && entityA.health > 0)
+		    else if (entityB.isPlayer && entityA.isPowerUp && entityA.health > 0)
 		    {
-//			    trace(entityA.name + " was picked up on EntityA!" + entityA.health);
 			    PowerUpTrigger.addPowerUp(entityA, entityB);
 			    entityA.health = 0;
 		    }
@@ -92,8 +90,8 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 
         private static function rangeCombat(entityA:Entity, entityB:Entity):void
         {
-	    //    if (!((entityA.name.search(GameConstants.POWERUP) >= 0) || (entityB.name.search(GameConstants.POWERUP) >= 0)))
-	    //    {
+	        if (!((entityA.name.search(GameConstants.POWERUP) >= 0) || (entityB.name.search(GameConstants.POWERUP) >= 0)))
+	        {
 		        if (entityA.isBullet && !entityB.isBullet && (entityA.name.search(entityB.name) == -1))
 	            {
                     showAnimation([entityB], true);
@@ -107,7 +105,7 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
                         entityA.health = entityA.health - entityB.health;
                         entityB.health = 0;
                     }
-	  //      }
+	        }
         }
 
         private static function meleeCombat(entityA:Entity, entityB:Entity):void

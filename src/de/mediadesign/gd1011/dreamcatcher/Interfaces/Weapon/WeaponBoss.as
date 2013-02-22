@@ -39,7 +39,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
                     if(shoots == GameConstants.bossShootsUntilCharge)
                     {
                         shoots = 0;
-                        (EntityManager.entityManager.getEntity(GameConstants.BOSS).movementSystem as MovementBoss).switchTo(MovementBoss.MELEE);
+                        (EntityManager.entityManager.getEntity(GameConstants.BOSS1).movementSystem as MovementBoss).switchTo(MovementBoss.MELEE);
                     }
                 }
             }

@@ -16,7 +16,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
         //JSON-Config Data:
         private var _name:String;
         private var _health:Number;
-		private var maxHealth:Number;
+		private var _maxHealth:Number;
         private var _movementSystem:IMovement;
         private var _weaponSystem:IWeapon;
         private var _collisionMode:String;
@@ -39,7 +39,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 		public function setData(jsonConfig:Array, position:Point):void {
 			_name = jsonConfig[0];
-			maxHealth = jsonConfig[1];
+			_maxHealth = jsonConfig[1];
 			_health = maxHealth;
 
 			_movementSystem = jsonConfig[2];
@@ -61,8 +61,15 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			_collisionValues = jsonConfig[8];
 
 			_movieClip = jsonConfig[9];
-            for (var i:int=0;i<(_movieClip as DisplayObjectContainer).numChildren;i++)
-                getAnimatedModel(i).owner = this;
+            if(name.search(GameConstants.POWERUP) == -1)
+                for (var i:int=0;i<(_movieClip as DisplayObjectContainer).numChildren;i++)
+                    getAnimatedModel(i).owner = this;
+            else
+            {
+                movieClip.pivotX = movieClip.width/2;
+                movieClip.name = "-1";
+            }
+
 
 			_points = jsonConfig[10];
 
@@ -169,9 +176,9 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		public function set health(value:Number):void
 		{
 			_health = value;
-			if (_health > maxHealth)
+			if (_health > _maxHealth)
 			{
-				_health = maxHealth;
+				_health = _maxHealth;
 			}
 		}
 
@@ -204,6 +211,11 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			}
 		}
 
+        public function get maxHealth():Number
+        {
+            return _maxHealth;
+        }
+
 		public function setMovementSpeed():void
 		{
 			if (_movementSystem != null)
@@ -220,6 +232,11 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
         public function get isBullet():Boolean
         {
             return (name.search(GameConstants.BULLET) != -1);
+        }
+
+        public function get isPowerUp():Boolean
+        {
+            return (name.search(GameConstants.POWERUP) != -1);
         }
 
         public function get isEnemy():Boolean

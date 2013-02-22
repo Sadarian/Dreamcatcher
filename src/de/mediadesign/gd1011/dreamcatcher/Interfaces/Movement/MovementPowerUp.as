@@ -25,7 +25,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
 
 		public function move(deltaTime:Number, position:Point):Point
 		{
-			return position.add(new Point((_speed * Math.cos(0) * deltaTime)*-1, _speed * Math.sin(0) * deltaTime));
+            return position.add(new Point((_speed * Math.cos(0) * deltaTime)*-1, _speed * Math.sin(0) * deltaTime));
 		}
 	}
 }

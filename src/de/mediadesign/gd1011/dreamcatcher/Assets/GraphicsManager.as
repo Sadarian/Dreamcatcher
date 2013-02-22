@@ -4,7 +4,9 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
 
 import flash.geom.Rectangle;
-	import starling.core.Starling;
+import flash.utils.Dictionary;
+
+import starling.core.Starling;
 	import starling.display.DisplayObject;
 	import starling.display.DisplayObjectContainer;
 	import starling.display.Image;
@@ -18,25 +20,13 @@ import flash.geom.Rectangle;
 	{
         private static var self:GraphicsManager;
 
-        private var Player_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
-        private var PlayerBullet_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
-		private var Enemy_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
-        private var EnemyBullet_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
-		private var Victim1_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
-		private var Boss1_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
-        private var Boss_Bullet_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
+        private var mContainers:Dictionary;
 
         public function GraphicsManager():void
         {
             super(Starling.contentScaleFactor, true);
 
-            Player_List = new Vector.<DisplayObjectContainer>();
-            PlayerBullet_List = new Vector.<DisplayObjectContainer>();
-            Enemy_List = new Vector.<DisplayObjectContainer>();
-            EnemyBullet_List = new Vector.<DisplayObjectContainer>();
-            Victim1_List = new Vector.<DisplayObjectContainer>();
-            Boss1_List = new Vector.<DisplayObjectContainer>();
-            Boss_Bullet_List = new Vector.<DisplayObjectContainer>();
+            mContainers = new Dictionary();
         }
 
         public static function get graphicsManager():GraphicsManager
@@ -64,33 +54,55 @@ import flash.geom.Rectangle;
 			}
 			else
 			{
-				if(this[item+"_List"])
-					this[item+"_List"].push(clip);
-				else
-					throw new ArgumentError(item + " does not Exist!");
+                /*
+                if(item in mContainers)
+                {
+                    if(clip)
+                    {
+                        mContainers[item].push(clip);
+                        for(var i:int=0;i<(clip as DisplayObjectContainer).numChildren;i++)
+                        {
+                           ((clip as DisplayObjectContainer).getChildAt(i) as AnimatedModel).reset();
+                           ((clip as DisplayObjectContainer).getChildAt(i) as AnimatedModel).start();
+                        }
+                    }
+                }
+                else
+                {
+                    mContainers[item] = new Vector.<DisplayObjectContainer>();
+                    addMovieClip(clip, item);
+                }
+                */
 			}
-
 		}
 
         public function getMovieClip(item:String):DisplayObject
         {
-            if(this[item+"_List"])
+            if (item.search(GameConstants.POWERUP) >= 0)
             {
-               // if(this[item+"_List"].length > 0)
-               // {
-               //     return this[item+"_List"].shift();
-               // }
-               // else
-                {
-                    var sprite:Sprite = new Sprite();
-                    sprite.addChild(createMovieClip(item));
-                    if(item == GameConstants.PLAYER)
-                        sprite.addChild(createMovieClip(item+"Arm"));
-                    return sprite;
-                }
+                return getImage(item);
             }
             else
-                throw new ArgumentError(item + " does not Exist!");
+            {
+                if(item in mContainers)
+                {
+                    if(mContainers[item].length > 0)
+                        return mContainers[item].shift();
+                    else
+                    {
+                        var container:Sprite = new Sprite();
+                        container.addChild(createMovieClip(item));
+                        if(item == GameConstants.PLAYER)
+                            container.addChild(createMovieClip(item+"Arm"));
+                        return container;
+                    }
+                }
+                else
+                {
+                    mContainers[item] = new Vector.<DisplayObjectContainer>();
+                    return getMovieClip(item);
+                }
+            }
         }
 
         //The following Functions will be removed and/or adjusted after transforming the Animations into Atlases!

@@ -25,7 +25,7 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 		{
 			for each (var entity:Entity in manager.entities)
 			{
-                if(entity.health <= 0 && (entity.isBullet || entity.isBoss))
+                if(entity.health <= 0 && (entity.isBullet || entity.isBoss || entity.isPowerUp))
                 {
                     GameStage.gameStage.removeActor(entity.movieClip);
                     entity.removeMovieClip();

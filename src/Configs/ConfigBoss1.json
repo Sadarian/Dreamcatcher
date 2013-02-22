@@ -1,5 +1,5 @@
 {
-    "name":"Boss",
+    "name":"Boss1",
     "health":300,
     "movementSystem":"null",
     "movementSpeed":5,

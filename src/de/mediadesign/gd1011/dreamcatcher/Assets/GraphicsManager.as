@@ -25,7 +25,7 @@ import flash.geom.Rectangle;
 		private var Enemy_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
         private var EnemyBullet_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
 		private var Victim1_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
-		private var Boss_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
+		private var Boss1_List:Vector.<DisplayObjectContainer> = new Vector.<DisplayObjectContainer>();
 
         public function GraphicsManager():void
         {
@@ -36,7 +36,7 @@ import flash.geom.Rectangle;
             Enemy_List = new Vector.<DisplayObjectContainer>();
             EnemyBullet_List = new Vector.<DisplayObjectContainer>();
             Victim1_List = new Vector.<DisplayObjectContainer>();
-            Boss_List = new Vector.<DisplayObjectContainer>();
+            Boss1_List = new Vector.<DisplayObjectContainer>();
         }
 
         public static function get graphicsManager():GraphicsManager
@@ -68,9 +68,11 @@ import flash.geom.Rectangle;
         {
             if(this[item+"_List"])
             {
-              //  if(this[item+"_List"].length > 0)
-              //      return this[item+"_List"].shift();
-              //  else
+               // if(this[item+"_List"].length > 0)
+               // {
+               //     return this[item+"_List"].shift();
+               // }
+               // else
                 {
                     var sprite:Sprite = new Sprite();
                     sprite.addChild(createMovieClip(item));
@@ -86,33 +88,9 @@ import flash.geom.Rectangle;
         //The following Functions will be removed and/or adjusted after transforming the Animations into Atlases!
         private function createMovieClip(type:String):DisplayObject
         {
-            var newClip:AnimatedModel;
-            newClip = new AnimatedModel(type, GameConstants[type.toUpperCase()+"_STATES"]);
-            return newClip;
-        }
-
-        public function createAtlasAnim(name:String,w:int,h:int,frames:int):TextureAtlas
-        {
-            var texture:Texture = getTexture(name);
-
-            var atlas:TextureAtlas = new TextureAtlas (texture);
-            var hNew:int = texture.height / h;
-            var wNew:int = texture.width / w;
-
-            for (var i:int = 0; i < frames; i++)
-            {
-                var x:int = i%w;
-                var y:int = i/w;
-
-                var nameNew:String = String(i);
-                while ( nameNew.length < 3 )
-                {
-                    nameNew = "0" + nameNew;
-                }
-                atlas.addRegion(name+nameNew, new Rectangle(x*wNew,y*hNew, wNew, hNew));
-
-            }
-            return atlas;
+            var getStates:Array = (GameConstants[type+"_States"])?GameConstants[type+"_States"]:null;
+            var getDefault:String = (GameConstants[type+"_Default"])?GameConstants[type+"_Default"]:AnimatedModel.WALK;
+            return new AnimatedModel(type,  getStates, getDefault);
         }
 	}
 }

@@ -3,11 +3,15 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
     import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.IMovement;
-	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.IWeapon;
-	import flash.geom.Point;
-	import starling.display.DisplayObject;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementVictim;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.IWeapon;
+    import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
 
-	public class Entity
+    import flash.geom.Point;
+	import starling.display.DisplayObject;
+    import starling.display.DisplayObjectContainer;
+
+    public class Entity
     {
         //JSON-Config Data:
         private var _name:String;
@@ -46,28 +50,34 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			_collisionValues = jsonConfig[8];
 
 			_movieClip = jsonConfig[9];
+            for (var i:int=0;i<(_movieClip as DisplayObjectContainer).numChildren;i++)
+                getAnimatedModel(i).owner = this;
 
 			_position = position;
 		}
 
 		private function init():void
 		{
-			_movieClip.x = _position.x - _movieClip.width/2;
-			_movieClip.y = _position.y - _movieClip.height/2;
+			_movieClip.x = _position.x;
+			_movieClip.y = _position.y;
 		}
 
         public function move(deltaTime:Number):void
         {
             if(_movementSystem)
-	            _position = _movementSystem.move(deltaTime, _position);
+            {
+                _position = _movementSystem.move(deltaTime, _position);
+                if(isVictim && !(_movementSystem as MovementVictim).onInit && getAnimatedModel(0).ActualAnimation.name == AnimatedModel.EAT)
+                    playAnimation(AnimatedModel.FEAR);
+            }
         }
 
         public function render():void
         {
             if(_movementSystem)
             {
-                _movieClip.x = _position.x - _movieClip.width/2;
-                _movieClip.y = _position.y - _movieClip.height/2;
+                _movieClip.x = _position.x;
+                _movieClip.y = _position.y;
             }
         }
 
@@ -103,6 +113,11 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			return _movieClip;
 		}
 
+        public function getAnimatedModel(index:int = 0):de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel
+        {
+            return ((_movieClip as DisplayObjectContainer).getChildAt(index) as de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel);
+        }
+
         public function get collisionMode():String
         {
             return _collisionMode;
@@ -137,5 +152,51 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		{
 			_health = value;
 		}
+
+        public function get isPlayer():Boolean
+        {
+            return (name == GameConstants.PLAYER);
+        }
+
+        public function get isBullet():Boolean
+        {
+            return (name.search(GameConstants.BULLET) != -1);
+        }
+
+        public function get isEnemy():Boolean
+        {
+            return (name == GameConstants.ENEMY && !isBullet);
+        }
+
+        public function get isVictim():Boolean
+        {
+            return (name == GameConstants.VICTIM1);
+        }
+
+        public function get isBoss():Boolean
+        {
+            return (name == GameConstants.BOSS1 && !isBullet);
+        }
+
+        public function get isHostile():Boolean
+        {
+            return (isVictim || isEnemy || isBoss)
+        }
+
+        public function get canAttack():Boolean
+        {
+            return _weaponSystem != null;
+        }
+
+        public function playAnimation(animation:String):void
+        {
+            for (var i:int=0;i<(_movieClip as DisplayObjectContainer).numChildren;i++)
+                getAnimatedModel(i).playAnimation(animation);
+        }
+
+        public function set collisionMode(mode:String):void
+        {
+            _collisionMode = mode;
+        }
 	}
 }

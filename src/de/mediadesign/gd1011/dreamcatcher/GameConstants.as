@@ -46,33 +46,35 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const BOSS_SPEED_REDUCTION:Number = 0.15;
 
 		public static const ENEMY:String = "Enemy";
-		public static const ENEMY_STATES:Array =["Walk","DeadWalk","DieCloseCombat","Die","Hit"];
-
-		public static const BOSS:String = "Boss";
-		public static const BOSS_STATES:Array =["Walk","CloseCombat","Shoot","Die"];
-
+		public static const BOSS1:String = "Boss1";
 		public static const PLAYER:String = "Player";
-		public static const PLAYER_STATES:Array =["CloseCombat","Walk","Hit","Die"];
-
 	    public static const PLAYERARM:String = "PlayerArm";
-		public static const PLAYERARM_STATES:Array =["CloseCombat","Walk","Hit","Die"];
-
-		public static const VICTIM:String = "Victim";
-		public static const VICTIM1_STATES:Array =["Die","Walk","Eat","Fear"];
-
+		public static const VICTIM1:String = "Victim1";
 		public static const PLAYER_BULLET:String = "PlayerBullet";
-		public static const PLAYERBULLET_STATES:Array =["Walk"];
-
 	    public static const ENEMY_BULLET:String = "EnemyBullet";
-		public static const ENEMYBULLET_STATES:Array =["Walk"];
-
-		public static const BOSS_BULLET:String = "BossBullet";
-		public static const BOSSBULLET_STATES:Array =["Walk"];
+        public static const BOSS_BULLET:String = "BossBullet";
 
         private static var _meleeDamage:Vector.<Number>;
 	    private static var _playerMovementBorder:Rectangle;
         private static var _playerStartPosition:Point;
         private static var _victimTimeUntilMid:Number;
+        public static var victimMovementBorder:Array = [700, 200];
+        public static var victimDirectionBorders:Array = [-45, 45];
+
+        //States and Defaults for Animations:
+        public static const Player_States:Array =["CloseCombat", "Die", "Hit"];
+
+        public static const PlayerArm_States:Array =["CloseCombat", "Die", "Hit"];
+
+        public static const Enemy_States:Array =["Die", "Hit", "DieCloseCombat", "DeadWalk"];
+
+        public static const Victim1_States:Array =["Die", "Walk", "Fear"];
+        public static const Victim1_Default:String = "Eat";
+
+        public static const Victim2_States:Array =["Die", "Walk", "Fear", "DieHead"];
+        public static const Victim2_Default:String = "Eat";
+
+        public static const Boss1_States:Array =["CloseCombat", "Die"];
 
         public static function init(path:String = "Configs/Config.json"):void
         {
@@ -155,9 +157,11 @@ package de.mediadesign.gd1011.dreamcatcher
                 case(ENEMY):
                     pos = 1;
                     break;
-                case(BOSS):
+                case(BOSS1):
                     pos = 2;
                     break;
+                default:
+                    return 0;
             }
             return _meleeDamage[pos];
         }

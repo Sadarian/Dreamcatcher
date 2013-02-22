@@ -59,7 +59,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
             _entities.push(tempEntity);
 
-		    if (name == GameConstants.PLAYER || name == GameConstants.BOSS)
+		    if (name == GameConstants.PLAYER || name == GameConstants.BOSS1)
 		    {
 			    _lifeBars.push(new LifeBarHandling(tempEntity));
 		    }
@@ -73,7 +73,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 		public function addUnusedEntity(entity:Entity):void
 		{
-			_entities.splice(_entities.indexOf(entity),1);
+            _entities.splice(_entities.indexOf(entity),1);
 
             if(Dreamcatcher.debugMode)
             {
@@ -86,7 +86,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
                 }
             }
 
-			_unusedEntities.push(entity);
+            _unusedEntities.push(entity);
 		}
 
 	    public function getEntity(name:String):Entity

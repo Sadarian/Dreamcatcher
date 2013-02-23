@@ -12,7 +12,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
         //JSON-Config Data:
         private var _name:String;
         private var _health:Number;
-		private var maxHealth:Number;
+		private var _maxHealth:Number;
         private var _movementSystem:IMovement;
         private var _weaponSystem:IWeapon;
         private var _collisionMode:String;
@@ -21,6 +21,9 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
         private var _movieClip:DisplayObject; //added via JSON but it isn't in the Config!
 		private var _points:Number;
 		private var _weaponSpeed:Number;
+
+
+
 		private var _movementSpeed:Number;
 
        //Additional Constructor Data:
@@ -35,8 +38,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 		public function setData(jsonConfig:Array, position:Point):void {
 			_name = jsonConfig[0];
-			maxHealth = jsonConfig[1];
-			_health = maxHealth;
+			_maxHealth = jsonConfig[1];
+			_health = _maxHealth;
 
 			_movementSystem = jsonConfig[2];
 			if(_movementSystem)
@@ -154,9 +157,9 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		public function set health(value:Number):void
 		{
 			_health = value;
-			if (_health > maxHealth)
+			if (_health > _maxHealth)
 			{
-				_health = maxHealth;
+				_health = _maxHealth;
 			}
 		}
 
@@ -195,6 +198,10 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			{
 				_movementSystem.speed = _movementSpeed;
 			}
+		}
+
+		public function get maxHealth():Number {
+			return _maxHealth;
 		}
 	}
 }

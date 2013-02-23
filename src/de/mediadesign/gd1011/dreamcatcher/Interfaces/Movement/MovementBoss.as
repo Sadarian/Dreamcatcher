@@ -13,9 +13,10 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
     {
         public static var MELEE:String = "Melee";
         public static var RANGE:String = "Range";
+	    public static var FLEE:String = "Flee";
         public static var MELEE_TO_RANGE:String = "MeleeToRange";
 
-        private var phase:String = RANGE;
+        private static var _phase:String = RANGE;
 
         private var boss:Entity;
         private var player:Entity;
@@ -41,7 +42,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
                 return (position.add(new Point(-GameConstants.bossDistanceBorder/GameConstants.bossFadingInTime * deltaTime ,0)));
             else
             {
-                switch(phase)
+                switch(_phase)
                 {
                     case(RANGE):
                     {
@@ -56,6 +57,8 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
 
                         if(player.movieClip && boss.movieClip.bounds.left - player.movieClip.bounds.right < 50)
                             switchTo(MELEE);
+	                    if(boss.health/boss.maxHealth <= 0.3)
+	                        switchTo(FLEE);
 
                         if(_direction.length != 0 && (((_lastMoveUp) && position.y <= _direction.y) || ((!_lastMoveUp) && position.y >= _direction.y)))
                             _direction = new Point();
@@ -91,6 +94,10 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
                         _angle = Math.atan2(startPoint.y - position.y, startPoint.x - position.x);
                         return (position.add(new Point(_speed * Math.cos(_angle) * deltaTime, _speed * Math.sin(_angle) * deltaTime)));
                     }
+	                case(FLEE):
+	                {
+		                return (position.add(new Point(_speed * Math.cos(0) * deltaTime, _speed * Math.sin(0) * deltaTime)));
+	                }
                 }
                 return position;
             }
@@ -104,7 +111,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
         public function switchTo(phase:String):void
         {
             trace(phase);
-            this.phase = phase;
+            _phase = phase;
             switch (phase)
             {
                 case(MELEE):
@@ -122,12 +129,23 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
                     (boss.weaponSystem as WeaponBoss).canShoot = true;
                     break;
 
+	            case(FLEE):
+		            (boss.weaponSystem as WeaponBoss).canShoot = false;
+		            (_speed *= GameConstants.bossChargeSpeedMultiplier)*-1;
+		            break;
+
                 default:
                     throw new ArgumentError("Error! Unsupported phase argument!")
             }
         }
 
-	    public function increaseSpeed(multiplier:Number):void {
+	    public function increaseSpeed(multiplier:Number):void
+	    {
+
+	    }
+
+	    public static function get phase():String {
+		    return _phase;
 	    }
     }
 }

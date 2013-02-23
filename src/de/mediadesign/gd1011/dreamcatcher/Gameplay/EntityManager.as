@@ -68,8 +68,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			    _lifeBars.push(new LifeBarHandling(tempEntity));
 		    }
 
-            if(Dreamcatcher.debugMode)
-		        GameStage.gameStage.addChild(CollisionDummyBoxes.getDummy(tempEntity));
+//            if(Dreamcatcher.debugMode)
+//		        GameStage.gameStage.addChild(CollisionDummyBoxes.getDummy(tempEntity));
 
             GameStage.gameStage.addChildAt(tempEntity.movieClip, 4);
             return tempEntity;
@@ -79,16 +79,16 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		{
 			_entities.splice(_entities.indexOf(entity),1);
 
-            if(Dreamcatcher.debugMode)
-            {
-                for each (var image:CollisionImage in CollisionDummyBoxes.dummies) {
-                    if (entity.name == image.entityName) {
-                        GameStage.gameStage.removeChild(image);
-                        CollisionDummyBoxes.dummies.splice(CollisionDummyBoxes.dummies.indexOf(image), 1);
-                        image.dispose();
-                    }
-                }
-            }
+//            if(Dreamcatcher.debugMode)
+//            {
+//                for each (var image:CollisionImage in CollisionDummyBoxes.dummies) {
+//                    if (entity.name == image.entityName) {
+//                        GameStage.gameStage.removeChild(image);
+//                        CollisionDummyBoxes.dummies.splice(CollisionDummyBoxes.dummies.indexOf(image), 1);
+//                        image.dispose();
+//                    }
+//                }
+//            }
 			Score.updateScore(entity);
 
 			PowerUps.checkDrop(entity);
@@ -116,5 +116,15 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		public function get lifeBars():Vector.<LifeBarHandling> {
 			return _lifeBars;
 		}
+
+	    public function removeAll():void
+	    {
+		    for each (var entity:Entity in _entities)
+		    {
+			    GameStage.gameStage.removeActor(entity.movieClip);
+			    entity.removeMovieClip();
+			    addUnusedEntity(entity);
+		    }
+	    }
 	}
 }

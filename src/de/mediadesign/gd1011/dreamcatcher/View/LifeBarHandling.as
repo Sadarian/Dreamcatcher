@@ -23,6 +23,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			{
 				position = new Point(1100, 30);
 			}
+
 			lifeBar = GraphicsManager.graphicsManager.getImage("LifeBar");
 
 			life = entity.health;

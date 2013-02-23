@@ -83,7 +83,7 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
         public static const Quad:Class;
 
 		//TT-Fonts
-		[Embed(source="/../assets/fonts/defused.ttf", embedAsCFF="false", fontFamily="TestFont")]
-		private static const TestFont:Class;
+		[Embed(source="/../assets/fonts/FriskyVampire.ttf", embedAsCFF="false", fontFamily="FriskyVampire")]
+		private static const FriskyVampire:Class;
 	}
 }

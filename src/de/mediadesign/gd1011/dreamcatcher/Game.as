@@ -82,9 +82,11 @@ package de.mediadesign.gd1011.dreamcatcher
             addEventListener(Event.ENTER_FRAME, update);
             addEventListener(TouchEvent.TOUCH, onTouch);
 
+
             if(Dreamcatcher.debugMode)
             {
-                Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, debugFunction);
+
+	            Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, debugFunction);
 
                 addChild(BossButton = new Button(graphicsManager.getTexture(GameConstants.BUTTON),"RESTART"));
                 BossButton.x = 560;

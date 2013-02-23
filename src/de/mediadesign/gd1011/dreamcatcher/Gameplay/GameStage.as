@@ -2,7 +2,10 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 {
     import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
-    import starling.animation.DelayedCall;
+	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBoss;
+	import de.mediadesign.gd1011.dreamcatcher.View.LevelEndScreen;
+
+	import starling.animation.DelayedCall;
     import starling.core.Starling;
     import starling.display.DisplayObject;
 	import starling.display.Sprite;
@@ -14,15 +17,13 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 		private var containerGroup:Vector.<StageContainer>;
 
-		public var bossStage:Boolean = false;
+		public var bossStage:Boolean;
 
 		private var movementSpeeds:Vector.<Number>;
 
-		public function GameStage()
-		{
-			movementSpeeds = GameConstants.GAME_STAGE_MOVMENT_SPEEDS.concat();
-			containerGroup = new Vector.<StageContainer>(6);
-		}
+		private var lvlEnd:Boolean;
+
+		private var endScreen:LevelEndScreen;
 
         public static function get gameStage():GameStage
         {
@@ -35,6 +36,12 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 		public function init():void
 		{
+			bossStage = false;
+			lvlEnd = false;
+
+			containerGroup = new Vector.<StageContainer>(6);
+			movementSpeeds = GameConstants.GAME_STAGE_MOVMENT_SPEEDS.concat();
+
             addChild(GraphicsManager.graphicsManager.getImage(GameConstants.BACKGROUND));
 
 			for(var i:int = 0;i<containerGroup.length;i++)
@@ -43,6 +50,21 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
                 containerGroup[i].touchable = false;
                 addChild(containerGroup[i]);
             }
+		}
+
+		public function resetAll():void
+		{
+			for each (var stageContainer:StageContainer in containerGroup)
+			{
+				stageContainer.dispose();
+			}
+			containerGroup = null;
+
+			bossStage = false;
+
+			movementSpeeds = null;
+
+
 		}
 
 		public function loadLevel(levelIndex:int = 1):void
@@ -61,11 +83,28 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 								GameConstants.FOREGROUND_IMAGE_LIST);
 
 					vectorBoss.push(GameConstants.BACKGROUND_IMAGE_LIST_BOSS,
-							GameConstants.MAIN_STAGE_IMAGE_LIST_BOSS,
-							GameConstants.ANIMATIONS_LIST_BOSS,
-							GameConstants.FOG_LIST_BOSS,
-							GameConstants.BUSH_IMAGE_LIST_BOSS,
-							GameConstants.FOREGROUND_IMAGE_LIST_BOSS);
+									GameConstants.MAIN_STAGE_IMAGE_LIST_BOSS,
+									GameConstants.ANIMATIONS_LIST_BOSS,
+									GameConstants.FOG_LIST_BOSS,
+									GameConstants.BUSH_IMAGE_LIST_BOSS,
+									GameConstants.FOREGROUND_IMAGE_LIST_BOSS);
+					break;
+				}
+				case 2:
+				{
+					vectorBoss.push(GameConstants.BACKGROUND_IMAGE_LIST,
+									GameConstants.MAIN_STAGE_IMAGE_LIST,
+									GameConstants.ANIMATIONS_LIST,
+									GameConstants.FOG_LIST,
+									GameConstants.BUSH_IMAGE_LIST,
+									GameConstants.FOREGROUND_IMAGE_LIST);
+
+					vector.push(GameConstants.BACKGROUND_IMAGE_LIST_BOSS,
+								GameConstants.MAIN_STAGE_IMAGE_LIST_BOSS,
+								GameConstants.ANIMATIONS_LIST_BOSS,
+								GameConstants.FOG_LIST_BOSS,
+								GameConstants.BUSH_IMAGE_LIST_BOSS,
+								GameConstants.FOREGROUND_IMAGE_LIST_BOSS);
 					break;
 				}
 			}
@@ -78,15 +117,35 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 		public function update(now:Number):void
 		{
-			for(var i:int = 0;i<containerGroup.length;i++)
+			if (!lvlEnd)
 			{
-				containerGroup[i].move(movementSpeeds[i]);
-				containerGroup[i].swap(bossStage);
+				for (var i:int = 0; i < containerGroup.length; i++) {
+					containerGroup[i].move(movementSpeeds[i]);
+					containerGroup[i].swap(bossStage);
+				}
+				if ((!bossStage) && (now.toFixed() == "50")) {
+					switchToBoss();
+				}
 			}
-            if((!bossStage) && (now.toFixed() == "50"))
-            {
-                switchToBoss();
-            }
+
+			if (MovementBoss.phase == "Flee")
+			{
+				if ((EntityManager.entityManager.getEntity(GameConstants.BOSS)) == null && !lvlEnd)
+				{
+					endLvl()
+				}
+			}
+
+			if (lvlEnd && endScreen.alpha <= 1)
+			{
+				endScreen.alpha += 0.02;
+				endScreen.fadeIn();
+				if (endScreen.alpha >= 1)
+				{
+					EntityManager.entityManager.removeAll();
+					resetAll();
+				}
+			}
 		}
 
 		public function removeActor(object:DisplayObject):void
@@ -121,6 +180,13 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
                 for (var i:int = 0; i < movementSpeeds.length; i++)
                     movementSpeeds[i] -= GameConstants.GAME_STAGE_MOVMENT_SPEEDS[i]/100;
             }
+		}
+
+		private function endLvl():void
+		{
+			lvlEnd = true;
+			endScreen = new LevelEndScreen("Congratulations!");
+			addChild(endScreen.screen);
 		}
 	}
 }

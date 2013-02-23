@@ -2,6 +2,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 {
     import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
+    import de.mediadesign.gd1011.dreamcatcher.View.PauseButton;
+
     import starling.animation.DelayedCall;
     import starling.core.Starling;
     import starling.display.DisplayObject;
@@ -17,6 +19,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		public var bossStage:Boolean = false;
 
 		private var movementSpeeds:Vector.<Number>;
+
+        private var pauseButton:PauseButton;
 
 		public function GameStage()
 		{
@@ -43,6 +47,9 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
                 containerGroup[i].touchable = false;
                 addChild(containerGroup[i]);
             }
+
+            pauseButton = new PauseButton();
+            addChild(pauseButton);
 		}
 
 		public function loadLevel(levelIndex:int = 1):void

@@ -4,10 +4,10 @@
 <TextureAtlas imagePath="Player_InterfaceTexture.png">
     <SubTexture name="LifeBar" x="2" y="885" width="150" height="20"/>
     <SubTexture name="PauseMenuBackground" x="2" y="2" width="1280" height="800"/>
-    <SubTexture name="PauseMenuEndGame" x="416" y="1784" width="156" height="156" frameX="-435" frameY="-19" frameWidth="1280" frameHeight="800"/>
-    <SubTexture name="PauseMenuPlay" x="1284" y="2" width="342" height="342" frameX="-37" frameY="-38" frameWidth="1280" frameHeight="800"/>
-    <SubTexture name="PauseMenuSoundOff" x="416" y="881" width="156" height="158" frameX="-188" frameY="-444" frameWidth="1280" frameHeight="800"/>
-    <SubTexture name="PauseMenuSoundOn" x="258" y="881" width="156" height="158" frameX="-188" frameY="-444" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="PauseMenuEndGame" x="416" y="1784" width="156" height="156"/>
+    <SubTexture name="PauseMenuPlay" x="1284" y="2" width="342" height="342"/>
+    <SubTexture name="PauseMenuSoundOff" x="416" y="881" width="156" height="158"/>
+    <SubTexture name="PauseMenuSoundOn" x="258" y="881" width="156" height="158"/>
     <SubTexture name="PlayerArmCloseCombat_1" x="1886" y="370" width="158" height="127" frameX="-64" frameY="-116" frameWidth="320" frameHeight="267"/>
     <SubTexture name="PlayerArmCloseCombat_2" x="1886" y="370" width="158" height="127" frameX="-64" frameY="-116" frameWidth="320" frameHeight="267"/>
     <SubTexture name="PlayerArmCloseCombat_3" x="1886" y="370" width="158" height="127" frameX="-64" frameY="-116" frameWidth="320" frameHeight="267"/>
@@ -56,7 +56,7 @@
     <SubTexture name="PlayerWalk_3" x="1628" y="206" width="256" height="193" frameX="-12" frameY="-74" frameWidth="320" frameHeight="267"/>
     <SubTexture name="PlayerWalk_4" x="2" y="1313" width="218" height="267" frameX="-46" frameY="0" frameWidth="320" frameHeight="267"/>
     <SubTexture name="PlayerWalk_5" x="2" y="1044" width="224" height="267" frameX="-33" frameY="0" frameWidth="320" frameHeight="267"/>
-    <SubTexture name="PowerUpFirerate" x="574" y="911" width="126" height="126" frameX="-1" frameY="-1" frameWidth="128" frameHeight="128"/>
+    <SubTexture name="PowerUpFireRate" x="574" y="911" width="126" height="126" frameX="-1" frameY="-1" frameWidth="128" frameHeight="128"/>
     <SubTexture name="PowerUpFreeze" x="130" y="911" width="126" height="126" frameX="-1" frameY="-1" frameWidth="128" frameHeight="128"/>
     <SubTexture name="PowerUpHealth" x="2" y="911" width="126" height="126" frameX="-1" frameY="-1" frameWidth="128" frameHeight="128"/>
 </TextureAtlas>

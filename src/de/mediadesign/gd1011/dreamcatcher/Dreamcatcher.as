@@ -1,5 +1,7 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
+    import de.mediadesign.gd1011.dreamcatcher.View.PauseMenu;
+
     import flash.desktop.NativeApplication;
     import flash.display.Sprite;
     import flash.display.StageAlign;
@@ -63,6 +65,7 @@ package de.mediadesign.gd1011.dreamcatcher
 
         private function onActivate(event:flash.events.Event):void
         {
+            PauseMenu.showAndHide();
             _starling.start();
             (_starling.root as Game).setStartTimeStamp();
         }

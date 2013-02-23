@@ -5,14 +5,10 @@ package de.mediadesign.gd1011.dreamcatcher.View
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
-    import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
-import de.mediadesign.gd1011.dreamcatcher.Gameplay.PowerUps;
+    import de.mediadesign.gd1011.dreamcatcher.Gameplay.PowerUps;
 
-import flash.utils.Dictionary;
-
-import mx.core.FlexMovieClip;
-
-import starling.core.Starling;
+    import flash.utils.Dictionary;
+    import starling.core.Starling;
     import starling.display.DisplayObjectContainer;
     import starling.display.MovieClip;
     import starling.events.Event;

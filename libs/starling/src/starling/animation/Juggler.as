@@ -48,12 +48,14 @@ package starling.animation
     {
         private var mObjects:Vector.<IAnimatable>;
         private var mElapsedTime:Number;
+        private var mActive:Boolean;
         
         /** Create an empty juggler. */
         public function Juggler()
         {
             mElapsedTime = 0;
             mObjects = new <IAnimatable>[];
+            mActive = true;
         }
 
         /** Adds an object to the juggler. */
@@ -173,43 +175,45 @@ package starling.animation
         
         /** Advances all objects by a certain time (in seconds). */
         public function advanceTime(time:Number):void
-        {   
-            var numObjects:int = mObjects.length;
-            var currentIndex:int = 0;
-            var i:int;
-            
-            mElapsedTime += time;
-            if (numObjects == 0) return;
-            
-            // there is a high probability that the "advanceTime" function modifies the list 
-            // of animatables. we must not process new objects right now (they will be processed
-            // in the next frame), and we need to clean up any empty slots in the list.
-            
-            for (i=0; i<numObjects; ++i)
+        {
+            if(mActive)
             {
-                var object:IAnimatable = mObjects[i];
-                if (object)
+                var numObjects:int = mObjects.length;
+                var currentIndex:int = 0;
+                var i:int;
+
+                mElapsedTime += time;
+                if (numObjects == 0) return;
+
+                // there is a high probability that the "advanceTime" function modifies the list
+                // of animatables. we must not process new objects right now (they will be processed
+                // in the next frame), and we need to clean up any empty slots in the list.
+
+                for (i=0; i<numObjects; ++i)
                 {
-                    // shift objects into empty slots along the way
-                    if (currentIndex != i) 
+                    var object:IAnimatable = mObjects[i];
+                    if (object)
                     {
-                        mObjects[currentIndex] = object;
-                        mObjects[i] = null;
+                        // shift objects into empty slots along the way
+                        if (currentIndex != i)
+                        {
+                            mObjects[currentIndex] = object;
+                            mObjects[i] = null;
+                        }
+
+                        object.advanceTime(time);
+                        ++currentIndex;
                     }
-                    
-                    object.advanceTime(time);
-                    ++currentIndex;
                 }
-            }
-            
-            if (currentIndex != i)
-            {
-                numObjects = mObjects.length; // count might have changed!
-                
-                while (i < numObjects)
-                    mObjects[int(currentIndex++)] = mObjects[int(i++)];
-                
-                mObjects.length = currentIndex;
+                if (currentIndex != i)
+                {
+                    numObjects = mObjects.length; // count might have changed!
+
+                    while (i < numObjects)
+                        mObjects[int(currentIndex++)] = mObjects[int(i++)];
+
+                    mObjects.length = currentIndex;
+                }
             }
         }
         
@@ -223,6 +227,10 @@ package starling.animation
         }
         
         /** The total life time of the juggler. */
-        public function get elapsedTime():Number { return mElapsedTime; }        
+        public function get elapsedTime():Number { return mElapsedTime; }
+
+        public function start():void { mActive = true;}
+        public function stop():void {mActive = false;}
+        public function get isActive():Boolean {return mActive;}
     }
 }

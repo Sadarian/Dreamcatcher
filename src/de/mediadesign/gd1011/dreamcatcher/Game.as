@@ -12,6 +12,8 @@ package de.mediadesign.gd1011.dreamcatcher
     import de.mediadesign.gd1011.dreamcatcher.Processes.MoveProcess;
     import de.mediadesign.gd1011.dreamcatcher.Processes.RenderProcess;
     import de.mediadesign.gd1011.dreamcatcher.Processes.ShootingProcess;
+    import de.mediadesign.gd1011.dreamcatcher.View.MainMenu;
+
     import flash.geom.Point;
 	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
 
@@ -121,29 +123,33 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		private function update(event:Event):void
 		{
-            var now:Number = getTimer() / 1000;
-            var passedTime:Number = now - lastFrameTimeStamp;
-            lastFrameTimeStamp = now;
-
-            entityManager.rotatePowerUps(passedTime);
-			moveProcess.update(passedTime);
-			shootingProcess.update(passedTime);
-			collisionProcess.update();
-			destroyProcess.update();
-			renderProcess.update();
-            gameStage.update(now);
-
-            if(Dreamcatcher.debugMode)
+            if(Starling.juggler.isActive && !MainMenu.isActive())
             {
-                if (entityManager.getEntity(GameConstants.PLAYER) == null)
-                    BossButton.enabled = true;
-                CollisionDummyBoxes.update();
+                var now:Number = getTimer() / 1000;
+                var passedTime:Number = now - lastFrameTimeStamp;
+                lastFrameTimeStamp = now;
+
+                entityManager.rotatePowerUps(passedTime);
+                moveProcess.update(passedTime);
+                shootingProcess.update(passedTime);
+                collisionProcess.update();
+                destroyProcess.update();
+                renderProcess.update();
+                gameStage.update(now);
+
+                if(Dreamcatcher.debugMode)
+                {
+                    if (entityManager.getEntity(GameConstants.PLAYER) == null)
+                        BossButton.enabled = true;
+                    CollisionDummyBoxes.update();
+                }
+
+                if (PowerUpTrigger.powerUpActive)
+                {
+                    ActivePowerUpProcess.update(passedTime);
+                }
             }
 
-			if (PowerUpTrigger.powerUpActive)
-			{
-				ActivePowerUpProcess.update(passedTime);
-			}
 		}
 
         private function onTouch(e:TouchEvent):void
@@ -180,6 +186,8 @@ package de.mediadesign.gd1011.dreamcatcher
                 entityManager.createEntity(GameConstants.BOSS1, touchPosition);
             if(e.keyCode==Keyboard.F5)
                 entityManager.loadEntities();
+            if(e.keyCode==Keyboard.F6)
+                trace(touchPosition);
         }
     }
 }

@@ -52,14 +52,8 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 		[Embed(source="/../assets/textures/1x/atlases/Victim_Enemy_lvl1Texture.png")]
 		public static const Victim_Enemy_lvl1Texture:Class;
 
-        [Embed(source="/../assets/textures/1x/PowerUpFireRate.png")]
-        public static const PowerUpFireRate:Class;
-
-        [Embed(source="/../assets/textures/1x/PowerUpFreeze.png")]
-        public static const PowerUpFreeze:Class;
-
-        [Embed(source="/../assets/textures/1x/PowerUpHealth.png")]
-        public static const PowerUpHealth:Class;
+        [Embed(source="/../assets/textures/1x/dummyButton.png")]
+        public static const PauseButton:Class;
 
 		//TT-Fonts
 		[Embed(source="/../assets/fonts/FriskyVampire.ttf", embedAsCFF="false", fontFamily="MenuFont")]

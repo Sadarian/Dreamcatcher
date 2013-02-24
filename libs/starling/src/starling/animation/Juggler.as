@@ -48,14 +48,14 @@ package starling.animation
     {
         private var mObjects:Vector.<IAnimatable>;
         private var mElapsedTime:Number;
-        private var mActive:Boolean;
+        private var mActive:Boolean
         
         /** Create an empty juggler. */
         public function Juggler()
         {
+            mActive = true;
             mElapsedTime = 0;
             mObjects = new <IAnimatable>[];
-            mActive = true;
         }
 
         /** Adds an object to the juggler. */
@@ -229,7 +229,7 @@ package starling.animation
         /** The total life time of the juggler. */
         public function get elapsedTime():Number { return mElapsedTime; }
 
-        public function start():void { mActive = true;}
+        public function start():void {mActive = true;}
         public function stop():void {mActive = false;}
         public function get isActive():Boolean {return mActive;}
     }

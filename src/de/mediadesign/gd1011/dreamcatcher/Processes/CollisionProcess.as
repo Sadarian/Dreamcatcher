@@ -22,15 +22,16 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 
 		public function update():void
 		{
-			for each (var entityA:Entity in manager.entities)
-			{
-				for each (var entityB:Entity in manager.entities)
+            var i:int = 0, j:int, entityA:Entity, entityB:Entity;
+            for(i ; i < manager.entities.length ; i++)
+                for(j = i+1 ; j < manager.entities.length ; j++)
 				{
-					if ((entityA != entityB && entityA.name != entityB.name) &&
-                            (!(entityA.movementSystem is MovementBoss) || !(entityA.movementSystem as MovementBoss).onInit) &&
-                            (!(entityB.movementSystem is MovementBoss) || !(entityB.movementSystem as MovementBoss).onInit) &&
-                            (!(entityA.movementSystem is MovementVictim) || !(entityA.movementSystem as MovementVictim).onInit) &&
-                            (!(entityB.movementSystem is MovementVictim) || !(entityB.movementSystem as MovementVictim).onInit))
+                    entityA = manager.entities[i];
+                    entityB = manager.entities[j];
+					if ((!(entityA.movementSystem is MovementBoss) || !(entityA.movementSystem as MovementBoss).onInit) &&
+                        (!(entityB.movementSystem is MovementBoss) || !(entityB.movementSystem as MovementBoss).onInit) &&
+                        (!(entityA.movementSystem is MovementVictim) || !(entityA.movementSystem as MovementVictim).onInit) &&
+                        (!(entityB.movementSystem is MovementVictim) || !(entityB.movementSystem as MovementVictim).onInit))
 					{
 						if(entityA.collisionMode == entityB.collisionMode)
 						{
@@ -63,7 +64,6 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 						}
 					}
 				}
-			}
 		}
 
 	    private function pickUpPowerUp(entityA:Entity, entityB:Entity):void
@@ -141,7 +141,7 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
                     else
                         entity.playAnimation(AnimatedModel.DIE_CLOSE_COMBAT);
 
-                if(entity.isVictim)
+                if(entity.isVictim1)
                     entity.playAnimation(AnimatedModel.DIE);
 
                 if(entity.isPlayer)

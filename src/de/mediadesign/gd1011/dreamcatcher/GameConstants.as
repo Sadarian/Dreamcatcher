@@ -8,7 +8,6 @@ package de.mediadesign.gd1011.dreamcatcher
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementVictim;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponEnemy;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerStraight;
-	import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
 
 	import flash.filesystem.File;
 	import flash.filesystem.FileMode;
@@ -51,12 +50,14 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const PLAYER:String = "Player";
 	    public static const PLAYERARM:String = "PlayerArm";
 		public static const VICTIM1:String = "Victim1";
+        public static const VICTIM2:String = "Victim2";
         public static const ENEMY:String = "Enemy";
+        public static const CHARGER:String = "Charger";
         public static const BOSS1:String = "Boss1";
 
 		public static const PLAYER_BULLET:String = "PlayerBullet";
 	    public static const ENEMY_BULLET:String = "EnemyBullet";
-        public static const BOSS_BULLET:String = "BossBullet";
+        public static const BOSS1_BULLET:String = "Boss1Bullet";
 
         public static const POWERUP_FIRE_RATE:String = "PowerUpFireRate";
         public static const POWERUP_FREEZE:String = "PowerUpFreeze";
@@ -73,6 +74,7 @@ package de.mediadesign.gd1011.dreamcatcher
         public static const PlayerArm_States:Array =["CloseCombat", "Die", "Hit"];
 
         public static const Enemy_States:Array =["Die", "Hit", "DieCloseCombat", "DeadWalk"];
+        public static const Charger_States:Array =["Die", "CloseCombat", "DieCloseCombat"];
 
         public static const Victim1_States:Array =["Die", "Walk", "Fear"];
         public static const Victim1_Default:String = "Eat";
@@ -80,7 +82,7 @@ package de.mediadesign.gd1011.dreamcatcher
         public static const Victim2_States:Array =["Die", "Walk", "Fear", "DieHead"];
         public static const Victim2_Default:String = "Eat";
 
-        public static const Boss1_States:Array =["CloseCombat", "Die"];
+        public static const Boss1_States:Array =["CloseCombat", "Die", "Shoot"];
 
         private static var _victimMovementBorderMax:Number;
         private static var _victimMovementBorderMin:Number;

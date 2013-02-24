@@ -8,7 +8,9 @@
 package de.mediadesign.gd1011.dreamcatcher.View
 {
     import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
-    import starling.display.Button;
+import de.mediadesign.gd1011.dreamcatcher.View.Menu.PauseMenu;
+
+import starling.display.Button;
     import starling.events.Event;
 
 
@@ -17,8 +19,8 @@ package de.mediadesign.gd1011.dreamcatcher.View
         public function PauseButton()
         {
             super(GraphicsManager.graphicsManager.getTexture("PauseButton"), "", GraphicsManager.graphicsManager.getTexture("PauseButton"));
-            x = 560;
-            y = 500;
+            x = 320;
+            y = 0;
             enabled = true;
             scaleWhenDown = 0.5;
             useHandCursor = true;

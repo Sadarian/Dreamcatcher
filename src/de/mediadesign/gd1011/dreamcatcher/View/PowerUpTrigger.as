@@ -106,7 +106,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		{
 			activeButton = null;
 			GameStage.gameStage.removeActor(powerUpButton);
-			powerUpButton.addEventListener("TRIGGERED", onButtonClick);
+			powerUpButton.addEventListener(Event.TRIGGERED, onButtonClick);
 			powerUpButton = null;
 		}
 
@@ -116,7 +116,6 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			durationTime = GameConstants.durationFireRate;
 
 			player.increaseWeaponSpeed(GameConstants.fireRateIncrease);
-			trace("increase fire rate!");
 		}
 
 		private static function freeze():void
@@ -153,7 +152,6 @@ package de.mediadesign.gd1011.dreamcatcher.View
 				case GameConstants.POWERUP_FIRE_RATE:
 				{
 					player.setWeaponSpeed();
-					trace("end of the increase");
 					break;
 				}
 				case GameConstants.POWERUP_FREEZE:

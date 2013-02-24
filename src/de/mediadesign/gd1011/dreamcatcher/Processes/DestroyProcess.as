@@ -32,7 +32,7 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
                     manager.addUnusedEntity(entity);
                 }
                 else
-                    if (entity.position.x >= Starling.current.viewPort.width+entity.movieClip.width/2 || entity.position.x <0)
+                    if (entity.position.x >= Starling.current.viewPort.width+entity.movieClip.width/2 || entity.position.x <0-entity.movieClip.width/2)
                     {
                         GameStage.gameStage.removeActor(entity.movieClip);
                         entity.removeMovieClip();

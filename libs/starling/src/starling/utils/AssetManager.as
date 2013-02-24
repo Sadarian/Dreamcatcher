@@ -149,7 +149,7 @@ package starling.utils
         
         /** Generates a new SoundChannel object to play back the sound. This method returns a 
          *  SoundChannel object, which you can access to stop the sound and to control volume. */ 
-        public function playSound(name:String, startTime:Number=0, loops:int=0, 
+        protected function playSound(name:String, startTime:Number=0, loops:int=0,
                                   transform:SoundTransform=null):SoundChannel
         {
             if (name in mSounds)
@@ -514,7 +514,11 @@ package starling.utils
         
         // helpers
         
-        private function getName(rawAsset:Object):String
+        /** This method is called by 'enqueue' to determine the name under which an asset will be
+         *  accessible; override it if you need a custom naming scheme. Typically, 'rawAsset' is 
+         *  either a String or a FileReference. Note that this method won't be called for embedded
+         *  assets. */
+        protected function getName(rawAsset:Object):String
         {
             var matches:Array;
             var name:String;

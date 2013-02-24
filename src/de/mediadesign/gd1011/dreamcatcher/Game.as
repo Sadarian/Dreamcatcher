@@ -12,13 +12,10 @@ package de.mediadesign.gd1011.dreamcatcher
     import de.mediadesign.gd1011.dreamcatcher.Processes.MoveProcess;
     import de.mediadesign.gd1011.dreamcatcher.Processes.RenderProcess;
     import de.mediadesign.gd1011.dreamcatcher.Processes.ShootingProcess;
-    import de.mediadesign.gd1011.dreamcatcher.View.MainMenu;
-
-    import flash.geom.Point;
+    import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
 	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
 
 	import flash.geom.Point;
-	import flash.net.SharedObject;
 	import flash.ui.Keyboard;
     import flash.utils.getTimer;
     import starling.core.Starling;
@@ -29,8 +26,9 @@ package de.mediadesign.gd1011.dreamcatcher
     import starling.events.Touch;
     import starling.events.TouchEvent;
     import starling.events.TouchPhase;
+    import starling.utils.ProgressBar;
 
-    public class Game extends Sprite
+public class Game extends Sprite
     {
         private var graphicsManager:GraphicsManager;
         private var entityManager:EntityManager;
@@ -60,29 +58,34 @@ package de.mediadesign.gd1011.dreamcatcher
 	        collisionProcess = new CollisionProcess();
 	        destroyProcess = new DestroyProcess();
 	        renderProcess = new RenderProcess();
-
-			addChild(gameStage);
 		}
 
         public function init():void
         {
+            var pB:ProgressBar = new ProgressBar(240, 80);
+            pB.x = stage.stageWidth/2 - pB.width/2;
+            pB.y = stage.stageHeight/2 - pB.height/2;
+            addChild(pB);
             graphicsManager.init();
             graphicsManager.loadQueue(function(ratio:Number):void
             {
+                pB.ratio = ratio;
                 if(ratio==1)
+                {
+                    removeChild(pB);
+                    pB.dispose();
                     Starling.juggler.delayCall(resumeInit, 0.15);
+                }
             });
         }
 
         private function resumeInit():void
         {
+            graphicsManager.initCompleted = true;
+            addChild(gameStage);
             gameStage.init();
             entityManager.init();
-
-            startLevel();
-
-            addEventListener(Event.ENTER_FRAME, update);
-            addEventListener(TouchEvent.TOUCH, onTouch);
+            MainMenu.showAndHide();
 
             if(Dreamcatcher.debugMode)
             {
@@ -96,8 +99,12 @@ package de.mediadesign.gd1011.dreamcatcher
             }
         }
 
-		private function startLevel(levelIndex:int = 1):void
+		public function startLevel(levelIndex:int = 1):void
 		{
+            if(!hasEventListener(Event.ENTER_FRAME))
+                addEventListener(Event.ENTER_FRAME, update);
+            if(!hasEventListener(TouchEvent.TOUCH))
+                addEventListener(TouchEvent.TOUCH, onTouch);
             gameStage.loadLevel(levelIndex);
             entityManager.loadEntities(levelIndex);
 		}
@@ -121,7 +128,7 @@ package de.mediadesign.gd1011.dreamcatcher
             }
 		}
 
-		private function update(event:Event):void
+		private function update():void
 		{
             if(Starling.juggler.isActive && !MainMenu.isActive())
             {

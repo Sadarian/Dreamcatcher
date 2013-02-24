@@ -5,8 +5,8 @@
     <SubTexture name="MainMenuContinueButton" x="272" y="1718" width="221" height="67"/>
     <SubTexture name="MainMenuContinueButtonClick" x="322" y="1956" width="233" height="77"/>
     <SubTexture name="MainMenuContinueScreen" x="2" y="804" width="1280" height="800"/>
-    <SubTexture name="MainMenuContinueScreenBackButton" x="346" y="1861" width="116" height="72" frameX="-22" frameY="0" frameWidth="160" frameHeight="72"/>
-    <SubTexture name="MainMenuContinueScreenBackButtonClick" x="346" y="1787" width="130" height="72" frameX="-15" frameY="0" frameWidth="160" frameHeight="72"/>
+    <SubTexture name="MainMenuContinueScreenBackButton" x="346" y="1861" width="116" height="72"/>
+    <SubTexture name="MainMenuContinueScreenBackButtonClick" x="346" y="1787" width="130" height="72"/>
     <SubTexture name="MainMenuCreditsButton" x="464" y="1861" width="173" height="71"/>
     <SubTexture name="MainMenuCreditsButtonClick" x="135" y="1960" width="185" height="81"/>
     <SubTexture name="MainMenuDrawerAnim_1" x="188" y="1790" width="156" height="164"/>

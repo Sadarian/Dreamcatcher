@@ -33,8 +33,6 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
         public function Entity(jsonConfig:Array, position:Point)
         {
 	        setData(jsonConfig, position);
-
-	        init();
         }
 
 		public function setData(jsonConfig:Array, position:Point):void {
@@ -74,6 +72,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			_points = jsonConfig[10];
 
 			_position = position;
+
+            init();
 		}
 
 		private function init():void
@@ -87,7 +87,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             if(_movementSystem)
             {
                 _position = _movementSystem.move(deltaTime, _position);
-                if(isVictim && !(_movementSystem as MovementVictim).onInit && getAnimatedModel(0).ActualAnimation.name == AnimatedModel.EAT)
+                if(isVictim1 && !(_movementSystem as MovementVictim).onInit && getAnimatedModel(0).ActualAnimation.name == AnimatedModel.EAT)
                     playAnimation(AnimatedModel.FEAR);
             }
         }
@@ -110,7 +110,6 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		public function removeMovieClip():void
 		{
 			GraphicsManager.graphicsManager.addMovieClip(_movieClip, _name);
-			_movieClip = null;
 		}
 
 		public function switchMovement(movementSystem:IMovement):void
@@ -133,9 +132,9 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			return _movieClip;
 		}
 
-        public function getAnimatedModel(index:int = 0):de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel
+        public function getAnimatedModel(index:int = 0):AnimatedModel
         {
-            return ((_movieClip as DisplayObjectContainer).getChildAt(index) as de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel);
+            return ((_movieClip as DisplayObjectContainer).getChildAt(index) as AnimatedModel);
         }
 
         public function get collisionMode():String
@@ -244,9 +243,24 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             return (name == GameConstants.ENEMY && !isBullet);
         }
 
-        public function get isVictim():Boolean
+        public function get isCharger():Boolean
+        {
+            return (name == GameConstants.CHARGER);
+        }
+
+        public function get isVictim1():Boolean
         {
             return (name == GameConstants.VICTIM1);
+        }
+
+        public function get isVictim2():Boolean
+        {
+            return (name == GameConstants.VICTIM2);
+        }
+
+        public function get isVictim():Boolean
+        {
+            return (isVictim1 || isVictim2);
         }
 
         public function get isBoss():Boolean
@@ -256,12 +270,12 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
         public function get isHostile():Boolean
         {
-            return (isVictim || isEnemy || isBoss)
+            return (isVictim || isEnemy || isCharger || isBoss)
         }
 
         public function get canAttack():Boolean
         {
-            return _weaponSystem != null;
+            return (_weaponSystem != null || isCharger);
         }
 
         public function playAnimation(animation:String):void

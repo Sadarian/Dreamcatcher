@@ -1,14 +1,10 @@
 package de.mediadesign.gd1011.dreamcatcher.Gameplay
 {
     import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
-    import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionDummyBoxes;
-	import de.mediadesign.gd1011.dreamcatcher.Gameplay.PowerUps;
 	import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionDummyBoxes;
     import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionImage;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.View.LifeBarHandling;
-	import de.mediadesign.gd1011.dreamcatcher.View.Score;
-
 	import flash.geom.Point;
     import starling.core.Starling;
 
@@ -36,11 +32,11 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 		public function init():void
 		{
-			createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
 		}
 
         public function loadEntities(levelIndex:int = 1):void
         {
+            createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
             var loadingEntities:Array = GameConstants.loadSpawnData(levelIndex);
             for(var i:int = 0;i<loadingEntities.length;i++)
             {
@@ -56,10 +52,10 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		    if(_unusedEntities.length > 0)
 		    {
 			    tempEntity = _unusedEntities.shift();
-			    if (tempEntity.movieClip)
-				    tempEntity.removeMovieClip();
+                tempEntity.setData(GameConstants.getData(name), position);
 		    }
-            tempEntity = new Entity(GameConstants.getData(name), position);
+            else
+                tempEntity = new Entity(GameConstants.getData(name), position);
 
             _entities.push(tempEntity);
 

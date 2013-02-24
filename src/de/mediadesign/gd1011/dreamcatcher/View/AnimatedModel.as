@@ -6,7 +6,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.PowerUps;
-
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBoss;
     import flash.utils.Dictionary;
     import starling.core.Starling;
     import starling.display.DisplayObjectContainer;
@@ -20,7 +20,6 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		public static const DEAD_WALK:String ="DeadWalk";
         public static const DIE:String = "Die";
 		public static const DIE_CLOSE_COMBAT:String ="DieCloseCombat";
-		public static const DIE_SHOOT:String = "DieShoot";
 		public static const DIE_HEAD:String = "DieHead";
 
 		public static const CLOSE_COMBAT:String = "CloseCombat";
@@ -88,7 +87,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
         public function playAnimation(animation:String):void
         {
-            if(actual == mAnimations[WALK] || actual == mAnimations[defaultType] || actual.isComplete)
+            if(actual == mAnimations[WALK] || actual == mAnimations[defaultType] || actual.isComplete || (entity.isBoss && animation == CLOSE_COMBAT))
             {
                 if(animation in mAnimations)
                 {
@@ -110,7 +109,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
             }
         }
 
-        private function onComplete(event:Event):void
+        private function onComplete():void
         {
             Starling.juggler.remove(actual);
             removeChild(actual);
@@ -126,13 +125,8 @@ package de.mediadesign.gd1011.dreamcatcher.View
                         entity.switchWeapon(null);
                         playAnimation(DIE);
                     }
-                    else if(entity.isPlayer)
-                    {
-                        actual = mAnimations[defaultType];
-                        addChild(actual);
-                        actual.play();
-                        Starling.juggler.add(actual);
-                    }
+                    else
+                        playAnimation(defaultType);
                     break;
 
                 case(DIE):
@@ -141,7 +135,6 @@ package de.mediadesign.gd1011.dreamcatcher.View
                         Score.updateScore(entity);
                         PowerUps.checkDrop(entity);
                     }
-
                     if(!entity.isEnemy)
                     {
                         if(!entity.isEnemy && name != GameConstants.PLAYERARM)
@@ -164,10 +157,9 @@ package de.mediadesign.gd1011.dreamcatcher.View
                         playAnimation(DIE);
                     else
                     {
-                        actual = mAnimations[defaultType];
-                        addChild(actual);
-                        actual.play();
-                        Starling.juggler.add(actual);
+                        if(entity.name == GameConstants.BOSS1)
+                            (entity.movementSystem as MovementBoss).switchTo(MovementBoss.MELEE);
+                        playAnimation(defaultType);
                     }
                     break;
 
@@ -175,11 +167,11 @@ package de.mediadesign.gd1011.dreamcatcher.View
                     playAnimation(WALK);
                     break;
 
+                case(DIE_HEAD):
+                    break;
+
                 default:
-                    actual = mAnimations[defaultType];
-                    addChild(actual);
-                    actual.play();
-                    Starling.juggler.add(actual);
+                    playAnimation(defaultType);
             }
         }
 
@@ -201,8 +193,8 @@ package de.mediadesign.gd1011.dreamcatcher.View
                 Starling.juggler.remove(animation);
                 animation.stop();
                 removeChild(animation);
-                actual = mAnimations[defaultType];
             }
+            actual = mAnimations[defaultType];
         }
 
         public function start():void
@@ -210,6 +202,13 @@ package de.mediadesign.gd1011.dreamcatcher.View
             addChild(actual);
             actual.play();
             Starling.juggler.add(actual);
+        }
+
+        public static function createByType(type:String):AnimatedModel
+        {
+            return new AnimatedModel(type,
+                    (GameConstants[type+"_States"])?GameConstants[type+"_States"]:null,
+                    (GameConstants[type+"_Default"])?GameConstants[type+"_Default"]:AnimatedModel.WALK);
         }
     }
 }

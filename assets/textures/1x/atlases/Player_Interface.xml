@@ -37,19 +37,19 @@
     <SubTexture name="PlayerCloseCombat_2" x="1628" y="2" width="256" height="202" frameX="-64" frameY="-64" frameWidth="320" frameHeight="266"/>
     <SubTexture name="PlayerCloseCombat_3" x="200" y="1789" width="214" height="201" frameX="-65" frameY="-66" frameWidth="320" frameHeight="267"/>
     <SubTexture name="PlayerDie_01" x="188" y="1582" width="194" height="205" frameX="-30" frameY="-62" frameWidth="320" frameHeight="267"/>
-    <SubTexture name="PlayerDie_02" x="1532" y="572" width="246" height="169" frameX="0" frameY="-94" frameWidth="320" frameHeight="267"/>
-    <SubTexture name="PlayerDie_03" x="1780" y="499" width="246" height="169" frameX="0" frameY="-94" frameWidth="320" frameHeight="267"/>
-    <SubTexture name="PlayerDie_04" x="1776" y="873" width="244" height="169" frameX="0" frameY="-94" frameWidth="320" frameHeight="267"/>
-    <SubTexture name="PlayerDie_05" x="1284" y="533" width="246" height="169" frameX="0" frameY="-94" frameWidth="320" frameHeight="267"/>
-    <SubTexture name="PlayerDie_06" x="1532" y="401" width="246" height="169" frameX="0" frameY="-94" frameWidth="320" frameHeight="267"/>
-    <SubTexture name="PlayerDie_07" x="228" y="1044" width="184" height="195" frameX="-29" frameY="-72" frameWidth="320" frameHeight="267"/>
-    <SubTexture name="PlayerDie_08" x="2" y="1582" width="184" height="221" frameX="-31" frameY="-46" frameWidth="320" frameHeight="267"/>
-    <SubTexture name="PlayerDie_09" x="222" y="1313" width="198" height="201" frameX="-24" frameY="-43" frameWidth="320" frameHeight="267"/>
-    <SubTexture name="PlayerDie_10" x="1780" y="670" width="244" height="201" frameX="-1" frameY="-65" frameWidth="320" frameHeight="267"/>
-    <SubTexture name="PlayerDie_11" x="1530" y="743" width="244" height="189" frameX="0" frameY="-74" frameWidth="320" frameHeight="267"/>
-    <SubTexture name="PlayerDie_12" x="1284" y="704" width="244" height="205" frameX="0" frameY="-58" frameWidth="320" frameHeight="267"/>
-    <SubTexture name="PlayerDie_13" x="1284" y="346" width="246" height="185" frameX="0" frameY="-78" frameWidth="320" frameHeight="267"/>
-    <SubTexture name="PlayerDie_14" x="422" y="1312" width="244" height="169" frameX="0" frameY="-94" frameWidth="320" frameHeight="267"/>
+    <SubTexture name="PlayerDie_02" x="228" y="1044" width="184" height="195" frameX="-29" frameY="-72" frameWidth="320" frameHeight="267"/>
+    <SubTexture name="PlayerDie_03" x="2" y="1582" width="184" height="221" frameX="-31" frameY="-46" frameWidth="320" frameHeight="267"/>
+    <SubTexture name="PlayerDie_04" x="222" y="1313" width="198" height="201" frameX="-24" frameY="-43" frameWidth="320" frameHeight="267"/>
+    <SubTexture name="PlayerDie_05" x="1780" y="670" width="244" height="201" frameX="-1" frameY="-65" frameWidth="320" frameHeight="267"/>
+    <SubTexture name="PlayerDie_06" x="1530" y="743" width="244" height="189" frameX="0" frameY="-74" frameWidth="320" frameHeight="267"/>
+    <SubTexture name="PlayerDie_07" x="1284" y="704" width="244" height="205" frameX="0" frameY="-58" frameWidth="320" frameHeight="267"/>
+    <SubTexture name="PlayerDie_08" x="1284" y="346" width="246" height="185" frameX="0" frameY="-78" frameWidth="320" frameHeight="267"/>
+    <SubTexture name="PlayerDie_09" x="422" y="1312" width="244" height="169" frameX="0" frameY="-94" frameWidth="320" frameHeight="267"/>
+    <SubTexture name="PlayerDie_10" x="1532" y="572" width="246" height="169" frameX="0" frameY="-94" frameWidth="320" frameHeight="267"/>
+    <SubTexture name="PlayerDie_11" x="1780" y="499" width="246" height="169" frameX="0" frameY="-94" frameWidth="320" frameHeight="267"/>
+    <SubTexture name="PlayerDie_12" x="1776" y="873" width="244" height="169" frameX="0" frameY="-94" frameWidth="320" frameHeight="267"/>
+    <SubTexture name="PlayerDie_13" x="1284" y="533" width="246" height="169" frameX="0" frameY="-94" frameWidth="320" frameHeight="267"/>
+    <SubTexture name="PlayerDie_14" x="1532" y="401" width="246" height="169" frameX="0" frameY="-94" frameWidth="320" frameHeight="267"/>
     <SubTexture name="PlayerHit_1" x="2" y="1805" width="196" height="206" frameX="-27" frameY="-60" frameWidth="320" frameHeight="266"/>
     <SubTexture name="PlayerWalk_1" x="384" y="1516" width="206" height="193" frameX="-7" frameY="-73" frameWidth="320" frameHeight="267"/>
     <SubTexture name="PlayerWalk_2" x="414" y="1044" width="226" height="193" frameX="0" frameY="-74" frameWidth="320" frameHeight="267"/>

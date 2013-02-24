@@ -2,8 +2,8 @@
 <!-- Created with TexturePacker http://texturepacker.com-->
 <!-- $TexturePacker:SmartUpdate:a98314532c6aaef206ae23d455296e02$ -->
 <TextureAtlas imagePath="Boss_lvl1Texture.png">
-    <SubTexture name="BossBulletWalk_1" x="65" y="2004" width="61" height="37"/>
-    <SubTexture name="BossBulletWalk_2" x="2" y="2004" width="61" height="37"/>
+    <SubTexture name="Boss1BulletWalk_1" x="65" y="2004" width="61" height="37"/>
+    <SubTexture name="Boss1BulletWalk_2" x="2" y="2004" width="61" height="37"/>
     <SubTexture name="Boss1CloseCombat_1" x="873" y="2" width="294" height="365" frameX="-87" frameY="-26" frameWidth="400" frameHeight="391"/>
     <SubTexture name="Boss1CloseCombat_2" x="871" y="759" width="270" height="361" frameX="-107" frameY="-20" frameWidth="400" frameHeight="391"/>
     <SubTexture name="Boss1CloseCombat_3" x="1491" y="2" width="314" height="347" frameX="-86" frameY="-7" frameWidth="400" frameHeight="391"/>

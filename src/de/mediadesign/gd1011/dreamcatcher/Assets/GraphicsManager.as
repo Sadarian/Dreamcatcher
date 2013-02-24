@@ -1,19 +1,15 @@
 package de.mediadesign.gd1011.dreamcatcher.Assets
 {
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
-import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
-
-import flash.geom.Rectangle;
-import flash.utils.Dictionary;
-
-import starling.core.Starling;
+    import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
+    import flash.media.SoundChannel;
+    import flash.media.SoundTransform;
+    import flash.utils.Dictionary;
+    import starling.core.Starling;
 	import starling.display.DisplayObject;
 	import starling.display.DisplayObjectContainer;
 	import starling.display.Image;
-	import starling.display.MovieClip;
 	import starling.display.Sprite;
-	import starling.textures.Texture;
-    import starling.textures.TextureAtlas;
     import starling.utils.AssetManager;
 
     public class GraphicsManager extends AssetManager
@@ -21,12 +17,18 @@ import starling.core.Starling;
         private static var self:GraphicsManager;
 
         private var mContainers:Dictionary;
+        private var mSoundChannels:Vector.<SoundChannel>;
+        private var mInit:Boolean;
+        private var mSoundActive:Boolean;
 
         public function GraphicsManager():void
         {
             super(Starling.contentScaleFactor, true);
 
             mContainers = new Dictionary();
+            mSoundChannels = new Vector.<SoundChannel>();
+            mInit = false;
+            mSoundActive = true;
         }
 
         public static function get graphicsManager():GraphicsManager
@@ -43,7 +45,7 @@ import starling.core.Starling;
 
 		public function getImage(item:String):Image
 		{
-			return new Image(getTexture(item));
+            return new Image(getTexture(item))
 		}
 
 		public function addMovieClip(clip:DisplayObject, item:String):void
@@ -54,25 +56,17 @@ import starling.core.Starling;
 			}
 			else
 			{
-                /*
                 if(item in mContainers)
                 {
-                    if(clip)
-                    {
-                        mContainers[item].push(clip);
-                        for(var i:int=0;i<(clip as DisplayObjectContainer).numChildren;i++)
-                        {
-                           ((clip as DisplayObjectContainer).getChildAt(i) as AnimatedModel).reset();
-                           ((clip as DisplayObjectContainer).getChildAt(i) as AnimatedModel).start();
-                        }
-                    }
+                    for(var i:int=0;i<(clip as DisplayObjectContainer).numChildren;i++)
+                       ((clip as DisplayObjectContainer).getChildAt(i) as AnimatedModel).reset();
+                    mContainers[item].push(clip);
                 }
                 else
                 {
                     mContainers[item] = new Vector.<DisplayObjectContainer>();
                     addMovieClip(clip, item);
                 }
-                */
 			}
 		}
 
@@ -87,13 +81,17 @@ import starling.core.Starling;
                 if(item in mContainers)
                 {
                     if(mContainers[item].length > 0)
+                    {
+                        for(var i:int=0;i<(mContainers[item][0] as DisplayObjectContainer).numChildren;i++)
+                            ((mContainers[item][0] as DisplayObjectContainer).getChildAt(i) as AnimatedModel).start();
                         return mContainers[item].shift();
+                    }
                     else
                     {
                         var container:Sprite = new Sprite();
-                        container.addChild(createMovieClip(item));
+                        container.addChild(AnimatedModel.createByType(item));
                         if(item == GameConstants.PLAYER)
-                            container.addChild(createMovieClip(item+"Arm"));
+                            container.addChild(AnimatedModel.createByType(item+"Arm"));
                         return container;
                     }
                 }
@@ -105,12 +103,18 @@ import starling.core.Starling;
             }
         }
 
-        //The following Functions will be removed and/or adjusted after transforming the Animations into Atlases!
-        private function createMovieClip(type:String):DisplayObject
-        {
-            var getStates:Array = (GameConstants[type+"_States"])?GameConstants[type+"_States"]:null;
-            var getDefault:String = (GameConstants[type+"_Default"])?GameConstants[type+"_Default"]:AnimatedModel.WALK;
-            return new AnimatedModel(type,  getStates, getDefault);
+        public function get initCompleted():Boolean {
+            return mInit;
         }
-	}
+
+        public function set initCompleted(value:Boolean):void {
+            mInit = value;
+        }
+
+        public function playSoundChannel(name:String, startTime:Number=0, loops:int=0,
+                                  transform:SoundTransform=null):void
+        {
+            mSoundChannels.push(playSound(name,  startTime, loops, transform))  ;
+        }
+    }
 }

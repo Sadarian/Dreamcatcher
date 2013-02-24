@@ -10,8 +10,6 @@
 
 package starling.core
 {
-    import de.mediadesign.gd1011.dreamcatcher.Game;
-
     import flash.display.Sprite;
     import flash.display.Stage3D;
     import flash.display.StageAlign;

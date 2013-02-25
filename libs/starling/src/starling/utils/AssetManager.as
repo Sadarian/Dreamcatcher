@@ -149,7 +149,7 @@ package starling.utils
         
         /** Generates a new SoundChannel object to play back the sound. This method returns a 
          *  SoundChannel object, which you can access to stop the sound and to control volume. */ 
-        protected function playSound(name:String, startTime:Number=0, loops:int=0,
+        public function playSound(name:String, startTime:Number=0, loops:int=0,
                                   transform:SoundTransform=null):SoundChannel
         {
             if (name in mSounds)

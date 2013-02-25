@@ -25,7 +25,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 
 	    public function shoot(deltaTime:Number, position:Point, target:Object):void
         {
-            //sumTime += deltaTime;
+            sumTime += deltaTime;
             if(sumTime>=_speed)
             {
                 sumTime -= _speed;

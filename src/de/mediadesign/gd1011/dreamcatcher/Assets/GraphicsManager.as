@@ -2,8 +2,6 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 {
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
-    import flash.media.SoundChannel;
-    import flash.media.SoundTransform;
     import flash.utils.Dictionary;
     import starling.core.Starling;
 	import starling.display.DisplayObject;
@@ -17,18 +15,14 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
         private static var self:GraphicsManager;
 
         private var mContainers:Dictionary;
-        private var mSoundChannels:Vector.<SoundChannel>;
         private var mInit:Boolean;
-        private var mSoundActive:Boolean;
 
         public function GraphicsManager():void
         {
             super(Starling.contentScaleFactor, true);
 
             mContainers = new Dictionary();
-            mSoundChannels = new Vector.<SoundChannel>();
             mInit = false;
-            mSoundActive = true;
         }
 
         public static function get graphicsManager():GraphicsManager
@@ -109,12 +103,6 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 
         public function set initCompleted(value:Boolean):void {
             mInit = value;
-        }
-
-        public function playSoundChannel(name:String, startTime:Number=0, loops:int=0,
-                                  transform:SoundTransform=null):void
-        {
-            mSoundChannels.push(playSound(name,  startTime, loops, transform))  ;
         }
     }
 }

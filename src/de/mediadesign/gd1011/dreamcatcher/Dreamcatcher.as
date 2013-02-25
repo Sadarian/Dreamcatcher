@@ -16,7 +16,7 @@ package de.mediadesign.gd1011.dreamcatcher
     [SWF(width="1280", height="800", frameRate="60", backgroundColor="#ffffff")]
 	public class Dreamcatcher extends Sprite
     {
-        public static const debugMode:Boolean = false;
+        public static const debugMode:Boolean = true;
 
         public static var localObject:SharedObject = SharedObject.getLocal("Dreamcatcher");
 

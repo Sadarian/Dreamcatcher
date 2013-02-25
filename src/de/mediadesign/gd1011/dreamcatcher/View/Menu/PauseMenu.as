@@ -3,7 +3,10 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
     import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.Game;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
-    import starling.core.Starling;
+
+import flash.media.SoundMixer;
+
+import starling.core.Starling;
     import starling.display.Button;
     import starling.display.DisplayObject;
     import starling.display.Sprite;
@@ -23,7 +26,10 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 
             mElements = new Vector.<DisplayObject>();
 
-            var buttonStrings:Array = ["PauseMenuPlay", "PauseMenuPlay", "PauseMenuEndGame", "PauseMenuEndGame", "PauseMenuSoundOn", "PauseMenuSoundOn"];
+            var buttonStrings:Array =
+                    ["PauseMenuPlay", "PauseMenuPlay",
+                    "PauseMenuEndGame", "PauseMenuEndGame",
+                    "PauseMenuSoundOn", "PauseMenuSoundOn"];
             var positions:Array = [[37, 38], [435, 19], [188,444]];
             var button:Button;
             for(var i:int=0; i<buttonStrings.length;i+=2)
@@ -52,6 +58,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
                     break;
                 case(mElements[2]):
                     var gM:GraphicsManager = GraphicsManager.graphicsManager;
+                    SoundMixer.soundTransform.volume = (mElements[2].name == "PauseMenuSoundOn")?0:1;
                     (mElements[2] as Button).upState = (mElements[2].name == "PauseMenuSoundOn")?gM.getTexture("PauseMenuSoundOff"):gM.getTexture("PauseMenuSoundOn");
                     (mElements[2] as Button).downState = (mElements[2].name == "PauseMenuSoundOn")?gM.getTexture("PauseMenuSoundOff"):gM.getTexture("PauseMenuSoundOn");
                     mElements[2].name = (mElements[2].name == "PauseMenuSoundOn")?"PauseMenuSoundOff":"PauseMenuSoundOn";

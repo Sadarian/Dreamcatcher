@@ -6,7 +6,9 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.View.LifeBarHandling;
 	import flash.geom.Point;
-    import starling.core.Starling;
+import flash.geom.Rectangle;
+
+import starling.core.Starling;
 
     public class EntityManager
     {
@@ -37,12 +39,36 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
         public function loadEntities(levelIndex:int = 1):void
         {
             createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
-            var loadingEntities:Array = GameConstants.loadSpawnData(levelIndex);
-            for(var i:int = 0;i<loadingEntities.length;i++)
+            var loadingEntities:Array = GameConstants.loadSpawnData((Dreamcatcher.debugMode)?levelIndex+1665:levelIndex);
+            var i:int;
+            if(!Dreamcatcher.debugMode)
             {
-                Starling.juggler.delayCall(createEntity, loadingEntities[i][0], loadingEntities[i][2], new Point(Starling.current.viewPort.width, loadingEntities[i][1]));
+                for(i=0;i<loadingEntities.length;i++)
+                    Starling.juggler.delayCall(createEntity, loadingEntities[i][0], loadingEntities[i][2], new Point(Starling.current.viewPort.width, loadingEntities[i][1]));
+            }
+            else
+            {
+                Starling.juggler.delayCall(createEntity, loadingEntities[0], "Boss"+levelIndex, new Point(Starling.current.viewPort.width, Starling.current.viewPort.height/2));
+                var mediumTime:Number = loadingEntities[0]/loadingEntities[1];
+                var nextTime:Number = 1 + (mediumTime-1)*Math.random();
+                var obj:Array;
+                loadingEntities.splice(0, 2);
+                for(i=0;i<loadingEntities.length;i++)
+                {
+                    obj = loadingEntities.splice([Math.round(Math.random()*loadingEntities.length)], 1);
+                    Starling.juggler.delayCall(spawnEntities, nextTime, obj);
+                    nextTime = (i+1)*mediumTime + (1 + (mediumTime-1)*Math.random());
+                }
+            }
+            function spawnEntities(list:Array):void
+            {
+                var i:int= 0, vP:Rectangle = Starling.current.viewPort;
+                for(i;i<list[0].length;i++)
+                    createEntity(list[0][i], new Point(vP.width + Math.random()*vP.width*0.1, vP.height*0.3 + 0.5*vP.height*Math.random()));
             }
         }
+
+
 
 	    public function createEntity(name:String, position:Point = null):Entity
 	    {

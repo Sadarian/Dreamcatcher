@@ -149,11 +149,11 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 				}
 			}
 
-			if (EntityManager.entityManager.getEntity(GameConstants.BOSS) != null)
+			if (EntityManager.entityManager.getEntity(GameConstants.BOSS1) != null)
 			{
-				if ((MovementBoss.phase == "Flee") || (EntityManager.entityManager.getEntity(GameConstants.BOSS).health <= 0))
+				if ((MovementBoss.phase == "Flee") || (EntityManager.entityManager.getEntity(GameConstants.BOSS1).health <= 0))
 				{
-					trace(EntityManager.entityManager.getEntity(GameConstants.BOSS).health)
+					trace(EntityManager.entityManager.getEntity(GameConstants.BOSS1).health)
 					if (!lvlEnd)
 					{
 						MovementBoss.resetPhase();

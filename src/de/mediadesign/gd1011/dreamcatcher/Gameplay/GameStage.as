@@ -1,13 +1,17 @@
 package de.mediadesign.gd1011.dreamcatcher.Gameplay
 {
     import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
-    import de.mediadesign.gd1011.dreamcatcher.GameConstants;
+	import de.mediadesign.gd1011.dreamcatcher.Game;
+	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBoss;
 	import de.mediadesign.gd1011.dreamcatcher.View.LevelEndScreen;
+	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
+	import de.mediadesign.gd1011.dreamcatcher.View.Score;
 
 	import starling.animation.DelayedCall;
     import starling.core.Starling;
     import starling.display.DisplayObject;
+	import starling.display.Image;
 	import starling.display.Sprite;
 
 	public class GameStage  extends Sprite
@@ -24,6 +28,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		private var lvlEnd:Boolean;
 
 		private var endScreen:LevelEndScreen;
+
+		private var background:Image;
 
         public static function get gameStage():GameStage
         {
@@ -42,7 +48,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			containerGroup = new Vector.<StageContainer>(6);
 			movementSpeeds = GameConstants.GAME_STAGE_MOVMENT_SPEEDS.concat();
 
-            addChild(GraphicsManager.graphicsManager.getImage(GameConstants.BACKGROUND));
+			background = GraphicsManager.graphicsManager.getImage(GameConstants.BACKGROUND)
+            addChild(background);
 
 			for(var i:int = 0;i<containerGroup.length;i++)
             {
@@ -56,6 +63,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		{
 			for each (var stageContainer:StageContainer in containerGroup)
 			{
+				removeChild(stageContainer, true);
 				stageContainer.dispose();
 			}
 			containerGroup = null;
@@ -64,7 +72,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 			movementSpeeds = null;
 
-
+			removeChild(background);
 		}
 
 		public function loadLevel(levelIndex:int = 1):void
@@ -128,11 +136,16 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 				}
 			}
 
-			if (MovementBoss.phase == "Flee")
+			if (EntityManager.entityManager.getEntity(GameConstants.BOSS) != null)
 			{
-				if ((EntityManager.entityManager.getEntity(GameConstants.BOSS)) == null && !lvlEnd)
+				if ((MovementBoss.phase == "Flee") || (EntityManager.entityManager.getEntity(GameConstants.BOSS).health <= 0))
 				{
-					endLvl()
+					trace(EntityManager.entityManager.getEntity(GameConstants.BOSS).health)
+					if (!lvlEnd)
+					{
+						MovementBoss.resetPhase();
+						endLvl();
+					}
 				}
 			}
 
@@ -140,10 +153,14 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			{
 				endScreen.alpha += 0.02;
 				endScreen.fadeIn();
+
 				if (endScreen.alpha >= 1)
 				{
 					EntityManager.entityManager.removeAll();
 					resetAll();
+					Score.removeScoreField();
+					PowerUpTrigger.deleteButton();
+					MovementBoss.resetPhase();
 				}
 			}
 		}
@@ -185,7 +202,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		private function endLvl():void
 		{
 			lvlEnd = true;
-			endScreen = new LevelEndScreen("Congratulations!");
+			endScreen = new LevelEndScreen("Congratulations! You have passed Level " + Game.currentLvl);
 			addChild(endScreen.screen);
 		}
 	}

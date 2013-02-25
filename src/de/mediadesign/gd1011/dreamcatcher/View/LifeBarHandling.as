@@ -35,6 +35,11 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			GameStage.gameStage.addChild(lifeBar);
 		}
 
+		public function removeLiveBar():void
+		{
+			GameStage.gameStage.removeActor(lifeBar)
+		}
+
 		public function updateHealthBar():void
 		{
             lifeBar.scaleX = (entity.health / life);

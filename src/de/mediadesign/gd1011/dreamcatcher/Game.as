@@ -12,11 +12,9 @@ package de.mediadesign.gd1011.dreamcatcher
     import de.mediadesign.gd1011.dreamcatcher.Processes.MoveProcess;
     import de.mediadesign.gd1011.dreamcatcher.Processes.RenderProcess;
     import de.mediadesign.gd1011.dreamcatcher.Processes.ShootingProcess;
-    import flash.geom.Point;
 	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
 
 	import flash.geom.Point;
-	import flash.net.SharedObject;
 	import flash.ui.Keyboard;
     import flash.utils.getTimer;
     import starling.core.Starling;
@@ -41,10 +39,11 @@ package de.mediadesign.gd1011.dreamcatcher
         private var destroyProcess:DestroyProcess;
 		private var renderProcess:RenderProcess;
 
+	    public static var currentLvl:Number = 1;
 		private var lastFrameTimeStamp:Number;
-		private var BossButton:Button;
 
         //DEBUG:
+	    private var BossButton:Button;
         private var touchPosition:Point = new Point();
 
 		public function Game()
@@ -74,12 +73,9 @@ package de.mediadesign.gd1011.dreamcatcher
 
         private function resumeInit():void
         {
-            gameStage.init();
-            entityManager.init();
+            startLevel(currentLvl);
 
-            startLevel();
-
-            addEventListener(Event.ENTER_FRAME, update);
+	        addEventListener(Event.ENTER_FRAME, update);
             addEventListener(TouchEvent.TOUCH, onTouch);
 
 
@@ -98,9 +94,17 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		private function startLevel(levelIndex:int = 1):void
 		{
+			gameStage.init();
+			entityManager.init();
             gameStage.loadLevel(levelIndex);
             entityManager.loadEntities(levelIndex);
 		}
+
+	    public function nextLevel():void
+	    {
+		    currentLvl++;
+		    startLevel(currentLvl);
+	    }
 
         public function setStartTimeStamp():void
         {

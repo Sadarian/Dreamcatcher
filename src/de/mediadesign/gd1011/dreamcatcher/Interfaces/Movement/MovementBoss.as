@@ -1,6 +1,7 @@
 package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
 {
-    import de.mediadesign.gd1011.dreamcatcher.GameConstants;
+	import de.mediadesign.gd1011.dreamcatcher.Game;
+	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Collision.CollisionUnidentical;
@@ -57,7 +58,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
 
                         if(player.movieClip && boss.movieClip.bounds.left - player.movieClip.bounds.right < 50)
                             switchTo(MELEE);
-	                    if(boss.health/boss.maxHealth <= 0.3)
+	                    if(boss.health/boss.maxHealth <= 0.3 && Game.currentLvl == 1)
 	                        switchTo(FLEE);
 
                         if(_direction.length != 0 && (((_lastMoveUp) && position.y <= _direction.y) || ((!_lastMoveUp) && position.y >= _direction.y)))
@@ -84,6 +85,8 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
                     {
                         if(CollisionUnidentical.checkCollision(player, boss) || position.x <= playerPoint.x)
                             switchTo(MELEE_TO_RANGE);
+	                    if(boss.health/boss.maxHealth <= 0.3 && Game.currentLvl == 1)
+		                    switchTo(FLEE);
                         _angle = Math.atan2(playerPoint.y - position.y, playerPoint.x - position.x);
                         return (position.add(new Point(_speed * Math.cos(_angle) * deltaTime, _speed * Math.sin(_angle) * deltaTime)));
                     }
@@ -91,6 +94,8 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
                     {
                         if(position.x >= startPoint.x)
                             switchTo(RANGE);
+	                    if(boss.health/boss.maxHealth <= 0.3 && Game.currentLvl == 1)
+		                    switchTo(FLEE);
                         _angle = Math.atan2(startPoint.y - position.y, startPoint.x - position.x);
                         return (position.add(new Point(_speed * Math.cos(_angle) * deltaTime, _speed * Math.sin(_angle) * deltaTime)));
                     }
@@ -144,8 +149,14 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
 
 	    }
 
-	    public static function get phase():String {
+	    public static function get phase():String
+	    {
 		    return _phase;
+	    }
+
+	    public static function resetPhase():void
+	    {
+		    _phase = RANGE;
 	    }
     }
 }

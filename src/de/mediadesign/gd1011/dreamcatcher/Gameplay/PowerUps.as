@@ -7,6 +7,7 @@
  */
 package de.mediadesign.gd1011.dreamcatcher.Gameplay
 {
+	import de.mediadesign.gd1011.dreamcatcher.Game;
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 
 	import flash.geom.Point;
@@ -18,7 +19,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 		}
 
-		public static function checkDrop(entity:Entity):void {
+		public static function checkDrop(entity:Entity):void
+		{
 			if (entity.health <= 0)
 			{
 				switch (entity.name)
@@ -33,12 +35,13 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 							break;
 						}
 
-						dropChance = (Math.floor(Math.random() * ((GameConstants.dropChanceFreezeEnemy - 1) + 1) + 1));
+						if (Game.currentLvl >= 2) {
+							dropChance = (Math.floor(Math.random() * ((GameConstants.dropChanceFreezeEnemy - 1) + 1) + 1));
 
-						if (dropChance == GameConstants.dropChanceFreezeEnemy)
-						{
-							dropFreeze(entity);
-							break;
+							if (dropChance == GameConstants.dropChanceFreezeEnemy) {
+								dropFreeze(entity);
+								break;
+							}
 						}
 						break;
 					}

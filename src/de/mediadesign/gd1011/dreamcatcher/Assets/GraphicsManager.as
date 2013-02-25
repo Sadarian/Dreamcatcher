@@ -84,15 +84,15 @@ import flash.geom.Rectangle;
 	            {
 
 
-		            if (this[item + "_List"].length > 0)
-			            return this[item + "_List"].shift();
-		            else {
+		           // if (this[item + "_List"].length > 0)
+			       //     return this[item + "_List"].shift();
+		           // else {
 			            var sprite:Sprite = new Sprite();
 			            sprite.addChild(createMovieClip(GameConstants[item.toUpperCase() + "_TEXTURE_NAME"], GameConstants[item.toUpperCase() + "_ANIM_CONFIG"]));
 			            if (item == GameConstants.PLAYER)
 				            sprite.addChild(createMovieClip(GameConstants[item.toUpperCase() + "_ARM_TEXTURE_NAME"], GameConstants[item.toUpperCase() + "_ARM_ANIM_CONFIG"]));
 			            return sprite;
-		            }
+		            //}
 
 	            }
 	            else

@@ -10,7 +10,9 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 	import de.mediadesign.gd1011.dreamcatcher.View.Score;
 
 	import flash.geom.Point;
-    import starling.core.Starling;
+
+	import starling.animation.Juggler;
+	import starling.core.Starling;
 
     public class EntityManager
     {
@@ -18,6 +20,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		private var _unusedEntities:Vector.<Entity>;
 		private var _lifeBars:Vector.<LifeBarHandling>;
 		private static var self:EntityManager = null;
+	    private var _juggler:Juggler = Starling.juggler;
 
         public function EntityManager()
         {
@@ -44,7 +47,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             var loadingEntities:Array = GameConstants.loadSpawnData(levelIndex);
             for(var i:int = 0;i<loadingEntities.length;i++)
             {
-                Starling.juggler.delayCall(createEntity, loadingEntities[i][0], loadingEntities[i][2], new Point(Starling.current.viewPort.width, loadingEntities[i][1]));
+                _juggler.delayCall(createEntity, loadingEntities[i][0], loadingEntities[i][2], new Point(Starling.current.viewPort.width, loadingEntities[i][1]));
             }
         }
 
@@ -68,8 +71,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			    _lifeBars.push(new LifeBarHandling(tempEntity));
 		    }
 
-//            if(Dreamcatcher.debugMode)
-//		        GameStage.gameStage.addChild(CollisionDummyBoxes.getDummy(tempEntity));
+            if(Dreamcatcher.debugMode)
+		        GameStage.gameStage.addChild(CollisionDummyBoxes.getDummy(tempEntity));
 
             GameStage.gameStage.addChildAt(tempEntity.movieClip, 4);
             return tempEntity;
@@ -79,16 +82,16 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		{
 			_entities.splice(_entities.indexOf(entity),1);
 
-//            if(Dreamcatcher.debugMode)
-//            {
-//                for each (var image:CollisionImage in CollisionDummyBoxes.dummies) {
-//                    if (entity.name == image.entityName) {
-//                        GameStage.gameStage.removeChild(image);
-//                        CollisionDummyBoxes.dummies.splice(CollisionDummyBoxes.dummies.indexOf(image), 1);
-//                        image.dispose();
-//                    }
-//                }
-//            }
+            if(Dreamcatcher.debugMode)
+            {
+                for each (var image:CollisionImage in CollisionDummyBoxes.dummies) {
+                    if (entity.name == image.entityName) {
+                        GameStage.gameStage.removeChild(image);
+                        CollisionDummyBoxes.dummies.splice(CollisionDummyBoxes.dummies.indexOf(image), 1);
+                        image.dispose();
+                    }
+                }
+            }
 			Score.updateScore(entity);
 
 			PowerUps.checkDrop(entity);
@@ -119,12 +122,20 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 	    public function removeAll():void
 	    {
-		    for each (var entity:Entity in _entities)
+		    _juggler.purge();
+
+		    while (_entities.length > 0) {
+			    for each (var entity:Entity in _entities) {
+				    GameStage.gameStage.removeActor(entity.movieClip);
+				    entity.removeMovieClip();
+				    addUnusedEntity(entity);
+			    }
+		    }
+
+		    for each (var lifeBar:LifeBarHandling in _lifeBars)
 		    {
-			    GameStage.gameStage.removeActor(entity.movieClip);
-			    entity.removeMovieClip();
-			    addUnusedEntity(entity);
+				lifeBar.removeLiveBar();
 		    }
 	    }
-	}
+    }
 }

@@ -36,7 +36,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 			if (!initialisation)
 			{
-				addScorField();
+				addScoreField();
 				initialisation = true;
 			}
 		}
@@ -46,7 +46,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			score = 0;
 		}
 
-		public static function addScorField():void
+		public static function addScoreField():void
 		{
 			GameStage.gameStage.addChild(scoreField);
 			scoreField.x = Starling.current.stage.stageWidth/ 2;

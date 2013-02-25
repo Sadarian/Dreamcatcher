@@ -41,10 +41,11 @@ public class Game extends Sprite
         private var destroyProcess:DestroyProcess;
 		private var renderProcess:RenderProcess;
 
+	    public static var currentLvl:Number = 1;
 		private var lastFrameTimeStamp:Number;
-		private var BossButton:Button;
 
         //DEBUG:
+	    private var BossButton:Button;
         private var touchPosition:Point = new Point();
 
 		public function Game()
@@ -83,13 +84,11 @@ public class Game extends Sprite
         {
             graphicsManager.initCompleted = true;
             addChild(gameStage);
-            gameStage.init();
-            entityManager.init();
             MainMenu.showAndHide();
 
             if(Dreamcatcher.debugMode)
             {
-                Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, debugFunction);
+	            Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, debugFunction);
 
                 addChild(BossButton = new Button(graphicsManager.getTexture(GameConstants.BUTTON),"RESTART"));
                 BossButton.x = 560;
@@ -105,9 +104,17 @@ public class Game extends Sprite
                 addEventListener(Event.ENTER_FRAME, update);
             if(!hasEventListener(TouchEvent.TOUCH))
                 addEventListener(TouchEvent.TOUCH, onTouch);
+			gameStage.init();
+			entityManager.init();
             gameStage.loadLevel(levelIndex);
             entityManager.loadEntities(levelIndex);
 		}
+
+	    public function nextLevel():void
+	    {
+		    currentLvl++;
+		    startLevel(currentLvl);
+	    }
 
         public function setStartTimeStamp():void
         {

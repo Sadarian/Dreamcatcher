@@ -102,12 +102,15 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 
 
-		private static function deleteButton():void
+		public static function deleteButton():void
 		{
-			activeButton = null;
-			GameStage.gameStage.removeActor(powerUpButton);
-			powerUpButton.addEventListener(Event.TRIGGERED, onButtonClick);
-			powerUpButton = null;
+			if (activeButton != null)
+			{
+				activeButton = null;
+				GameStage.gameStage.removeActor(powerUpButton);
+				powerUpButton.addEventListener(Event.TRIGGERED, onButtonClick);
+				powerUpButton = null;
+			}
 		}
 
 		private static function increaseFireRate():void

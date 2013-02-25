@@ -66,35 +66,35 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 
         public function getMovieClip(item:String):DisplayObject
         {
-            if (item.search(GameConstants.POWERUP) >= 0)
-            {
-                return getImage(item);
-            }
-            else
-            {
-                if(item in mContainers)
-                {
-                    if(mContainers[item].length > 0)
-                    {
-                        for(var i:int=0;i<(mContainers[item][0] as DisplayObjectContainer).numChildren;i++)
-                            ((mContainers[item][0] as DisplayObjectContainer).getChildAt(i) as AnimatedModel).start();
-                        return mContainers[item].shift();
-                    }
-                    else
-                    {
-                        var container:Sprite = new Sprite();
-                        container.addChild(AnimatedModel.createByType(item));
-                        if(item == GameConstants.PLAYER)
-                            container.addChild(AnimatedModel.createByType(item+"Arm"));
-                        return container;
-                    }
-                }
-                else
-                {
-                    mContainers[item] = new Vector.<DisplayObjectContainer>();
-                    return getMovieClip(item);
-                }
-            }
+	        if (item.search(GameConstants.POWERUP) >= 0)
+	        {
+		        return getImage(item);
+	        }
+	        else
+	        {
+		        if(item in mContainers)
+	            {
+		            if(mContainers[item].length > 0)
+		            {
+			            for(var i:int=0;i<(mContainers[item][0] as DisplayObjectContainer).numChildren;i++)
+				            ((mContainers[item][0] as DisplayObjectContainer).getChildAt(i) as AnimatedModel).start();
+			            return mContainers[item].shift();
+		            }
+		            else
+		            {
+			            var container:Sprite = new Sprite();
+			            container.addChild(AnimatedModel.createByType(item));
+			            if(item == GameConstants.PLAYER)
+				            container.addChild(AnimatedModel.createByType(item+"Arm"));
+			            return container;
+		            }
+	            }
+		        else
+		        {
+			        mContainers[item] = new Vector.<DisplayObjectContainer>();
+			        return getMovieClip(item);
+		        }
+	        }
         }
 
         public function get initCompleted():Boolean {

@@ -23,6 +23,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			{
 				position = new Point(1100, 30);
 			}
+
 			lifeBar = GraphicsManager.graphicsManager.getImage("LifeBar");
 
 			life = entity.health;
@@ -32,6 +33,11 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			lifeBar.y = position.y;
 
 			GameStage.gameStage.addChild(lifeBar);
+		}
+
+		public function removeLiveBar():void
+		{
+			GameStage.gameStage.removeActor(lifeBar)
 		}
 
 		public function updateHealthBar():void

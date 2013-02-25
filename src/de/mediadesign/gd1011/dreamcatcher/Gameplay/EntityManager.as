@@ -6,9 +6,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.View.LifeBarHandling;
 	import flash.geom.Point;
-import flash.geom.Rectangle;
-
-import starling.core.Starling;
+	import flash.geom.Rectangle;
+	import starling.core.Starling;
 
     public class EntityManager
     {
@@ -154,5 +153,21 @@ import starling.core.Starling;
 		public function get lifeBars():Vector.<LifeBarHandling> {
 			return _lifeBars;
 		}
-	}
+
+	    public function removeAll():void
+	    {
+		    while (_entities.length > 0) {
+			    for each (var entity:Entity in _entities) {
+				    GameStage.gameStage.removeActor(entity.movieClip);
+				    entity.removeMovieClip();
+				    addUnusedEntity(entity);
+			    }
+		    }
+
+		    for each (var lifeBar:LifeBarHandling in _lifeBars)
+		    {
+				lifeBar.removeLiveBar();
+		    }
+	    }
+    }
 }

@@ -12,8 +12,9 @@ package de.mediadesign.gd1011.dreamcatcher
     import de.mediadesign.gd1011.dreamcatcher.Processes.MoveProcess;
     import de.mediadesign.gd1011.dreamcatcher.Processes.RenderProcess;
     import de.mediadesign.gd1011.dreamcatcher.Processes.ShootingProcess;
-    import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
+	import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
 	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
+	import de.mediadesign.gd1011.dreamcatcher.View.UserInterface;
 
 	import flash.geom.Point;
 	import flash.ui.Keyboard;
@@ -106,6 +107,8 @@ public class Game extends Sprite
                 addEventListener(TouchEvent.TOUCH, onTouch);
 			gameStage.init();
 			entityManager.init();
+			UserInterface.userInterface.init();
+			PowerUpTrigger.init();
             gameStage.loadLevel(levelIndex);
             entityManager.loadEntities(levelIndex);
 		}
@@ -115,6 +118,11 @@ public class Game extends Sprite
 		    currentLvl++;
 		    startLevel(currentLvl);
 	    }
+
+		public function restartLevel():void
+		{
+			startLevel(currentLvl);
+		}
 
         public function setStartTimeStamp():void
         {

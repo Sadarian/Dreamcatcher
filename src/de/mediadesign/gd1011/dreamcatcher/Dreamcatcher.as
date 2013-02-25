@@ -16,7 +16,7 @@ package de.mediadesign.gd1011.dreamcatcher
     [SWF(width="1280", height="800", frameRate="60", backgroundColor="#000000")]
 	public class Dreamcatcher extends Sprite
     {
-        public static const debugMode:Boolean = true;
+        public static const debugMode:Boolean = false;
 
         public static var localObject:SharedObject = SharedObject.getLocal("Dreamcatcher");
 
@@ -39,9 +39,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		private function init():void
         {
             GameConstants.init();
-			_starling = new Starling(Game, stage, new Rectangle(0, 0 ,
-                    Math.max(stage.fullScreenHeight, stage.fullScreenWidth),
-                    Math.min(stage.fullScreenHeight, stage.fullScreenWidth)));
+			_starling = new Starling(Game, stage);
 			_starling.showStats = true;
 			_starling.addEventListener(starling.events.Event.ROOT_CREATED, onRootCreated);
 		}

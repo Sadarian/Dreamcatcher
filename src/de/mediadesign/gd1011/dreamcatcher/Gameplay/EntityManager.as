@@ -7,6 +7,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
     import de.mediadesign.gd1011.dreamcatcher.View.LifeBarHandling;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+
+	import starling.animation.Juggler;
 	import starling.core.Starling;
 
     public class EntityManager
@@ -15,6 +17,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		private var _unusedEntities:Vector.<Entity>;
 		private var _lifeBars:Vector.<LifeBarHandling>;
 		private static var self:EntityManager = null;
+	    private var juggler:Juggler = Starling.juggler;
 
         public function EntityManager()
         {
@@ -55,7 +58,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
                 for(i=0;i<loadingEntities.length;i++)
                 {
                     obj = loadingEntities.splice([Math.round(Math.random()*loadingEntities.length)], 1);
-                    Starling.juggler.delayCall(spawnEntities, nextTime, obj);
+                    juggler.delayCall(spawnEntities, nextTime, obj);
                     nextTime = (i+1)*mediumTime + (1 + (mediumTime-1)*Math.random());
                 }
             }
@@ -156,6 +159,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 	    public function removeAll():void
 	    {
+		    juggler.purge();
+
 		    while (_entities.length > 0) {
 			    for each (var entity:Entity in _entities) {
 				    GameStage.gameStage.removeActor(entity.movieClip);

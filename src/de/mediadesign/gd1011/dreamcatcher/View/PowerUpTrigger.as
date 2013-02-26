@@ -55,12 +55,10 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			}
 		}
 
-		public static function init():void {
-			if (!initialized)
-			{
-				createButton();
-				initialized = true;
-			}
+		public static function init():void
+		{
+			createButton();
+			initialized = true;
 		}
 
 		private static function createPowerUpIcon(name:String, powerUp:Entity):void

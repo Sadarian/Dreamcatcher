@@ -46,11 +46,11 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             if(!Dreamcatcher.debugMode)
             {
                 for(i=0;i<loadingEntities.length;i++)
-                    Starling.juggler.delayCall(createEntity, loadingEntities[i][0], loadingEntities[i][2], new Point(Starling.current.viewPort.width, loadingEntities[i][1]));
+                    juggler.delayCall(createEntity, loadingEntities[i][0], loadingEntities[i][2], new Point(Starling.current.viewPort.width, loadingEntities[i][1]));
             }
             else
             {
-                Starling.juggler.delayCall(createEntity, loadingEntities[0], "Boss"+levelIndex, new Point(Starling.current.viewPort.width, Starling.current.viewPort.height/2));
+                juggler.delayCall(createEntity, loadingEntities[0], "Boss"+levelIndex, new Point(Starling.current.viewPort.width, Starling.current.viewPort.height/2));
                 var mediumTime:Number = loadingEntities[0]/loadingEntities[1];
                 var nextTime:Number = 1 + (mediumTime-1)*Math.random();
                 var obj:Array;

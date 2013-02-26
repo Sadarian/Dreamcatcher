@@ -68,7 +68,6 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
                 movieClip.name = "-1";
             }
 
-
 			_points = jsonConfig[10];
 
 			_position = position;
@@ -80,6 +79,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		{
 			_movieClip.x = _position.x;
 			_movieClip.y = _position.y;
+			if(isEnemy || isCharger || isBoss)
+				GraphicsManager.graphicsManager.playSound(name+"Intro");
 		}
 
         public function move(deltaTime:Number):void

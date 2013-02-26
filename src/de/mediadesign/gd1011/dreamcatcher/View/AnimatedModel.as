@@ -58,6 +58,10 @@ package de.mediadesign.gd1011.dreamcatcher.View
                         mC.loop = false;
                         mC.addEventListener(Event.COMPLETE, onComplete);
                     }
+					if (animation == DIE && name != GameConstants.PLAYERARM)
+					{
+						mC.setFrameSound(0,GraphicsManager.graphicsManager.getSound(name +"Die" ))
+					}
                     mAnimations[animation] = mC;
                 }
             }
@@ -103,6 +107,8 @@ package de.mediadesign.gd1011.dreamcatcher.View
                         entity.switchMovement(null);
                         entity.switchWeapon(null);
                     }
+					if(name != GameConstants.PLAYERARM)
+						GraphicsManager.graphicsManager.playSound(name+animation);
                 }
                 else
                     throw new ArgumentError("Error! No +"+animation+" animation found!");

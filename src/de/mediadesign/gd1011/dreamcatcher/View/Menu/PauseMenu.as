@@ -47,6 +47,7 @@ import starling.core.Starling;
 
         private function onTriggered(e:Event):void
         {
+			GraphicsManager.graphicsManager.playSound("MenuButton1");
             switch(e.currentTarget)
             {
                 case(mElements[0]):

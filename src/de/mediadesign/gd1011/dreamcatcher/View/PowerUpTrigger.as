@@ -19,7 +19,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 	public class PowerUpTrigger
 	{
-		private static var powerUpButton:Button;
+		private static var _powerUpButton:Button;
 		private static var activeButton:String;
 		private static var activePowerUp:String;
 		private static var durationTime:Number;
@@ -29,6 +29,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		public static function addPowerUp(powerUp:Entity, playerE:Entity):void
 		{
 			player = playerE;
+			GraphicsManager.graphicsManager.playSound("PickUpPowerUp");
 
 			switch (powerUp.name)
 			{
@@ -73,11 +74,11 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			if (activeButton == null)
 			{
 				activeButton = name;
-				powerUpButton = new Button(GraphicsManager.graphicsManager.getTexture(name));
-				powerUpButton.x = Starling.current.viewPort.width  - powerUp.collisionValues.x * 2 - 20;
-				powerUpButton.y = Starling.current.viewPort.height - powerUp.collisionValues.y * 2 - 20;
-				GameStage.gameStage.addChild(powerUpButton);
-				powerUpButton.addEventListener(Event.TRIGGERED, onButtonClick)
+				_powerUpButton = new Button(GraphicsManager.graphicsManager.getTexture(name));
+				_powerUpButton.x = Starling.current.viewPort.width  - powerUp.collisionValues.x * 2 - 20;
+				_powerUpButton.y = Starling.current.viewPort.height - powerUp.collisionValues.y * 2 - 20;
+				GameStage.gameStage.addChild(_powerUpButton);
+				_powerUpButton.addEventListener(Event.TRIGGERED, onButtonClick)
 			}
 		}
 
@@ -107,9 +108,9 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			if (activeButton != null)
 			{
 				activeButton = null;
-				GameStage.gameStage.removeActor(powerUpButton);
-				powerUpButton.addEventListener(Event.TRIGGERED, onButtonClick);
-				powerUpButton = null;
+				GameStage.gameStage.removeActor(_powerUpButton);
+				_powerUpButton.addEventListener(Event.TRIGGERED, onButtonClick);
+				_powerUpButton = null;
 			}
 		}
 
@@ -175,6 +176,10 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		public static function get powerUpActive():Boolean
 		{
 			return _powerUpActive;
+		}
+
+		public static function get powerUpButton():Button {
+			return _powerUpButton;
 		}
 	}
 }

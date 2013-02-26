@@ -92,10 +92,12 @@ public class Game extends Sprite
 
                 addChild(BossButton = new Button(graphicsManager.getTexture(GameConstants.BUTTON),"RESTART"));
                 BossButton.x = 560;
-                BossButton.fontName = "TestFont";
+                BossButton.fontName = "MenuFont";
                 BossButton.enabled = false;
                 BossButton.addEventListener(Event.TRIGGERED, onButtonClick);
             }
+
+			GraphicsManager.graphicsManager.playSound("Slayer");
         }
 
 		public function startLevel(levelIndex:int = 1):void
@@ -168,6 +170,9 @@ public class Game extends Sprite
 
         private function onTouch(e:TouchEvent):void
         {
+			//if(e.getTouch(stage, TouchPhase.BEGAN).tapCount >= 2)
+			//	PowerUpTrigger.powerUpButton.dispatchEventWith(Event.TRIGGERED);
+
             var touches:Vector.<Touch> = new Vector.<Touch>();
 	        e.getTouches(stage, TouchPhase.BEGAN, touches);
 	        e.getTouches(stage, TouchPhase.MOVED, touches);

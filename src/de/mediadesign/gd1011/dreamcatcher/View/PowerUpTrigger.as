@@ -14,17 +14,22 @@ package de.mediadesign.gd1011.dreamcatcher.View
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 
 	import starling.core.Starling;
+
 	import starling.display.Button;
+
+	import starling.display.Image;
 	import starling.events.Event;
 
 	public class PowerUpTrigger
 	{
+		private static var powerUpIcon:Image;
 		private static var powerUpButton:Button;
-		private static var activeButton:String;
+		private static var activeIcon:String;
 		private static var activePowerUp:String;
 		private static var durationTime:Number;
 		private static var _powerUpActive:Boolean = false;
 		private static var player:Entity;
+		private static var initialized:Boolean = false;
 
 		public static function addPowerUp(powerUp:Entity, playerE:Entity):void
 		{
@@ -34,31 +39,13 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			{
 				case GameConstants.POWERUP_FIRE_RATE:
 				{
-
-					if (activeButton != null && activeButton != powerUp.name)
-					{
-						deleteButton();
-					}
-
-					if (activeButton == null)
-					{
-						createButton(GameConstants.POWERUP_FIRE_RATE, powerUp);
-					}
+					createPowerUpIcon(GameConstants.POWERUP_FIRE_RATE, powerUp);
 
 					break;
 				}
 				case GameConstants.POWERUP_FREEZE:
 				{
-
-					if (activeButton != null && activeButton != powerUp.name)
-					{
-						deleteButton();
-					}
-
-					if (activeButton == null)
-					{
-						createButton(GameConstants.POWERUP_FREEZE, powerUp);
-					}
+					createPowerUpIcon(GameConstants.POWERUP_FREEZE, powerUp);
 					break;
 				}
 				case GameConstants.POWERUP_HEALTH:
@@ -68,23 +55,53 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			}
 		}
 
-		private static function createButton(name:String, powerUp:Entity):void
-		{
-			if (activeButton == null)
+		public static function init():void {
+			if (!initialized)
 			{
-				activeButton = name;
-				powerUpButton = new Button(GraphicsManager.graphicsManager.getTexture(name));
-				powerUpButton.x = Starling.current.viewPort.width  - powerUp.collisionValues.x * 2 - 20;
-				powerUpButton.y = Starling.current.viewPort.height - powerUp.collisionValues.y * 2 - 20;
-				GameStage.gameStage.addChild(powerUpButton);
-				powerUpButton.addEventListener(Event.TRIGGERED, onButtonClick)
+				createButton();
+				initialized = true;
 			}
+		}
+
+		private static function createPowerUpIcon(name:String, powerUp:Entity):void
+		{
+			if (activeIcon == null)
+			{
+				activeIcon = name;
+
+				if (powerUpIcon == null)
+				{
+					powerUpIcon = new Image(GraphicsManager.graphicsManager.getTexture(name));
+					GameStage.gameStage.addChild(powerUpIcon);
+					powerUpIcon.x = powerUp.collisionValues.x + 36;
+					powerUpIcon.y = powerUp.collisionValues.y * 2 - 12;
+					powerUpIcon.scaleX = 0.38;
+					powerUpIcon.scaleY = 0.38;
+				}
+				else
+				{
+					GameStage.gameStage.addChild(powerUpIcon);
+					powerUpIcon.texture = GraphicsManager.graphicsManager.getTexture(name);
+				}
+				powerUpButton.enabled = true;
+			}
+		}
+
+		private static function createButton():void
+		{
+			powerUpButton = new Button(GraphicsManager.graphicsManager.getTexture("UsePower_1"),"",GraphicsManager.graphicsManager.getTexture("UsePower_2"));
+			powerUpButton.x = Starling.current.viewPort.width - powerUpButton.width;
+			powerUpButton.y = Starling.current.viewPort.height - powerUpButton.height;
+			powerUpButton.addEventListener(Event.TRIGGERED, onButtonClick);
+			powerUpButton.alphaWhenDisabled = 0.5;
+			deactivateButton();
+			GameStage.gameStage.addChild(powerUpButton);
 		}
 
 		private static function onButtonClick(event:Event):void
 		{
 			_powerUpActive = true;
-			switch (activeButton)
+			switch (activeIcon)
 			{
 				case GameConstants.POWERUP_FIRE_RATE:
 				{
@@ -97,20 +114,30 @@ package de.mediadesign.gd1011.dreamcatcher.View
 					break;
 				}
 			}
-			deleteButton();
+			deactivateButton();
 		}
 
-
+		private static function deactivateButton():void
+		{
+			activeIcon = null;
+			GameStage.gameStage.removeActor(powerUpIcon);
+			powerUpButton.enabled = false;
+		}
 
 		public static function deleteButton():void
 		{
-			if (activeButton != null)
+			if (activeIcon != null)
+				activeIcon = null;
+
+			if (powerUpIcon != null)
 			{
-				activeButton = null;
-				GameStage.gameStage.removeActor(powerUpButton);
-				powerUpButton.addEventListener(Event.TRIGGERED, onButtonClick);
-				powerUpButton = null;
+				GameStage.gameStage.removeActor(powerUpIcon);
+				powerUpIcon.dispose();
 			}
+
+			GameStage.gameStage.removeActor(powerUpButton);
+			powerUpButton.removeEventListener(Event.TRIGGERED, onButtonClick);
+			powerUpButton.dispose();
 		}
 
 		private static function increaseFireRate():void

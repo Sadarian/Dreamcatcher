@@ -27,6 +27,11 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		private var text:String;
 		private var _screen:Sprite;
 		private var continueButton:Button;
+		private var restartButton:Button;
+
+		private var buttonStrings:Array =
+					["Touch to Continue with the next Level!",
+					 "Touch to try again!"];
 
 		public function LevelEndScreen(text:String, alpha:Number = 0)
 		{
@@ -35,34 +40,67 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			_screen = new Sprite();
 			_screen.addChild(new Quad(Starling.current.viewPort.width,Starling.current.viewPort.height, 0x000000));
 			_screen.alpha = _alpha;
-
-			createContinueButton();
 		}
 
-		private function createContinueButton():void
+		public function createButton(text:String):Button
 		{
-			continueButton = new Button(GraphicsManager.graphicsManager.getTexture("Quad"), "Touch to Continue");
-			continueButton.fontName = "FriskyVampire";
-			continueButton.fontSize = 50;
-			continueButton.fontColor = 0xffffff;
-			continueButton.textBounds = new Rectangle(0, 0, 300, 100);
-			continueButton.x = _screen.width/2 - continueButton.width/2;
-			continueButton.y = _screen.height/2 + 200 - continueButton.height/2;
+			var tempButton:Button
+			tempButton = new Button(GraphicsManager.graphicsManager.getTexture("Quad"), text);
+			tempButton.fontName = "FriskyVampire";
+			tempButton.fontSize = 50;
+			tempButton.fontColor = 0xffffff;
+			tempButton.textBounds = new Rectangle(0, 0, 300, 100);
+			tempButton.x = _screen.width/2 - tempButton.width/2;
+			tempButton.y = _screen.height/2 + 200 - tempButton.height/2;
+			return tempButton;
 		}
 
-		private function continueClicked(event:Event):void
+		public function createNextLevelButton():Button
 		{
-			continueButton.removeEventListener("TRIGGERED", continueClicked);
+			continueButton = createButton(buttonStrings[0]);
+			continueButton.addEventListener(Event.TRIGGERED, nextLevelClicked);
+			return continueButton;
+		}
+
+		public function createRestartButton():Button
+		{
+			restartButton = createButton(buttonStrings[1]);
+			restartButton.addEventListener(Event.TRIGGERED, restartClicked);
+			return restartButton;
+		}
+
+		private function restartClicked(event:Event):void {
+			deleteAll();
+			(GameStage.gameStage.parent as Game).restartLevel();
+		}
+
+		private function nextLevelClicked(event:Event):void
+		{
+			deleteAll()
+			(GameStage.gameStage.parent as Game).nextLevel();
+		}
+
+		private function deleteAll():void
+		{
+			if (continueButton != null)
+			{
+				continueButton.removeEventListener(Event.TRIGGERED, nextLevelClicked);
+			}
+			else if (restartButton != null)
+			{
+				restartButton.removeEventListener(Event.TRIGGERED, restartClicked);
+			}
 
 			while (_screen.numChildren > 0)
 			{
 				_screen.removeChildAt(0, true);
 			}
 			GameStage.gameStage.removeActor(_screen);
-			(GameStage.gameStage.parent as Game).nextLevel();
+			_screen.dispose();
 		}
 
-		public function fadeIn():void {
+		public function fadeIn():void
+		{
 			_screen.alpha = _alpha;
 
 			if (_alpha >= 1)
@@ -72,8 +110,14 @@ package de.mediadesign.gd1011.dreamcatcher.View
 				textField.x = _screen.width/2 - textField.width/2;
 				textField.y = _screen.height/2 - textField.height/2;
 
-				continueButton.addEventListener(Event.TRIGGERED, continueClicked);
-				_screen.addChild(continueButton);
+				if (continueButton != null)
+				{
+					_screen.addChild(continueButton);
+				}
+				else if (restartButton != null)
+				{
+					_screen.addChild(restartButton);
+				}
 			}
 		}
 

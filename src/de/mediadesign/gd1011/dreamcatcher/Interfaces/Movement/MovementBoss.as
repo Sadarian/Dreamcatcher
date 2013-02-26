@@ -45,7 +45,7 @@ import flash.geom.Point;
                 return (position.add(new Point(-GameConstants.bossDistanceBorder/GameConstants.bossFadingInTime * deltaTime ,0)));
             else
             {
-                if(!_onInit && boss.health/boss.maxHealth <= 0.3 && phase != FLEE)
+                if(!_onInit && boss.name == GameConstants.BOSS1 && boss.health/boss.maxHealth <= 0.3 && phase != FLEE)
                     switchTo(FLEE);
                 switch(_phase)
                 {
@@ -65,9 +65,6 @@ import flash.geom.Point;
                             targetPoint = player.position;
                             switchTo(MELEE);
                         }
-	                    if(boss.health/boss.maxHealth <= 0.3 && Game.currentLvl == 1)
-	                        switchTo(FLEE);
-
                         if(_direction.length != 0 && (((_lastMoveUp) && position.y <= _direction.y) || ((!_lastMoveUp) && position.y >= _direction.y)))
                             _direction = new Point();
 
@@ -92,8 +89,6 @@ import flash.geom.Point;
                     {
                         if(CollisionUnidentical.checkCollision(player, boss) || position.x <= targetPoint.x)
                             switchTo(MELEE_TO_RANGE);
-	                    if(boss.health/boss.maxHealth <= 0.3 && Game.currentLvl == 1)
-		                    switchTo(FLEE);
 	                    _angle = Math.atan2(targetPoint.y - position.y, targetPoint.x - position.x);
                         return (position.add(new Point(_speed * Math.cos(_angle) * deltaTime, _speed * Math.sin(_angle) * deltaTime)));
                     }
@@ -101,8 +96,6 @@ import flash.geom.Point;
                     {
                         if(position.x >= startPoint.x)
                             switchTo(RANGE);
-	                    if(boss.health/boss.maxHealth <= 0.3 && Game.currentLvl == 1)
-		                    switchTo(FLEE);
                         _angle = Math.atan2(startPoint.y - position.y, startPoint.x - position.x);
                         return (position.add(new Point(_speed * Math.cos(_angle) * deltaTime, _speed * Math.sin(_angle) * deltaTime)));
                     }

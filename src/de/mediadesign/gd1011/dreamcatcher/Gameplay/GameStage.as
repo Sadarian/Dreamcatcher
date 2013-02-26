@@ -2,7 +2,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 {
     import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
-    import de.mediadesign.gd1011.dreamcatcher.View.PauseButton;
+	import de.mediadesign.gd1011.dreamcatcher.View.UserInterface;
+	import de.mediadesign.gd1011.dreamcatcher.View.PauseButton;
 	import de.mediadesign.gd1011.dreamcatcher.Game;
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBoss;
@@ -35,6 +36,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 		private var background:Image;
 
+		private var lose:Boolean;
+
 		public function GameStage()
 		{
 			movementSpeeds = GameConstants.GAME_STAGE_MOVMENT_SPEEDS.concat();
@@ -53,6 +56,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		public function init():void
 		{
 			bossStage = false;
+			lose = false;
 			lvlEnd = false;
 
 			containerGroup = new Vector.<StageContainer>(6);
@@ -85,7 +89,17 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 			movementSpeeds = null;
 
-			removeChild(background);
+			removeChild(pauseButton, true);
+
+			pauseButton = null;
+
+			removeChild(background, true);
+
+			Score.removeScoreField();
+			PowerUpTrigger.deleteButton();
+			MovementBoss.resetPhase();
+			UserInterface.userInterface.removePlayerBar();
+			EntityManager.entityManager.removeAll();
 		}
 
 		public function loadLevel(levelIndex:int = 1):void
@@ -149,15 +163,21 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 				}
 			}
 
+			if (EntityManager.entityManager.getEntity(GameConstants.PLAYER) != null && EntityManager.entityManager.getEntity(GameConstants.PLAYER).health <= 0 && !lvlEnd)
+			{
+				lose = true;
+				endLvl("You Lose!");
+			}
+
 			if (EntityManager.entityManager.getEntity(GameConstants.BOSS1) != null)
 			{
 				if ((MovementBoss.phase == "Flee") || (EntityManager.entityManager.getEntity(GameConstants.BOSS1).health <= 0))
 				{
-					trace(EntityManager.entityManager.getEntity(GameConstants.BOSS1).health)
+					trace(EntityManager.entityManager.getEntity(GameConstants.BOSS1).health);
 					if (!lvlEnd)
 					{
 						MovementBoss.resetPhase();
-						endLvl();
+						endLvl("Congratulations! You have passed Level " + Game.currentLvl);
 					}
 				}
 			}
@@ -169,11 +189,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 				if (endScreen.alpha >= 1)
 				{
-					EntityManager.entityManager.removeAll();
 					resetAll();
-					Score.removeScoreField();
-					PowerUpTrigger.deleteButton();
-					MovementBoss.resetPhase();
 				}
 			}
 		}
@@ -212,10 +228,15 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             }
 		}
 
-		private function endLvl():void
+		private function endLvl(text:String):void
 		{
 			lvlEnd = true;
-			endScreen = new LevelEndScreen("Congratulations! You have passed Level " + Game.currentLvl);
+			endScreen = new LevelEndScreen(text);
+			if (lose)
+				endScreen.createRestartButton();
+			else
+				endScreen.createNextLevelButton();
+
 			addChild(endScreen.screen);
 		}
 	}

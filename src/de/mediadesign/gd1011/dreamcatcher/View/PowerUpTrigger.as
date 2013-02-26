@@ -22,9 +22,11 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 	public class PowerUpTrigger
 	{
+
 		private static var powerUpIcon:Image;
-		private static var powerUpButton:Button;
 		private static var activeIcon:String;
+		private static var powerUpButton:Button;
+		private static var activeButton:String;
 		private static var activePowerUp:String;
 		private static var durationTime:Number;
 		private static var _powerUpActive:Boolean = false;
@@ -34,6 +36,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		public static function addPowerUp(powerUp:Entity, playerE:Entity):void
 		{
 			player = playerE;
+			GraphicsManager.graphicsManager.playSound("PickUpPowerUp");
 
 			switch (powerUp.name)
 			{
@@ -65,6 +68,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		{
 			if (activeIcon == null)
 			{
+
 				activeIcon = name;
 
 				if (powerUpIcon == null)
@@ -82,6 +86,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 					powerUpIcon.texture = GraphicsManager.graphicsManager.getTexture(name);
 				}
 				powerUpButton.enabled = true;
+
 			}
 		}
 
@@ -132,7 +137,6 @@ package de.mediadesign.gd1011.dreamcatcher.View
 				GameStage.gameStage.removeActor(powerUpIcon);
 				powerUpIcon.dispose();
 			}
-
 			GameStage.gameStage.removeActor(powerUpButton);
 			powerUpButton.removeEventListener(Event.TRIGGERED, onButtonClick);
 			powerUpButton.dispose();

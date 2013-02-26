@@ -34,7 +34,9 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 
 		public function init():void
 		{
+			graphicsManager.verbose = true;
             enqueue(EmbeddedAssets);
+			enqueue(EmbeddedSounds);
 		}
 
 		public function getImage(item:String):Image

@@ -1,12 +1,13 @@
 package de.mediadesign.gd1011.dreamcatcher.View.Menu
 {
-    import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
+	import de.mediadesign.gd1011.dreamcatcher.Assets.EmbeddedAssets;
+	import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.Game;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 
-import flash.media.Camera;
-import flash.media.SoundMixer;
-import flash.media.SoundTransform;
+	import flash.media.SoundChannel;
+	import flash.media.SoundMixer;
+
 
 import starling.core.Starling;
     import starling.display.Button;
@@ -14,7 +15,8 @@ import starling.core.Starling;
     import starling.display.MovieClip;
     import starling.display.Sprite;
     import starling.events.Event;
-    import starling.utils.deg2rad;
+	import starling.utils.AssetManager;
+	import starling.utils.deg2rad;
 
     public class MainMenu extends Sprite
     {
@@ -27,6 +29,8 @@ import starling.core.Starling;
         {
             var gM:GraphicsManager = GraphicsManager.graphicsManager;
             addChild(gM.getImage("MainMenuPicture"));
+
+			//var music:SoundChannel = GraphicsManager.graphicsManager.playSound("MenuTheme");
 
             mElements = new Vector.<DisplayObject>();
 
@@ -60,9 +64,11 @@ import starling.core.Starling;
 
         private function onTriggered(e:Event):void
         {
+			GraphicsManager.graphicsManager.playSound("MenuButton1");
             switch(e.currentTarget)
             {
                 case(mElements[0]):
+					GraphicsManager.graphicsManager.playSound("MenuSlide");
                     addChild(mElements[4]);
                     (mElements[4] as MovieClip).play();
                     Starling.juggler.add(mElements[4] as MovieClip);

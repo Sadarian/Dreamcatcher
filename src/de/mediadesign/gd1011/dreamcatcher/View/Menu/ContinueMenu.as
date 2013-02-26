@@ -42,6 +42,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
             switch(e.currentTarget)
             {
                 case(mElements[0]):
+					GraphicsManager.graphicsManager.playSound("MenuButton2");
                     showAndHide();
                     break;
             }

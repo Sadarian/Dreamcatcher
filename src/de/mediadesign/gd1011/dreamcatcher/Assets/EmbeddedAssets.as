@@ -57,6 +57,6 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 
 		//TT-Fonts
 		[Embed(source="/../assets/fonts/FriskyVampire.ttf", embedAsCFF="false", fontFamily="MenuFont")]
-		private static const MenuFont:Class;
+		public static const MenuFont:Class;
 	}
 }

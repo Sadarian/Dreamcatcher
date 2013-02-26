@@ -2,6 +2,7 @@
     "playerMeleeDamage":15,
     "enemyMeleeDamage":12,
     "bossMeleeDamage":20,
+    "chargerMeleeDamage":15,
     "playerMovementBorder":[128, 128, 1152, 512],
     "playerStartPosition":[100, 400],
     "victimTimeUntilMid":2,
@@ -10,5 +11,6 @@
     "bossShootsUntilCharge":15,
     "bossFadingInTime":2,
     "bossDistanceBorder":200,
-    "bossChargeSpeedMultiplier":5
+    "bossChargeSpeedMultiplier":5,
+    "playerBulletsPowerUpSpeed":1200
 }

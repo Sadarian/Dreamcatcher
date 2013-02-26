@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:e2df8e2ceec0b3bd9feaa7633baf012a$ -->
+<!-- $TexturePacker:SmartUpdate:5caba6e7621f0bd0cd2abee9aeea9f35$ -->
 <TextureAtlas imagePath="Background_lvl1_4Texture.png">
-    <SubTexture name="Button" x="1488" y="2" width="100" height="50"/>
-    <SubTexture name="Circle" x="1386" y="2" width="100" height="100"/>
     <SubTexture name="ForestAnim1_1" x="880" y="1584" width="872" height="292" frameX="-137" frameY="0" frameWidth="1280" frameHeight="800"/>
     <SubTexture name="ForestAnim1_2" x="2" y="1584" width="876" height="292" frameX="-134" frameY="0" frameWidth="1280" frameHeight="800"/>
     <SubTexture name="ForestAnim1_3" x="2" y="992" width="858" height="296" frameX="-136" frameY="0" frameWidth="1280" frameHeight="800"/>
@@ -12,5 +10,4 @@
     <SubTexture name="ForestAnim3_3" x="862" y="1288" width="1174" height="294" frameX="-98" frameY="0" frameWidth="1280" frameHeight="800"/>
     <SubTexture name="ForestAnim3_4" x="862" y="992" width="1174" height="294" frameX="-93" frameY="0" frameWidth="1280" frameHeight="800"/>
     <SubTexture name="Forest_3" x="2" y="2" width="1280" height="388" frameX="0" frameY="0" frameWidth="1280" frameHeight="800"/>
-    <SubTexture name="Quad" x="1284" y="2" width="100" height="100"/>
 </TextureAtlas>

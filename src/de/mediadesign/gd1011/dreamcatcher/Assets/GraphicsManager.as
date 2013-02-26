@@ -34,14 +34,16 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 
 		public function init():void
 		{
-			graphicsManager.verbose = true;
-            enqueue(EmbeddedAssets);
-			enqueue(EmbeddedSounds);
+            enqueue(EmbeddedFonts);
+            enqueue(EmbeddedSounds);
+            enqueue(EmbeddedTextures);
 		}
 
 		public function getImage(item:String):Image
 		{
-            return new Image(getTexture(item))
+            var img:Image = new Image(getTexture(item));
+            img.name = item;
+            return img;
 		}
 
 		public function addMovieClip(clip:DisplayObject, item:String):void

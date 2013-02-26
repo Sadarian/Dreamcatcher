@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:006f2679379af38a6925c3fb08775536$ -->
+<!-- $TexturePacker:SmartUpdate:ed25e64667c2aabf5c59f16cb8fb3aa8$ -->
 <TextureAtlas imagePath="Background_lvl1_1Texture.png">
     <SubTexture name="BushAnim1_1" x="1684" y="822" width="26" height="28" frameX="-276" frameY="-748" frameWidth="1280" frameHeight="800"/>
     <SubTexture name="BushAnim1_2" x="1656" y="822" width="26" height="28" frameX="-276" frameY="-748" frameWidth="1280" frameHeight="800"/>

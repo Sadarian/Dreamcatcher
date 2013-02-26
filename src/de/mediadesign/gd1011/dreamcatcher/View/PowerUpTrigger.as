@@ -12,8 +12,9 @@ package de.mediadesign.gd1011.dreamcatcher.View
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBullet;
 
-	import starling.core.Starling;
+    import starling.core.Starling;
 
 	import starling.display.Button;
 
@@ -25,7 +26,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 		private static var powerUpIcon:Image;
 		private static var activeIcon:String;
-		private static var powerUpButton:Button;
+		private static var _powerUpButton:Button;
 		private static var activeButton:String;
 		private static var activePowerUp:String;
 		private static var durationTime:Number;
@@ -85,20 +86,20 @@ package de.mediadesign.gd1011.dreamcatcher.View
 					GameStage.gameStage.addChild(powerUpIcon);
 					powerUpIcon.texture = GraphicsManager.graphicsManager.getTexture(name);
 				}
-				powerUpButton.enabled = true;
+				_powerUpButton.enabled = true;
 
 			}
 		}
 
 		private static function createButton():void
 		{
-			powerUpButton = new Button(GraphicsManager.graphicsManager.getTexture("UsePower_1"),"",GraphicsManager.graphicsManager.getTexture("UsePower_2"));
-			powerUpButton.x = Starling.current.viewPort.width - powerUpButton.width;
-			powerUpButton.y = Starling.current.viewPort.height - powerUpButton.height;
-			powerUpButton.addEventListener(Event.TRIGGERED, onButtonClick);
-			powerUpButton.alphaWhenDisabled = 0.5;
+			_powerUpButton = new Button(GraphicsManager.graphicsManager.getTexture("UsePower_1"),"",GraphicsManager.graphicsManager.getTexture("UsePower_2"));
+			_powerUpButton.x = Starling.current.viewPort.width - _powerUpButton.width;
+			_powerUpButton.y = Starling.current.viewPort.height - _powerUpButton.height;
+			_powerUpButton.addEventListener(Event.TRIGGERED, onButtonClick);
+			_powerUpButton.alphaWhenDisabled = 0.5;
 			deactivateButton();
-			GameStage.gameStage.addChild(powerUpButton);
+			GameStage.gameStage.addChild(_powerUpButton);
 		}
 
 		private static function onButtonClick(event:Event):void
@@ -125,7 +126,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		{
 			activeIcon = null;
 			GameStage.gameStage.removeActor(powerUpIcon);
-			powerUpButton.enabled = false;
+			_powerUpButton.enabled = false;
 		}
 
 		public static function deleteButton():void
@@ -138,9 +139,9 @@ package de.mediadesign.gd1011.dreamcatcher.View
 				GameStage.gameStage.removeActor(powerUpIcon);
 				powerUpIcon.dispose();
 			}
-			GameStage.gameStage.removeActor(powerUpButton);
-			powerUpButton.removeEventListener(Event.TRIGGERED, onButtonClick);
-			powerUpButton.dispose();
+			GameStage.gameStage.removeActor(_powerUpButton);
+			_powerUpButton.removeEventListener(Event.TRIGGERED, onButtonClick);
+			_powerUpButton.dispose();
 		}
 
 		private static function increaseFireRate():void
@@ -158,7 +159,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 			for each (var entity:Entity in EntityManager.entityManager.entities)
 			{
-				if (!(entity.name.search(GameConstants.PLAYER) >= 0))
+				if (entity.name.search(GameConstants.PLAYER) == -1)
 				{
 					entity.increaseMovementSpeed(GameConstants.slowEffect);
 					entity.increaseWeaponSpeed(GameConstants.slowEffect);
@@ -174,6 +175,16 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			{
 				endPowerUp();
 			}
+            else if(activePowerUp == GameConstants.POWERUP_FIRE_RATE)
+            {
+                for each (var entity:Entity in EntityManager.entityManager.entities)
+                    if (entity.name == GameConstants.PLAYER_BULLET && entity.movementSystem)
+                    {
+                        entity.movementSystem.speed = GameConstants.playerBulletsPowerUpSpeed;
+                        (entity.movementSystem as MovementBullet).updateVelocity();
+                    }
+
+            }
 		}
 
 		private static function endPowerUp():void
@@ -206,5 +217,10 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		{
 			return _powerUpActive;
 		}
-	}
+
+        public static function get powerUpButton():Button
+        {
+            return _powerUpButton;
+        }
+    }
 }

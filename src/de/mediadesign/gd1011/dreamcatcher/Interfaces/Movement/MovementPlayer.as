@@ -1,6 +1,9 @@
 package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
 {
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
+    import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
+    import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
+
     import flash.geom.Point;
     import flash.geom.Rectangle;
     import starling.core.Starling;
@@ -84,7 +87,14 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
         {
             calculateVelocity(position);
             if(velocity.length!=0)
+            {
                 validateVelocity(position, deltaTime);
+                if(GameConstants.Player_Default == AnimatedModel.STAND && EntityManager.entityManager.getEntity(GameConstants.PLAYER).getAnimatedModel(0).ActualAnimation.name == AnimatedModel.STAND)
+                    EntityManager.entityManager.getEntity(GameConstants.PLAYER).playAnimation(AnimatedModel.WALK);
+            }
+            else
+                if(GameConstants.Player_Default == AnimatedModel.STAND && EntityManager.entityManager.getEntity(GameConstants.PLAYER).getAnimatedModel(0).ActualAnimation.name == AnimatedModel.WALK)
+                    EntityManager.entityManager.getEntity(GameConstants.PLAYER).playAnimation(AnimatedModel.STAND);
             return (position.add(new Point(velocity.x * deltaTime, velocity.y * deltaTime)));
         }
     }

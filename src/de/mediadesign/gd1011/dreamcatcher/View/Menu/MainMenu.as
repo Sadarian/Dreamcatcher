@@ -1,6 +1,6 @@
 package de.mediadesign.gd1011.dreamcatcher.View.Menu
 {
-	import de.mediadesign.gd1011.dreamcatcher.Assets.EmbeddedAssets;
+	import de.mediadesign.gd1011.dreamcatcher.Assets.EmbeddedTextures;
 	import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.Game;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
@@ -110,13 +110,13 @@ import starling.core.Starling;
             if(!active)
             {
                 active = true;
-                GameStage.gameStage.addChild(mainMenu);
+                (Starling.current.root as Game).addChild(mainMenu);
             }
             else
             {
                 active = false;
                 (Starling.current.root as Game).setStartTimeStamp();
-                GameStage.gameStage.removeChild(mainMenu);
+                (Starling.current.root as Game).removeChild(mainMenu);
             }
         }
 

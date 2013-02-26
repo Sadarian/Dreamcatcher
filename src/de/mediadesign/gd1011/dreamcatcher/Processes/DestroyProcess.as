@@ -25,11 +25,16 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 		{
 			for each (var entity:Entity in manager.entities)
 			{
-                if(entity.health <= 0 && (entity.isBullet || entity.isBoss || entity.isPowerUp))
+                if(entity.health <= 0 && (entity.isBullet || entity.isBoss || entity.isPowerUp || entity.isCharger))
                 {
-                    GameStage.gameStage.removeActor(entity.movieClip);
-                    entity.removeMovieClip();
-                    manager.addUnusedEntity(entity);
+                    if(!(entity.name == GameConstants.PLAYER_BULLET) && !entity.isCharger)
+                    {
+                        GameStage.gameStage.removeActor(entity.movieClip);
+                        entity.removeMovieClip();
+                        manager.addUnusedEntity(entity);
+                    }
+                    else
+                        entity.playAnimation(AnimatedModel.DIE);
                 }
                 else
                     if (entity.position.x >= (Starling.current.viewPort.width*1.1)+entity.movieClip.width/2 || entity.position.x <0-entity.movieClip.width/2)

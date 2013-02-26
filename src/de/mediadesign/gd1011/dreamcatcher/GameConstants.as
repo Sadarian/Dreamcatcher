@@ -1,6 +1,7 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
     import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementCharger;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponBoss;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBullet;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementEnemy;
@@ -67,14 +68,18 @@ package de.mediadesign.gd1011.dreamcatcher
 	    private static var _playerMovementBorder:Rectangle;
         private static var _playerStartPosition:Point;
         private static var _victimTimeUntilMid:Number;
+        private static var _playerBulletsPowerUpSpeed:Number
 
         //States and Defaults for Animations:
-        public static const Player_States:Array =["CloseCombat", "Die", "Hit"];
+        public static const Player_States:Array =["CloseCombat", "Die", "Hit", "Stand"];
+        public static var Player_Default:String = "Walk";
 
-        public static const PlayerArm_States:Array =["CloseCombat", "Die", "Hit"];
+        public static const PlayerArm_States:Array =["CloseCombat", "Die", "Hit", "Stand"];
+
+        public static const PlayerBullet_States:Array =["Die"];
 
         public static const Enemy_States:Array =["Die", "Hit", "DieCloseCombat", "DeadWalk"];
-        public static const Charger_States:Array =["Die", "CloseCombat", "DieCloseCombat"];
+        public static const Charger_States:Array =["Die", "DieCloseCombat"];
 
         public static const Victim1_States:Array =["Die", "Walk", "Fear"];
         public static const Victim1_Default:String = "Eat";
@@ -109,6 +114,7 @@ package de.mediadesign.gd1011.dreamcatcher
         {
 	        new WeaponPlayerStraight();
             new WeaponBoss();
+            new MovementCharger();
 	        new MovementPowerUp();
             new MovementBullet();
             new MovementEnemy();
@@ -131,6 +137,7 @@ package de.mediadesign.gd1011.dreamcatcher
             if(data.playerMeleeDamage) _meleeDamage.push(data.playerMeleeDamage);
             if(data.enemyMeleeDamage) _meleeDamage.push(data.enemyMeleeDamage);
             if(data.bossMeleeDamage) _meleeDamage.push(data.bossMeleeDamage);
+            if(data.chargerMeleeDamage) _meleeDamage.push(data.chargerMeleeDamage);
             if(data.playerMovementBorder) _playerMovementBorder = new Rectangle(data.playerMovementBorder[0],
                                                                                 data.playerMovementBorder[1],
                                                                                 data.playerMovementBorder[2],
@@ -148,6 +155,7 @@ package de.mediadesign.gd1011.dreamcatcher
             if(data.bossFadingInTime) _bossFadingInTime = data.bossFadingInTime;
             if(data.bossDistanceBorder) _bossDistanceBorder = data.bossDistanceBorder;
             if(data.bossChargeSpeedMultiplier) _bossChargeSpeedMultiplier = data.bossChargeSpeedMultiplier;
+            if(data.playerBulletsPowerUpSpeed) _playerBulletsPowerUpSpeed = data.playerBulletsPowerUpSpeed;
         }
 
 		private static function setPowerUps(data:Object):void
@@ -220,6 +228,9 @@ package de.mediadesign.gd1011.dreamcatcher
                     break;
                 case(BOSS1):
                     pos = 2;
+                    break;
+                case(CHARGER):
+                    pos = 3;
                     break;
                 default:
                     return 0;
@@ -309,5 +320,10 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static function get healthGiven():Number {
 			return _healthGiven;
 		}
-	}
+
+        public static function get playerBulletsPowerUpSpeed():Number
+        {
+            return _playerBulletsPowerUpSpeed;
+        }
+    }
 }

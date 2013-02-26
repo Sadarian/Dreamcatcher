@@ -55,6 +55,7 @@ import starling.core.Starling;
                     break;
                 case(mElements[1]):
                     showAndHide();
+                    GameStage.gameStage.resetAll();
                     MainMenu.showAndHide();
                     break;
                 case(mElements[2]):
@@ -81,14 +82,14 @@ import starling.core.Starling;
             {
                 active = true;
                 Starling.juggler.stop();
-                GameStage.gameStage.addChild(pauseMenu);
+                (Starling.current.root as Game).addChild(pauseMenu);
             }
             else
             {
                 active = false;
                 Starling.juggler.start();
                 (Starling.current.root as Game).setStartTimeStamp();
-                GameStage.gameStage.removeChild(pauseMenu);
+                (Starling.current.root as Game).removeChild(pauseMenu);
             }
         }
 

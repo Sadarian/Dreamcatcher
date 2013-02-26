@@ -60,12 +60,12 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
             if(!active)
             {
                 active = true;
-                GameStage.gameStage.addChild(continueMenu);
+                MainMenu.mainMenu.addChild(continueMenu);
             }
             else
             {
                 active = false;
-                GameStage.gameStage.removeChild(continueMenu);
+                MainMenu.mainMenu.removeChild(continueMenu);
             }
         }
     }

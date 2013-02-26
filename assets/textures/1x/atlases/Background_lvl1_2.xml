@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:8831b41b350eb1b0dd04a4765b923511$ -->
+<!-- $TexturePacker:SmartUpdate:7dc6c8743063a459b2c6d95b123e69cd$ -->
 <TextureAtlas imagePath="Background_lvl1_2Texture.png">
     <SubTexture name="FogAnim3_1" x="2" y="1510" width="1012" height="168" frameX="-81" frameY="-131" frameWidth="1280" frameHeight="800"/>
     <SubTexture name="FogAnim3_2" x="1016" y="1340" width="1012" height="168" frameX="-81" frameY="-131" frameWidth="1280" frameHeight="800"/>

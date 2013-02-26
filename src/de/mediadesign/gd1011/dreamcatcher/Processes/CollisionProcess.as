@@ -66,7 +66,7 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 				}
 		}
 
-	    private function pickUpPowerUp(entityA:Entity, entityB:Entity):void
+	    private static function pickUpPowerUp(entityA:Entity, entityB:Entity):void
 	    {
 		    if (entityA.isPlayer && entityB.isPowerUp && entityB.health > 0)
 		    {
@@ -90,16 +90,16 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 
         private static function rangeCombat(entityA:Entity, entityB:Entity):void
         {
-	        if (!((entityA.name.search(GameConstants.POWERUP) >= 0) || (entityB.name.search(GameConstants.POWERUP) >= 0)))
+	        if (!(entityA.isPowerUp || entityB.isPowerUp))
 	        {
-		        if (entityA.isBullet && !entityB.isBullet && (entityA.name.search(entityB.name) == -1))
+		        if (entityA.isBullet && !entityB.isBullet && (entityA.name.search(entityB.name) == -1)  && entityB.canBeAttacked)
 	            {
                     showAnimation([entityB], true);
 	                entityB.health = entityB.health - entityA.health;
 	                entityA.health = 0;
 	            }
 	            else
-                    if(entityB.isBullet && !entityA.isBullet && (entityB.name.search(entityA.name) == -1))
+                    if(entityB.isBullet && !entityA.isBullet && (entityB.name.search(entityA.name) == -1)  && entityA.canBeAttacked)
                     {
                         showAnimation([entityA], true);
                         entityA.health = entityA.health - entityB.health;
@@ -110,18 +110,18 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 
         private static function meleeCombat(entityA:Entity, entityB:Entity):void
         {
-            if(entityA.isPlayer && entityB.isHostile)
+            if(entityA.isPlayer && entityB.isHostile && entityB.canBeAttacked)
             {
                 if(entityB.canAttack)
                     entityA.health -= GameConstants.meleeDamage(entityB.name);
-                if(entityA.canAttack)
+                if(entityA.canAttack && (!entityB.isBoss || entityA.getAnimatedModel(0).ActualAnimation.name == AnimatedModel.CLOSE_COMBAT))
                     entityB.health -= GameConstants.meleeDamage(entityA.name);
                 showAnimation([entityA, entityB], false);
             }
             else
-                if(entityB.isPlayer && entityA.isHostile)
+                if(entityB.isPlayer && entityA.isHostile  && entityA.canBeAttacked)
                 {
-                    if(entityB.canAttack)
+                    if(entityB.canAttack && (!entityA.isBoss || entityB.getAnimatedModel(0).ActualAnimation.name == AnimatedModel.CLOSE_COMBAT))
                         entityA.health -= GameConstants.meleeDamage(entityB.name);
                     if(entityA.canAttack)
                         entityB.health -= GameConstants.meleeDamage(entityA.name);
@@ -141,7 +141,15 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
                     else
                         entity.playAnimation(AnimatedModel.DIE_CLOSE_COMBAT);
 
-                if(entity.isVictim1)
+                if(entity.isBoss)
+                    if(!distance)
+                        (entity.movementSystem as MovementBoss).switchTo(MovementBoss.MELEE_TO_RANGE);
+
+                if(entity.isCharger)
+                    if(!distance)
+                        entity.playAnimation(AnimatedModel.DIE_CLOSE_COMBAT);
+
+                if(entity.isVictim)
                     entity.playAnimation(AnimatedModel.DIE);
 
                 if(entity.isPlayer)

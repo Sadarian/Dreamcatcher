@@ -269,8 +269,8 @@ package starling.display
             
             if (mCurrentFrame != previousFrame)
                 texture = mTextures[mCurrentFrame];
-            
-            if (dispatchCompleteEvent)
+
+            if (dispatchCompleteEvent || (mCurrentFrame == finalFrame && mCurrentTime == totalTime))
                 dispatchEventWith(Event.COMPLETE);
             
             if (mLoop && restTime != 0)

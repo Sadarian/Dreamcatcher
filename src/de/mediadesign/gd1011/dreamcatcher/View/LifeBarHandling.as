@@ -63,7 +63,9 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 		public function removeLiveBar():void
 		{
-			GameStage.gameStage.removeActor(lifeBar)
+			GameStage.gameStage.removeActor(lifeBar);
+            lifeBar.dispose();
+            GameStage.gameStage.removeActor(playerIcon);
 		}
 
 		public function updateHealthBar():void

@@ -2,7 +2,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 {
     import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
-	import de.mediadesign.gd1011.dreamcatcher.View.UserInterface;
+    import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
+    import de.mediadesign.gd1011.dreamcatcher.View.UserInterface;
 	import de.mediadesign.gd1011.dreamcatcher.View.PauseButton;
 	import de.mediadesign.gd1011.dreamcatcher.Game;
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
@@ -16,8 +17,9 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
     import starling.display.DisplayObject;
 	import starling.display.Image;
 	import starling.display.Sprite;
+    import starling.events.Event;
 
-	public class GameStage  extends Sprite
+    public class GameStage  extends Sprite
 	{
 		private static var self:GameStage;
 		private static var typeImage:Vector.<Boolean> = new <Boolean>[true, true, false, false, true, true];
@@ -163,17 +165,16 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 				}
 			}
 
-			if (EntityManager.entityManager.getEntity(GameConstants.PLAYER) != null && EntityManager.entityManager.getEntity(GameConstants.PLAYER).health <= 0 && !lvlEnd)
-			{
-				lose = true;
-				endLvl("You Lose!");
-			}
+            if (EntityManager.entityManager.getEntity(GameConstants.PLAYER) != null && EntityManager.entityManager.getEntity(GameConstants.PLAYER).health <= 0 && !lvlEnd)
+            {
+                lose = true;
+                endLvl("You Lose!");
+            }
 
 			if (EntityManager.entityManager.getEntity(GameConstants.BOSS1) != null)
 			{
 				if ((MovementBoss.phase == "Flee") || (EntityManager.entityManager.getEntity(GameConstants.BOSS1).health <= 0))
 				{
-					trace(EntityManager.entityManager.getEntity(GameConstants.BOSS1).health);
 					if (!lvlEnd)
 					{
 						MovementBoss.resetPhase();
@@ -220,11 +221,19 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             {
                 var call:DelayedCall = Starling.juggler.delayCall(reduceMovementSpeed, GameConstants.BOSS_SPEED_REDUCTION);
                 call.repeatCount = 100;
+                call.addEventListener(Event.REMOVE_FROM_JUGGLER, playerDefault);
             }
             function reduceMovementSpeed():void
             {
                 for (var i:int = 0; i < movementSpeeds.length; i++)
                     movementSpeeds[i] -= GameConstants.GAME_STAGE_MOVMENT_SPEEDS[i]/100;
+            }
+            function playerDefault():void
+            {
+                GameConstants.Player_Default = "Stand";
+                var player:Entity = EntityManager.entityManager.getEntity(GameConstants.PLAYER);
+                if(player.getAnimatedModel(0).ActualAnimation.name == AnimatedModel.WALK)
+                    player.playAnimation(AnimatedModel.STAND);
             }
 		}
 

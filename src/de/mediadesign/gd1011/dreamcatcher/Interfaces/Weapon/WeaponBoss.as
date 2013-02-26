@@ -55,7 +55,9 @@ public class WeaponBoss implements IWeapon
             _canShoot = value;
         }
 
-	    public function increaseSpeed(multiplier:Number):void {
-	    }
+        public function increaseSpeed(multiplier:Number):void
+        {
+            _speed *= multiplier;
+        }
     }
 }

@@ -3,6 +3,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
     import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.IMovement;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBoss;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBullet;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementVictim;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.IWeapon;
     import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
@@ -88,7 +90,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             if(_movementSystem)
             {
                 _position = _movementSystem.move(deltaTime, _position);
-                if(isVictim1 && !(_movementSystem as MovementVictim).onInit && getAnimatedModel(0).ActualAnimation.name == AnimatedModel.EAT)
+                if(isVictim && _movementSystem is MovementVictim && !(_movementSystem as MovementVictim).onInit && getAnimatedModel(0).ActualAnimation.name == AnimatedModel.EAT)
                     playAnimation(AnimatedModel.FEAR);
             }
         }
@@ -208,6 +210,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			if (_movementSystem != null)
 			{
 				_movementSystem.increaseSpeed(multiplier);
+                if(movementSystem is MovementBullet)
+                    (_movementSystem as MovementBullet).updateVelocity();
 			}
 		}
 
@@ -276,7 +280,12 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
         public function get canAttack():Boolean
         {
-            return (_weaponSystem != null || isCharger);
+            return (_movementSystem != null || (isBoss && MovementBoss.phase == MovementBoss.MELEE));
+        }
+
+        public function get canBeAttacked():Boolean
+        {
+            return (!getAnimatedModel(0).isDead);
         }
 
         public function playAnimation(animation:String):void

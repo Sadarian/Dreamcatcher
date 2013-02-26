@@ -7,6 +7,9 @@ package de.mediadesign.gd1011.dreamcatcher.View
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.PowerUps;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBoss;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementDieHead;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementVictim;
+
     import flash.utils.Dictionary;
     import starling.core.Starling;
     import starling.display.DisplayObjectContainer;
@@ -27,6 +30,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		public static const SHOOT:String ="Shoot";
 		public static const EAT:String = "Eat";
 		public static const FEAR:String = "Fear";
+        public static const STAND:String = "Stand";
 
         private var mAnimations:Dictionary;
         private var actual:MovieClip;
@@ -48,12 +52,15 @@ package de.mediadesign.gd1011.dreamcatcher.View
                     throw  new Error("Duplicate animation name: " + animation);
                 else
                 {
-                    mC = new MovieClip(GraphicsManager.graphicsManager.getTextures(name+animation+"_"));
+                    if(name == GameConstants.BOSS1 && animation == CLOSE_COMBAT)
+                        mC = new MovieClip(GraphicsManager.graphicsManager.getTextures(name+animation+"_"), 9);
+                    else
+                        mC = new MovieClip(GraphicsManager.graphicsManager.getTextures(name+animation+"_"));
                     mC.name = animation;
                     mC.stop();
                     mC.x -= mC.width/2;
                     mC.y -= mC.height/2;
-                    if(animation != WALK && animation != DEAD_WALK)
+                    if(animation != WALK && animation != DEAD_WALK && animation != DIE_HEAD && animation != STAND)
                     {
                         mC.loop = false;
                         mC.addEventListener(Event.COMPLETE, onComplete);
@@ -87,32 +94,48 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
         public function playAnimation(animation:String):void
         {
-            if(actual == mAnimations[WALK] || actual == mAnimations[defaultType] || actual.isComplete || (entity.isBoss && animation == CLOSE_COMBAT))
+            if(actual.loop || actual.isComplete || (entity.isBoss && animation == CLOSE_COMBAT) || (animation == DIE && entity.isVictim))
             {
-                if(animation in mAnimations)
                 {
-                    Starling.juggler.remove(actual);
-                    removeChild(actual);
-                    actual.stop();
-                    actual = mAnimations[animation];
-                    addChild(actual);
-                    actual.play();
-                    Starling.juggler.add(actual);
-                    if(animation == DIE_CLOSE_COMBAT)
+                    if(animation in mAnimations)
                     {
-                        entity.switchMovement(null);
-                        entity.switchWeapon(null);
+                        Starling.juggler.remove(actual);
+                        removeChild(actual);
+                        actual.stop();
+                        actual = mAnimations[animation];
+                        addChild(actual);
+                        actual.play();
+                        Starling.juggler.add(actual);
+                        if(animation == DIE_CLOSE_COMBAT)
+                        {
+                            entity.switchMovement(null);
+                            entity.switchWeapon(null);
+                        }
+                        if(name != GameConstants.PLAYERARM)
+                            GraphicsManager.graphicsManager.playSound(name+animation);
+
+                        if(animation == DIE)
+                        {
+                            if(!entity.isPlayer && name != GameConstants.PLAYERARM && !entity.isBullet)
+                            {
+                                Score.updateScore(entity);
+                                PowerUps.checkDrop(entity);
+                            }
+                            if(!entity.isEnemy && !entity.isBoss && !entity.isVictim2)
+                                entity.switchMovement(null);
+                            if(entity.isVictim2)
+                                entity.switchMovement(new MovementDieHead((entity.movementSystem as MovementVictim).speed));
+                        }
                     }
-					if(name != GameConstants.PLAYERARM)
-						GraphicsManager.graphicsManager.playSound(name+animation);
+                    else
+                        throw new ArgumentError("Error! No +"+animation+" animation found!");
                 }
-                else
-                    throw new ArgumentError("Error! No +"+animation+" animation found!");
             }
         }
 
         private function onComplete():void
         {
+            checkDefault();
             Starling.juggler.remove(actual);
             removeChild(actual);
             switch(actual.name)
@@ -132,20 +155,20 @@ package de.mediadesign.gd1011.dreamcatcher.View
                     break;
 
                 case(DIE):
-                    if(!entity.isPlayer && name != GameConstants.PLAYERARM)
+                    if(!entity.isEnemy && !entity.isVictim2)
                     {
-                        Score.updateScore(entity);
-                        PowerUps.checkDrop(entity);
-                    }
-                    if(!entity.isEnemy)
-                    {
-                        if(!entity.isEnemy && name != GameConstants.PLAYERARM)
+                        if(name != GameConstants.PLAYERARM)
                             EntityManager.entityManager.addUnusedEntity(entity);
                         GameStage.gameStage.removeActor(entity.movieClip);
                         entity.removeMovieClip();
                     }
                     else
-                        playAnimation(DEAD_WALK);
+                    {
+                        if(!entity.isVictim2)
+                            playAnimation(DEAD_WALK);
+                        else
+                            playAnimation(DIE_HEAD);
+                    }
                     break;
 
                 case(DIE_CLOSE_COMBAT):
@@ -167,9 +190,6 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
                 case(FEAR):
                     playAnimation(WALK);
-                    break;
-
-                case(DIE_HEAD):
                     break;
 
                 default:
@@ -206,11 +226,23 @@ package de.mediadesign.gd1011.dreamcatcher.View
             Starling.juggler.add(actual);
         }
 
+        public function get isDead():Boolean
+        {
+            return ((actual.name == DEAD_WALK) || (actual.name == DIE) || (actual.name == DIE_CLOSE_COMBAT) || (actual.name == DIE_HEAD));
+        }
+
         public static function createByType(type:String):AnimatedModel
         {
             return new AnimatedModel(type,
                     (GameConstants[type+"_States"])?GameConstants[type+"_States"]:null,
                     (GameConstants[type+"_Default"])?GameConstants[type+"_Default"]:AnimatedModel.WALK);
+        }
+
+        private function checkDefault():void
+        {
+            if(name != GameConstants.PLAYERARM)
+                if(defaultType != (GameConstants[name+"_Default"])?GameConstants[name+"_Default"]:AnimatedModel.WALK)
+                    defaultType = (GameConstants[name+"_Default"])?GameConstants[name+"_Default"]:AnimatedModel.WALK;
         }
     }
 }

@@ -1,13 +1,7 @@
-/**
- * Created with IntelliJ IDEA.
- * User: hufuchsberger
- * Date: 25.02.13
- * Time: 14:30
- * To change this template use File | Settings | File Templates.
- */
-package de.mediadesign.gd1011.dreamcatcher.Assets {
-	public class EmbeddedSounds {
-
+package de.mediadesign.gd1011.dreamcatcher.Assets
+{
+	public class EmbeddedSounds
+    {
 		//Sounds
 		[Embed(source="/../assets/audio/BossCharge.mp3")]
 		public static const Boss1CloseCombat:Class;
@@ -19,7 +13,7 @@ package de.mediadesign.gd1011.dreamcatcher.Assets {
 		public static const Boss1Intro:Class;
 
 		[Embed(source="/../assets/audio/ChargerCloseCombatDie.mp3")]
-		public static const ChargerCloseCombat:Class;
+		public static const ChargerDieCloseCombat:Class;
 
 		[Embed(source="/../assets/audio/ChargerDie.mp3")]
 		public static const ChargerDie:Class;
@@ -111,10 +105,16 @@ package de.mediadesign.gd1011.dreamcatcher.Assets {
 		[Embed(source="/../assets/audio/VictimFear.mp3")]
 		public static const Victim1Fear:Class;
 
+        [Embed(source="/../assets/audio/VictimDIe.mp3")]
+        public static const Victim2Die:Class;
+
+        [Embed(source="/../assets/audio/VictimEat.mp3")]
+        public static const Victim2Eat:Class;
+
+        [Embed(source="/../assets/audio/VictimFear.mp3")]
+        public static const Victim2Fear:Class;
+
 		[Embed(source="/../assets/audio/Slayer.mp3")]
 		public static const Slayer:Class;
-
-
-
 	}
 }

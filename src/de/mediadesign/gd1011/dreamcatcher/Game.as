@@ -106,6 +106,8 @@ public class Game extends Sprite
 
 		public function startLevel(levelIndex:int = 1):void
 		{
+            if(GameConstants.Player_Default != "Walk")
+                GameConstants.Player_Default = "Walk";
             if(!hasEventListener(Event.ENTER_FRAME))
                 addEventListener(Event.ENTER_FRAME, update);
             if(!hasEventListener(TouchEvent.TOUCH))
@@ -181,8 +183,8 @@ public class Game extends Sprite
 
         private function onTouch(e:TouchEvent):void
         {
-			//if(e.getTouch(stage, TouchPhase.BEGAN).tapCount >= 2)
-			//	PowerUpTrigger.powerUpButton.dispatchEventWith(Event.TRIGGERED);
+			if(e.getTouch(stage, TouchPhase.BEGAN) && e.getTouch(stage, TouchPhase.BEGAN).tapCount >= 2)
+			    PowerUpTrigger.powerUpButton.dispatchEventWith(Event.TRIGGERED);
 
             var touches:Vector.<Touch> = new Vector.<Touch>();
 	        e.getTouches(stage, TouchPhase.BEGAN, touches);
@@ -215,9 +217,18 @@ public class Game extends Sprite
             if(e.keyCode==Keyboard.F4)
                 entityManager.createEntity(GameConstants.BOSS1, touchPosition);
             if(e.keyCode==Keyboard.F5)
-                entityManager.loadEntities();
+                entityManager.createEntity(GameConstants.CHARGER, touchPosition);
             if(e.keyCode==Keyboard.F6)
-                trace(touchPosition);
+                entityManager.createEntity(GameConstants.VICTIM2, touchPosition);
+            if(e.keyCode==Keyboard.F7)
+                entityManager.loadEntities();
+            if(e.keyCode==Keyboard.F8)
+            {
+                if(GameConstants.Player_Default == "Stand")
+                    GameConstants.Player_Default = "Walk";
+                else
+                    GameConstants.Player_Default = "Stand";
+            }
         }
     }
 }

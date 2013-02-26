@@ -25,7 +25,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 	    public function shoot(deltaTime:Number, position:Point, target:Object):void
         {
             sumTime += deltaTime;
-            if(sumTime>=_speed)
+            if(sumTime>=_speed && position.x > EntityManager.entityManager.getEntity(GameConstants.ENEMY).movieClip.width/2)
             {
                 sumTime -= _speed;
                 var entity:Entity = EntityManager.entityManager.createEntity(GameConstants.ENEMY_BULLET, position);

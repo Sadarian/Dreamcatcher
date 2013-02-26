@@ -118,7 +118,6 @@ import flash.geom.Point;
         public function switchTo(phase:String):void
         {
             _phase = phase;
-	        trace(_phase);
             switch (_phase)
             {
                 case(MELEE):
@@ -144,7 +143,7 @@ import flash.geom.Point;
                     break;
 	            case(FLEE):
 		            (boss.weaponSystem as WeaponBoss).canShoot = false;
-		            _speed *= ((GameConstants.bossChargeSpeedMultiplier)*(-1));
+		            _speed *= -2;
 		            break;
 
                 default:

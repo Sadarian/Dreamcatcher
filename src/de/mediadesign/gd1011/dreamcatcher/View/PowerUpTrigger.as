@@ -103,6 +103,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 		private static function onButtonClick(event:Event):void
 		{
+			GraphicsManager.graphicsManager.playSound("UseUpPowerUp");
 			_powerUpActive = true;
 			switch (activeIcon)
 			{

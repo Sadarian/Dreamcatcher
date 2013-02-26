@@ -7,7 +7,8 @@ package starling.utils
     import flash.events.ProgressEvent;
     import flash.media.Sound;
     import flash.media.SoundChannel;
-    import flash.media.SoundTransform;
+	import flash.media.SoundMixer;
+	import flash.media.SoundTransform;
     import flash.net.FileReference;
     import flash.net.URLLoader;
     import flash.net.URLLoaderDataFormat;

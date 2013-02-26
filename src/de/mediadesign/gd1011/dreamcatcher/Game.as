@@ -17,6 +17,7 @@ package de.mediadesign.gd1011.dreamcatcher
 	import de.mediadesign.gd1011.dreamcatcher.View.UserInterface;
 
 	import flash.geom.Point;
+	import flash.media.SoundTransform;
 	import flash.ui.Keyboard;
     import flash.utils.getTimer;
     import starling.core.Starling;
@@ -98,6 +99,8 @@ public class Game extends Sprite
                 BossButton.addEventListener(Event.TRIGGERED, onButtonClick);
             }
 
+			//var musicTransform:SoundTransform = new SoundTransform(0.8);
+			//GraphicsManager.graphicsManager.playSound("Slayer",0,0,musicTransform);
 			GraphicsManager.graphicsManager.playSound("Slayer");
         }
 

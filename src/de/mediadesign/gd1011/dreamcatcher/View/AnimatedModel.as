@@ -58,10 +58,6 @@ package de.mediadesign.gd1011.dreamcatcher.View
                         mC.loop = false;
                         mC.addEventListener(Event.COMPLETE, onComplete);
                     }
-					if (animation == DIE && name != GameConstants.PLAYERARM)
-					{
-						mC.setFrameSound(0,GraphicsManager.graphicsManager.getSound(name +"Die" ))
-					}
                     mAnimations[animation] = mC;
                 }
             }

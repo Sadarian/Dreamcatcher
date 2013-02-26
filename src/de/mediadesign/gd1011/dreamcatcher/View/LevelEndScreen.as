@@ -76,7 +76,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 		private function nextLevelClicked(event:Event):void
 		{
-			deleteAll()
+			deleteAll();
 			(GameStage.gameStage.parent as Game).nextLevel();
 		}
 

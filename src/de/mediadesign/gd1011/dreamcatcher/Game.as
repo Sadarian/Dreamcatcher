@@ -151,7 +151,7 @@ public class Game extends Sprite
                 var passedTime:Number = now - lastFrameTimeStamp;
                 lastFrameTimeStamp = now;
 
-                entityManager.rotatePowerUps(passedTime);
+//                entityManager.rotatePowerUps(passedTime);
                 moveProcess.update(passedTime);
                 shootingProcess.update(passedTime);
                 collisionProcess.update();

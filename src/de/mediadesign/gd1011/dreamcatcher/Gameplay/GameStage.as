@@ -94,6 +94,12 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			pauseButton = null;
 
 			removeChild(background, true);
+
+			Score.removeScoreField();
+			PowerUpTrigger.deleteButton();
+			MovementBoss.resetPhase();
+			UserInterface.userInterface.removePlayerBar();
+			EntityManager.entityManager.removeAll();
 		}
 
 		public function loadLevel(levelIndex:int = 1):void
@@ -183,12 +189,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 				if (endScreen.alpha >= 1)
 				{
-					EntityManager.entityManager.removeAll();
 					resetAll();
-					Score.removeScoreField();
-					PowerUpTrigger.deleteButton();
-					MovementBoss.resetPhase();
-					UserInterface.userInterface.removePlayerBar();
 				}
 			}
 		}

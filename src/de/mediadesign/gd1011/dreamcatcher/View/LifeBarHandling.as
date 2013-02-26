@@ -51,7 +51,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		{
 			var shape:Shape = new Shape();
 			var matr:Matrix = new Matrix();
-			matr.createGradientBox(30, 0, -(Math.PI / 2), number);
+			matr.createGradientBox(30, number, -(Math.PI / 2), 0, number/3);
 			shape.graphics.beginGradientFill(GradientType.LINEAR, [0xFF0505, 0x000000],[1,1], [0,255], matr);
 			shape.graphics.drawCircle(34, 34, 34);
 			shape.graphics.endFill();

@@ -29,6 +29,10 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		private var continueButton:Button;
 		private var restartButton:Button;
 
+		private var buttonStrings:Array =
+					["Touch to Continue with the next Level!",
+					 "Touch to try again!"];
+
 		public function LevelEndScreen(text:String, alpha:Number = 0)
 		{
 			_alpha = alpha;
@@ -53,14 +57,14 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 		public function createNextLevelButton():Button
 		{
-			continueButton = createButton("Touch to Continue with the next Level!");
+			continueButton = createButton(buttonStrings[0]);
 			continueButton.addEventListener(Event.TRIGGERED, nextLevelClicked);
 			return continueButton;
 		}
 
 		public function createRestartButton():Button
 		{
-			restartButton = createButton("Touch to try again!");
+			restartButton = createButton(buttonStrings[1]);
 			restartButton.addEventListener(Event.TRIGGERED, restartClicked);
 			return restartButton;
 		}

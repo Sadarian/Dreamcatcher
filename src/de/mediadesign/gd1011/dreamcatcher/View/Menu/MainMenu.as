@@ -75,7 +75,7 @@ import starling.core.Starling;
                     Starling.juggler.add(mElements[5] as MovieClip);
                     break;
                 case(mElements[1]):
-                    //Credits
+                    CreditsMenu.showAndHide();
                     break;
                 case(mElements[2]):
                     var gM:GraphicsManager = GraphicsManager.graphicsManager;

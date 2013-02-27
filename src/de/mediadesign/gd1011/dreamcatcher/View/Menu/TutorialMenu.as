@@ -1,6 +1,7 @@
 package de.mediadesign.gd1011.dreamcatcher.View.Menu
 {
-	import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
+	import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
+
 	import starling.display.Button;
 	import starling.display.DisplayObject;
 	import starling.display.Image;

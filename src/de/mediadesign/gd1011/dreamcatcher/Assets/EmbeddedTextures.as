@@ -30,8 +30,14 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
         [Embed(source="/../assets/textures/1x/atlases/Enemy_lvl1.xml", mimeType="application/octet-stream")]
         public static const Enemy_lvl1:Class;
 
-        [Embed(source="/../assets/textures/1x/atlases/Main_Menu.xml", mimeType="application/octet-stream")]
-        public static const Main_Menu:Class;
+        [Embed(source="/../assets/textures/1x/atlases/Tutorial_1.xml", mimeType="application/octet-stream")]
+        public static const Tutorial_1:Class;
+
+		[Embed(source="/../assets/textures/1x/atlases/Tutorial_2.xml", mimeType="application/octet-stream")]
+		public static const Tutorial_2:Class;
+
+		[Embed(source="/../assets/textures/1x/atlases/Main_Menu.xml", mimeType="application/octet-stream")]
+		public static const Main_Menu:Class;
 
 		[Embed(source="/../assets/textures/1x/atlases/Player_Interface.xml", mimeType="application/octet-stream")]
 		public static const Player_Interface:Class;
@@ -67,8 +73,15 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
         [Embed(source="/../assets/textures/1x/atlases/Enemy_lvl1Texture.png")]
         public static const Enemy_lvl1Texture:Class;
 
-        [Embed(source="/../assets/textures/1x/atlases/Main_MenuTexture.png")]
-        public static const Main_MenuTexture:Class;
+        [Embed(source="/../assets/textures/1x/atlases/Tutorial_1Texture.png")]
+        public static const Tutorial_1Texture:Class;
+
+		[Embed(source="/../assets/textures/1x/atlases/Tutorial_2Texture.png")]
+		public static const Tutorial_2Texture:Class;
+
+		[Embed(source="/../assets/textures/1x/atlases/Main_MenuTexture.png")]
+		public static const Main_MenuTexture:Class;
+
 
 		[Embed(source="/../assets/textures/1x/atlases/Player_InterfaceTexture.png")]
 		public static const Player_InterfaceTexture:Class;

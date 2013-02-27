@@ -38,8 +38,9 @@ import starling.core.Starling;
                     ["MainMenuContinueButton", "MainMenuContinueButtonClick",
                      "MainMenuCreditsButton", "MainMenuCreditsButtonClick",
                      "MainMenuSoundButtonOn", "MainMenuSoundButtonOn",
-                     "MainMenuStartButton", "MainMenuStartButtonClick"];
-            var positions:Array = [[109, 375, deg2rad(-14.5)], [164, 455, deg2rad(-14.5)], [20, 23, deg2rad(0)], [138, 257, deg2rad(-13.5)]];
+                     "MainMenuStartButton", "MainMenuStartButtonClick",
+					 "MainMenuHelpButton",  "MainMenuHelpButtonClick"];
+            var positions:Array = [[109, 375, deg2rad(-14.5)], [164, 455, deg2rad(-14.5)], [20, 23, deg2rad(0)], [138, 257, deg2rad(-13.5)], [260, 530, deg2rad(-13.5)]];
             var button:Button;
             for(var i:int=0; i<buttonStrings.length;i+=2)
             {
@@ -69,12 +70,12 @@ import starling.core.Starling;
             {
                 case(mElements[0]):
 					GraphicsManager.graphicsManager.playSound("MenuSlide");
-                    addChild(mElements[4]);
-                    (mElements[4] as MovieClip).play();
-                    Starling.juggler.add(mElements[4] as MovieClip);
+                    addChild(mElements[5]);
+                    (mElements[5] as MovieClip).play();
+                    Starling.juggler.add(mElements[5] as MovieClip);
                     break;
                 case(mElements[1]):
-                    //Credits
+                    CreditsMenu.showAndHide();
                     break;
                 case(mElements[2]):
                     var gM:GraphicsManager = GraphicsManager.graphicsManager;
@@ -87,14 +88,17 @@ import starling.core.Starling;
                     showAndHide();
                     (Starling.current.root as Game).startLevel(1);
                     break;
+				case(mElements[4]):
+					TutorialMenu.showAndHide();
+					break;
             }
         }
 
         private function onSwitch():void
         {
-            (mElements[4] as MovieClip).stop();
-            Starling.juggler.remove(mElements[4] as MovieClip);
-            removeChild(mElements[4]);
+            (mElements[5] as MovieClip).stop();
+            Starling.juggler.remove(mElements[5] as MovieClip);
+            removeChild(mElements[5]);
             ContinueMenu.showAndHide()
         }
 

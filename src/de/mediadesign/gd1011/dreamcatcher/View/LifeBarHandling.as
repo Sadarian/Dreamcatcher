@@ -10,8 +10,11 @@ package de.mediadesign.gd1011.dreamcatcher.View
 	import flash.display.GradientType;
 
 	import flash.display.Shape;
+	import flash.events.Event;
 	import flash.geom.Matrix;
 	import flash.geom.Point;
+	import flash.media.SoundChannel;
+
 	import starling.display.Image;
 	import starling.textures.Texture;
 
@@ -22,6 +25,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
         private var entity:Entity;
         private var life:Number;
 		private var lifePercent:Number;
+		private var exhaustSound:SoundChannel;
 
 		public function LifeBarHandling(entity:Entity, position:Point = null)
 		{
@@ -44,7 +48,14 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			lifeBar.x = position.x;
 			lifeBar.y = position.y;
 
+
 			GameStage.gameStage.addChild(lifeBar);
+		}
+
+		private function soundCompleteHandler(event:Event):void
+		{
+			if (lifePercent <= 0.25)
+			GraphicsManager.graphicsManager.playSound("PlayerExhaust",0)
 		}
 
 		private function createLifeShape(number:Number):Texture
@@ -90,6 +101,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
             if(entity.health <= 0)
             {
                 GameStage.gameStage.removeActor(lifeBar);
+				exhaustSound.stop();
 
 	            if (entity.name == GameConstants.PLAYER)
 	                GameStage.gameStage.removeActor(playerIcon);
@@ -101,18 +113,26 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			if (lifePercent <= 0.75 && lifePercent > 0.5)
 			{
 				playerIcon.texture = GraphicsManager.graphicsManager.getTexture("PlayerLifeBarState_2");
+				if (exhaustSound)
+					exhaustSound.stop();
 			}
 			else if (lifePercent <= 0.5 && lifePercent > 0.25)
 			{
 				playerIcon.texture = GraphicsManager.graphicsManager.getTexture("PlayerLifeBarState_3");
+				if (exhaustSound)
+					exhaustSound.stop();
 			}
 			else if (lifePercent <= 0.25)
 			{
 				playerIcon.texture = GraphicsManager.graphicsManager.getTexture("PlayerLifeBarState_4");
+				exhaustSound = GraphicsManager.graphicsManager.playSound("PlayerExhaust",0);
+				exhaustSound.addEventListener(Event.SOUND_COMPLETE, soundCompleteHandler);
 			}
 			else
 			{
 				playerIcon.texture = GraphicsManager.graphicsManager.getTexture("PlayerLifeBarState_1");
+				if (exhaustSound)
+					exhaustSound.stop();
 			}
 		}
 	}

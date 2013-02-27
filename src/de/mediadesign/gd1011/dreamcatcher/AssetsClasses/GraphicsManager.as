@@ -1,16 +1,19 @@
-package de.mediadesign.gd1011.dreamcatcher.Assets
+package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
 {
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
-    import flash.utils.Dictionary;
+
+	import flash.filesystem.File;
+	import flash.utils.Dictionary;
     import starling.core.Starling;
 	import starling.display.DisplayObject;
 	import starling.display.DisplayObjectContainer;
 	import starling.display.Image;
 	import starling.display.Sprite;
     import starling.utils.AssetManager;
+	import starling.utils.formatString;
 
-    public class GraphicsManager extends AssetManager
+	public class GraphicsManager extends AssetManager
 	{
         private static var self:GraphicsManager;
 
@@ -34,9 +37,10 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 
 		public function init():void
 		{
+			verbose = true;
             enqueue(EmbeddedFonts);
             enqueue(EmbeddedSounds);
-            enqueue(EmbeddedTextures);
+            enqueue(File.applicationDirectory.resolvePath("assets/textures/1x/atlases/"));
 		}
 
 		public function getImage(item:String):Image

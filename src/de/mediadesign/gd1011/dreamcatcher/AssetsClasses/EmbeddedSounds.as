@@ -1,4 +1,4 @@
-package de.mediadesign.gd1011.dreamcatcher.Assets
+package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
 {
 	public class EmbeddedSounds
     {

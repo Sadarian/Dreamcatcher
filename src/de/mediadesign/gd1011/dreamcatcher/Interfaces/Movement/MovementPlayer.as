@@ -38,6 +38,8 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
             if(_touch != null)
             {
                 var target:Point = _touch.getLocation(Starling.current.stage);
+	            target.x += 120;
+
                 var angle:Number = Math.atan2(target.y - position.y, target.x - position.x);
                 velocity.x = _speed * Math.cos(angle);
                 velocity.y = _speed * Math.sin(angle);
@@ -51,6 +53,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
             if(_touch != null)
             {
                 var touchLocation:Point = _touch.getLocation(Starling.current.stage);
+	            touchLocation.x += 120;
 
                 var tempCalc:Point = new Point(velocity.x * deltaTime, velocity.y * deltaTime);
                 //Validation for Y

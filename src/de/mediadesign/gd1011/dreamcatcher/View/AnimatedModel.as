@@ -1,6 +1,6 @@
 package de.mediadesign.gd1011.dreamcatcher.View
 {
-    import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
+    import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
@@ -94,7 +94,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
         public function playAnimation(animation:String):void
         {
-            if(actual.loop || actual.isComplete || (entity.isBoss && animation == CLOSE_COMBAT) || (animation == DIE && entity.isVictim))
+            if(actual.loop || actual.isComplete || (entity.isBoss1 && animation == CLOSE_COMBAT) || (animation == DIE && entity.isVictim))
             {
                 {
                     if(animation in mAnimations)
@@ -121,7 +121,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
                                 Score.updateScore(entity);
                                 PowerUps.checkDrop(entity);
                             }
-                            if(!entity.isEnemy && !entity.isBoss && !entity.isVictim2)
+                            if(!entity.isEnemy && !entity.isBoss1 && !entity.isVictim2)
                                 entity.switchMovement(null);
                             if(entity.isVictim2)
                                 entity.switchMovement(new MovementDieHead((entity.movementSystem as MovementVictim).speed));

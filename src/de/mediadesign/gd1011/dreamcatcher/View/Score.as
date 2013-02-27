@@ -8,7 +8,8 @@
 package de.mediadesign.gd1011.dreamcatcher.View
 {
     import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
-    import de.mediadesign.gd1011.dreamcatcher.Gameplay.*;
+	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
+	import de.mediadesign.gd1011.dreamcatcher.Gameplay.*;
 
     import flash.net.SharedObject;
 
@@ -18,7 +19,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 	public class Score
 	{
 		private static var score:Number = 0;
-		private static var scoreField:TextField = new TextField(100, 30 , score.toString(),"Verdana", 24, 0x00FFFF);
+		private static var scoreField:TextField = new TextField(300, 100 , score.toString(),"MenuFont", 100, 0xe87600);
 		private static var initialisation:Boolean = false;
 
 		public static function updateScore(entity:Entity):void
@@ -30,7 +31,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			}
 		}
 
-		private static function showScore(score:Number):void
+		public static function showScore(score:Number):void
 		{
 			scoreField.text = score.toString();
 
@@ -49,13 +50,15 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		public static function addScoreField():void
 		{
 			GameStage.gameStage.addChild(scoreField);
-			scoreField.x = Starling.current.stage.stageWidth/ 2;
-			scoreField.y = 20;
+			scoreField.x = Starling.current.stage.stageWidth - scoreField.width - 50;
+			scoreField.y = 18;
 		}
 
 		public static function removeScoreField():void
 		{
 			GameStage.gameStage.removeChild(scoreField);
+			resetScore();
+			initialisation = false;
 		}
 
         public static function initHighScore():void

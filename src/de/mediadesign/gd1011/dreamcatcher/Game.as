@@ -1,6 +1,6 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
-    import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
+    import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
 	import de.mediadesign.gd1011.dreamcatcher.Processes.ActivePowerUpProcess;
 	import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionDummyBoxes;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
@@ -14,6 +14,7 @@ package de.mediadesign.gd1011.dreamcatcher
     import de.mediadesign.gd1011.dreamcatcher.Processes.ShootingProcess;
 	import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
 	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
+	import de.mediadesign.gd1011.dreamcatcher.View.Score;
 	import de.mediadesign.gd1011.dreamcatcher.View.UserInterface;
 
 	import flash.geom.Point;
@@ -116,6 +117,7 @@ public class Game extends Sprite
 			entityManager.init();
 			UserInterface.userInterface.init();
 			PowerUpTrigger.init();
+			Score.showScore(0)
             gameStage.loadLevel(levelIndex);
             entityManager.loadEntities(levelIndex);
 		}

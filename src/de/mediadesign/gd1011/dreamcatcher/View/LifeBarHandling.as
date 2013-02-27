@@ -1,6 +1,6 @@
 package de.mediadesign.gd1011.dreamcatcher.View
 {
-    import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
+    import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
@@ -12,6 +12,8 @@ package de.mediadesign.gd1011.dreamcatcher.View
 	import flash.display.Shape;
 	import flash.geom.Matrix;
 	import flash.geom.Point;
+
+	import starling.core.Starling;
 	import starling.display.Image;
 	import starling.textures.Texture;
 
@@ -19,23 +21,33 @@ package de.mediadesign.gd1011.dreamcatcher.View
 	{
 		private var lifeBar:Image;
 		private var playerIcon:Image;
+		private var bossLifeIcon:Image;
         private var entity:Entity;
         private var life:Number;
 		private var lifePercent:Number;
+		private var color:uint;
+		private var size:Number;
 
 		public function LifeBarHandling(entity:Entity, position:Point = null)
 		{
-			if (entity.name == GameConstants.PLAYER)
+			if (entity.isPlayer)
 			{
-				position = new Point(137, 35);
+				position = new Point(161, 43);
+				color = 0xFF0505;
+				size = 41
 				lifeBar = new Image(createLifeShape(0));
 				playerIcon = GraphicsManager.graphicsManager.getImage("PlayerLifeBarState_1");
 				GameStage.gameStage.addChild(playerIcon);
 			}
-			else if (entity.name == GameConstants.BOSS1)
+			else if (entity.isBoss)
 			{
-				position = new Point(1100, 30);
-				lifeBar = GraphicsManager.graphicsManager.getImage("LifeBar");
+				position = new Point(550, 30);
+				color = 0x4c1796;
+				size = 80;
+				lifeBar = new Image(createLifeShape(0));
+				bossLifeIcon = GraphicsManager.graphicsManager.getImage("BossLifeBarFrame");
+				bossLifeIcon.x = position.x-10;
+				bossLifeIcon.y = position.y-10;
 			}
 
 			life = entity.health;
@@ -45,17 +57,22 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			lifeBar.y = position.y;
 
 			GameStage.gameStage.addChild(lifeBar);
+
+			if (entity.isBoss)
+			{
+				GameStage.gameStage.addChild(bossLifeIcon);
+			}
 		}
 
 		private function createLifeShape(number:Number):Texture
 		{
 			var shape:Shape = new Shape();
 			var matr:Matrix = new Matrix();
-			matr.createGradientBox(30, number, -(Math.PI / 2), 0, number/3);
-			shape.graphics.beginGradientFill(GradientType.LINEAR, [0xFF0505, 0x000000],[1,1], [0,255], matr);
-			shape.graphics.drawCircle(34, 34, 34);
+			matr.createGradientBox(50, number, -(Math.PI / 2), 0, number/4);
+			shape.graphics.beginGradientFill(GradientType.LINEAR, [color, 0x000000],[1,1], [0,125], matr);
+			shape.graphics.drawCircle(size, size, size);
 			shape.graphics.endFill();
-			var bitmapData:BitmapData = new BitmapData(100, 100, true, 0x00FFFFFF);
+			var bitmapData:BitmapData = new BitmapData(size*3, size*3, true, 0x00FFFFFF);
 			bitmapData.draw(shape);
 
 			return Texture.fromBitmapData(bitmapData);
@@ -66,26 +83,33 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			GameStage.gameStage.removeActor(lifeBar);
             lifeBar.dispose();
             GameStage.gameStage.removeActor(playerIcon);
+			GameStage.gameStage.removeActor(bossLifeIcon);
 		}
 
 		public function updateHealthBar():void
 		{
-			if (entity.name == GameConstants.PLAYER)
-			{
-				if (lifePercent != entity.health / life)
-				{
-					lifePercent = entity.health / life;
-					changeIcon();
 
+			if (lifePercent != entity.health / life)
+			{
+				lifePercent = entity.health / life;
+
+				if (entity.isPlayer)
+				{
+					changeIcon();
 					lifeBar.texture = createLifeShape(life - entity.health);
 				}
 
+				if (entity.isBoss)
+				{
+					lifeBar.texture = createLifeShape((life - entity.health)/3);
+				}
+
+
+
 				lifePercent = entity.health / life;
 			}
-			else
-			{
-				lifeBar.scaleX = (entity.health / life);
-			}
+
+
 
             if(entity.health <= 0)
             {

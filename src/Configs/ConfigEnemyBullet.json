@@ -1,10 +1,10 @@
 {
     "name":"EnemyBullet",
-    "health":10,
+    "health":5,
     "movementSystem":"MovementBullet",
-    "movementSpeed":700,
+    "movementSpeed":900,
     "weaponSystem":"null",
-    "weaponSpeed":0.5,
+    "weaponSpeed":0.9,
     "collisionMode":"CollisionCircle",
     "collisionPoint":[0, 0],
     "collisionValues":[25, 25],

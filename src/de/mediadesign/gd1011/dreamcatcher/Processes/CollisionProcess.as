@@ -114,14 +114,14 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
             {
                 if(entityB.canAttack)
                     entityA.health -= GameConstants.meleeDamage(entityB.name);
-                if(entityA.canAttack && (!entityB.isBoss || entityA.getAnimatedModel(0).ActualAnimation.name == AnimatedModel.CLOSE_COMBAT))
+                if(entityA.canAttack && (!entityB.isBoss1 || entityA.getAnimatedModel(0).ActualAnimation.name == AnimatedModel.CLOSE_COMBAT))
                     entityB.health -= GameConstants.meleeDamage(entityA.name);
                 showAnimation([entityA, entityB], false);
             }
             else
                 if(entityB.isPlayer && entityA.isHostile  && entityA.canBeAttacked)
                 {
-                    if(entityB.canAttack && (!entityA.isBoss || entityB.getAnimatedModel(0).ActualAnimation.name == AnimatedModel.CLOSE_COMBAT))
+                    if(entityB.canAttack && (!entityA.isBoss1 || entityB.getAnimatedModel(0).ActualAnimation.name == AnimatedModel.CLOSE_COMBAT))
                         entityA.health -= GameConstants.meleeDamage(entityB.name);
                     if(entityA.canAttack)
                         entityB.health -= GameConstants.meleeDamage(entityA.name);
@@ -141,7 +141,7 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
                     else
                         entity.playAnimation(AnimatedModel.DIE_CLOSE_COMBAT);
 
-                if(entity.isBoss)
+                if(entity.isBoss1)
                     if(!distance)
                         (entity.movementSystem as MovementBoss).switchTo(MovementBoss.MELEE_TO_RANGE);
 

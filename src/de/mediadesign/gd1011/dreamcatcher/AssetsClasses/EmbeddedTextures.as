@@ -1,4 +1,4 @@
-package de.mediadesign.gd1011.dreamcatcher.Assets
+package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
 {
     public class EmbeddedTextures
     {
@@ -27,6 +27,12 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 		[Embed(source="/../assets/textures/1x/atlases/Boss_Victim_lvl1.xml", mimeType="application/octet-stream")]
 		public static const Boss_Victim_lvl1:Class;
 
+	    [Embed(source="/../assets/textures/1x/atlases/Comics_1.xml", mimeType="application/octet-stream")]
+	    public static const Comics_1:Class;
+
+	    [Embed(source="/../assets/textures/1x/atlases/Comics_2.xml", mimeType="application/octet-stream")]
+	    public static const Comics_2:Class;
+
         [Embed(source="/../assets/textures/1x/atlases/Enemy_lvl1.xml", mimeType="application/octet-stream")]
         public static const Enemy_lvl1:Class;
 
@@ -35,6 +41,12 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 
 		[Embed(source="/../assets/textures/1x/atlases/Player_Interface.xml", mimeType="application/octet-stream")]
 		public static const Player_Interface:Class;
+
+	    [Embed(source="/../assets/textures/1x/atlases/Tutorial_1.xml", mimeType="application/octet-stream")]
+	    public static const Tutorial_1:Class;
+
+	    [Embed(source="/../assets/textures/1x/atlases/Tutorial_2.xml", mimeType="application/octet-stream")]
+	    public static const Tutorial_2:Class;
 
         [Embed(source="/../assets/textures/1x/atlases/Victim_Charger_lvl2.xml", mimeType="application/octet-stream")]
         public static const Victim_Charger_lvl2:Class;
@@ -64,6 +76,12 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 		[Embed(source="/../assets/textures/1x/atlases/Boss_Victim_lvl1Texture.png")]
 		public static const Boss_Victim_lvl1Texture:Class;
 
+	    [Embed(source="/../assets/textures/1x/atlases/Comics_1Texture.png")]
+	    public static const Comics_1Texture:Class;
+
+	    [Embed(source="/../assets/textures/1x/atlases/Comics_2Texture.png")]
+	    public static const Comics_2Texture:Class;
+
         [Embed(source="/../assets/textures/1x/atlases/Enemy_lvl1Texture.png")]
         public static const Enemy_lvl1Texture:Class;
 
@@ -72,6 +90,12 @@ package de.mediadesign.gd1011.dreamcatcher.Assets
 
 		[Embed(source="/../assets/textures/1x/atlases/Player_InterfaceTexture.png")]
 		public static const Player_InterfaceTexture:Class;
+
+	    [Embed(source="/../assets/textures/1x/atlases/Tutorial_1Texture.png")]
+	    public static const Tutorial_1Texture:Class;
+
+	    [Embed(source="/../assets/textures/1x/atlases/Tutorial_2Texture.png")]
+	    public static const Tutorial_2Texture:Class;
 
         [Embed(source="/../assets/textures/1x/atlases/Victim_Charger_lvl2Texture.png")]
         public static const Victim_Charger_lvl2Texture:Class;

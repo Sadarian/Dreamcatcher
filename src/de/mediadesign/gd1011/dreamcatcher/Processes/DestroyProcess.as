@@ -25,7 +25,7 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 		{
 			for each (var entity:Entity in manager.entities)
 			{
-                if(entity.health <= 0 && (entity.isBullet || entity.isBoss || entity.isPowerUp || entity.isCharger))
+                if(entity.health <= 0 && (entity.isBullet || entity.isBoss1 || entity.isPowerUp || entity.isCharger))
                 {
                     if(!(entity.name == GameConstants.PLAYER_BULLET) && !entity.isCharger)
                     {

@@ -1,7 +1,8 @@
 package de.mediadesign.gd1011.dreamcatcher.Gameplay
 {
-    import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
-    import de.mediadesign.gd1011.dreamcatcher.GameConstants;
+    import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
+	import de.mediadesign.gd1011.dreamcatcher.Game;
+	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
     import de.mediadesign.gd1011.dreamcatcher.View.UserInterface;
 	import de.mediadesign.gd1011.dreamcatcher.View.PauseButton;
@@ -64,7 +65,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			containerGroup = new Vector.<StageContainer>(6);
 			movementSpeeds = GameConstants.GAME_STAGE_MOVMENT_SPEEDS.concat();
 
-			background = GraphicsManager.graphicsManager.getImage(GameConstants.BACKGROUND)
+			background = GraphicsManager.graphicsManager.getImage("Lvl" + Game.currentLvl + "_" + GameConstants.BACKGROUND)
             addChild(background);
 
 			for(var i:int = 0;i<containerGroup.length;i++)

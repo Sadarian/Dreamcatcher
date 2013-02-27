@@ -1,6 +1,6 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
-    import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
+    import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
     import de.mediadesign.gd1011.dreamcatcher.View.Menu.PauseMenu;
     import flash.desktop.NativeApplication;

@@ -1,6 +1,6 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
-    import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
+    import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementCharger;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponBoss;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBullet;
@@ -24,6 +24,7 @@ package de.mediadesign.gd1011.dreamcatcher
         public static const COLLISION_CIRCLE:String = "CollisionCircle";
 	    public static const BULLET:String = "Bullet";
 		public static const POWERUP:String = "PowerUp";
+		public static const TEXTBOXBUTTON:String = "TextBoxButton";
 
 		public static const TEST_SOUND:String = "TestSound";
 		public static const SOUND_LIST:Vector.<String> = new <String>[TEST_SOUND];
@@ -55,6 +56,7 @@ package de.mediadesign.gd1011.dreamcatcher
         public static const ENEMY:String = "Enemy";
         public static const CHARGER:String = "Charger";
         public static const BOSS1:String = "Boss1";
+		public static const BOSS2:String = "Boss2";
 
 		public static const PLAYER_BULLET:String = "PlayerBullet";
 	    public static const ENEMY_BULLET:String = "EnemyBullet";
@@ -68,7 +70,7 @@ package de.mediadesign.gd1011.dreamcatcher
 	    private static var _playerMovementBorder:Rectangle;
         private static var _playerStartPosition:Point;
         private static var _victimTimeUntilMid:Number;
-        private static var _playerBulletsPowerUpSpeed:Number
+        private static var _playerBulletsPowerUpSpeed:Number;
 
         //States and Defaults for Animations:
         public static const Player_States:Array =["CloseCombat", "Die", "Hit", "Stand"];

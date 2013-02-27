@@ -1,6 +1,6 @@
 package de.mediadesign.gd1011.dreamcatcher.Gameplay
 {
-    import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
+    import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.IMovement;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBoss;
@@ -81,7 +81,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		{
 			_movieClip.x = _position.x;
 			_movieClip.y = _position.y;
-			if(isEnemy || isCharger || isBoss)
+			if(isEnemy || isCharger || isBoss1)
 				GraphicsManager.graphicsManager.playSound(name+"Intro");
 		}
 
@@ -268,19 +268,29 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             return (isVictim1 || isVictim2);
         }
 
-        public function get isBoss():Boolean
+        public function get isBoss1():Boolean
         {
             return (name == GameConstants.BOSS1 && !isBullet);
         }
 
+	    public function get isBoss2():Boolean
+	    {
+		    return (name == GameConstants.BOSS1 && !isBullet);
+	    }
+
+	    public function get isBoss():Boolean
+	    {
+		    return (isBoss1 || isBoss2);
+	    }
+
         public function get isHostile():Boolean
         {
-            return (isVictim || isEnemy || isCharger || isBoss)
+            return (isVictim || isEnemy || isCharger || isBoss1)
         }
 
         public function get canAttack():Boolean
         {
-            return (_movementSystem != null || (isBoss && MovementBoss.phase == MovementBoss.MELEE));
+            return (_movementSystem != null || (isBoss1 && MovementBoss.phase == MovementBoss.MELEE));
         }
 
         public function get canBeAttacked():Boolean

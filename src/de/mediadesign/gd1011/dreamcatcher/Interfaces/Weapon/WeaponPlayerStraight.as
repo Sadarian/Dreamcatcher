@@ -1,6 +1,6 @@
 package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 {
-	import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
+	import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;

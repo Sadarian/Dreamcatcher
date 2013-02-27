@@ -21,38 +21,34 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 		public static function checkDrop(entity:Entity):void
 		{
-			if (entity.health <= 0)
+			var dropChance:Number;
+
+			if(entity.isEnemy)
 			{
-				switch (entity.name)
-				{
-					case GameConstants.ENEMY:
-					{
-						var dropChance:Number = (Math.floor(Math.random() * ((GameConstants.dropChanceFireRateEnemy - 1) + 1) + 1));
+				dropChance = (Math.floor(Math.random() * ((GameConstants.dropChanceFireRateEnemy - 1) + 1) + 1));
 
-						if (dropChance == GameConstants.dropChanceFireRateEnemy)
-						{
-							dropFireRate(entity);
-							break;
-						}
+				if (dropChance == GameConstants.dropChanceFireRateEnemy)
+					dropFireRate(entity);
 
-						if (Game.currentLvl >= 2) {
-							dropChance = (Math.floor(Math.random() * ((GameConstants.dropChanceFreezeEnemy - 1) + 1) + 1));
-
-							if (dropChance == GameConstants.dropChanceFreezeEnemy) {
-								dropFreeze(entity);
-								break;
-							}
-						}
-						break;
-					}
-
-					case GameConstants.VICTIM1:
-					{
-						dropHealth(entity);
-						break;
-					}
+				if (Game.currentLvl >= 2) {
+					dropChance = (Math.floor(Math.random() * ((GameConstants.dropChanceFreezeEnemy - 1) + 1) + 1));
+					if (dropChance == GameConstants.dropChanceFreezeEnemy)
+						dropFreeze(entity);
 				}
 			}
+			else if (entity.isCharger)
+			{
+				dropChance = (Math.floor(Math.random() * ((GameConstants.dropChanceFireRateSpecial - 1) + 1) + 1));
+
+				if (dropChance == GameConstants.dropChanceFireRateSpecial)
+					dropFireRate(entity);
+
+				dropChance = (Math.floor(Math.random() * ((GameConstants.dropChanceFreezeSpecial - 1) + 1) + 1));
+				if (dropChance == GameConstants.dropChanceFreezeSpecial)
+					dropFreeze(entity);
+			}
+			else if(entity.isVictim)
+				dropHealth(entity);
 		}
 		private static function dropFireRate(entity:Entity):void
 		{

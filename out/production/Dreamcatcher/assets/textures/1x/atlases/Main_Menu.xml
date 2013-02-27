@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:7b58165d8a30de13733d676f83667012$ -->
+<TextureAtlas imagePath="Main_MenuTexture.png">
+    <SubTexture name="MainMenuContinueButton" x="272" y="1718" width="221" height="67"/>
+    <SubTexture name="MainMenuContinueButtonClick" x="470" y="1606" width="233" height="77"/>
+    <SubTexture name="MainMenuContinueScreen" x="2" y="804" width="1280" height="800"/>
+    <SubTexture name="MainMenuContinueScreenBackButton" x="495" y="1685" width="116" height="72"/>
+    <SubTexture name="MainMenuContinueScreenBackButtonClick" x="373" y="1787" width="130" height="72"/>
+    <SubTexture name="MainMenuCreditsButton" x="363" y="1943" width="173" height="71"/>
+    <SubTexture name="MainMenuCreditsButtonClick" x="135" y="1960" width="185" height="81"/>
+    <SubTexture name="MainMenuDrawerAnim_1" x="188" y="1790" width="156" height="164"/>
+    <SubTexture name="MainMenuDrawerAnim_2" x="2" y="1790" width="184" height="168"/>
+    <SubTexture name="MainMenuDrawerAnim_3" x="2" y="1606" width="268" height="182"/>
+    <SubTexture name="MainMenuHelpButton" x="346" y="1787" width="25" height="77"/>
+    <SubTexture name="MainMenuHelpButtonClick" x="322" y="1956" width="39" height="89"/>
+    <SubTexture name="MainMenuPicture" x="2" y="2" width="1280" height="800"/>
+    <SubTexture name="MainMenuSoundButtonOff" x="272" y="1606" width="104" height="110"/>
+    <SubTexture name="MainMenuSoundButtonOn" x="378" y="1606" width="90" height="110"/>
+    <SubTexture name="MainMenuStartButton" x="346" y="1866" width="119" height="75"/>
+    <SubTexture name="MainMenuStartButtonClick" x="2" y="1960" width="131" height="83"/>
+</TextureAtlas>

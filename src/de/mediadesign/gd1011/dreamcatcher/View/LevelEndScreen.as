@@ -7,7 +7,7 @@
  */
 package de.mediadesign.gd1011.dreamcatcher.View
 {
-	import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
+	import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
 	import de.mediadesign.gd1011.dreamcatcher.Game;
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
@@ -45,13 +45,13 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		public function createButton(text:String):Button
 		{
 			var tempButton:Button
-			tempButton = new Button(GraphicsManager.graphicsManager.getTexture("Quad"), text);
-			tempButton.fontName = "FriskyVampire";
+			tempButton = new Button(GraphicsManager.graphicsManager.getTexture(GameConstants.TEXTBOXBUTTON), text);
+			tempButton.fontName = "MenuFont";
 			tempButton.fontSize = 50;
 			tempButton.fontColor = 0xffffff;
 			tempButton.textBounds = new Rectangle(0, 0, 300, 100);
 			tempButton.x = _screen.width/2 - tempButton.width/2;
-			tempButton.y = _screen.height/2 + 200 - tempButton.height/2;
+			tempButton.y = _screen.height/2 + 200;
 			return tempButton;
 		}
 
@@ -105,17 +105,18 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 			if (_alpha >= 1)
 			{
-				var textField:TextField;
-				_screen.addChild(textField = new TextField(500, 200, text, "FriskyVampire", 50, 0xffffff));
-				textField.x = _screen.width/2 - textField.width/2;
-				textField.y = _screen.height/2 - textField.height/2;
-
 				if (continueButton != null)
 				{
+					var textField:TextField;
+					_screen.addChild(textField = new TextField(500, 200, text, "MenuFont", 50, 0xffffff));
+					textField.x = _screen.width/2 - textField.width/2;
+					textField.y = _screen.height/2 - textField.height/2;
 					_screen.addChild(continueButton);
 				}
 				else if (restartButton != null)
 				{
+					_screen.addChild(GraphicsManager.graphicsManager.getImage("DC_comicOutro2"));
+					GraphicsManager.graphicsManager.playSound("Failure");
 					_screen.addChild(restartButton);
 				}
 			}

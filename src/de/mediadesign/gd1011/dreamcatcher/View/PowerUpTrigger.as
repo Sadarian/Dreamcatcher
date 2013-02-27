@@ -7,7 +7,7 @@
  */
 package de.mediadesign.gd1011.dreamcatcher.View
 {
-	import de.mediadesign.gd1011.dreamcatcher.Assets.GraphicsManager;
+	import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
@@ -76,10 +76,10 @@ package de.mediadesign.gd1011.dreamcatcher.View
 				{
 					powerUpIcon = new Image(GraphicsManager.graphicsManager.getTexture(name));
 					GameStage.gameStage.addChild(powerUpIcon);
-					powerUpIcon.x = powerUp.collisionValues.x + 36;
-					powerUpIcon.y = powerUp.collisionValues.y * 2 - 12;
-					powerUpIcon.scaleX = 0.38;
-					powerUpIcon.scaleY = 0.38;
+					powerUpIcon.x = powerUp.collisionValues.x * 2 - 9;
+					powerUpIcon.y = powerUp.collisionValues.y * 2 + 12;
+					powerUpIcon.scaleX = 0.93;
+					powerUpIcon.scaleY = 0.93;
 				}
 				else
 				{
@@ -87,13 +87,14 @@ package de.mediadesign.gd1011.dreamcatcher.View
 					powerUpIcon.texture = GraphicsManager.graphicsManager.getTexture(name);
 				}
 				_powerUpButton.enabled = true;
+				_powerUpButton.upState = GraphicsManager.graphicsManager.getTexture("UsePower_2");
 
 			}
 		}
 
 		private static function createButton():void
 		{
-			_powerUpButton = new Button(GraphicsManager.graphicsManager.getTexture("UsePower_1"),"",GraphicsManager.graphicsManager.getTexture("UsePower_2"));
+			_powerUpButton = new Button(GraphicsManager.graphicsManager.getTexture("UsePower_1"));
 			_powerUpButton.x = Starling.current.viewPort.width - _powerUpButton.width;
 			_powerUpButton.y = Starling.current.viewPort.height - _powerUpButton.height;
 			_powerUpButton.addEventListener(Event.TRIGGERED, onButtonClick);
@@ -127,6 +128,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			activeIcon = null;
 			GameStage.gameStage.removeActor(powerUpIcon);
 			_powerUpButton.enabled = false;
+			_powerUpButton.upState = GraphicsManager.graphicsManager.getTexture("UsePower_1");
 		}
 
 		public static function deleteButton():void

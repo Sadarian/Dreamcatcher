@@ -87,7 +87,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
             _entities.push(tempEntity);
 
-		    if (name == GameConstants.PLAYER || name == GameConstants.BOSS1)
+		    if (name == GameConstants.PLAYER || name == GameConstants.BOSS1 || name == GameConstants.BOSS2)
 		    {
 			    _lifeBars.push(new LifeBarHandling(tempEntity));
 		    }
@@ -172,6 +172,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		    for each (var lifeBar:LifeBarHandling in _lifeBars)
 		    {
 				lifeBar.removeLiveBar();
+			    lifeBar = null;
 		    }
 	    }
     }

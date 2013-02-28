@@ -4,6 +4,7 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBoss;
     import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
 
     import flash.events.Event;
@@ -29,6 +30,7 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
                 {
                     if(!(entity.name == GameConstants.PLAYER_BULLET) && !entity.isCharger)
                     {
+                        if(checkForWeb(entity, true)) return;
                         GameStage.gameStage.removeActor(entity.movieClip);
                         entity.removeMovieClip();
                         manager.addUnusedEntity(entity);
@@ -39,11 +41,35 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
                 else
                     if (entity.position.x >= (Starling.current.viewPort.width*1.1)+entity.movieClip.width/2 || entity.position.x <0-entity.movieClip.width/2)
                     {
+                        checkForWeb(entity, false);
                         GameStage.gameStage.removeActor(entity.movieClip);
                         entity.removeMovieClip();
                         manager.addUnusedEntity(entity);
                     }
 			}
 		}
+
+        private function checkForWeb(entity:Entity, died:Boolean):Boolean
+        {
+            if(entity.name == GameConstants.BOSS2_BULLET_WEB)
+            {
+                if(manager.getEntity(GameConstants.BOSS2) && manager.getEntity(GameConstants.BOSS2).movementSystem)
+                    (manager.getEntity(GameConstants.BOSS2).movementSystem as MovementBoss).canMove = true;
+                if(died && entity.movementSystem != null)
+                {
+                    entity.switchMovement(null);
+                    manager.getEntity(GameConstants.PLAYER).increaseMovementSpeed(GameConstants.bossWebSlow);
+                    Starling.juggler.delayCall(resetSlow, 2);
+                    return false;
+                    function resetSlow():void
+                    {
+                        manager.getEntity(GameConstants.PLAYER).setMovementSpeed();
+                    }
+                }
+                return false;
+            }
+            else
+                return false;
+        }
 	}
 }

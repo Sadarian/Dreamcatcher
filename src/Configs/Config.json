@@ -12,5 +12,7 @@
     "bossFadingInTime":2,
     "bossDistanceBorder":200,
     "bossChargeSpeedMultiplier":5,
-    "playerBulletsPowerUpSpeed":1200
+    "playerBulletsPowerUpSpeed":1200,
+    "bossWebSlow":2,
+    "bossWebShotAfter":10
 }

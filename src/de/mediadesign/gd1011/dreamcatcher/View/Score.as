@@ -18,16 +18,16 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 	public class Score
 	{
-		private static var score:Number = 0;
-		private static var scoreField:TextField = new TextField(300, 100 , score.toString(),"MenuFont", 100, 0xe87600);
+		private static var _score:Number = 0;
+		private static var scoreField:TextField = new TextField(300, 100 , _score.toString(),"MenuFont", 100, 0xe87600);
 		private static var initialisation:Boolean = false;
 
 		public static function updateScore(entity:Entity):void
 		{
 			if (entity.health <= 0)
 			{
-				score += entity.points;
-				showScore(score);
+				_score += entity.points;
+				showScore(_score);
 			}
 		}
 
@@ -44,7 +44,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 		public static function resetScore():void
 		{
-			score = 0;
+			_score = 0;
 		}
 
 		public static function addScoreField():void
@@ -61,25 +61,9 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			initialisation = false;
 		}
 
-        public static function initHighScore():void
+        public static function get score():Number
         {
-            var local:SharedObject = Dreamcatcher.localObject;
-            for(var i:int = 0; i<5; i++)
-            {
-                if(!local.data["Score_"+i])
-                    local.data["Score_"+i] = [10000-i*2000, "Frankenstein the "+i+1+"."];
-            }
-            local.flush();
+            return _score;
         }
-
-        public static function resetHighScore():void
-        {
-            var local:SharedObject = Dreamcatcher.localObject;
-            for(var i:int = 0; i<5; i++)
-            {
-                local.data["Score_"+i] = [10000-i*2000, "Frankenstein the "+i+1+"."];
-            }
-            local.flush();
-        }
-	}
+    }
 }

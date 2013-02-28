@@ -1,8 +1,11 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
+    import de.mediadesign.gd1011.dreamcatcher.View.HighScore;
     import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
     import de.mediadesign.gd1011.dreamcatcher.View.Menu.PauseMenu;
+    import de.mediadesign.gd1011.dreamcatcher.View.Score;
+
     import flash.desktop.NativeApplication;
     import flash.display.Sprite;
     import flash.display.StageAlign;
@@ -45,6 +48,7 @@ package de.mediadesign.gd1011.dreamcatcher
                 localObject.data.Progress = 1;
             if(localObject.data.soundOn == null)
                 localObject.data.soundOn = true;
+            HighScore.initHighScore();
             GameConstants.init();
 			_starling = new Starling(Game, stage);
 			_starling.showStats = true;

@@ -1,6 +1,7 @@
 package de.mediadesign.gd1011.dreamcatcher.View
 {
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
+    import de.mediadesign.gd1011.dreamcatcher.Game;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
@@ -28,6 +29,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		public static const CLOSE_COMBAT:String = "CloseCombat";
 		public static const HIT:String ="Hit";
 		public static const SHOOT:String ="Shoot";
+        public static const SHOOT_WEB:String ="ShootWeb";
 		public static const EAT:String = "Eat";
 		public static const FEAR:String = "Fear";
         public static const STAND:String = "Stand";
@@ -52,7 +54,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
                     throw  new Error("Duplicate animation name: " + animation);
                 else
                 {
-                    if(name == GameConstants.BOSS1 && animation == CLOSE_COMBAT)
+                    if((name == GameConstants.BOSS1  || name == GameConstants.BOSS2) && animation == CLOSE_COMBAT)
                         mC = new MovieClip(GraphicsManager.graphicsManager.getTextures(name+animation+"_"), 9);
                     else
                         mC = new MovieClip(GraphicsManager.graphicsManager.getTextures(name+animation+"_"));
@@ -94,7 +96,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
         public function playAnimation(animation:String):void
         {
-            if(actual.loop || actual.isComplete || (entity.isBoss1 && animation == CLOSE_COMBAT) || (animation == DIE && entity.isVictim))
+            if(actual.loop || actual.isComplete || (entity.isBoss && animation == CLOSE_COMBAT) || (animation == DIE && entity.isVictim))
             {
                 {
                     if(animation in mAnimations)
@@ -143,6 +145,13 @@ package de.mediadesign.gd1011.dreamcatcher.View
                 case(HIT):
                     if(entity.health<=0)
                     {
+                        if(entity.name == GameConstants.BOSS2_BULLET_WEB)
+                        {
+                            EntityManager.entityManager.addUnusedEntity(entity);
+                            GameStage.gameStage.removeActor(entity.movieClip);
+                            entity.removeMovieClip();
+                            break;
+                        }
                         if(!entity.isEnemy && name != GameConstants.PLAYERARM)
                             entity.switchMovement(null);
                         else
@@ -157,6 +166,12 @@ package de.mediadesign.gd1011.dreamcatcher.View
                 case(DIE):
                     if(!entity.isEnemy && !entity.isVictim2)
                     {
+                        if(entity.isBoss2)
+                        {
+                            MovementBoss.resetPhase();
+                            GameStage.gameStage.endLvl("Congratulations! You have passed Level " + Game.currentLvl);
+                            return;
+                        }
                         if(name != GameConstants.PLAYERARM)
                             EntityManager.entityManager.addUnusedEntity(entity);
                         GameStage.gameStage.removeActor(entity.movieClip);
@@ -182,7 +197,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
                         playAnimation(DIE);
                     else
                     {
-                        if(entity.name == GameConstants.BOSS1)
+                        if(entity.isBoss)
                             (entity.movementSystem as MovementBoss).switchTo(MovementBoss.MELEE);
                         playAnimation(defaultType);
                     }

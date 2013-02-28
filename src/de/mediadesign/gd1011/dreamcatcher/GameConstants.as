@@ -65,6 +65,8 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const PLAYER_BULLET:String = "PlayerBullet";
 	    public static const ENEMY_BULLET:String = "EnemyBullet";
         public static const BOSS1_BULLET:String = "Boss1Bullet";
+        public static const BOSS2_BULLET:String = "Boss2Bullet";
+        public static const BOSS2_BULLET_WEB:String = "Boss2BulletWeb";
 
         public static const POWERUP_FIRE_RATE:String = "PowerUpFireRate";
         public static const POWERUP_FREEZE:String = "PowerUpFreeze";
@@ -95,6 +97,8 @@ package de.mediadesign.gd1011.dreamcatcher
 
         public static const Boss1_States:Array =["CloseCombat", "Die", "Shoot"];
 
+        public static const Boss2_States:Array =["CloseCombat", "Die", "Shoot", "ShootWeb"];
+
         private static var _victimMovementBorderMax:Number;
         private static var _victimMovementBorderMin:Number;
         private static var _victimDirectionBorderMax:Number;
@@ -115,6 +119,9 @@ package de.mediadesign.gd1011.dreamcatcher
 		private static var _slowEffect:Number;
 		private static var _dropDistance:Number;
 		private static var _healthGiven:Number;
+
+        private static var _bossWebSlow:Number;
+        private static var _bossWebShotAfter:Number;
 
         public static function init(path:String = "Configs/"):void
         {
@@ -162,6 +169,8 @@ package de.mediadesign.gd1011.dreamcatcher
             if(data.bossDistanceBorder) _bossDistanceBorder = data.bossDistanceBorder;
             if(data.bossChargeSpeedMultiplier) _bossChargeSpeedMultiplier = data.bossChargeSpeedMultiplier;
             if(data.playerBulletsPowerUpSpeed) _playerBulletsPowerUpSpeed = data.playerBulletsPowerUpSpeed;
+            if(data.bossWebSlow)_bossWebSlow = data.bossWebSlow;
+            if(data.bossWebShotAfter)_bossWebShotAfter = data.bossWebShotAfter;
         }
 
 		private static function setPowerUps(data:Object):void
@@ -176,7 +185,6 @@ package de.mediadesign.gd1011.dreamcatcher
 			if(data.slowEffect) _slowEffect = data.slowEffect;
 			if(data.dropDistance) _dropDistance = data.dropDistance;
 			if(data.healthGiven) _healthGiven = data.healthGiven;
-
 		}
 
         public static function getData(type:String):Array
@@ -330,6 +338,16 @@ package de.mediadesign.gd1011.dreamcatcher
         public static function get playerBulletsPowerUpSpeed():Number
         {
             return _playerBulletsPowerUpSpeed;
+        }
+
+        public static function get bossWebSlow():Number
+        {
+            return _bossWebSlow;
+        }
+
+        public static function get bossWebShotAfter():Number
+        {
+            return _bossWebShotAfter;
         }
     }
 }

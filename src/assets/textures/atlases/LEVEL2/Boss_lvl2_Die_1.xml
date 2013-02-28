@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:41438fff3887732632b8e33ad66861b3$ -->
+<TextureAtlas imagePath="Boss_lvl2_Die_1Texture.png">
+    <SubTexture name="Boss2Die_01" x="1382" y="1262" width="312" height="378" frameX="-297" frameY="-315" frameWidth="872" frameHeight="882"/>
+    <SubTexture name="Boss2Die_02" x="1380" y="1642" width="278" height="364" frameX="-337" frameY="-314" frameWidth="872" frameHeight="882"/>
+    <SubTexture name="Boss2Die_03" x="1092" y="1542" width="286" height="358" frameX="-337" frameY="-314" frameWidth="872" frameHeight="882"/>
+    <SubTexture name="Boss2Die_04" x="1696" y="1268" width="272" height="356" frameX="-334" frameY="-315" frameWidth="872" frameHeight="882"/>
+    <SubTexture name="Boss2Die_05" x="1092" y="1180" width="288" height="360" frameX="-312" frameY="-314" frameWidth="872" frameHeight="882"/>
+    <SubTexture name="Boss2Die_06" x="1660" y="1642" width="300" height="362" frameX="-300" frameY="-314" frameWidth="872" frameHeight="882"/>
+    <SubTexture name="Boss2Die_07" x="1388" y="882" width="316" height="378" frameX="-284" frameY="-315" frameWidth="872" frameHeight="882"/>
+    <SubTexture name="Boss2Die_08" x="1706" y="882" width="314" height="384" frameX="-283" frameY="-309" frameWidth="872" frameHeight="882"/>
+    <SubTexture name="Boss2Die_09" x="746" y="1322" width="344" height="438" frameX="-283" frameY="-255" frameWidth="872" frameHeight="882"/>
+    <SubTexture name="Boss2Die_10" x="1036" y="740" width="350" height="438" frameX="-277" frameY="-255" frameWidth="872" frameHeight="882"/>
+    <SubTexture name="Boss2Die_11" x="684" y="882" width="350" height="438" frameX="-277" frameY="-255" frameWidth="872" frameHeight="882"/>
+    <SubTexture name="Boss2Die_12" x="374" y="1452" width="370" height="438" frameX="-271" frameY="-255" frameWidth="872" frameHeight="882"/>
+    <SubTexture name="Boss2Die_13" x="2" y="1452" width="370" height="438" frameX="-271" frameY="-255" frameWidth="872" frameHeight="882"/>
+    <SubTexture name="Boss2Die_14" x="1522" y="442" width="370" height="438" frameX="-271" frameY="-255" frameWidth="872" frameHeight="882"/>
+    <SubTexture name="Boss2Die_15" x="1522" y="2" width="370" height="438" frameX="-271" frameY="-255" frameWidth="872" frameHeight="882"/>
+    <SubTexture name="Boss2Die_16" x="2" y="2" width="786" height="722" frameX="-35" frameY="-87" frameWidth="872" frameHeight="882"/>
+    <SubTexture name="Boss2Die_17" x="790" y="2" width="730" height="736" frameX="-86" frameY="-73" frameWidth="872" frameHeight="882"/>
+    <SubTexture name="Boss2Die_19" x="2" y="726" width="680" height="724" frameX="-112" frameY="-86" frameWidth="872" frameHeight="882"/>
+</TextureAtlas>

@@ -71,13 +71,13 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 		private function restartClicked(event:Event):void {
 			deleteAll();
-			(GameStage.gameStage.parent as Game).restartLevel();
+			(GameStage.gameStage.parent as Game).startLevel(Game.currentLvl);
 		}
 
 		private function nextLevelClicked(event:Event):void
 		{
 			deleteAll();
-			(GameStage.gameStage.parent as Game).nextLevel();
+            (GameStage.gameStage.parent as Game).startLevel(Game.currentLvl+1);
 		}
 
 		private function deleteAll():void

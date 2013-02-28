@@ -1,11 +1,7 @@
 package de.mediadesign.gd1011.dreamcatcher.View.Menu
 {
-	import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.EmbeddedTextures;
 	import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.Game;
-    import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
-
-	import flash.media.SoundChannel;
 	import flash.media.SoundMixer;
 
 
@@ -15,7 +11,6 @@ import starling.core.Starling;
     import starling.display.MovieClip;
     import starling.display.Sprite;
     import starling.events.Event;
-	import starling.utils.AssetManager;
 	import starling.utils.deg2rad;
 
     public class MainMenu extends Sprite
@@ -86,7 +81,7 @@ import starling.core.Starling;
                     break;
                 case(mElements[3]):
                     showAndHide();
-                    (Starling.current.root as Game).startLevel(1);
+                    (Starling.current.root as Game).startLevel(Game.currentLvl);
                     break;
 				case(mElements[4]):
 					TutorialMenu.showAndHide();
@@ -107,6 +102,16 @@ import starling.core.Starling;
             if(!self)
                 self = new MainMenu();
             return self;
+        }
+
+        public static function resetMainMain():void
+        {
+            if(!self) return;
+            for(var i:int=0;i<self.mElements.length;i++)
+                self.mElements[i].dispose();
+            active = false;
+            self.dispose();
+            self = null;
         }
 
         public static function showAndHide():void

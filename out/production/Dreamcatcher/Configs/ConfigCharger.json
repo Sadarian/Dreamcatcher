@@ -1,12 +1,12 @@
 {
     "name":"Charger",
-    "health":30,
+    "health":25,
     "movementSystem":"MovementCharger",
-    "movementSpeed":800,
+    "movementSpeed":750,
     "weaponSystem":"null",
     "weaponSpeed":1,
     "collisionMode":"CollisionRectangle",
     "collisionPoint":[-10, 0],
     "collisionValues":[40, 55],
-    "points":[1500]
+    "points":[1597]
 }

@@ -92,14 +92,14 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
         {
 	        if (!(entityA.isPowerUp || entityB.isPowerUp))
 	        {
-		        if (entityA.isBullet && !entityB.isBullet && (entityA.name.search(entityB.name) == -1)  && entityB.canBeAttacked)
+		        if (entityA.isBullet && entityA.health > 0 && !entityB.isBullet && (entityA.name.search(entityB.name) == -1)  && entityB.canBeAttacked)
 	            {
                     showAnimation([entityB], true);
 	                entityB.health = entityB.health - entityA.health;
 	                entityA.health = 0;
 	            }
 	            else
-                    if(entityB.isBullet && !entityA.isBullet && (entityB.name.search(entityA.name) == -1)  && entityA.canBeAttacked)
+                    if(entityB.isBullet && entityB.health > 0 && !entityA.isBullet && (entityB.name.search(entityA.name) == -1)  && entityA.canBeAttacked)
                     {
                         showAnimation([entityA], true);
                         entityA.health = entityA.health - entityB.health;

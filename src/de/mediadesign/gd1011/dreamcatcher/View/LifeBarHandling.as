@@ -16,12 +16,14 @@ package de.mediadesign.gd1011.dreamcatcher.View
 	import flash.media.SoundChannel;
 
 	import starling.display.Image;
-	import starling.textures.Texture;
+    import starling.display.Sprite;
+    import starling.textures.Texture;
 
 	public class LifeBarHandling
 	{
 		private var lifeBar:Image;
 		private var playerIcon:Image;
+        private var playerBar:Sprite;
 		private var bossLifeIcon:Image;
         private var entity:Entity;
         private var life:Number;
@@ -39,7 +41,6 @@ package de.mediadesign.gd1011.dreamcatcher.View
 				size = 41
 				lifeBar = new Image(createLifeShape(0));
 				playerIcon = GraphicsManager.graphicsManager.getImage("PlayerLifeBarState_1");
-				GameStage.gameStage.addChild(playerIcon);
 			}
 			else if (entity.isBoss)
 			{
@@ -62,9 +63,16 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			GameStage.gameStage.addChild(lifeBar);
 
 			if (entity.isBoss)
-			{
 				GameStage.gameStage.addChild(bossLifeIcon);
-			}
+            if (entity.isPlayer)
+            {
+                playerBar = new Sprite();
+                playerBar.addChild(GraphicsManager.graphicsManager.getImage("PlayerLifeBarFrame"));
+                playerBar.y = 10;
+                GameStage.gameStage.addChild(playerBar);
+                GameStage.gameStage.addChild(playerIcon);
+            }
+
 		}
 
 		private function soundCompleteHandler(event:Event):void
@@ -75,6 +83,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 		private function createLifeShape(number:Number):Texture
 		{
+            if(number==0)number = 0.1;
 			var shape:Shape = new Shape();
 			var matr:Matrix = new Matrix();
 			matr.createGradientBox(50, number, -(Math.PI / 2), 0, number/4);
@@ -93,6 +102,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
             lifeBar.dispose();
             GameStage.gameStage.removeActor(playerIcon);
 			GameStage.gameStage.removeActor(bossLifeIcon);
+            GameStage.gameStage.removeActor(playerBar);
 		}
 
 		public function updateHealthBar():void
@@ -123,7 +133,8 @@ package de.mediadesign.gd1011.dreamcatcher.View
             if(entity.health <= 0)
             {
                 GameStage.gameStage.removeActor(lifeBar);
-				exhaustSound.stop();
+				if(exhaustSound)
+                    exhaustSound.stop();
 
 	            if (entity.name == GameConstants.PLAYER)
 	                GameStage.gameStage.removeActor(playerIcon);

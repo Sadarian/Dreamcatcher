@@ -1,10 +1,8 @@
 package de.mediadesign.gd1011.dreamcatcher.Gameplay
 {
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
-	import de.mediadesign.gd1011.dreamcatcher.Game;
-	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
+    import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
     import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
-    import de.mediadesign.gd1011.dreamcatcher.View.UserInterface;
 	import de.mediadesign.gd1011.dreamcatcher.View.PauseButton;
 	import de.mediadesign.gd1011.dreamcatcher.Game;
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
@@ -13,7 +11,9 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
 	import de.mediadesign.gd1011.dreamcatcher.View.Score;
 
-	import starling.animation.DelayedCall;
+    import flash.net.SharedObject;
+
+    import starling.animation.DelayedCall;
     import starling.core.Starling;
     import starling.display.DisplayObject;
 	import starling.display.Image;
@@ -101,7 +101,6 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			Score.removeScoreField();
 			PowerUpTrigger.deleteButton();
 			MovementBoss.resetPhase();
-			UserInterface.userInterface.removePlayerBar();
 			EntityManager.entityManager.removeAll();
 		}
 
@@ -149,7 +148,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             for(var i:int = 0;i<containerGroup.length;i++)
             {
                 containerGroup[i].fill(vector[i], false);
-                containerGroup[i].fill(vectorBoss[i], true);
+                if(levelIndex!=1)
+                    containerGroup[i].fill(vectorBoss[i], true);
             }
 		}
 
@@ -245,8 +245,11 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			if (lose)
 				endScreen.createRestartButton();
 			else
-				endScreen.createNextLevelButton();
-
+            {
+                Dreamcatcher.localObject.data.Progress = (Dreamcatcher.localObject.data.Progress >= (Game.currentLvl+1)) ? Dreamcatcher.localObject.data.Progress : (Game.currentLvl+1);
+                Dreamcatcher.localObject.flush();
+                endScreen.createNextLevelButton();
+            }
 			addChild(endScreen.screen);
 		}
 	}

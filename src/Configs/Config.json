@@ -1,9 +1,9 @@
 {
     "playerMeleeDamage":15,
     "enemyMeleeDamage":10,
-    "bossMeleeDamage":20,
+    "bossMeleeDamage":15,
     "chargerMeleeDamage":15,
-    "playerMovementBorder":[128, 128, 1152, 512],
+    "playerMovementBorder":[128, 192, 1082, 448],
     "playerStartPosition":[100, 400],
     "victimTimeUntilMid":2,
     "victimMovementBorder":[700, 200],

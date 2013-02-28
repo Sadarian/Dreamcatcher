@@ -1,9 +1,11 @@
 package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
 {
-	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
+    import de.mediadesign.gd1011.dreamcatcher.Game;
+    import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
+    import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
 
-	import flash.filesystem.File;
+    import flash.filesystem.File;
 	import flash.utils.Dictionary;
     import starling.core.Starling;
 	import starling.display.DisplayObject;
@@ -11,7 +13,7 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
 	import starling.display.Image;
 	import starling.display.Sprite;
     import starling.utils.AssetManager;
-	import starling.utils.formatString;
+    import starling.utils.ProgressBar;
 
 	public class GraphicsManager extends AssetManager
 	{
@@ -19,13 +21,18 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
 
         private var mContainers:Dictionary;
         private var mInit:Boolean;
+        private var mLast:String;
+
+        private var contents:Array = ["assets/textures/atlases/STATIC", "assets/audio"];
 
         public function GraphicsManager():void
         {
-            super(Starling.contentScaleFactor, true);
+            super(Starling.contentScaleFactor, false);
 
             mContainers = new Dictionary();
             mInit = false;
+            mLast = null;
+            enqueue(EmbeddedFonts);
         }
 
         public static function get graphicsManager():GraphicsManager
@@ -37,11 +44,89 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
 
 		public function init():void
 		{
-			verbose = true;
-            enqueue(EmbeddedFonts);
-            enqueue(EmbeddedSounds);
-            enqueue(File.applicationDirectory.resolvePath("assets/textures/1x/atlases/"));
+            if(contents.length>0)
+                initContent(contents.shift(), init);
+            else
+                loadDataFor("UI", (Starling.current.root as Game).resumeInit);
 		}
+
+        private function initContent(path:String, func:Function):void
+        {
+            enqueue(File.applicationDirectory.resolvePath(path));
+
+            var pB:ProgressBar = new ProgressBar(240, 80);
+            pB.x = Starling.current.stage.stageWidth/2 - pB.width/2;
+            pB.y = Starling.current.stage.stageHeight/2 - pB.height/2;
+            (Starling.current.root as Game).addChild(pB);
+            loadQueue(function(ratio:Number):void
+            {
+                pB.ratio = ratio;
+                if(ratio==1)
+                {
+                    (Starling.current.root as Game).removeChild(pB);
+                    pB.dispose();
+                    Starling.juggler.delayCall(func, 0.15);
+                }
+            });
+        }
+
+        public function loadDataFor(dataSet:String, functionAfter:Function):void
+        {
+            if(dataSet == mLast){Starling.juggler.delayCall(functionAfter, 0.15); return;}
+            mInit = false;
+            var deleteStream:Array;
+            var blendScreen:Image;
+            var blendGraphic:Boolean = false;
+            switch (dataSet)
+            {
+                case("UI"):
+                    MainMenu.resetMainMain();
+                    deleteStream = GameConstants["LEVEL"+Game.currentLvl+"_LIST"];
+                    blendGraphic = true;
+                    break;
+
+                default:
+                    deleteStream = (mLast == "UI")?GameConstants.UI_LIST:GameConstants["LEVEL"+(Game.currentLvl-1)+"_LIST"];;
+                    blendScreen = getImage("tutorialScreen_"+(1+Math.round(Math.random()*3)));
+                    break;
+            }
+            var i:int;
+            for(i = 0;i<deleteStream.length;i++)
+                removeTextureAtlas(deleteStream[i]+"Texture");
+            enqueue(File.applicationDirectory.resolvePath("assets/textures/atlases/"+dataSet));
+            mLast = dataSet;
+
+            if(blendGraphic)
+            {
+                var pB:ProgressBar = new ProgressBar(240, 80);
+                pB.x = Starling.current.stage.stageWidth/2 - pB.width/2;
+                pB.y = Starling.current.stage.stageHeight/2 - pB.height/2;
+                (Starling.current.root as Game).addChild(pB);
+                loadQueue(function(ratio:Number):void
+                {
+                    pB.ratio = ratio;
+                    if(ratio==1)
+                    {
+                        (Starling.current.root as Game).removeChild(pB);
+                        pB.dispose();
+                        Starling.juggler.delayCall(functionAfter, 0.15);
+                    }
+                });
+            }
+            else
+            {
+                (Starling.current.root as Game).addChild(blendScreen);
+                loadQueue(function(ratio:Number):void
+                {
+                    if(ratio==1)
+                    {
+                        (Starling.current.root as Game).removeChild(blendScreen);
+                        blendScreen.dispose();
+                        Starling.juggler.delayCall(functionAfter, 2.0);
+                    }
+                });
+            }
+        }
 
 		public function getImage(item:String):Image
 		{

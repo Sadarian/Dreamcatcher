@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:86587c1493dc119fb7239f5aca57ba34$ -->
-<TextureAtlas imagePath="Background_lvl1_4Texture.png">
-    <SubTexture name="Lvl1_Forest_1" x="2" y="1362" width="1280" height="382" frameX="0" frameY="0" frameWidth="1280" frameHeight="800"/>
-    <SubTexture name="Lvl1_Forest_2" x="2" y="976" width="1280" height="384" frameX="0" frameY="0" frameWidth="1280" frameHeight="800"/>
-    <SubTexture name="Lvl1_Forest_3" x="2" y="586" width="1280" height="388" frameX="0" frameY="0" frameWidth="1280" frameHeight="800"/>
-    <SubTexture name="Lvl1_Main_1" x="2" y="2" width="1280" height="582" frameX="0" frameY="-218" frameWidth="1280" frameHeight="800"/>
-</TextureAtlas>

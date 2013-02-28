@@ -33,7 +33,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 
                 var temPosition:Point = new Point(position.x - -125, position.y - -33);
 	            var entity:Entity = EntityManager.entityManager.createEntity(GameConstants.PLAYER_BULLET, temPosition);
-		        (entity.movementSystem as MovementBullet).target = new Point(Starling.current.viewPort.width, temPosition.y);
+		        (entity.movementSystem as MovementBullet).target = new Point(Starling.current.viewPort.width*1.2, temPosition.y);
 	            (entity.movementSystem as MovementBullet).calculateVelocity(temPosition);
 				GraphicsManager.graphicsManager.playSound("PlayerShoot");
                 GameStage.gameStage.addChild(entity.movieClip);

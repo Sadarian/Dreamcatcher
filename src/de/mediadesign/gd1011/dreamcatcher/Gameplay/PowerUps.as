@@ -25,26 +25,28 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 			if(entity.isEnemy)
 			{
-				dropChance = (Math.floor(Math.random() * ((GameConstants.dropChanceFireRateEnemy - 1) + 1) + 1));
+				dropChance = Math.random()*100;
 
-				if (dropChance == GameConstants.dropChanceFireRateEnemy)
+				if (dropChance <= GameConstants.dropChanceFireRateEnemy)
 					dropFireRate(entity);
 
-				if (Game.currentLvl >= 2) {
-					dropChance = (Math.floor(Math.random() * ((GameConstants.dropChanceFreezeEnemy - 1) + 1) + 1));
-					if (dropChance == GameConstants.dropChanceFreezeEnemy)
+				if (Game.currentLvl >= 2)
+                {
+					dropChance = Math.random()*100
+
+					if (dropChance <= GameConstants.dropChanceFreezeEnemy)
 						dropFreeze(entity);
 				}
 			}
 			else if (entity.isCharger)
 			{
-				dropChance = (Math.floor(Math.random() * ((GameConstants.dropChanceFireRateSpecial - 1) + 1) + 1));
+				dropChance = Math.random()*100
 
-				if (dropChance == GameConstants.dropChanceFireRateSpecial)
+				if (dropChance <= GameConstants.dropChanceFireRateSpecial)
 					dropFireRate(entity);
 
-				dropChance = (Math.floor(Math.random() * ((GameConstants.dropChanceFreezeSpecial - 1) + 1) + 1));
-				if (dropChance == GameConstants.dropChanceFreezeSpecial)
+				dropChance = Math.random()*100
+				if (dropChance <= GameConstants.dropChanceFreezeSpecial)
 					dropFreeze(entity);
 			}
 			else if(entity.isVictim)

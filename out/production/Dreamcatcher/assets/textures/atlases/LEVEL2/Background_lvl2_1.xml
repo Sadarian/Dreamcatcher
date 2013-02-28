@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:7ae12df979174cf46d6b384eb1077e94$ -->
+<TextureAtlas imagePath="Background_lvl2_1Texture.png">
+    <SubTexture name="Lvl2_FogAnim1_1" x="1284" y="2" width="670" height="134" frameX="-314" frameY="-200" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="Lvl2_Forest_1" x="2" y="1170" width="1280" height="364" frameX="0" frameY="-1" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="Lvl2_Forest_2" x="2" y="1536" width="1280" height="356" frameX="0" frameY="0" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="Lvl2_Front_1" x="1284" y="138" width="496" height="170" frameX="-438" frameY="-630" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="Lvl2_Front_2" x="1284" y="310" width="402" height="196" frameX="-64" frameY="-604" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="Lvl2_Front_3" x="1782" y="138" width="210" height="124" frameX="-124" frameY="-676" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="Lvl2_Front_4" x="1688" y="472" width="312" height="122" frameX="-18" frameY="-678" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="Lvl2_Front_5" x="1284" y="508" width="302" height="266" frameX="-818" frameY="-534" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="Lvl2_Main_1" x="2" y="586" width="1280" height="582" frameX="0" frameY="-218" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="Lvl2_Main_3" x="2" y="2" width="1280" height="582" frameX="0" frameY="-218" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="Lvl2_ObstacleHandBig" x="1918" y="346" width="100" height="124" frameX="-388" frameY="-253" frameWidth="1024" frameHeight="576"/>
+    <SubTexture name="Lvl2_ObstacleHandSmall" x="1956" y="2" width="54" height="66" frameX="-216" frameY="-222" frameWidth="1024" frameHeight="576"/>
+    <SubTexture name="Lvl2_ObstacleSlimeBig" x="1782" y="264" width="134" height="96" frameX="-371" frameY="-281" frameWidth="1024" frameHeight="576"/>
+    <SubTexture name="Lvl2_ObstacleslimeSmall" x="1918" y="264" width="114" height="80" frameX="-186" frameY="-218" frameWidth="1024" frameHeight="576"/>
+</TextureAtlas>

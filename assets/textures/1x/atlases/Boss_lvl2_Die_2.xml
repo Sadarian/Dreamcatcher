@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:42c150ba7f96d6e5060366ecad8ed04a$ -->
-<TextureAtlas imagePath="Boss_lvl2_Die_2Texture.png">
-    <SubTexture name="Boss2Die_18" x="2" y="2" width="844" height="874" frameX="-23" frameY="-8" frameWidth="872" frameHeight="882"/>
-    <SubTexture name="Boss2Die_19" x="1366" y="2" width="680" height="794" frameX="-112" frameY="-66" frameWidth="872" frameHeight="882"/>
-    <SubTexture name="Boss2Die_20" x="684" y="878" width="680" height="794" frameX="-112" frameY="-66" frameWidth="872" frameHeight="882"/>
-    <SubTexture name="Boss2Die_21" x="2" y="878" width="680" height="794" frameX="-112" frameY="-66" frameWidth="872" frameHeight="882"/>
-</TextureAtlas>

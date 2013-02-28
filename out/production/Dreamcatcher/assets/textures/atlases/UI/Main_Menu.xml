@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:8729a001ce7273731e6d774d6e5a51b0$ -->
+<TextureAtlas imagePath="Main_MenuTexture.png">
+    <SubTexture name="MainMenuContinueButton" x="1174" y="1849" width="221" height="67"/>
+    <SubTexture name="MainMenuContinueButtonClick" x="1086" y="1770" width="233" height="77"/>
+    <SubTexture name="MainMenuContinueScreen" x="2" y="804" width="1280" height="800"/>
+    <SubTexture name="MainMenuContinueScreenBackButton" x="881" y="1772" width="203" height="130"/>
+    <SubTexture name="MainMenuContinueScreenBackButtonClick" x="881" y="1904" width="185" height="124"/>
+    <SubTexture name="MainMenuCreditsButton" x="1048" y="1697" width="173" height="71"/>
+    <SubTexture name="MainMenuCreditsButtonClick" x="1222" y="1606" width="185" height="81"/>
+    <SubTexture name="MainMenuDrawerAnim_1" x="798" y="1606" width="156" height="164"/>
+    <SubTexture name="MainMenuDrawerAnim_2" x="612" y="1606" width="184" height="168"/>
+    <SubTexture name="MainMenuDrawerAnim_3" x="611" y="1797" width="268" height="182"/>
+    <SubTexture name="MainMenuHelpButton" x="1223" y="1689" width="25" height="77"/>
+    <SubTexture name="MainMenuHelpButtonClick" x="1048" y="1606" width="39" height="89"/>
+    <SubTexture name="MainMenuPicture" x="2" y="2" width="1280" height="800"/>
+    <SubTexture name="MainMenuSoundButtonOff" x="1068" y="1904" width="104" height="110"/>
+    <SubTexture name="MainMenuSoundButtonOn" x="956" y="1606" width="90" height="110"/>
+    <SubTexture name="MainMenuStartButton" x="1250" y="1689" width="119" height="75"/>
+    <SubTexture name="MainMenuStartButtonClick" x="1089" y="1606" width="131" height="83"/>
+    <SubTexture name="StageScreenSelect Lvl1 Lock" x="307" y="1797" width="302" height="189"/>
+    <SubTexture name="StageSelectScreenLV1" x="307" y="1606" width="303" height="189"/>
+    <SubTexture name="StageSelectScreenLV2 Lock" x="2" y="1797" width="303" height="189"/>
+    <SubTexture name="StageSelectScreenLV2" x="2" y="1606" width="303" height="189"/>
+</TextureAtlas>

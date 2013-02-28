@@ -15,11 +15,9 @@ package de.mediadesign.gd1011.dreamcatcher
 	import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
 	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
 	import de.mediadesign.gd1011.dreamcatcher.View.Score;
-	import de.mediadesign.gd1011.dreamcatcher.View.UserInterface;
 
-	import flash.geom.Point;
-	import flash.media.SoundTransform;
-	import flash.ui.Keyboard;
+    import flash.geom.Point;
+    import flash.ui.Keyboard;
     import flash.utils.getTimer;
     import starling.core.Starling;
 	import starling.display.Button;
@@ -29,7 +27,6 @@ package de.mediadesign.gd1011.dreamcatcher
     import starling.events.Touch;
     import starling.events.TouchEvent;
     import starling.events.TouchPhase;
-    import starling.utils.ProgressBar;
 
 public class Game extends Sprite
     {
@@ -44,11 +41,10 @@ public class Game extends Sprite
         private var destroyProcess:DestroyProcess;
 		private var renderProcess:RenderProcess;
 
-	    public static var currentLvl:Number = 1;
+	    public static var currentLvl:Number;
 		private var lastFrameTimeStamp:Number;
 
         //DEBUG:
-	    private var BossButton:Button;
         private var touchPosition:Point = new Point();
 
 		public function Game()
@@ -66,39 +62,15 @@ public class Game extends Sprite
 
         public function init():void
         {
-            var pB:ProgressBar = new ProgressBar(240, 80);
-            pB.x = stage.stageWidth/2 - pB.width/2;
-            pB.y = stage.stageHeight/2 - pB.height/2;
-            addChild(pB);
+            currentLvl = Dreamcatcher.localObject.data.Progress;
             graphicsManager.init();
-            graphicsManager.loadQueue(function(ratio:Number):void
-            {
-                pB.ratio = ratio;
-                if(ratio==1)
-                {
-                    removeChild(pB);
-                    pB.dispose();
-                    Starling.juggler.delayCall(resumeInit, 0.15);
-                }
-            });
         }
 
-        private function resumeInit():void
+        public function resumeInit():void
         {
             graphicsManager.initCompleted = true;
             addChild(gameStage);
             MainMenu.showAndHide();
-
-            if(Dreamcatcher.debugMode)
-            {
-	            Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, debugFunction);
-
-                addChild(BossButton = new Button(graphicsManager.getTexture(GameConstants.BUTTON),"RESTART"));
-                BossButton.x = 560;
-                BossButton.fontName = "MenuFont";
-                BossButton.enabled = false;
-                BossButton.addEventListener(Event.TRIGGERED, onButtonClick);
-            }
 
 			//var musicTransform:SoundTransform = new SoundTransform(0.8);
 			//GraphicsManager.graphicsManager.playSound("Slayer",0,0,musicTransform);
@@ -107,54 +79,35 @@ public class Game extends Sprite
 
 		public function startLevel(levelIndex:int = 1):void
 		{
+            currentLvl = levelIndex;
             if(GameConstants.Player_Default != "Walk")
                 GameConstants.Player_Default = "Walk";
+			graphicsManager.loadDataFor("LEVEL"+currentLvl, resumeStartLevel);
+		}
+
+        public function resumeStartLevel():void
+        {
             if(!hasEventListener(Event.ENTER_FRAME))
                 addEventListener(Event.ENTER_FRAME, update);
             if(!hasEventListener(TouchEvent.TOUCH))
                 addEventListener(TouchEvent.TOUCH, onTouch);
-			gameStage.init();
-			entityManager.init();
-			UserInterface.userInterface.init();
-			PowerUpTrigger.init();
-			Score.showScore(0)
-            gameStage.loadLevel(levelIndex);
-            entityManager.loadEntities(levelIndex);
-		}
-
-	    public function nextLevel():void
-	    {
-		    currentLvl++;
-		    startLevel(currentLvl);
-	    }
-
-		public function restartLevel():void
-		{
-			startLevel(currentLvl);
-		}
+            gameStage.init();
+            entityManager.init();
+            PowerUpTrigger.init();
+            Score.showScore(0)
+            gameStage.loadLevel(currentLvl);
+            entityManager.loadEntities(currentLvl);
+            graphicsManager.initCompleted = true;
+        }
 
         public function setStartTimeStamp():void
         {
             lastFrameTimeStamp = getTimer() / 1000;
         }
 
-		private function onButtonClick(event:Event):void
-        {
-            if(event.target == BossButton)
-            {
-                trace("Restarting Game!");
-
-                entityManager.loadEntities();
-
-                if(entityManager.getEntity(GameConstants.PLAYER) == null)
-                    entityManager.createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
-                BossButton.enabled = false;
-            }
-		}
-
 		private function update():void
 		{
-            if(Starling.juggler.isActive && !MainMenu.isActive())
+            if(Starling.juggler.isActive && !MainMenu.isActive() && graphicsManager.initCompleted)
             {
                 var now:Number = getTimer() / 1000;
                 var passedTime:Number = now - lastFrameTimeStamp;
@@ -170,8 +123,6 @@ public class Game extends Sprite
 
                 if(Dreamcatcher.debugMode)
                 {
-                    if (entityManager.getEntity(GameConstants.PLAYER) == null)
-                        BossButton.enabled = true;
                     CollisionDummyBoxes.update();
                 }
 
@@ -230,6 +181,10 @@ public class Game extends Sprite
                     GameConstants.Player_Default = "Walk";
                 else
                     GameConstants.Player_Default = "Stand";
+            }
+            if(e.keyCode==Keyboard.F9)
+            {
+                graphicsManager.purge();
             }
         }
     }

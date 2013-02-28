@@ -83,7 +83,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			{
 				if(containers[i].x <= -containers[i].width)
 				{
-					if(!boss)
+					if(!boss || Game.currentLvl==1)
 					{
 						contentList.push(containers[i].removeChildAt(0));
 						containers[i].addChild(contentList.splice(Math.floor(Math.random()*contentList.length), 1)[0]);

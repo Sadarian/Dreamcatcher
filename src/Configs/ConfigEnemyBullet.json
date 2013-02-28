@@ -1,6 +1,6 @@
 {
     "name":"EnemyBullet",
-    "health":5,
+    "health":7,
     "movementSystem":"MovementBullet",
     "movementSpeed":900,
     "weaponSystem":"null",

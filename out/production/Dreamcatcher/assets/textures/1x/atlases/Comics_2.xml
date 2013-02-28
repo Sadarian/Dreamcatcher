@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:e0a59876ca2f382758a282affbf2fe02$ -->
-<TextureAtlas imagePath="Comics_2Texture.png">
-    <SubTexture name="DC_comicOutro1" x="2" y="804" width="1280" height="800"/>
-    <SubTexture name="DC_comicOutro2" x="2" y="2" width="1280" height="800"/>
-</TextureAtlas>

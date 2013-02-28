@@ -38,6 +38,9 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		private function init():void
         {
+            trace(localObject.data.Progress);
+            if(!localObject.data.Progress)
+                localObject.data.Progress = 1;
             GameConstants.init();
 			_starling = new Starling(Game, stage);
 			_starling.showStats = true;

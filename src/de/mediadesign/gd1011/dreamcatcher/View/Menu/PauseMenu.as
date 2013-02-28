@@ -3,8 +3,9 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.Game;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
+    import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
 
-import flash.media.SoundMixer;
+    import flash.media.SoundMixer;
 
 import starling.core.Starling;
     import starling.display.Button;
@@ -56,7 +57,7 @@ import starling.core.Starling;
                 case(mElements[1]):
                     showAndHide();
                     GameStage.gameStage.resetAll();
-                    MainMenu.showAndHide();
+                    GraphicsManager.graphicsManager.loadDataFor("UI", MainMenu.showAndHide);
                     break;
                 case(mElements[2]):
                     var gM:GraphicsManager = GraphicsManager.graphicsManager;

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:7eb96bf3870bfd57c5a99078b3f5f049$ -->
+<TextureAtlas imagePath="Background_lvl1_1Texture.png">
+    <SubTexture name="Lvl1_Bush_1" x="2" y="1812" width="1248" height="150" frameX="-7" frameY="-650" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="Lvl1_Bush_2" x="2" y="1660" width="1258" height="150" frameX="-6" frameY="-650" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="Lvl1_Decograss_1" x="1284" y="114" width="32" height="46" frameX="-649" frameY="-348" frameWidth="1024" frameHeight="576"/>
+    <SubTexture name="Lvl1_Decograss_2" x="1436" y="74" width="64" height="46" frameX="-554" frameY="-351" frameWidth="1024" frameHeight="576"/>
+    <SubTexture name="Lvl1_Decomushroom" x="1532" y="2" width="66" height="72" frameX="-685" frameY="-343" frameWidth="1024" frameHeight="576"/>
+    <SubTexture name="Lvl1_FogAnim1_1" x="1242" y="1170" width="764" height="168" frameX="0" frameY="-134" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="Lvl1_Main_2" x="2" y="586" width="1280" height="582" frameX="0" frameY="-218" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="Lvl1_Main_3" x="2" y="2" width="1280" height="582" frameX="0" frameY="-218" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="Lvl1_ObstacleEggBig" x="1284" y="2" width="150" height="110" frameX="-378" frameY="-267" frameWidth="1024" frameHeight="576"/>
+    <SubTexture name="Lvl1_ObstacleeggSmall" x="1436" y="2" width="94" height="70" frameX="-206" frameY="-218" frameWidth="1024" frameHeight="576"/>
+    <SubTexture name="Lvl1_ScrollingBackground" x="2" y="1170" width="1238" height="268" frameX="-26" frameY="0" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="Lvl1_StaticBackground" x="2" y="1440" width="1280" height="218" frameX="0" frameY="0" frameWidth="1280" frameHeight="800"/>
+</TextureAtlas>

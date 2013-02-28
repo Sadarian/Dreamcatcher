@@ -22,8 +22,8 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 		{
 			var gM:GraphicsManager = GraphicsManager.graphicsManager;
 			var iM:Image;
-
-			for( var i:int=0; i<imageList.length;i++)
+            var i:int;
+			for(i=0; i<imageList.length;i++)
 			{
 				tutorialContent.push(gM.getImage(imageList[i]));
 			}
@@ -36,7 +36,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 										"TutorialScreenForwardButton","TutorialScreenForwardButtonClick"];
 			var positions:Array = [[40, 650],[50, 250],[1050, 250]];
 			var button:Button;
-			for(var i:int=0; i<buttonStrings.length;i+=2)
+			for(i=0; i<buttonStrings.length;i+=2)
 			{
 				button = new Button(gM.getTexture(buttonStrings[i]),"", gM.getTexture(buttonStrings[i+1]));
 				button.enabled = true;
@@ -59,27 +59,34 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 					showAndHide();
 					break;
 				case(mElements[1]):
-					trace("Back");
 					removeChildAt(0);
 				    mIndex -= (mIndex>0)?1:0;
 					addChildAt(tutorialContent[mIndex],0);
-					if (mIndex >= tutorialContent.length-2)
-						mElements[2].visible = false;
-					else
-						mElements[2].visible = true;
+                    showArrows();
+
 					break;
 				case(mElements[2]):
-					trace("Forward");
 					removeChildAt(0);
 					mIndex += (mIndex<tutorialContent.length-1)?1:0;
 					addChildAt(tutorialContent[mIndex],0);
-					if (mIndex <= 1)
-						mElements[1].visible = false;
-					else
-						mElements[1].visible = true;
+                    showArrows();
+
 					break;
 			}
 		}
+
+        private function showArrows():void
+        {
+            if (mIndex <= 0)
+                mElements[1].visible = false;
+            else
+                mElements[1].visible = true;
+
+            if (mIndex >= tutorialContent.length-1)
+                mElements[2].visible = false;
+            else
+                mElements[2].visible = true;
+        }
 
 		public static function get continueMenu():TutorialMenu
 		{

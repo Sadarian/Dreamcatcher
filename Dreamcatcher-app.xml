@@ -123,7 +123,7 @@
 
     <!-- The icon the system uses for the application. For at least one resolution, specify the path to a PNG file included in the AIR package. Optional. -->
     <icon>
-        <image512x512>assets/textures/1x/Icons/Icon_512.png</image512x512>
+        <image512x512>assets/textures/Icons/Icon_512.png</image512x512>
     </icon>
 
     <!-- Whether the application handles the update when a user double-clicks an update version of the AIR file (true),

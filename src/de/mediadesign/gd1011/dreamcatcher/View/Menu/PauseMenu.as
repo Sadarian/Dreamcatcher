@@ -1,13 +1,15 @@
 package de.mediadesign.gd1011.dreamcatcher.View.Menu
 {
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
+    import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
     import de.mediadesign.gd1011.dreamcatcher.Game;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
     import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
 
     import flash.media.SoundMixer;
+    import flash.media.SoundTransform;
 
-import starling.core.Starling;
+    import starling.core.Starling;
     import starling.display.Button;
     import starling.display.DisplayObject;
     import starling.display.Sprite;
@@ -60,14 +62,25 @@ import starling.core.Starling;
                     GraphicsManager.graphicsManager.loadDataFor("UI", MainMenu.showAndHide);
                     break;
                 case(mElements[2]):
-                    var gM:GraphicsManager = GraphicsManager.graphicsManager;
-                    SoundMixer.soundTransform.volume = (mElements[2].name == "PauseMenuSoundOn")?0:1;
-                    (mElements[2] as Button).upState = (mElements[2].name == "PauseMenuSoundOn")?gM.getTexture("PauseMenuSoundOff"):gM.getTexture("PauseMenuSoundOn");
-                    (mElements[2] as Button).downState = (mElements[2].name == "PauseMenuSoundOn")?gM.getTexture("PauseMenuSoundOff"):gM.getTexture("PauseMenuSoundOn");
-                    mElements[2].name = (mElements[2].name == "PauseMenuSoundOn")?"PauseMenuSoundOff":"PauseMenuSoundOn";
-                    //soundOFF
+                    if(SoundMixer.soundTransform.volume == 1)
+                        SoundMixer.soundTransform = new SoundTransform(0, 0);
+                    else
+                        SoundMixer.soundTransform = new SoundTransform(1, 0);
+                    checkSoundButton();
                     break;
             }
+        }
+
+        private function checkSoundButton():void
+        {
+            var suffix:String = (SoundMixer.soundTransform.volume != 0)?"On":"Off"
+            var name:String = "PauseMenuSound"+suffix;
+            var gM:GraphicsManager = GraphicsManager.graphicsManager;
+            (mElements[2] as Button).upState = gM.getTexture(name);
+            (mElements[2] as Button).downState = gM.getTexture(name);
+            (mElements[2] as Button).name = name;
+            Dreamcatcher.localObject.data.soundOn = (SoundMixer.soundTransform.volume != 0);
+            Dreamcatcher.localObject.flush();
         }
 
         public static function get pauseMenu():PauseMenu
@@ -84,6 +97,7 @@ import starling.core.Starling;
                 active = true;
                 Starling.juggler.stop();
                 (Starling.current.root as Game).addChild(pauseMenu);
+                pauseMenu.checkSoundButton();
             }
             else
             {

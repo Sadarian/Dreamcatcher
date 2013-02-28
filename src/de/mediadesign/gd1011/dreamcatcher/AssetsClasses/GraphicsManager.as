@@ -1,38 +1,43 @@
 package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
 {
+    import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
     import de.mediadesign.gd1011.dreamcatcher.Game;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
     import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
 
     import flash.filesystem.File;
-	import flash.utils.Dictionary;
+    import flash.media.SoundChannel;
+    import flash.media.SoundMixer;
+    import flash.media.SoundTransform;
+    import flash.utils.Dictionary;
     import starling.core.Starling;
 	import starling.display.DisplayObject;
 	import starling.display.DisplayObjectContainer;
 	import starling.display.Image;
 	import starling.display.Sprite;
     import starling.utils.AssetManager;
-    import starling.utils.ProgressBar;
+    import de.mediadesign.gd1011.dreamcatcher.View.ProgressBar;
 
 	public class GraphicsManager extends AssetManager
 	{
         private static var self:GraphicsManager;
-
         private var mContainers:Dictionary;
         private var mInit:Boolean;
         private var mLast:String;
+        private var mProgressBar:ProgressBar;
 
-        private var contents:Array = ["assets/textures/atlases/STATIC", "assets/audio"];
+        private var contents:Array = ["assets/textures/atlases/STATIC", "assets/audio", "assets/textures/atlases/UI"];
 
         public function GraphicsManager():void
         {
             super(Starling.contentScaleFactor, false);
-
             mContainers = new Dictionary();
+            SoundMixer.soundTransform = new SoundTransform((Dreamcatcher.localObject.data.soundOn)?1:0, 0);
+            mProgressBar = new ProgressBar(3);
             mInit = false;
-            mLast = null;
-            enqueue(EmbeddedFonts);
+            mLast = "UI";
+            enqueue(EmbeddedAssets);
         }
 
         public static function get graphicsManager():GraphicsManager
@@ -44,27 +49,28 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
 
 		public function init():void
 		{
+            if(contents.length==3)
+                (Starling.current.root as Game).addChild(mProgressBar);
             if(contents.length>0)
                 initContent(contents.shift(), init);
             else
-                loadDataFor("UI", (Starling.current.root as Game).resumeInit);
+            {
+                (Starling.current.root as Game).resumeInit();
+                (Starling.current.root as Game).removeChild(mProgressBar);
+                mProgressBar.dispose();
+            }
+
 		}
 
         private function initContent(path:String, func:Function):void
         {
             enqueue(File.applicationDirectory.resolvePath(path));
 
-            var pB:ProgressBar = new ProgressBar(240, 80);
-            pB.x = Starling.current.stage.stageWidth/2 - pB.width/2;
-            pB.y = Starling.current.stage.stageHeight/2 - pB.height/2;
-            (Starling.current.root as Game).addChild(pB);
             loadQueue(function(ratio:Number):void
             {
-                pB.ratio = ratio;
+                mProgressBar.setRatio(2-contents.length, ratio/3);
                 if(ratio==1)
                 {
-                    (Starling.current.root as Game).removeChild(pB);
-                    pB.dispose();
                     Starling.juggler.delayCall(func, 0.15);
                 }
             });
@@ -86,7 +92,8 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
                     break;
 
                 default:
-                    deleteStream = (mLast == "UI")?GameConstants.UI_LIST:GameConstants["LEVEL"+(Game.currentLvl-1)+"_LIST"];;
+                    mContainers = new Dictionary();
+                    deleteStream = (mLast == "UI")?GameConstants.UI_LIST:GameConstants["LEVEL"+(Game.currentLvl-1)+"_LIST"];
                     blendScreen = getImage("tutorialScreen_"+(1+Math.round(Math.random()*3)));
                     break;
             }
@@ -98,13 +105,11 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
 
             if(blendGraphic)
             {
-                var pB:ProgressBar = new ProgressBar(240, 80);
-                pB.x = Starling.current.stage.stageWidth/2 - pB.width/2;
-                pB.y = Starling.current.stage.stageHeight/2 - pB.height/2;
+                var pB:ProgressBar = new ProgressBar();
                 (Starling.current.root as Game).addChild(pB);
                 loadQueue(function(ratio:Number):void
                 {
-                    pB.ratio = ratio;
+                    pB.setRatio(0, ratio);
                     if(ratio==1)
                     {
                         (Starling.current.root as Game).removeChild(pB);
@@ -122,7 +127,7 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
                     {
                         (Starling.current.root as Game).removeChild(blendScreen);
                         blendScreen.dispose();
-                        Starling.juggler.delayCall(functionAfter, 2.0);
+                        Starling.juggler.delayCall(functionAfter, 0.15);
                     }
                 });
             }
@@ -188,6 +193,15 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
 			        return getMovieClip(item);
 		        }
 	        }
+        }
+
+        override public function playSound(name:String, startTime:Number=0, loops:int=0,
+                                  transform:SoundTransform=null):SoundChannel
+        {
+            if (name in mSounds)
+                return getSound(name).play(startTime, loops, transform);
+            else
+                return null;
         }
 
         public function get initCompleted():Boolean {

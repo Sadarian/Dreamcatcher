@@ -1,11 +1,15 @@
 package de.mediadesign.gd1011.dreamcatcher.View.Menu
 {
 	import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
+    import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
     import de.mediadesign.gd1011.dreamcatcher.Game;
-	import flash.media.SoundMixer;
+
+    import flash.media.Sound;
+    import flash.media.SoundMixer;
+    import flash.media.SoundTransform;
 
 
-import starling.core.Starling;
+    import starling.core.Starling;
     import starling.display.Button;
     import starling.display.DisplayObject;
     import starling.display.MovieClip;
@@ -73,12 +77,13 @@ import starling.core.Starling;
                     CreditsMenu.showAndHide();
                     break;
                 case(mElements[2]):
-                    var gM:GraphicsManager = GraphicsManager.graphicsManager;
-                    SoundMixer.soundTransform.volume = (mElements[2].name == "MainMenuSoundButtonOn")?0:1;
-                    (mElements[2] as Button).upState = (mElements[2].name == "MainMenuSoundButtonOn")?gM.getTexture("MainMenuSoundButtonOff"):gM.getTexture("MainMenuSoundButtonOn");
-                    (mElements[2] as Button).downState = (mElements[2].name == "MainMenuSoundButtonOn")?gM.getTexture("MainMenuSoundButtonOff"):gM.getTexture("MainMenuSoundButtonOn");
-                    mElements[2].name = (mElements[2].name == "MainMenuSoundButtonOn")?"MainMenuSoundButtonOff":"MainMenuSoundButtonOn";
+                    if(SoundMixer.soundTransform.volume == 1)
+                        SoundMixer.soundTransform = new SoundTransform(0, 0);
+                    else
+                        SoundMixer.soundTransform = new SoundTransform(1, 0);
+                    checkSoundButton();
                     break;
+
                 case(mElements[3]):
                     showAndHide();
                     (Starling.current.root as Game).startLevel(Game.currentLvl);
@@ -87,6 +92,18 @@ import starling.core.Starling;
 					TutorialMenu.showAndHide();
 					break;
             }
+        }
+
+        private function checkSoundButton():void
+        {
+            var suffix:String = (SoundMixer.soundTransform.volume != 0)?"On":"Off";
+            var name:String = "MainMenuSoundButton" + suffix;
+            var gM:GraphicsManager = GraphicsManager.graphicsManager;
+            (mElements[2] as Button).upState = gM.getTexture(name);
+            (mElements[2] as Button).downState = gM.getTexture(name);
+            (mElements[2] as Button).name = name;
+            Dreamcatcher.localObject.data.soundOn = (SoundMixer.soundTransform.volume != 0);
+            Dreamcatcher.localObject.flush();
         }
 
         private function onSwitch():void
@@ -120,6 +137,7 @@ import starling.core.Starling;
             {
                 active = true;
                 (Starling.current.root as Game).addChild(mainMenu);
+                mainMenu.checkSoundButton();
             }
             else
             {

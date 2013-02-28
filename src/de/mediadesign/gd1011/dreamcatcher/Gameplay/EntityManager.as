@@ -1,5 +1,6 @@
 package de.mediadesign.gd1011.dreamcatcher.Gameplay
 {
+    import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
 	import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionDummyBoxes;
     import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionImage;
@@ -41,6 +42,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
         public function loadEntities(levelIndex:int = 1):void
         {
             createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
+            _entities[0].switchWeapon(null);
             var loadingEntities:Array = GameConstants.loadSpawnData((Dreamcatcher.debugMode)?levelIndex+1665:levelIndex);
             var i:int;
             if(!Dreamcatcher.debugMode)

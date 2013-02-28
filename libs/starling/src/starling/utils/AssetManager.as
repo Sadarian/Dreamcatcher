@@ -48,7 +48,7 @@ package starling.utils
         private var mRawAssets:Array;
         private var mTextures:Dictionary;
         private var mAtlases:Dictionary;
-        private var mSounds:Dictionary;
+        protected var mSounds:Dictionary;
         
         /** helper objects */
         private var sNames:Vector.<String> = new <String>[];

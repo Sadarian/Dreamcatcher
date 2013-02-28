@@ -1,7 +1,8 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
-	import de.mediadesign.gd1011.dreamcatcher.Processes.ActivePowerUpProcess;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerStraight;
+    import de.mediadesign.gd1011.dreamcatcher.Processes.ActivePowerUpProcess;
 	import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionDummyBoxes;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
@@ -98,6 +99,15 @@ public class Game extends Sprite
             gameStage.loadLevel(currentLvl);
             entityManager.loadEntities(currentLvl);
             graphicsManager.initCompleted = true;
+            Starling.juggler.delayCall(allowShooting, 1);
+
+        }
+
+        private function allowShooting():void
+        {
+
+            entityManager.entities[0].switchWeapon(new WeaponPlayerStraight())
+            entityManager.entities[0].setWeaponSpeed();
         }
 
         public function setStartTimeStamp():void

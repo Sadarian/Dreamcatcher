@@ -58,7 +58,6 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
             mC.x = 662;
             mC.y = 330;
             mC.loop = false;
-            mC.addEventListener(Event.COMPLETE, onSwitch);
             mElements.push(mC);
         }
 
@@ -72,6 +71,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
                     addChild(mElements[5]);
                     (mElements[5] as MovieClip).play();
                     Starling.juggler.add(mElements[5] as MovieClip);
+                    onSwitch();
                     break;
                 case(mElements[1]):
                     CreditsMenu.showAndHide();

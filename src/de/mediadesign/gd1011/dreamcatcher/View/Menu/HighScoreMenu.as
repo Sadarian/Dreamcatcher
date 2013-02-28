@@ -80,6 +80,14 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
                 addChild(button);
                 mElements.push(button);
             }
+            mElements.push(gM.getImage("DC_comicOutro1"));
+            addChild(mElements[mElements.length-1]);
+            Starling.juggler.delayCall(deleteChild, 2);
+        }
+
+        private function deleteChild():void
+        {
+            removeChild(mElements[mElements.length-1]);
         }
 
         private function onTriggered(e:Event):void
@@ -144,13 +152,16 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
             mScores[6].width = 800; mScores[6].height = 100;
             mScores[6].x = -100; mScores[6].y = 450;
             mScores[6].fontSize = 70;
-            mScores[7].text = value.toString();
+            mScores[7].text = score.toString();
             mScores[7].fontSize = 150;
             mScores[7].width = 900; mScores[7].height = 200;
             mScores[7].x = 0; mScores[7].y = 620;
             mScores[7].rotation = deg2rad(-10);
             mScores[7].touchable = true;
 
+            if(newPosition == -1)
+                HighScore.saveScoreAt(score, newPosition);
+            changeScore();
             /*
             var textField:flash.text.TextField = new flash.text.TextField();
             var textFormat:TextFormat = new TextFormat("MenuFont", 90, 0xff0000);

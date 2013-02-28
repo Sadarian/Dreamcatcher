@@ -52,6 +52,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			GameStage.gameStage.addChild(scoreField);
 			scoreField.x = Starling.current.stage.stageWidth - scoreField.width - 50;
 			scoreField.y = 18;
+            scoreField.touchable =false;
 		}
 
 		public static function removeScoreField():void

@@ -44,5 +44,12 @@ package de.mediadesign.gd1011.dreamcatcher.View
                     return i;
             return -1;
         }
+
+        public static function saveScoreAt(value:Number, pos:int, user:String = "LocalPlayer"):void
+        {
+            var local:SharedObject = Dreamcatcher.localObject;
+                local.data["Score_"+pos] = [value, user];
+            local.flush();
+        }
     }
 }

@@ -82,7 +82,8 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 			exhaustOverlay = new Image(GraphicsManager.graphicsManager.getTexture("ExhaustFeedback"));
 			exhaustOverlay.alpha = 0;
-			GameStage.gameStage.addChildAt(exhaustOverlay,7);
+            exhaustOverlay.touchable = false;
+			GameStage.gameStage.addChild(exhaustOverlay);
 
 		}
 
@@ -129,6 +130,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
             GameStage.gameStage.removeActor(playerIcon);
 			GameStage.gameStage.removeActor(bossLifeIcon);
             GameStage.gameStage.removeActor(playerBar);
+            GameStage.gameStage.removeActor(exhaustOverlay);
 		}
 
 		public function updateHealthBar():void

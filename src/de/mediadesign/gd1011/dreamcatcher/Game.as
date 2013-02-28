@@ -23,7 +23,8 @@ package de.mediadesign.gd1011.dreamcatcher
     import flash.utils.getTimer;
     import starling.core.Starling;
 	import starling.display.Button;
-	import starling.display.Sprite;
+    import starling.display.Image;
+    import starling.display.Sprite;
 	import starling.events.Event;
     import starling.events.KeyboardEvent;
     import starling.events.Touch;
@@ -85,8 +86,26 @@ public class Game extends Sprite
             currentLvl = (levelIndex>2)?2:levelIndex;
             if(GameConstants.Player_Default != "Walk")
                 GameConstants.Player_Default = "Walk";
-			graphicsManager.loadDataFor("LEVEL"+currentLvl, resumeStartLevel);
+            graphicsManager.loadDataFor("LEVEL"+currentLvl, (currentLvl!=1)?resumeStartLevel:comic);
+
 		}
+
+        private function comic():void
+        {
+            var img:Image = GraphicsManager.graphicsManager.getImage("DC_comicIntroPanel2");
+            addChild(img);
+            var img2:Image = GraphicsManager.graphicsManager.getImage("DC_comicIntroPanel1");
+            addChild(img2);
+            Starling.juggler.delayCall(deleteChild, 4, img);
+            Starling.juggler.delayCall(deleteChild, 2, img2);
+        }
+
+        private function deleteChild(img:Image):void
+        {
+            removeChild(img);
+            if(img.name == "DC_comicIntroPanel2")
+                resumeStartLevel();
+        }
 
         public function resumeStartLevel():void
         {

@@ -2,8 +2,9 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 {
 	import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
+    import de.mediadesign.gd1011.dreamcatcher.View.ProgressBar;
 
-	import starling.animation.IAnimatable;
+    import starling.animation.IAnimatable;
 
 	import starling.animation.Transitions;
 
@@ -38,7 +39,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 			var positions:Array = [[40, 660]];
 			var button:Button;
 
-			var logo:Image = new Image(gM.getTexture("Splashscreen"));
+			var logo:Image = new Image(ProgressBar.splashScreenAtlas.getTexture("Splashscreen"));
 			addChild(logo);
 			fadeOut(logo);
 

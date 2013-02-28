@@ -40,6 +40,7 @@ public class WeaponBoss implements IWeapon
                     sumTime -= _speed;
 
                     boss = EntityManager.entityManager.getEntity(GameConstants.BOSS1);
+                    bulletType = GameConstants.BOSS1_BULLET;
                     if(!boss) {boss = EntityManager.entityManager.getEntity(GameConstants.BOSS2); bulletType = GameConstants.BOSS2_BULLET;}
 
                     if(shoots == GameConstants.bossWebShotAfter && boss.name == GameConstants.BOSS2)

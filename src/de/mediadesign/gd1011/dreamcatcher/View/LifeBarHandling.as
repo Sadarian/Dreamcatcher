@@ -15,6 +15,12 @@ package de.mediadesign.gd1011.dreamcatcher.View
 	import flash.geom.Point;
 	import flash.media.SoundChannel;
 
+	import starling.animation.Transitions;
+
+	import starling.animation.Tween;
+	import starling.core.Starling;
+	import starling.display.DisplayObject;
+
 	import starling.display.Image;
     import starling.display.Sprite;
     import starling.textures.Texture;
@@ -31,6 +37,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		private var exhaustSound:SoundChannel;
 		private var color:uint;
 		private var size:Number;
+		private var exhaustOverlay:Image;
 
 		public function LifeBarHandling(entity:Entity, position:Point = null)
 		{
@@ -73,6 +80,25 @@ package de.mediadesign.gd1011.dreamcatcher.View
                 GameStage.gameStage.addChild(playerIcon);
             }
 
+			exhaustOverlay = new Image(GraphicsManager.graphicsManager.getTexture("ExhaustFeedback"));
+			exhaustOverlay.alpha = 0;
+			GameStage.gameStage.addChild(exhaustOverlay);
+
+		}
+
+		private function fadeIn(tweenObject:DisplayObject):void
+		{
+			var mTween:Tween = new Tween (tweenObject,2,Transitions.EASE_IN);
+			mTween.fadeTo(1);
+			Starling.juggler.add(mTween);
+
+		}
+
+		private function fadeOut(tweenObject:DisplayObject):void
+		{
+			var mTween:Tween = new Tween (tweenObject,2,Transitions.EASE_OUT);
+			mTween.fadeTo(0);
+			Starling.juggler.add(mTween);
 		}
 
 		private function soundCompleteHandler(event:Event):void
@@ -135,6 +161,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
                 GameStage.gameStage.removeActor(lifeBar);
 				if(exhaustSound)
                     exhaustSound.stop();
+					exhaustOverlay.alpha =0;
 
 	            if (entity.name == GameConstants.PLAYER)
 	                GameStage.gameStage.removeActor(playerIcon);
@@ -148,18 +175,21 @@ package de.mediadesign.gd1011.dreamcatcher.View
 				playerIcon.texture = GraphicsManager.graphicsManager.getTexture("PlayerLifeBarState_2");
 				if (exhaustSound)
 					exhaustSound.stop();
+					exhaustOverlay.alpha =0;
 			}
 			else if (lifePercent <= 0.5 && lifePercent > 0.25)
 			{
 				playerIcon.texture = GraphicsManager.graphicsManager.getTexture("PlayerLifeBarState_3");
 				if (exhaustSound)
 					exhaustSound.stop();
+					exhaustOverlay.alpha =0;
 			}
 			else if (lifePercent <= 0.25)
 			{
 				playerIcon.texture = GraphicsManager.graphicsManager.getTexture("PlayerLifeBarState_4");
 				exhaustSound = GraphicsManager.graphicsManager.playSound("PlayerExhaust",0);
 				exhaustSound.addEventListener(Event.SOUND_COMPLETE, soundCompleteHandler);
+				fadeIn(exhaustOverlay);
 			}
 			else
 			{

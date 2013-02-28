@@ -4,8 +4,8 @@
 <TextureAtlas imagePath="Boss_lvl2Texture.png">
     <SubTexture name="Boss2BulletWalk_1" x="1927" y="2" width="61" height="37"/>
     <SubTexture name="Boss2BulletWalk_2" x="1864" y="2" width="61" height="37"/>
-    <SubTexture name="Boss2BulletWeWalk_1" x="1864" y="41" width="44" height="44" frameX="-52" frameY="-125" frameWidth="246" frameHeight="272"/>
-    <SubTexture name="Boss2BulletWebHit_0" x="1910" y="41" width="44" height="43" frameX="-53" frameY="-129" frameWidth="246" frameHeight="237"/>
+    <SubTexture name="Boss2BulletWebWalk_1" x="1864" y="41" width="44" height="44" frameX="-52" frameY="-125" frameWidth="246" frameHeight="272"/>
+    <SubTexture name="Boss2BulletWebHit_1" x="1910" y="41" width="44" height="43" frameX="-53" frameY="-129" frameWidth="246" frameHeight="237"/>
     <SubTexture name="Boss2BulletWebHit_2" x="1063" y="340" width="44" height="45" frameX="-53" frameY="-129" frameWidth="246" frameHeight="259"/>
     <SubTexture name="Boss2BulletWebHit_3" x="1864" y="87" width="42" height="62" frameX="-53" frameY="-122" frameWidth="226" frameHeight="334"/>
     <SubTexture name="Boss2BulletWebHit_4" x="1063" y="252" width="47" height="86" frameX="-48" frameY="-108" frameWidth="233" frameHeight="426"/>

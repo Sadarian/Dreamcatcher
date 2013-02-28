@@ -1,13 +1,19 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
+    import de.mediadesign.gd1011.dreamcatcher.View.HighScore;
     import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
     import de.mediadesign.gd1011.dreamcatcher.View.Menu.PauseMenu;
+    import de.mediadesign.gd1011.dreamcatcher.View.Score;
+
     import flash.desktop.NativeApplication;
     import flash.display.Sprite;
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
 	import flash.geom.Rectangle;
+    import flash.media.Sound;
+    import flash.media.SoundMixer;
+    import flash.media.SoundTransform;
     import flash.net.SharedObject;
     import starling.core.Starling;
     import flash.events.*;
@@ -38,9 +44,11 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		private function init():void
         {
-            trace(localObject.data.Progress);
             if(!localObject.data.Progress)
                 localObject.data.Progress = 1;
+            if(localObject.data.soundOn == null)
+                localObject.data.soundOn = true;
+            HighScore.initHighScore();
             GameConstants.init();
 			_starling = new Starling(Game, stage);
 			_starling.showStats = true;
@@ -71,12 +79,14 @@ package de.mediadesign.gd1011.dreamcatcher
         {
             if(!MainMenu.isActive() && !PauseMenu.isActive() && GraphicsManager.graphicsManager.initCompleted)
                 PauseMenu.showAndHide();
+            SoundMixer.soundTransform = new SoundTransform((Dreamcatcher.localObject.data.soundOn)?1:0, 0);
             _starling.start();
             (_starling.root as Game).setStartTimeStamp();
         }
 
         private function onDeactivate(event:Event):void
         {
+            SoundMixer.soundTransform = new SoundTransform(0, 0);
             _starling.stop();
         }
 

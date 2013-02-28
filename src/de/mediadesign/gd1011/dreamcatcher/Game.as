@@ -1,7 +1,8 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
-	import de.mediadesign.gd1011.dreamcatcher.Processes.ActivePowerUpProcess;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerStraight;
+    import de.mediadesign.gd1011.dreamcatcher.Processes.ActivePowerUpProcess;
 	import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionDummyBoxes;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
@@ -12,7 +13,8 @@ package de.mediadesign.gd1011.dreamcatcher
     import de.mediadesign.gd1011.dreamcatcher.Processes.MoveProcess;
     import de.mediadesign.gd1011.dreamcatcher.Processes.RenderProcess;
     import de.mediadesign.gd1011.dreamcatcher.Processes.ShootingProcess;
-	import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
+    import de.mediadesign.gd1011.dreamcatcher.View.Menu.HighScoreMenu;
+    import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
 	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
 	import de.mediadesign.gd1011.dreamcatcher.View.Score;
 
@@ -64,6 +66,7 @@ public class Game extends Sprite
         {
             currentLvl = Dreamcatcher.localObject.data.Progress;
             graphicsManager.init();
+            stage.addEventListener(KeyboardEvent.KEY_DOWN, debugFunction);
         }
 
         public function resumeInit():void
@@ -79,7 +82,7 @@ public class Game extends Sprite
 
 		public function startLevel(levelIndex:int = 1):void
 		{
-            currentLvl = levelIndex;
+            currentLvl = (levelIndex>2)?2:levelIndex;
             if(GameConstants.Player_Default != "Walk")
                 GameConstants.Player_Default = "Walk";
 			graphicsManager.loadDataFor("LEVEL"+currentLvl, resumeStartLevel);
@@ -94,10 +97,19 @@ public class Game extends Sprite
             gameStage.init();
             entityManager.init();
             PowerUpTrigger.init();
-            Score.showScore(0)
+            Score.showScore(0);
             gameStage.loadLevel(currentLvl);
             entityManager.loadEntities(currentLvl);
             graphicsManager.initCompleted = true;
+            Starling.juggler.delayCall(allowShooting, 1);
+
+        }
+
+        private function allowShooting():void
+        {
+
+            entityManager.entities[0].switchWeapon(new WeaponPlayerStraight())
+            entityManager.entities[0].setWeaponSpeed();
         }
 
         public function setStartTimeStamp():void
@@ -184,7 +196,16 @@ public class Game extends Sprite
             }
             if(e.keyCode==Keyboard.F9)
             {
-                graphicsManager.purge();
+                entityManager.createEntity(GameConstants.BOSS2, touchPosition);
+            }
+            if(e.keyCode==Keyboard.F10)
+            {
+                currentLvl = 1;
+            }
+            if(e.keyCode==Keyboard.F11)
+            {
+                HighScoreMenu.showAndHide();
+                HighScoreMenu.highScoreMenu.setScore(123456);
             }
         }
     }

@@ -1,9 +1,11 @@
 package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
 {
-	import de.mediadesign.gd1011.dreamcatcher.Game;
+    import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
+    import de.mediadesign.gd1011.dreamcatcher.Game;
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
-	import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
+    import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
+    import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Collision.CollisionUnidentical;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponBoss;
 	import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
@@ -32,6 +34,13 @@ import flash.geom.Point;
         private var _speed:Number = 0;
         private var _direction:Point = new Point();
         private var _lastMoveUp:Boolean = Math.round(Math.random()) == 1;
+        private var _canMove:Boolean = true;
+        private var raged:Boolean = false;
+
+        public function get canMove():Boolean
+        {
+            return _canMove;
+        }
 
         public function set speed(value:Number):void
         {
@@ -47,6 +56,15 @@ import flash.geom.Point;
             {
                 if(!_onInit && boss.name == GameConstants.BOSS1 && boss.health/boss.maxHealth <= 0.3 && phase != FLEE)
                     switchTo(FLEE);
+                if(!_onInit && !raged && boss.isBoss2 && boss.health/boss.maxHealth <= 0.3)
+                {
+                    trace(boss.health/boss.maxHealth, boss.health);
+                    raged = true;
+                    GraphicsManager.graphicsManager.playSound("Boss2CloseCombat");
+                    boss.increaseMovementSpeed(0.66);
+                    boss.increaseWeaponSpeed(0.66);
+                }
+                if(!_canMove && _phase != FLEE) return position;
                 switch(_phase)
                 {
                     case(RANGE):
@@ -54,6 +72,7 @@ import flash.geom.Point;
                         if(_onInit)
                         {
                             boss = EntityManager.entityManager.getEntity(GameConstants.BOSS1);
+                            if(!boss) boss = EntityManager.entityManager.getEntity(GameConstants.BOSS2);
                             player = EntityManager.entityManager.getEntity(GameConstants.PLAYER);
                             startPoint = position;
                             _onInit = false;
@@ -126,11 +145,11 @@ import flash.geom.Point;
                     break;
 
                 case(RANGE):
-                    _speed /= GameConstants.bossChargeSpeedMultiplier;
                     _direction = new Point();
                     break;
 
                 case(MELEE_TO_RANGE):
+                    _speed /= GameConstants.bossChargeSpeedMultiplier;
                     (boss.weaponSystem as WeaponBoss).canShoot = true;
                     break;
 
@@ -165,5 +184,10 @@ import flash.geom.Point;
 	    {
 		    _phase = RANGE;
 	    }
+
+        public function set canMove(value:Boolean):void
+        {
+            _canMove = value;
+        }
     }
 }

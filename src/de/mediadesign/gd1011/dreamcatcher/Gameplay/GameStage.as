@@ -3,7 +3,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
     import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
-	import de.mediadesign.gd1011.dreamcatcher.View.PauseButton;
+    import de.mediadesign.gd1011.dreamcatcher.View.Menu.HighScoreMenu;
+    import de.mediadesign.gd1011.dreamcatcher.View.PauseButton;
 	import de.mediadesign.gd1011.dreamcatcher.Game;
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBoss;
@@ -172,9 +173,10 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
                 endLvl("You Lose!");
             }
 
-			if (EntityManager.entityManager.getEntity(GameConstants.BOSS1) != null)
+            var boss:Entity = EntityManager.entityManager.getEntity(GameConstants.BOSS1);
+			if (boss)
 			{
-				if ((MovementBoss.phase == "Flee") || (EntityManager.entityManager.getEntity(GameConstants.BOSS1).health <= 0))
+				if ((MovementBoss.phase == "Flee") || boss.health <= 0)
 				{
 					if (!lvlEnd)
 					{
@@ -184,7 +186,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 				}
 			}
 
-			if (lvlEnd && endScreen.alpha <= 1)
+			if (lvlEnd && endScreen && endScreen.alpha <= 1)
 			{
 				endScreen.alpha += 0.02;
 				endScreen.fadeIn();
@@ -238,19 +240,24 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             }
 		}
 
-		private function endLvl(text:String):void
+		public function endLvl(text:String):void
 		{
 			lvlEnd = true;
-			endScreen = new LevelEndScreen(text);
-			if (lose)
-				endScreen.createRestartButton();
+            if(lose)
+            {
+                endScreen = new LevelEndScreen(text);
+                endScreen.createRestartButton();
+                addChild(endScreen.screen);
+            }
 			else
             {
+                HighScoreMenu.highScoreMenu.setScore(Score.score);
+                resetAll();
                 Dreamcatcher.localObject.data.Progress = (Dreamcatcher.localObject.data.Progress >= (Game.currentLvl+1)) ? Dreamcatcher.localObject.data.Progress : (Game.currentLvl+1);
                 Dreamcatcher.localObject.flush();
-                endScreen.createNextLevelButton();
+                HighScoreMenu.showAndHide();
             }
-			addChild(endScreen.screen);
+
 		}
 	}
 }

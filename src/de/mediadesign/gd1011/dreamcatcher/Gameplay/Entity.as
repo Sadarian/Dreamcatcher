@@ -6,6 +6,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBoss;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBullet;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementVictim;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementWeb;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.IWeapon;
     import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
 
@@ -101,6 +102,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             {
                 _movieClip.x = _position.x;
                 _movieClip.y = _position.y;
+                if(_movementSystem is MovementWeb)
+                    _movieClip.rotation = (_movementSystem as MovementWeb).rotation;
             }
         }
 
@@ -275,7 +278,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 	    public function get isBoss2():Boolean
 	    {
-		    return (name == GameConstants.BOSS1 && !isBullet);
+		    return (name == GameConstants.BOSS2 && !isBullet);
 	    }
 
 	    public function get isBoss():Boolean

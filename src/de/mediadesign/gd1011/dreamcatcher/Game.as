@@ -74,7 +74,7 @@ public class Game extends Sprite
 
 			//var musicTransform:SoundTransform = new SoundTransform(0.8);
 			//GraphicsManager.graphicsManager.playSound("Slayer",0,0,musicTransform);
-			GraphicsManager.graphicsManager.playSound("Slayer");
+			//GraphicsManager.graphicsManager.playSound("Slayer");
         }
 
 		public function startLevel(levelIndex:int = 1):void

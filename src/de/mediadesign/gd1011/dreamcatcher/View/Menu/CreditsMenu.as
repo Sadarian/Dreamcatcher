@@ -111,7 +111,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 		{
 			dancer = new MovieClip(GraphicsManager.graphicsManager.getTextures("CreditsDance_"));
 			dancer.x = 820;
-			dancer.y = 180;
+			dancer.y = 80;
 			dancer.loop = true;
 			dancer.alpha = 0;
 			addChild(dancer);

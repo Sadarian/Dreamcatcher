@@ -82,7 +82,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 			exhaustOverlay = new Image(GraphicsManager.graphicsManager.getTexture("ExhaustFeedback"));
 			exhaustOverlay.alpha = 0;
-			GameStage.gameStage.addChild(exhaustOverlay);
+			GameStage.gameStage.addChildAt(exhaustOverlay,7);
 
 		}
 

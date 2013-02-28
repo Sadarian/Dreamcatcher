@@ -89,6 +89,8 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 					break;
 				case(mElements[2]):
 					GraphicsManager.graphicsManager.playSound("MenuButton2");
+					showAndHide();
+					MainMenu.showAndHide();
 					(Starling.current.root as Game).startLevel(2);
 					break;
 				case(mElements[3]):

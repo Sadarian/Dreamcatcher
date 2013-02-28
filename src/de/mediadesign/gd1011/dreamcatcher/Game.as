@@ -13,8 +13,12 @@ package de.mediadesign.gd1011.dreamcatcher
     import de.mediadesign.gd1011.dreamcatcher.Processes.MoveProcess;
     import de.mediadesign.gd1011.dreamcatcher.Processes.RenderProcess;
     import de.mediadesign.gd1011.dreamcatcher.Processes.ShootingProcess;
-    import de.mediadesign.gd1011.dreamcatcher.View.Menu.HighScoreMenu;
+	import de.mediadesign.gd1011.dreamcatcher.View.Menu.ContinueMenu;
+	import de.mediadesign.gd1011.dreamcatcher.View.Menu.CreditsMenu;
+	import de.mediadesign.gd1011.dreamcatcher.View.Menu.HighScoreMenu;
     import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
+	import de.mediadesign.gd1011.dreamcatcher.View.Menu.PauseMenu;
+	import de.mediadesign.gd1011.dreamcatcher.View.Menu.TutorialMenu;
 	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
 	import de.mediadesign.gd1011.dreamcatcher.View.Score;
 
@@ -25,6 +29,7 @@ package de.mediadesign.gd1011.dreamcatcher
 	import starling.display.Button;
     import starling.display.Image;
     import starling.display.Sprite;
+	import starling.events.Event;
 	import starling.events.Event;
     import starling.events.KeyboardEvent;
     import starling.events.Touch;
@@ -46,6 +51,9 @@ public class Game extends Sprite
 
 	    public static var currentLvl:Number;
 		private var lastFrameTimeStamp:Number;
+		private var now:Number = 0;
+		public var noPlayTime:Number = 0;
+		private var passedLvlTime:Number = 0;
 
         //DEBUG:
         private var touchPosition:Point = new Point();
@@ -61,6 +69,7 @@ public class Game extends Sprite
 	        collisionProcess = new CollisionProcess();
 	        destroyProcess = new DestroyProcess();
 	        renderProcess = new RenderProcess();
+	        addEventListener(Event.ENTER_FRAME, update);
 		}
 
         public function init():void
@@ -83,6 +92,7 @@ public class Game extends Sprite
 
 		public function startLevel(levelIndex:int = 1):void
 		{
+			passedLvlTime += now;
             currentLvl = (levelIndex>2)?2:levelIndex;
             if(GameConstants.Player_Default != "Walk")
                 GameConstants.Player_Default = "Walk";
@@ -127,21 +137,31 @@ public class Game extends Sprite
         private function allowShooting():void
         {
 
-            entityManager.entities[0].switchWeapon(new WeaponPlayerStraight())
+            entityManager.entities[0].switchWeapon(new WeaponPlayerStraight());
             entityManager.entities[0].setWeaponSpeed();
         }
 
         public function setStartTimeStamp():void
         {
-            lastFrameTimeStamp = getTimer() / 1000;
+            lastFrameTimeStamp = getTimer() / 1000 - noPlayTime - passedLvlTime;
         }
+
+		public function getNoPlayTime():void
+		{
+			noPlayTime = (getTimer()/1000) - now - passedLvlTime;
+		}
 
 		private function update():void
 		{
-            if(Starling.juggler.isActive && !MainMenu.isActive() && graphicsManager.initCompleted)
+			if (MainMenu.isActive() || PauseMenu.isActive() || HighScoreMenu.isActive() || ContinueMenu.isActive() || CreditsMenu.isActive() || TutorialMenu.isActive())
+			{
+				getNoPlayTime();
+			}
+			else if(Starling.juggler.isActive && !MainMenu.isActive() && graphicsManager.initCompleted && !HighScoreMenu.isActive())
             {
-                var now:Number = getTimer() / 1000;
-                var passedTime:Number = now - lastFrameTimeStamp;
+
+                now = getTimer() / 1000 - noPlayTime - passedLvlTime;
+                var passedTime:Number = (now - lastFrameTimeStamp);
                 lastFrameTimeStamp = now;
 
 //                entityManager.rotatePowerUps(passedTime);
@@ -151,6 +171,9 @@ public class Game extends Sprite
                 destroyProcess.update();
                 renderProcess.update();
                 gameStage.update(now);
+
+
+
 
                 if(Dreamcatcher.debugMode)
                 {

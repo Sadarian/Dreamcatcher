@@ -80,9 +80,9 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
                 addChild(button);
                 mElements.push(button);
             }
-            mElements.push(gM.getImage("DC_comicOutro1"));
-            addChild(mElements[mElements.length-1]);
-            Starling.juggler.delayCall(deleteChild, 2);
+//            mElements.push(gM.getImage("DC_comicOutro1"));
+//            addChild(mElements[mElements.length-1]);
+//            Starling.juggler.delayCall(deleteChild, 2);
         }
 
         private function deleteChild():void

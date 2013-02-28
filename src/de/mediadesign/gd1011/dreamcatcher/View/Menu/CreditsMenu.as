@@ -22,7 +22,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 	public class CreditsMenu extends Sprite
 	{
 		private static var self:CreditsMenu;
-		private static var active:Boolean = false;
+		private static var _active:Boolean = false;
 		private static var dancer:MovieClip;
 		private static var creditCount:int = 1;
 
@@ -67,7 +67,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 			{
 				self.mElements[i].dispose();
 			}
-			active = false;
+			_active = false;
 			self.dispose();
 			self = null;
 			Starling.juggler.purge();
@@ -154,17 +154,22 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 
 		public static function showAndHide():void
 		{
-			if(!active)
+			if(!_active)
 			{
-				active = true;
+				_active = true;
 				MainMenu.mainMenu.addChild(creditsMenu);
 			}
 			else
 			{
-				active = false;
+				_active = false;
 				MainMenu.mainMenu.removeChild(creditsMenu);
 				CreditsMenu.resetCreditsMenu();
 			}
+		}
+
+		public static function isActive():Boolean
+		{
+			return _active;
 		}
 	}
 }

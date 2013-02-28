@@ -12,8 +12,6 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
 	import de.mediadesign.gd1011.dreamcatcher.View.Score;
 
-    import flash.net.SharedObject;
-
     import starling.animation.DelayedCall;
     import starling.core.Starling;
     import starling.display.DisplayObject;
@@ -158,12 +156,21 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		{
 			if (!lvlEnd)
 			{
-				for (var i:int = 0; i < containerGroup.length; i++) {
+				for (var i:int = 0; i < containerGroup.length; i++)
+				{
 					containerGroup[i].move(movementSpeeds[i]);
 					containerGroup[i].swap(bossStage);
 				}
-				if ((!bossStage) && (now.toFixed() == "50")) {
-					switchToBoss();
+				if (!bossStage)
+				{
+					if (Game.currentLvl == 1 && (now.toFixed() == "62"))
+					{
+						switchToBoss();
+					}
+					if (Game.currentLvl == 2 && (now.toFixed() == "75"))
+					{
+						switchToBoss();
+					}
 				}
 			}
 

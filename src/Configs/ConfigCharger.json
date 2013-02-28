@@ -1,6 +1,6 @@
 {
     "name":"Charger",
-    "health":25,
+    "health":20,
     "movementSystem":"MovementCharger",
     "movementSpeed":750,
     "weaponSystem":"null",

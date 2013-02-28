@@ -13,7 +13,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 		private static var self:TutorialMenu;
 		private static var imageList:Array = ["tutorialScreen_1", "tutorialScreen_2", "tutorialScreen_3", "tutorialScreen_4"];
 		private static var tutorialContent:Vector.<Image> = new Vector.<Image>();
-		private static var active:Boolean = false;
+		private static var _active:Boolean = false;
 
 		private var mIndex:int = 0;
 		private var mElements:Vector.<DisplayObject>;
@@ -97,17 +97,21 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 
 		public static function showAndHide():void
 		{
-			if(!active)
+			if(!_active)
 			{
-				active = true;
+				_active = true;
 				MainMenu.mainMenu.addChild(continueMenu);
 			}
 			else
 			{
-				active = false;
+				_active = false;
 				MainMenu.mainMenu.removeChild(continueMenu);
 
 			}
+		}
+
+		public static function isActive():Boolean {
+			return _active;
 		}
 	}
 }

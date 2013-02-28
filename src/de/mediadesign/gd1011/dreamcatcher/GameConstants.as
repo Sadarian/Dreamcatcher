@@ -53,6 +53,8 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const FOREGROUND_IMAGE_LIST_BOSS:Array = ["Front_1","Front_2","Front_3","Front_4","Front_5"];
 		public static const BOSS_SPEED_REDUCTION:Number = 0.15;
 
+		public static const CREDITS:String = "CreditsText_";
+
 		public static const PLAYER:String = "Player";
 	    public static const PLAYERARM:String = "PlayerArm";
 		public static const VICTIM1:String = "Victim1";

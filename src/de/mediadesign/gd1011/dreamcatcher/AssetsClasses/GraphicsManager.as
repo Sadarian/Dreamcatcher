@@ -31,7 +31,7 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
 
         public function GraphicsManager():void
         {
-            super(Starling.contentScaleFactor, false);
+            super(0.5, false);
             mContainers = new Dictionary();
             SoundMixer.soundTransform = new SoundTransform((Dreamcatcher.localObject.data.soundOn)?1:0, 0);
             mProgressBar = new ProgressBar(3);

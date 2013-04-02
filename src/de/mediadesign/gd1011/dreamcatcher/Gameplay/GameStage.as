@@ -64,7 +64,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			containerGroup = new Vector.<StageContainer>(6);
 			movementSpeeds = GameConstants.GAME_STAGE_MOVMENT_SPEEDS.concat();
 
-			background = GraphicsManager.graphicsManager.getImage("Lvl" + Game.currentLvl + "_" + GameConstants.BACKGROUND)
+			background = GraphicsManager.graphicsManager.getImage( GameConstants.BACKGROUND);
             addChild(background);
 
 			for(var i:int = 0;i<containerGroup.length;i++)
@@ -128,17 +128,17 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 				}
 				case 2:
 				{
-					vectorBoss.push(GameConstants.BACKGROUND_IMAGE_LIST,
+					vector.push(GameConstants.BACKGROUND_IMAGE_LIST,
 									GameConstants.MAIN_STAGE_IMAGE_LIST,
 									GameConstants.FOREST_LIST_BOSS,
 									GameConstants.FOG_LIST,
-									GameConstants.BUSH_IMAGE_LIST,
+									GameConstants.BUSH_IMAGE_LIST_LVL2,
 									GameConstants.FOREGROUND_IMAGE_LIST);
 
-					vector.push(GameConstants.BACKGROUND_IMAGE_LIST_BOSS,
+					vectorBoss.push(GameConstants.BACKGROUND_IMAGE_LIST_BOSS_LVL2,
 								GameConstants.MAIN_STAGE_IMAGE_LIST_BOSS,
-								GameConstants.FOREST_LIST,
-								GameConstants.FOG_LIST_BOSS,
+								GameConstants.FOREST_LIST_BOSS_LVL2,
+								GameConstants.FOG_LIST_BOSS_LVL2,
 								GameConstants.BUSH_IMAGE_LIST_BOSS,
 								GameConstants.FOREGROUND_IMAGE_LIST_BOSS);
 					break;

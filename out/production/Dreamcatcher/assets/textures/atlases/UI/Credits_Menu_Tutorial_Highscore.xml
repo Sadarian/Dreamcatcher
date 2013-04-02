@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:945bcb5319e049a96cb6d14a9580fa43$ -->
+<TextureAtlas imagePath="Credits_Menu_Tutorial_HighscoreTexture.png">
+    <SubTexture name="Background" x="644" y="806" width="640" height="400"/>
+    <SubTexture name="CreditsDance_1" x="2" y="1380" width="148" height="300" frameX="-41" frameY="0" frameWidth="256" frameHeight="300"/>
+    <SubTexture name="CreditsDance_2" x="2" y="1682" width="180" height="226" frameX="-8" frameY="-74" frameWidth="256" frameHeight="300"/>
+    <SubTexture name="CreditsDance_3" x="184" y="1678" width="126" height="218" frameX="-63" frameY="-82" frameWidth="256" frameHeight="300"/>
+    <SubTexture name="CreditsDance_4" x="356" y="1366" width="124" height="218" frameX="-64" frameY="-82" frameWidth="256" frameHeight="300"/>
+    <SubTexture name="CreditsDance_5" x="184" y="1678" width="126" height="218" frameX="-63" frameY="-82" frameWidth="256" frameHeight="300"/>
+    <SubTexture name="CreditsDance_6" x="2" y="1682" width="180" height="226" frameX="-8" frameY="-74" frameWidth="256" frameHeight="300"/>
+    <SubTexture name="CreditsText_1" x="348" y="1068" width="283" height="118" frameX="-38" frameY="-9" frameWidth="359" frameHeight="128"/>
+    <SubTexture name="CreditsText_2" x="348" y="946" width="285" height="120" frameX="-37" frameY="-7" frameWidth="359" frameHeight="128"/>
+    <SubTexture name="CreditsText_3" x="2" y="1258" width="337" height="120" frameX="-11" frameY="-8" frameWidth="359" frameHeight="128"/>
+    <SubTexture name="CreditsText_4" x="2" y="1910" width="223" height="120" frameX="-68" frameY="-8" frameWidth="359" frameHeight="128"/>
+    <SubTexture name="CreditsText_5" x="348" y="1188" width="229" height="118" frameX="-65" frameY="-10" frameWidth="359" frameHeight="128"/>
+    <SubTexture name="CreditsText_6" x="349" y="830" width="289" height="114" frameX="-35" frameY="-14" frameWidth="359" frameHeight="128"/>
+    <SubTexture name="CreditsText_7" x="2" y="830" width="345" height="114" frameX="-7" frameY="-13" frameWidth="359" frameHeight="128"/>
+    <SubTexture name="MainMenuContinueButton" x="1928" y="44" width="110" height="34" frameX="-26" frameY="-4" frameWidth="160" frameHeight="44"/>
+    <SubTexture name="MainMenuContinueButtonClick" x="1928" y="2" width="116" height="40" frameX="-23" frameY="-1" frameWidth="160" frameHeight="44"/>
+    <SubTexture name="MainMenuContinueScreen" x="1286" y="404" width="640" height="400"/>
+    <SubTexture name="MainMenuContinueScreenBackButton" x="1928" y="80" width="103" height="65" frameX="-5" frameY="0" frameWidth="113" frameHeight="65"/>
+    <SubTexture name="MainMenuContinueScreenBackButtonClick" x="1928" y="275" width="93" height="63" frameX="-13" frameY="0" frameWidth="113" frameHeight="65"/>
+    <SubTexture name="MainMenuCreditsButton" x="1928" y="428" width="88" height="36" frameX="-36" frameY="-2" frameWidth="160" frameHeight="44"/>
+    <SubTexture name="MainMenuCreditsButtonClick" x="1928" y="233" width="94" height="40" frameX="-33" frameY="0" frameWidth="160" frameHeight="44"/>
+    <SubTexture name="MainMenuDrawerAnim_1" x="1928" y="466" width="78" height="82" frameX="-330" frameY="-165" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="MainMenuDrawerAnim_2" x="1928" y="340" width="92" height="86" frameX="-328" frameY="-167" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="MainMenuDrawerAnim_3" x="380" y="1934" width="134" height="92" frameX="-328" frameY="-167" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="MainMenuHelpButton" x="2030" y="147" width="14" height="40" frameX="-72" frameY="-1" frameWidth="160" frameHeight="44"/>
+    <SubTexture name="MainMenuHelpButtonClick" x="2024" y="233" width="20" height="44" frameX="-69" frameY="0" frameWidth="160" frameHeight="44"/>
+    <SubTexture name="MainMenuPicture" x="644" y="404" width="640" height="400"/>
+    <SubTexture name="MainMenuSoundButtonOff" x="341" y="1308" width="52" height="56" frameX="-10" frameY="-11"/>
+    <SubTexture name="MainMenuSoundButtonOn" x="1999" y="550" width="46" height="56" frameX="-16" frameY="-11"/>
+    <SubTexture name="MainMenuStartButton" x="579" y="1188" width="60" height="38" frameX="-48" frameY="-1" frameWidth="160" frameHeight="44"/>
+    <SubTexture name="MainMenuStartButtonClick" x="298" y="1602" width="66" height="42" frameX="-45" frameY="0" frameWidth="160" frameHeight="44"/>
+    <SubTexture name="PauseButton" x="2008" y="466" width="37" height="40"/>
+    <SubTexture name="PauseMenuEndGame" x="1999" y="608" width="42" height="60" frameX="-240" frameY="-20" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="PauseMenuPlay" x="1997" y="752" width="48" height="80" frameX="-87" frameY="-74" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="PauseMenuSoundOff" x="204" y="1602" width="48" height="52" frameX="-107" frameY="-240" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="PauseMenuSoundOn" x="254" y="1602" width="42" height="52" frameX="-113" frameY="-240" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="StageScreenSelect Lvl1 Lock" x="380" y="1838" width="150" height="94"/>
+    <SubTexture name="StageSelectScreenLV1" x="312" y="1742" width="151" height="94"/>
+    <SubTexture name="StageSelectScreenLV2 Lock" x="312" y="1646" width="151" height="94"/>
+    <SubTexture name="StageSelectScreenLV2" x="227" y="1898" width="151" height="94"/>
+    <SubTexture name="TutorialBackButton" x="1928" y="190" width="100" height="41" frameX="-16" frameY="-10" frameWidth="134" frameHeight="59"/>
+    <SubTexture name="TutorialBackButtonClick" x="1928" y="147" width="100" height="41" frameX="-16" frameY="-11" frameWidth="134" frameHeight="59"/>
+    <SubTexture name="TutorialScreenBackButton" x="516" y="1934" width="67" height="86" frameX="-8" frameY="-8" frameWidth="91" frameHeight="106"/>
+    <SubTexture name="TutorialScreenBackButtonClick" x="1928" y="640" width="67" height="88" frameX="-8" frameY="-8" frameWidth="91" frameHeight="106"/>
+    <SubTexture name="TutorialScreenForwardButton" x="1928" y="550" width="69" height="88" frameX="-16" frameY="-8" frameWidth="91" frameHeight="106"/>
+    <SubTexture name="TutorialScreenForwardButtonClick" x="1928" y="730" width="67" height="86" frameX="-17" frameY="-11" frameWidth="91" frameHeight="106"/>
+    <SubTexture name="highscore_Dreamcatcher" x="2" y="946" width="344" height="310" frameX="-291" frameY="-1" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="highscore_again" x="152" y="1602" width="50" height="74" frameX="-339" frameY="-179" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="highscore_bar" x="152" y="1380" width="202" height="220" frameX="-47" frameY="-23" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="highscore_end" x="1999" y="608" width="42" height="60" frameX="-488" frameY="-233" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="highscore_play" x="1997" y="670" width="48" height="80" frameX="-515" frameY="-72" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="tutorialScreen_1" x="2" y="428" width="640" height="400"/>
+    <SubTexture name="tutorialScreen_2" x="1286" y="2" width="640" height="400"/>
+    <SubTexture name="tutorialScreen_3" x="644" y="2" width="640" height="400"/>
+    <SubTexture name="tutorialScreen_4" x="2" y="2" width="640" height="400"/>
+</TextureAtlas>

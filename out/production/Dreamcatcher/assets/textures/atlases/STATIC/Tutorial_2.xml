@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:f10d9ffb25872509b9e1a8fa06e9ce26$ -->
-<TextureAtlas imagePath="Tutorial_2Texture.png">
-    <SubTexture name="tutorialScreen_3" x="2" y="804" width="1280" height="800"/>
-    <SubTexture name="tutorialScreen_4" x="2" y="2" width="1280" height="800"/>
-</TextureAtlas>

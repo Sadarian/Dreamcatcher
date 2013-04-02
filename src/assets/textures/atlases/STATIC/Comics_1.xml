@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:d7c1fe30ea7fcfcccddfecd6204b67a4$ -->
-<TextureAtlas imagePath="Comics_1Texture.png">
-    <SubTexture name="DC_comicIntroPanel1" x="2" y="804" width="1280" height="800"/>
-    <SubTexture name="DC_comicIntroPanel2" x="2" y="2" width="1280" height="800"/>
-</TextureAtlas>

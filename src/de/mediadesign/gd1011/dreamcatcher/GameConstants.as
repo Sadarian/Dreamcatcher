@@ -19,10 +19,9 @@ package de.mediadesign.gd1011.dreamcatcher
 
 	public class GameConstants
     {
-        public static const UI_LIST:Array = ["Credits", "Main_Menu"];
-        public static const LEVEL1_LIST:Array = ["Background_lvl1_1", "Background_lvl1_2", "Boss_lvl1", "Victims_Charger_Enemy_lvl2"];
-        public static const LEVEL2_LIST:Array = ["Background_lvl2_1", "Background_lvl2_2", "Boss_lvl2", "Victims_Charger_Enemy_lvl2",
-        "Boss_lvl2_Die_1", "Boss_lvl2_Die_2", "Boss_lvl2_Die_3"];
+        public static const UI_LIST:Array = ["Credits_Menu_Tutorial_Highscore"];
+        public static const LEVEL1_LIST:Array = ["Background_Boss_Intro_lvl1", "Victims_Charger_Enemy_lvl2"];
+        public static const LEVEL2_LIST:Array = ["Background_Boss_lvl2", "Victims_Charger_Enemy_lvl2"];
 
         public static const COLLISION_RECTANGLE:String = "CollisionRectangle";
         public static const COLLISION_CIRCLE:String = "CollisionCircle";
@@ -37,19 +36,23 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const BUTTON:String ="Button";
 
 		//Properties of the GameStage (LVL1)
-		public static const MAIN_STAGE_IMAGE_LIST:Array = ["Main_1","Main_2","Main_3"];
+		public static const MAIN_STAGE_IMAGE_LIST:Array = ["Main_1","Main_2"];
 		public static const BUSH_IMAGE_LIST:Array = ["Bush_1","Bush_2","Bush_3"];
+        public static const BUSH_IMAGE_LIST_LVL2:Array = ["Bush_1","Bush_2"];
 		public static const FOREST_LIST:Array = [["Forest_1"], ["Forest_2"], ["Forest_3"]];
-		public static const FOG_LIST:Array = [["FogAnim1_1"],["FogAnim1_1"],["FogAnim1_1"]];
-		public static const BACKGROUND_IMAGE_LIST:Array = ["ScrollingBackground","ScrollingBackground","ScrollingBackground"];
+		public static const FOG_LIST:Array = [["FogAnim1_1"],["FogAnim2_1"],["FogAnim3_1"]];
+		public static const BACKGROUND_IMAGE_LIST:Array = ["ScrollingBackground","ScrollingBackground"];
 		public static const FOREGROUND_IMAGE_LIST:Array = ["Front_1","Front_2","Front_3","Front_4","Front_5"];
 		public static const GAME_STAGE_MOVMENT_SPEEDS:Vector.<Number> = new <Number>[1,2,3,6,7,8];
 
-		public static const MAIN_STAGE_IMAGE_LIST_BOSS:Array = ["Main_1","Main_2","Main_3"];
-		public static const BUSH_IMAGE_LIST_BOSS:Array = ["Bush_1","Bush_2","Bush_3"];
+		public static const MAIN_STAGE_IMAGE_LIST_BOSS:Array = ["Main_1","Main_2"];
+		public static const BUSH_IMAGE_LIST_BOSS:Array = ["Bush_1","Bush_2"];
 		public static const FOREST_LIST_BOSS:Array = [["Forest_1"], ["Forest_2"], ["Forest_3"]];
-		public static const FOG_LIST_BOSS:Array = [["FogAnim1_1"],["FogAnim1_1"],["FogAnim1_1"]];
-		public static const BACKGROUND_IMAGE_LIST_BOSS:Array = ["ScrollingBackground","ScrollingBackground","ScrollingBackground"];
+        public static const FOREST_LIST_BOSS_LVL2:Array = [["BossForest_1"],["BossForest_1"]];
+		public static const FOG_LIST_BOSS:Array = [["FogAnim1_1"],["FogAnim2_1"],["FogAnim1_3"]];
+        public static const FOG_LIST_BOSS_LVL2:Array = [["BossFront_1"],["BossFront_1"]];
+		public static const BACKGROUND_IMAGE_LIST_BOSS:Array = ["ScrollingBackground","ScrollingBackground"];
+        public static const BACKGROUND_IMAGE_LIST_BOSS_LVL2:Array = ["BossScrollingBackground","BossScrollingBackground"];
 		public static const FOREGROUND_IMAGE_LIST_BOSS:Array = ["Front_1","Front_2","Front_3","Front_4","Front_5"];
 		public static const BOSS_SPEED_REDUCTION:Number = 0.15;
 

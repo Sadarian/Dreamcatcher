@@ -249,6 +249,10 @@ public class Game extends Sprite
                 HighScoreMenu.showAndHide();
                 HighScoreMenu.highScoreMenu.setScore(123456);
             }
+            if(e.keyCode==Keyboard.F12)
+            {
+                graphicsManager.purge();
+            }
         }
     }
 }

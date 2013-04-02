@@ -43,9 +43,9 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 				case(LIST_TYPE_IMAGE):
 					for each (path in loadingList)
 						if(!boss)
-							contentList.push(GraphicsManager.graphicsManager.getImage("Lvl" + Game.currentLvl + "_" + path));
+							contentList.push(GraphicsManager.graphicsManager.getImage(path));
 						else
-							contentListBoss.push(GraphicsManager.graphicsManager.getImage("Lvl" + Game.currentLvl + "_" + path));
+							contentListBoss.push(GraphicsManager.graphicsManager.getImage(path));
 					break;
 				case(LIST_TYPE_CONTAINER):
 					for each (var list:Array in loadingList)
@@ -56,9 +56,9 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 							contentListBoss.push(new Sprite());
 						for each (path in list)
 							if(!boss)
-								(contentList[contentList.length-1] as DisplayObjectContainer).addChild(GraphicsManager.graphicsManager.getImage("Lvl" + Game.currentLvl + "_" + path));
+								(contentList[contentList.length-1] as DisplayObjectContainer).addChild(GraphicsManager.graphicsManager.getImage(path));
 							else
-								(contentListBoss[contentListBoss.length-1] as DisplayObjectContainer).addChild(GraphicsManager.graphicsManager.getImage("Lvl" + Game.currentLvl + "_" + path));
+								(contentListBoss[contentListBoss.length-1] as DisplayObjectContainer).addChild(GraphicsManager.graphicsManager.getImage(path));
 					}
 			}
 			for (var i:int = 0; i < containers.length; i++)

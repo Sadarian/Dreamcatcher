@@ -50,7 +50,8 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
             mHighScoreBar = new Sprite();
             mScores = new Vector.<starling.text.TextField>(8);
             mHighScoreBar.addChild(gM.getImage("highscore_bar"));
-            for(var i:int=0;i<mScores.length;i++)
+            var i:int;
+            for(i=0;i<mScores.length;i++)
             {
                 mScores[i] = new starling.text.TextField(380, 100, "", "MenuFont", 35, 0xe87600);
                 mScores[i].x = 15;
@@ -69,7 +70,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
                     "highscore_again", "highscore_again"];
             var positions:Array = [[895, 41], [931, 447], [600, 288]];
             var button:Button;
-            for(var i:int=0; i<buttonStrings.length;i+=2)
+            for(i=0; i<buttonStrings.length;i+=2)
             {
                 button = new Button(gM.getTexture(buttonStrings[i]),"", gM.getTexture(buttonStrings[i+1]));
                 button.enabled = true;

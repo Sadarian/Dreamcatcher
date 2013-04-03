@@ -20,7 +20,6 @@ public class WeaponBoss implements IWeapon
         private var _canShoot:Boolean = false;
         private var boss:Entity;
 
-
         private var shoots:Number = 0;
         private var _speed:Number = 0;
         private var sumTime:Number = 0;
@@ -42,12 +41,13 @@ public class WeaponBoss implements IWeapon
                     boss = EntityManager.entityManager.getEntity(GameConstants.BOSS1);
                     bulletType = GameConstants.BOSS1_BULLET;
                     if(!boss) {boss = EntityManager.entityManager.getEntity(GameConstants.BOSS2); bulletType = GameConstants.BOSS2_BULLET;}
+                    var entity:Entity, targetPosition:Point;
 
                     if(shoots == GameConstants.bossWebShotAfter && boss.name == GameConstants.BOSS2)
                     {
                         boss.playAnimation(AnimatedModel.SHOOT_WEB);
-                        var entity:Entity = EntityManager.entityManager.createEntity(GameConstants.BOSS2_BULLET_WEB, new Point(boss.position.x - 70, boss.position.y));
-                        var targetPosition:Point = (target != null)?new Point(target.x, target.y):new Point(0 , 0);
+                        entity = EntityManager.entityManager.createEntity(GameConstants.BOSS2_BULLET_WEB, new Point(boss.position.x - 70, boss.position.y));
+                        targetPosition = (target != null)?new Point(target.x, target.y):new Point(0 , 0);
                         (entity.movementSystem as MovementWeb).target = targetPosition;
                         (entity.movementSystem as MovementWeb).calculateVelocity(boss.position);
                         (boss.movementSystem as MovementBoss).canMove = false;
@@ -55,8 +55,8 @@ public class WeaponBoss implements IWeapon
                     else
                     {
                         boss.playAnimation(AnimatedModel.SHOOT);
-                        var entity:Entity = EntityManager.entityManager.createEntity(bulletType, new Point(boss.position.x - 70, boss.position.y));
-                        var targetPosition:Point = (target != null)?new Point(target.x, target.y):new Point(0 , 0);
+                        entity = EntityManager.entityManager.createEntity(bulletType, new Point(boss.position.x - 70, boss.position.y));
+                        targetPosition = (target != null)?new Point(target.x, target.y):new Point(0 , 0);
                         (entity.movementSystem as MovementBullet).target = targetPosition;
                         (entity.movementSystem as MovementBullet).calculateVelocity(boss.position);
                         entity.movieClip.rotation = Math.atan2(targetPosition.y - boss.position.y, targetPosition.x - boss.position.x)+Math.PI;

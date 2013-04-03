@@ -33,6 +33,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
                     ["PauseMenuPlay", "PauseMenuPlay",
                     "PauseMenuEndGame", "PauseMenuEndGame",
                     "PauseMenuSoundOn", "PauseMenuSoundOn"];
+
             var positions:Array = [[37, 38], [435, 19], [188,444]];
             var button:Button;
             for(var i:int=0; i<buttonStrings.length;i+=2)

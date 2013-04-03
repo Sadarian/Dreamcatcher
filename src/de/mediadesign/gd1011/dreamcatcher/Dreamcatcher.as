@@ -2,6 +2,7 @@ package de.mediadesign.gd1011.dreamcatcher
 {
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.View.HighScore;
+    import de.mediadesign.gd1011.dreamcatcher.View.Menu.HighScoreMenu;
     import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
     import de.mediadesign.gd1011.dreamcatcher.View.Menu.PauseMenu;
     import de.mediadesign.gd1011.dreamcatcher.View.Score;
@@ -48,6 +49,7 @@ package de.mediadesign.gd1011.dreamcatcher
                 localObject.data.Progress = 1;
             if(localObject.data.soundOn == null)
                 localObject.data.soundOn = true;
+
             HighScore.initHighScore();
             GameConstants.init();
 			_starling = new Starling(Game, stage);
@@ -77,7 +79,7 @@ package de.mediadesign.gd1011.dreamcatcher
 
         private function onActivate(event:Event):void
         {
-            if(!MainMenu.isActive() && !PauseMenu.isActive() && GraphicsManager.graphicsManager.initCompleted)
+            if(!MainMenu.isActive() && !PauseMenu.isActive() && !HighScoreMenu.isActive() && GraphicsManager.graphicsManager.initCompleted)
                 PauseMenu.showAndHide();
             SoundMixer.soundTransform = new SoundTransform((Dreamcatcher.localObject.data.soundOn)?1:0, 0);
             _starling.start();

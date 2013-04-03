@@ -114,7 +114,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 
 		private function lockedMessage():void
 		{
-			var text = new TextField(800,300,"Play level "+Dreamcatcher.localObject.data.Progress+" to unlock","MenuFont",60);
+			var text:TextField = new TextField(800,300,"Play level "+Dreamcatcher.localObject.data.Progress+" to unlock","MenuFont",60);
 			text.pivotY = text.height/2;
 			text.pivotX = text.width/2;
 			text.x = Starling.current.viewPort.width/2;

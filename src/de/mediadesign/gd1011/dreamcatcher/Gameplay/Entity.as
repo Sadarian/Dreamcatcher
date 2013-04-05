@@ -32,6 +32,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		private var _points:Number;
 		private var _weaponSpeed:Number;
 		private var _movementSpeed:Number;
+		private var _isSlowed:Boolean;
 
        //Additional Constructor Data:
         private var _position:Point;
@@ -80,6 +81,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 			_position = position;
             _canAttacked = true;
+
+			_isSlowed = false;
 
             init();
 		}
@@ -317,7 +320,6 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
         {
             _collisionMode = mode;
         }
-
         public function blink(a:int=1):void
         {
             _movieClip.filter = new ColorFilter(1, 0, 0);
@@ -345,5 +347,12 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
         {
             _canAttacked = true;
         }
+		public function get isSlowed():Boolean {
+			return _isSlowed;
+		}
+
+		public function set isSlowed(value:Boolean):void {
+			_isSlowed = value;
+		}
 	}
 }

@@ -13,10 +13,16 @@ package de.mediadesign.gd1011.dreamcatcher.View
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBullet;
+	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerFan;
+	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerStraight;
 
-    import starling.core.Starling;
+	import starling.animation.Transitions;
+	import starling.animation.Tween;
+
+	import starling.core.Starling;
 
 	import starling.display.Button;
+	import starling.display.DisplayObject;
 
 	import starling.display.Image;
 	import starling.events.Event;
@@ -26,13 +32,15 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 		private static var powerUpIcon:Image;
 		private static var activeIcon:String;
+		private static var stack:int = 0;
+		private static var _activeStack:int = 0;
 		private static var _powerUpButton:Button;
-		private static var activeButton:String;
-		private static var activePowerUp:String;
+		private static var _activePowerUp:String;
 		private static var durationTime:Number;
 		private static var _powerUpActive:Boolean = false;
 		private static var player:Entity;
 		private static var initialized:Boolean = false;
+		private static var freezeOverlay:Image;
 
 		public static function addPowerUp(powerUp:Entity, playerE:Entity):void
 		{
@@ -43,7 +51,20 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			{
 				case GameConstants.POWERUP_FIRE_RATE:
 				{
-					createPowerUpIcon(GameConstants.POWERUP_FIRE_RATE, powerUp);
+					if (activeIcon != GameConstants.POWERUP_FIRE_RATE)
+					{
+						createPowerUpIcon(GameConstants.POWERUP_FIRE_RATE, powerUp);
+
+						stack++;
+					}
+					else
+					{
+						if (stack < 3)
+						{
+							stack++;
+						}
+					}
+					trace(stack);
 
 					break;
 				}
@@ -63,6 +84,11 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		{
 			createButton();
 			initialized = true;
+
+			freezeOverlay = new Image(GraphicsManager.graphicsManager.getTexture("FreezeFeedback"));
+			freezeOverlay.alpha = 0;
+			freezeOverlay.touchable = false;
+			GameStage.gameStage.addChild(freezeOverlay);
 		}
 
 		private static function createPowerUpIcon(name:String, powerUp:Entity):void
@@ -71,6 +97,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			{
 
 				activeIcon = name;
+
 
 				if (powerUpIcon == null)
 				{
@@ -86,9 +113,12 @@ package de.mediadesign.gd1011.dreamcatcher.View
 					GameStage.gameStage.addChild(powerUpIcon);
 					powerUpIcon.texture = GraphicsManager.graphicsManager.getTexture(name);
 				}
-				_powerUpButton.enabled = true;
-				_powerUpButton.upState = GraphicsManager.graphicsManager.getTexture("UsePower_2");
 
+				if (!_powerUpActive)
+				{
+					_powerUpButton.enabled = true;
+					_powerUpButton.upState = GraphicsManager.graphicsManager.getTexture("UsePower_2");
+				}
 			}
 		}
 
@@ -105,22 +135,27 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 		private static function onButtonClick(event:Event):void
 		{
-			GraphicsManager.graphicsManager.playSound("UseUpPowerUp");
-			_powerUpActive = true;
-			switch (activeIcon)
+			if (_powerUpButton.enabled)
 			{
-				case GameConstants.POWERUP_FIRE_RATE:
-				{
-					increaseFireRate();
-					break;
+				GraphicsManager.graphicsManager.playSound("UseUpPowerUp");
+				_powerUpActive = true;
+				_activeStack = stack;
+				switch (activeIcon) {
+					case GameConstants.POWERUP_FIRE_RATE:
+					{
+						increaseFireRate();
+						break;
+					}
+					case GameConstants.POWERUP_FREEZE:
+					{
+						freeze();
+						break;
+					}
 				}
-				case GameConstants.POWERUP_FREEZE:
-				{
-					freeze();
-					break;
-				}
+				deactivateButton();
+				trace(stack);
+				stack = 0;
 			}
-			deactivateButton();
 		}
 
 		private static function deactivateButton():void
@@ -148,23 +183,46 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 		private static function increaseFireRate():void
 		{
-			activePowerUp = GameConstants.POWERUP_FIRE_RATE;
+			_activePowerUp = GameConstants.POWERUP_FIRE_RATE;
 			durationTime = GameConstants.durationFireRate;
 
-			player.increaseWeaponSpeed(GameConstants.fireRateIncrease);
+			switch(_activeStack)
+			{
+				case 1:
+				{
+					player.increaseWeaponSpeed(GameConstants.fireRateIncrease);
+					break;
+				}
+
+				case 2:
+				{
+					player.increaseWeaponSpeed(GameConstants.fireRateIncrease/2);
+					break;
+				}
+
+				case 3:
+				{
+					player.switchWeapon(new WeaponPlayerFan());
+					player.setWeaponSpeed();
+					break;
+				}
+			}
 		}
 
 		private static function freeze():void
 		{
-			activePowerUp = GameConstants.POWERUP_FREEZE;
+			_activePowerUp = GameConstants.POWERUP_FREEZE;
 			durationTime = GameConstants.durationFreeze;
+
+			fadeIn(freezeOverlay);
 
 			for each (var entity:Entity in EntityManager.entityManager.entities)
 			{
-				if (entity.name.search(GameConstants.PLAYER) == -1)
+				if (entity.name.search(GameConstants.PLAYER) == -1 && !entity.isSlowed)
 				{
 					entity.increaseMovementSpeed(GameConstants.slowEffect);
 					entity.increaseWeaponSpeed(GameConstants.slowEffect);
+					entity.isSlowed = true;
 				}
 			}
 		}
@@ -173,13 +231,15 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		{
 			durationTime -= deltaTime;
 
+			var entity:Entity
+
 			if (durationTime <= 0)
 			{
 				endPowerUp();
 			}
-            else if(activePowerUp == GameConstants.POWERUP_FIRE_RATE)
+            else if(_activePowerUp == GameConstants.POWERUP_FIRE_RATE)
             {
-                for each (var entity:Entity in EntityManager.entityManager.entities)
+                for each (entity in EntityManager.entityManager.entities)
                     if (entity.name == GameConstants.PLAYER_BULLET && entity.movementSystem)
                     {
                         entity.movementSystem.speed = GameConstants.playerBulletsPowerUpSpeed;
@@ -187,21 +247,44 @@ package de.mediadesign.gd1011.dreamcatcher.View
                     }
 
             }
+			else if (_activePowerUp == GameConstants.POWERUP_FREEZE)
+			{
+				for each (entity in EntityManager.entityManager.entities)
+				{
+					if (entity.name.search(GameConstants.PLAYER) == -1 && !entity.isSlowed)
+					{
+						entity.increaseMovementSpeed(GameConstants.slowEffect);
+						entity.increaseWeaponSpeed(GameConstants.slowEffect);
+						entity.isSlowed = true;
+					}
+				}
+			}
 		}
 
 		private static function endPowerUp():void
 		{
 			_powerUpActive = false;
 
-			switch (activePowerUp)
+			if (activeIcon != null)
+			{
+				_powerUpButton.enabled = true;
+				_powerUpButton.upState = GraphicsManager.graphicsManager.getTexture("UsePower_2");
+			}
+
+			switch (_activePowerUp)
 			{
 				case GameConstants.POWERUP_FIRE_RATE:
 				{
+					if(_activeStack == 3)player.switchWeapon(new WeaponPlayerStraight());
 					player.setWeaponSpeed();
+
+					_activeStack = 0;
+					_activePowerUp = null;
 					break;
 				}
 				case GameConstants.POWERUP_FREEZE:
 				{
+					fadeOut(freezeOverlay);
 					for each (var entity:Entity in EntityManager.entityManager.entities)
 					{
 						if (!(entity.name.search(GameConstants.PLAYER) >= 0))
@@ -210,9 +293,26 @@ package de.mediadesign.gd1011.dreamcatcher.View
 							entity.setWeaponSpeed();
 						}
 					}
+					_activeStack = 0;
+					_activePowerUp = null;
 					break;
 				}
 			}
+		}
+
+		private static function fadeIn(tweenObject:DisplayObject):void
+		{
+			var mTween:Tween = new Tween (tweenObject,1.5,Transitions.EASE_IN);
+			mTween.fadeTo(1);
+			Starling.juggler.add(mTween);
+
+		}
+
+		private static function fadeOut(tweenObject:DisplayObject):void
+		{
+			var mTween:Tween = new Tween (tweenObject,1,Transitions.EASE_OUT);
+			mTween.fadeTo(0);
+			Starling.juggler.add(mTween);
 		}
 
 		public static function get powerUpActive():Boolean
@@ -224,5 +324,15 @@ package de.mediadesign.gd1011.dreamcatcher.View
         {
             return _powerUpButton;
         }
-    }
+
+		public static function get activeStack():int
+		{
+			return _activeStack;
+		}
+
+		public static function get activePowerUp():String
+		{
+			return _activePowerUp;
+		}
+	}
 }

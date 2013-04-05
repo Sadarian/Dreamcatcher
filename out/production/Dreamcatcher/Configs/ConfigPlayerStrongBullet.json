@@ -1,0 +1,12 @@
+{
+    "name":"PlayerStrongBullet",
+    "health":7,
+    "movementSystem":"MovementBullet",
+    "movementSpeed":775,
+    "weaponSystem":"null",
+    "weaponSpeed":0.3,
+    "collisionMode":"CollisionCircle",
+    "collisionPoint":[0, -5],
+    "collisionValues":[25, 25],
+    "points":[0]
+}

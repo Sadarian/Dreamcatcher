@@ -320,6 +320,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
         public function blink(a:int=1):void
         {
+			_movieClip.filter = null;
             _movieClip.filter = new ColorFilter(1, 0, 0);
             if(_name==GameConstants.PLAYER && a == GameConstants.blinkAmount(_name))
             {

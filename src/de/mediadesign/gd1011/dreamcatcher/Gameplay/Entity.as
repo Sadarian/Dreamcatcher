@@ -320,7 +320,6 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
         public function blink(a:int=1):void
         {
-			_movieClip.filter = null;
             _movieClip.filter = new ColorFilter(1, 0, 0);
             if(_name==GameConstants.PLAYER && a == GameConstants.blinkAmount(_name))
             {
@@ -328,10 +327,13 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
                 Starling.juggler.delayCall(canAttackedTrue, GameConstants.playerBlinkInvulnerableTime);
             }
             a--;
-            if(a!=0)
-                Starling.juggler.delayCall(blink, GameConstants.blinkDuration(_name)/GameConstants.blinkAmount(_name), a);
+            if(a>0)
+            {
+                Starling.juggler.delayCall(blink, (GameConstants.blinkDuration(_name)/((GameConstants.blinkAmount(_name)*2)-1))*2, a);
+                Starling.juggler.delayCall(resetBlink, GameConstants.blinkDuration(_name)/((GameConstants.blinkAmount(_name)*2)-1));
+            }
             else
-                Starling.juggler.delayCall(resetBlink, GameConstants.blinkDuration(_name)/GameConstants.blinkAmount(_name));
+                Starling.juggler.delayCall(resetBlink, GameConstants.blinkDuration(_name)/((GameConstants.blinkAmount(_name)*2)-1));
         }
 
         private function resetBlink():void

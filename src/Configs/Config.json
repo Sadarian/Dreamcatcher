@@ -15,9 +15,9 @@
     "playerBulletsPowerUpSpeed":1200,
     "bossWebSlow":2,
     "bossWebShotAfter":10,
-    "playerBlinkInvulnerableTime":0.1,
-    "playerBlinkDuration":0.1,
-    "playerBlinkAmount":1,
+    "playerBlinkInvulnerableTime":2,
+    "playerBlinkDuration":2,
+    "playerBlinkAmount":3,
     "generalBlinkDuration":0.1,
     "generalBlinkAmount":1
 }

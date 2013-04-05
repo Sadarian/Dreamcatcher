@@ -32,7 +32,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 				if (Game.currentLvl >= 2)
                 {
-					dropChance = Math.random()*100
+					dropChance = Math.random()*100;
 
 					if (dropChance <= GameConstants.dropChanceFreezeEnemy)
 						dropFreeze(entity);
@@ -40,18 +40,19 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			}
 			else if (entity.isCharger)
 			{
-				dropChance = Math.random()*100
+				dropChance = Math.random()*100;
 
 				if (dropChance <= GameConstants.dropChanceFireRateSpecial)
 					dropFireRate(entity);
 
-				dropChance = Math.random()*100
+				dropChance = Math.random()*100;
 				if (dropChance <= GameConstants.dropChanceFreezeSpecial)
 					dropFreeze(entity);
 			}
 			else if(entity.isVictim)
 				dropHealth(entity);
 		}
+
 		private static function dropFireRate(entity:Entity):void
 		{
 			EntityManager.entityManager.createEntity(GameConstants.POWERUP_FIRE_RATE, (new Point(entity.position.x + GameConstants.dropDistance, entity.position.y)));

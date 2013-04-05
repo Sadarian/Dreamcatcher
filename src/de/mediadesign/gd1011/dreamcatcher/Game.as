@@ -7,7 +7,7 @@ package de.mediadesign.gd1011.dreamcatcher
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementPlayer;
-    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerControllable;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerFan;
     import de.mediadesign.gd1011.dreamcatcher.Processes.CollisionProcess;
     import de.mediadesign.gd1011.dreamcatcher.Processes.DestroyProcess;
     import de.mediadesign.gd1011.dreamcatcher.Processes.MoveProcess;
@@ -199,13 +199,10 @@ public class Game extends Sprite
 	        e.getTouches(stage, TouchPhase.STATIONARY, touches);
 
             MovementPlayer.touch = null;
-            WeaponPlayerControllable.touch = null;
 
             for each(var touch:Touch in touches)
                 if(touch.getLocation(stage).x < GameConstants.playerMovementBorder.width)
                     MovementPlayer.touch = touch;
-                else
-                    WeaponPlayerControllable.touch = touch;
 
             if(Dreamcatcher.debugMode)
                 if(e.getTouch(stage, TouchPhase.HOVER))

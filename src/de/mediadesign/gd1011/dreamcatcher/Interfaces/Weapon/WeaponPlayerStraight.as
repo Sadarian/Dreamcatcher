@@ -6,7 +6,9 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBullet;
-    import flash.geom.Point;
+	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
+
+	import flash.geom.Point;
     import starling.core.Starling;
 
     public class WeaponPlayerStraight implements IWeapon
@@ -32,7 +34,18 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
                 sumTime -= _speed;
 
                 var temPosition:Point = new Point(position.x - -125, position.y - -33);
-	            var entity:Entity = EntityManager.entityManager.createEntity(GameConstants.PLAYER_BULLET, temPosition);
+
+				var entity:Entity
+
+				if ((PowerUpTrigger.activePowerUp == GameConstants.POWERUP_FIRE_RATE) && PowerUpTrigger.activeStack == 2)
+				{
+					entity = EntityManager.entityManager.createEntity(GameConstants.PLAYER_STRONG_BULLET, temPosition);
+				}
+				else
+				{
+					entity = EntityManager.entityManager.createEntity(GameConstants.PLAYER_BULLET, temPosition);
+				}
+
 		        (entity.movementSystem as MovementBullet).target = new Point(Starling.current.viewPort.width*1.2, temPosition.y);
 	            (entity.movementSystem as MovementBullet).calculateVelocity(temPosition);
 				GraphicsManager.graphicsManager.playSound("PlayerShoot");

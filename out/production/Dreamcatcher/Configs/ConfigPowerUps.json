@@ -8,5 +8,6 @@
     "durationFreeze":5,
     "slowEffect":2.2,
     "dropDistance":30,
-    "healthGiven":10
+    "healthGiven":10,
+    "fanAngle":-30
 }

@@ -8,6 +8,7 @@ package de.mediadesign.gd1011.dreamcatcher
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementPowerUp;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementVictim;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponEnemy;
+	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerFan;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerStraight;
 
 	import flash.filesystem.File;
@@ -68,6 +69,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const BOSS2:String = "Boss2";
 
 		public static const PLAYER_BULLET:String = "PlayerBullet";
+		public static const PLAYER_STRONG_BULLET:String = "PlayerStrongBullet";
 	    public static const ENEMY_BULLET:String = "EnemyBullet";
         public static const BOSS1_BULLET:String = "Boss1Bullet";
         public static const BOSS2_BULLET:String = "Boss2Bullet";
@@ -124,6 +126,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		private static var _slowEffect:Number;
 		private static var _dropDistance:Number;
 		private static var _healthGiven:Number;
+		private static var _fanAngle:Number;
 
         private static var _bossWebSlow:Number;
         private static var _bossWebShotAfter:Number;
@@ -131,6 +134,7 @@ package de.mediadesign.gd1011.dreamcatcher
         public static function init(path:String = "Configs/"):void
         {
 	        new WeaponPlayerStraight();
+			new WeaponPlayerFan();
             new WeaponBoss();
             new MovementCharger();
 	        new MovementPowerUp();
@@ -190,6 +194,7 @@ package de.mediadesign.gd1011.dreamcatcher
 			if(data.slowEffect) _slowEffect = data.slowEffect;
 			if(data.dropDistance) _dropDistance = data.dropDistance;
 			if(data.healthGiven) _healthGiven = data.healthGiven;
+			if(data.fanAngle) _fanAngle = data.fanAngle;
 		}
 
         public static function getData(type:String):Array
@@ -354,5 +359,9 @@ package de.mediadesign.gd1011.dreamcatcher
         {
             return _bossWebShotAfter;
         }
-    }
+
+		public static function get fanAngle():Number {
+			return _fanAngle;
+		}
+	}
 }

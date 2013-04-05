@@ -9,9 +9,12 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementWeb;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.IWeapon;
     import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
+    import de.mediadesign.gd1011.dreamcatcher.View.ColorFilter;
 
     import flash.geom.Point;
-	import starling.display.DisplayObject;
+
+    import starling.core.Starling;
+    import starling.display.DisplayObject;
     import starling.display.DisplayObjectContainer;
 
     public class Entity
@@ -32,6 +35,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
        //Additional Constructor Data:
         private var _position:Point;
+
+        private var _canAttacked:Boolean; //only for Player!
 
         public function Entity(jsonConfig:Array, position:Point)
         {
@@ -74,6 +79,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			_points = jsonConfig[10];
 
 			_position = position;
+            _canAttacked = true;
 
             init();
 		}
@@ -293,12 +299,12 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
         public function get canAttack():Boolean
         {
-            return (_movementSystem != null || (isBoss1 && MovementBoss.phase == MovementBoss.MELEE));
+            return ((_movementSystem != null || (isBoss1 && MovementBoss.phase == MovementBoss.MELEE)) && !isVictim);
         }
 
         public function get canBeAttacked():Boolean
         {
-            return (!getAnimatedModel(0).isDead);
+            return (!getAnimatedModel(0).isDead && _canAttacked);
         }
 
         public function playAnimation(animation:String):void
@@ -310,6 +316,31 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
         public function set collisionMode(mode:String):void
         {
             _collisionMode = mode;
+        }
+
+        public function blink(a:int=1):void
+        {
+            _movieClip.filter = new ColorFilter(1, 0, 0);
+            if(_name==GameConstants.PLAYER && a == GameConstants.blinkAmount(_name))
+            {
+                _canAttacked=false;
+                Starling.juggler.delayCall(canAttackedTrue, GameConstants.playerBlinkInvulnerableTime);
+            }
+            a--;
+            if(a!=0)
+                Starling.juggler.delayCall(blink, GameConstants.blinkDuration(_name)/GameConstants.blinkAmount(_name), a);
+            else
+                Starling.juggler.delayCall(resetBlink, GameConstants.blinkDuration(_name)/GameConstants.blinkAmount(_name));
+        }
+
+        private function resetBlink():void
+        {
+            _movieClip.filter = null;
+        }
+
+        private function canAttackedTrue():void
+        {
+            _canAttacked = true;
         }
 	}
 }

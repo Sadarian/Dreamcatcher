@@ -94,6 +94,7 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 	        {
 		        if (entityA.isBullet && entityA.health > 0 && !entityB.isBullet && (entityA.name.search(entityB.name) == -1)  && entityB.canBeAttacked)
 	            {
+                    entityB.blink(GameConstants.blinkAmount(entityB.name));
                     showAnimation([entityB], true);
 	                entityB.health = entityB.health - entityA.health;
 	                entityA.health = 0;
@@ -101,6 +102,7 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 	            else
                     if(entityB.isBullet && entityB.health > 0 && !entityA.isBullet && (entityB.name.search(entityA.name) == -1)  && entityA.canBeAttacked)
                     {
+                        entityA.blink(GameConstants.blinkAmount(entityA.name));
                         showAnimation([entityA], true);
                         entityA.health = entityA.health - entityB.health;
                         entityB.health = 0;
@@ -112,19 +114,31 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
         {
             if(entityA.isPlayer && entityB.isHostile && entityB.canBeAttacked)
             {
-                if(entityB.canAttack)
+                if(entityB.canAttack && entityA.canBeAttacked)
+                {
+                    entityA.blink(GameConstants.blinkAmount(entityA.name));
                     entityA.health -= GameConstants.meleeDamage(entityB.name);
+                }
                 if(entityA.canAttack && (!entityB.isBoss1 || entityA.getAnimatedModel(0).ActualAnimation.name == AnimatedModel.CLOSE_COMBAT))
+                {
+                    entityB.blink(GameConstants.blinkAmount(entityB.name));
                     entityB.health -= GameConstants.meleeDamage(entityA.name);
+                }
                 showAnimation([entityA, entityB], false);
             }
             else
                 if(entityB.isPlayer && entityA.isHostile  && entityA.canBeAttacked)
                 {
                     if(entityB.canAttack && (!entityA.isBoss1 || entityB.getAnimatedModel(0).ActualAnimation.name == AnimatedModel.CLOSE_COMBAT))
+                    {
+                        entityA.blink(GameConstants.blinkAmount(entityA.name));
                         entityA.health -= GameConstants.meleeDamage(entityB.name);
-                    if(entityA.canAttack)
+                    }
+                    if(entityA.canAttack && entityB.canBeAttacked)
+                    {
+                        entityB.blink(GameConstants.blinkAmount(entityB.name));
                         entityB.health -= GameConstants.meleeDamage(entityA.name);
+                    }
                     showAnimation([entityB, entityA], false);
                 }
                 else

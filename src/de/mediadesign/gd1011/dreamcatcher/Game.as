@@ -251,7 +251,7 @@ public class Game extends Sprite
             }
             if(e.keyCode==Keyboard.F12)
             {
-                graphicsManager.purge();
+                entityManager.getEntity("Player").blink();
             }
         }
     }

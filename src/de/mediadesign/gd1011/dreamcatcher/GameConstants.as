@@ -128,6 +128,12 @@ package de.mediadesign.gd1011.dreamcatcher
         private static var _bossWebSlow:Number;
         private static var _bossWebShotAfter:Number;
 
+        private static var _playerBlinkInvulnerableTime:Number;
+        private static var _playerBlinkDuration:Number;
+        private static var _playerBlinkAmount:int;
+        private static var _generalBlinkDuration:Number;
+        private static var _generalBlinkAmount:int;
+
         public static function init(path:String = "Configs/"):void
         {
 	        new WeaponPlayerStraight();
@@ -176,6 +182,12 @@ package de.mediadesign.gd1011.dreamcatcher
             if(data.playerBulletsPowerUpSpeed) _playerBulletsPowerUpSpeed = data.playerBulletsPowerUpSpeed;
             if(data.bossWebSlow)_bossWebSlow = data.bossWebSlow;
             if(data.bossWebShotAfter)_bossWebShotAfter = data.bossWebShotAfter;
+
+            if(data.playerBlinkInvulnerableTime)_playerBlinkInvulnerableTime = data.playerBlinkInvulnerableTime;
+            if(data.playerBlinkDuration)_playerBlinkDuration = data.playerBlinkDuration;
+            if(data.playerBlinkAmount)_playerBlinkAmount = data.playerBlinkAmount;
+            if(data.generalBlinkDuration)_generalBlinkDuration = data.generalBlinkDuration;
+            if(data.generalBlinkAmount)_generalBlinkAmount = data.generalBlinkAmount;
         }
 
 		private static function setPowerUps(data:Object):void
@@ -353,6 +365,24 @@ package de.mediadesign.gd1011.dreamcatcher
         public static function get bossWebShotAfter():Number
         {
             return _bossWebShotAfter;
+        }
+
+        public static function get playerBlinkInvulnerableTime():Number {
+            return _playerBlinkInvulnerableTime;
+        }
+
+        public static function blinkDuration(name:String):Number
+        {
+            if(name == PLAYER)
+                return _playerBlinkDuration;
+            return _generalBlinkDuration;
+        }
+
+        public static function blinkAmount(name:String):int
+        {
+            if(name == PLAYER)
+                return _playerBlinkAmount;
+            return _generalBlinkAmount;
         }
     }
 }

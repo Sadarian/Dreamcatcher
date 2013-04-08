@@ -1,6 +1,7 @@
 package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 {
-    import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
+	import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
+	import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
@@ -65,6 +66,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 					(entity.movementSystem as MovementBullet).target = targetPosition;
 					(entity.movementSystem as MovementBullet).calculateVelocity(temPosition);
 					entity.movieClip.rotation = Math.atan2(targetPosition.y - temPosition.y, targetPosition.x - temPosition.x);
+					GraphicsManager.graphicsManager.playSound("PlayerShoot");
 					GameStage.gameStage.addChild(entity.movieClip);
 				}
             }

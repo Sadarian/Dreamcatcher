@@ -41,6 +41,9 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		private static var player:Entity;
 		private static var initialized:Boolean = false;
 		private static var freezeOverlay:Image;
+		private static var healthIncrease:AnimatedModel;
+		private static var playerHealthIncrease:AnimatedModel;
+		private static var _healthIncreased:Boolean = false;
 
 		public static function addPowerUp(powerUp:Entity, playerE:Entity):void
 		{
@@ -75,7 +78,36 @@ package de.mediadesign.gd1011.dreamcatcher.View
 				}
 				case GameConstants.POWERUP_HEALTH:
 				{
+					_healthIncreased = true;
+
 					player.health += GameConstants.healthGiven;
+
+					if (healthIncrease == null)
+					{
+						healthIncrease = new AnimatedModel("LifebarHealthIncrease", new Array(), "Default");
+						healthIncrease.start();
+						healthIncrease.x = 128;
+						healthIncrease.y = 105;
+						healthIncrease.ActualAnimation.loop = false;
+						GameStage.gameStage.addChild(healthIncrease);
+
+						playerHealthIncrease = new AnimatedModel("PlayerHealthIncrease", new Array(), "Default");
+						playerHealthIncrease.start();
+						playerHealthIncrease.x = playerE.position.x;
+						playerHealthIncrease.y = playerE.position.y;
+						playerHealthIncrease.ActualAnimation.loop = false;
+						GameStage.gameStage.addChild(playerHealthIncrease);
+					}
+					else
+					{
+						healthIncrease.alpha = 1;
+						healthIncrease.start();
+
+						playerHealthIncrease.alpha = 1;
+						playerHealthIncrease.start();
+						playerHealthIncrease.x = playerE.position.x;
+						playerHealthIncrease.y = playerE.position.y;
+					}
 				}
 			}
 		}
@@ -261,6 +293,29 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			}
 		}
 
+		public static function updateHealthIncrease():void
+		{
+			playerHealthIncrease.x = player.position.x;
+			playerHealthIncrease.y = player.position.y;
+
+			if (healthIncrease.ActualAnimation.isComplete)
+			{
+				healthIncrease.ActualAnimation.stop()
+				healthIncrease.alpha = 0;
+			}
+
+			if (playerHealthIncrease.ActualAnimation.isComplete)
+			{
+				playerHealthIncrease.ActualAnimation.stop()
+				playerHealthIncrease.alpha = 0;
+			}
+
+			if (healthIncrease.ActualAnimation.isComplete && playerHealthIncrease.ActualAnimation.isComplete)
+			{
+				_healthIncreased = false;
+			}
+		}
+
 		private static function endPowerUp():void
 		{
 			_powerUpActive = false;
@@ -333,6 +388,10 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		public static function get activePowerUp():String
 		{
 			return _activePowerUp;
+		}
+
+		public static function get healthIncreased():Boolean {
+			return _healthIncreased;
 		}
 	}
 }

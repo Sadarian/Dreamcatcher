@@ -23,7 +23,8 @@ package de.mediadesign.gd1011.dreamcatcher
 	import de.mediadesign.gd1011.dreamcatcher.View.Score;
 
     import flash.geom.Point;
-    import flash.ui.Keyboard;
+	import flash.media.SoundTransform;
+	import flash.ui.Keyboard;
     import flash.utils.getTimer;
     import starling.core.Starling;
 	import starling.display.Button;
@@ -84,8 +85,10 @@ public class Game extends Sprite
             graphicsManager.initCompleted = true;
             addChild(gameStage);
             MainMenu.showAndHide();
+			var musicTransform:SoundTransform = new SoundTransform(0.5);
+			GraphicsManager.graphicsManager.playSound("GreySkies", 0, 10, musicTransform);
 
-			//var musicTransform:SoundTransform = new SoundTransform(0.8);
+
 			//GraphicsManager.graphicsManager.playSound("Slayer",0,0,musicTransform);
 			//GraphicsManager.graphicsManager.playSound("Slayer");
         }
@@ -172,20 +175,14 @@ public class Game extends Sprite
                 renderProcess.update();
                 gameStage.update(now);
 
-
+				ActivePowerUpProcess.update(passedTime);
 
 
                 if(Dreamcatcher.debugMode)
                 {
                     CollisionDummyBoxes.update();
                 }
-
-                if (PowerUpTrigger.powerUpActive)
-                {
-                    ActivePowerUpProcess.update(passedTime);
-                }
             }
-
 		}
 
         private function onTouch(e:TouchEvent):void

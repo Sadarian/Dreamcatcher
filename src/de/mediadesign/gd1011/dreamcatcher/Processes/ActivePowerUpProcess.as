@@ -13,7 +13,15 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 	{
 		public static function update(deltaTime:Number):void
 		{
-			PowerUpTrigger.updateDuration(deltaTime);
+			if (PowerUpTrigger.powerUpActive)
+			{
+				PowerUpTrigger.updateDuration(deltaTime);
+			}
+
+			if (PowerUpTrigger.healthIncreased)
+			{
+				PowerUpTrigger.updateHealthIncrease();
+			}
 		}
 	}
 }

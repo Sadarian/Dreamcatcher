@@ -7,6 +7,7 @@
  */
 package de.mediadesign.gd1011.dreamcatcher.View
 {
+	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.*;
 
 	import starling.animation.Transitions;
@@ -26,7 +27,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 		public static function updateScore(entity:Entity):void
 		{
-			var points:TextField = new TextField(300, 100, entity.points.toString(), "MenuFont", 100);
+			var points:TextField = new TextField(300, GameConstants.fontSize, entity.points.toString(), "MenuFont", 100);
 			points.pivotX = points.width/2;
 			points.pivotY = points.height/2;
 			points.x = entity.position.x;
@@ -138,7 +139,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 		private static function fadeIn(tweenObject:DisplayObject):void
 		{
-			var fadeInTween:Tween = new Tween (tweenObject,1.5,Transitions.EASE_IN);
+			var fadeInTween:Tween = new Tween (tweenObject,GameConstants.growFadeSpeed,Transitions.EASE_IN);
 			fadeInTween.scaleTo(1);
 			fadeInTween.fadeTo(1);
 			fadeInTween.onComplete = moveTo(tweenObject);
@@ -154,7 +155,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 		private static function moveTo(tweenObject:DisplayObject):Function
 		{
-			var moveToTween:Tween = new Tween (tweenObject, 2.5, Transitions.EASE_IN);
+			var moveToTween:Tween = new Tween (tweenObject, GameConstants.moveToSpeed, Transitions.EASE_IN);
 			moveToTween.moveTo(scoreField.x, scoreField.y);
 			Starling.juggler.add(moveToTween);
 			return null;

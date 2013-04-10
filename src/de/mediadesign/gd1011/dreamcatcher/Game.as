@@ -175,8 +175,9 @@ public class Game extends Sprite
                 renderProcess.update();
                 gameStage.update(now);
 
-				ActivePowerUpProcess.update(passedTime);
+				Score.update();
 
+				ActivePowerUpProcess.update(passedTime);
 
                 if(Dreamcatcher.debugMode)
                 {

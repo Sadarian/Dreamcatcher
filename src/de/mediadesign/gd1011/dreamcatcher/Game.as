@@ -1,7 +1,8 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
-    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerStraight;
+	import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
+	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerStraight;
     import de.mediadesign.gd1011.dreamcatcher.Processes.ActivePowerUpProcess;
 	import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionDummyBoxes;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
@@ -36,8 +37,9 @@ package de.mediadesign.gd1011.dreamcatcher
     import starling.events.Touch;
     import starling.events.TouchEvent;
     import starling.events.TouchPhase;
+	import starling.text.TextField;
 
-public class Game extends Sprite
+	public class Game extends Sprite
     {
         private var graphicsManager:GraphicsManager;
         private var entityManager:EntityManager;
@@ -109,8 +111,8 @@ public class Game extends Sprite
             addChild(img);
             var img2:Image = GraphicsManager.graphicsManager.getImage("DC_comicIntroPanel1");
             addChild(img2);
-            Starling.juggler.delayCall(deleteChild, 4, img);
-            Starling.juggler.delayCall(deleteChild, 2, img2);
+            Starling.juggler.delayCall(deleteChild, 6, img);
+            Starling.juggler.delayCall(deleteChild, 3, img2);
         }
 
         private function deleteChild(img:Image):void
@@ -130,16 +132,62 @@ public class Game extends Sprite
             entityManager.init();
             PowerUpTrigger.init();
             Score.showScore(0);
-            gameStage.loadLevel(currentLvl);
+
+			var text:TextField;
+
+			switch (currentLvl)
+			{
+				case 1:
+				{
+					text = createTextField("LEVEL 1  Forest of Fears \n “No mercy!”");
+					GameStage.gameStage.addChild(text);
+					Starling.juggler.delayCall(deleteText, 2, text);
+					break;
+				}
+
+				case 2:
+				{
+					text = createTextField("LEVEL 2  Valley of Spiders  \n “Finish it!”");
+					GameStage.gameStage.addChild(text);
+					Starling.juggler.delayCall(deleteText, 2, text);
+					break;
+				}
+
+				default:
+				{
+					text = createTextField("Trial of Heroes \n “Survive!!”");
+					GameStage.gameStage.addChild(text);
+					Starling.juggler.delayCall(deleteText, 2, text);
+					break;
+				}
+			}
+
+			gameStage.loadLevel(currentLvl);
             entityManager.loadEntities(currentLvl);
             graphicsManager.initCompleted = true;
             Starling.juggler.delayCall(allowShooting, 1);
 
         }
 
+		private function deleteText(text:TextField):void
+		{
+			GameStage.gameStage.removeActor(text);
+			text.dispose();
+		}
+
+		private function createTextField(s:String):TextField
+		{
+			var text:TextField = new TextField(500, 200, s, "MenuFont", 50,0xece030b, true);
+			text.pivotX = text.width/2;
+			text.pivotY = text.height/2;
+			text.x = Starling.current.viewPort.width/2;
+			text.y = Starling.current.viewPort.height/2;
+			text.autoScale = true;
+			return text;
+		}
+
         private function allowShooting():void
         {
-
             entityManager.entities[0].switchWeapon(new WeaponPlayerStraight());
             entityManager.entities[0].setWeaponSpeed();
         }

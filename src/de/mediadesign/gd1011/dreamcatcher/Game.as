@@ -1,7 +1,9 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
-    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerStraight;
+	import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
+	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerPowershot;
+	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerStraight;
     import de.mediadesign.gd1011.dreamcatcher.Processes.ActivePowerUpProcess;
 	import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionDummyBoxes;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
@@ -19,6 +21,8 @@ package de.mediadesign.gd1011.dreamcatcher
     import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
 	import de.mediadesign.gd1011.dreamcatcher.View.Menu.PauseMenu;
 	import de.mediadesign.gd1011.dreamcatcher.View.Menu.TutorialMenu;
+	import de.mediadesign.gd1011.dreamcatcher.View.PauseButton;
+	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
 	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
 	import de.mediadesign.gd1011.dreamcatcher.View.Score;
 
@@ -199,8 +203,30 @@ public class Game extends Sprite
             MovementPlayer.touch = null;
 
             for each(var touch:Touch in touches)
-                if(touch.getLocation(stage).x < GameConstants.playerMovementBorder.width)
-                    MovementPlayer.touch = touch;
+			{
+				if(touch.getLocation(stage).x < GameConstants.playerMovementBorder.width)
+				{
+					MovementPlayer.touch = touch;
+				}
+			}
+
+			var player:Entity = entityManager.getEntity(GameConstants.PLAYER);
+
+			if (touches[1] != null && !PowerUpTrigger.powerUpActive
+			 	&& touches[1].target != PowerUpTrigger.powerUpButton
+			 	&& touches[1].target != GameStage.gameStage.pauseButton)
+			{
+				player.switchWeapon(new WeaponPlayerPowershot());
+
+				if (touches[1].timestamp >=1)
+				{
+
+				}
+			}
+			else if (!PowerUpTrigger.powerUpActive && player.weaponSystem != WeaponPlayerStraight)
+			{
+				player.switchWeapon(new WeaponPlayerStraight());
+			}
 
             if(Dreamcatcher.debugMode)
                 if(e.getTouch(stage, TouchPhase.HOVER))

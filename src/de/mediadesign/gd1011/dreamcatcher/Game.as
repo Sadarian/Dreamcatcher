@@ -202,28 +202,47 @@ public class Game extends Sprite
 
             MovementPlayer.touch = null;
 
-            for each(var touch:Touch in touches)
-			{
-				if(touch.getLocation(stage).x < GameConstants.playerMovementBorder.width)
-				{
-					MovementPlayer.touch = touch;
-				}
-			}
+	        var player:Entity = entityManager.getEntity(GameConstants.PLAYER);
 
-			var player:Entity = entityManager.getEntity(GameConstants.PLAYER);
+	        for (var i:int = 0; i < touches.length; i++) {
+		        switch (i)
+		        {
+			        case 0:
+			        {
+				        if(touches[0].getLocation(stage).x < GameConstants.playerMovementBorder.width)
+				        {
+					        MovementPlayer.touch = touches[0];
+				        }
 
-			if (touches[1] != null && !PowerUpTrigger.powerUpActive
-			 	&& touches[1].target != PowerUpTrigger.powerUpButton
-			 	&& touches[1].target != GameStage.gameStage.pauseButton)
-			{
-				player.switchWeapon(new WeaponPlayerPowershot());
+				        if (touches.length < 2 && !PowerUpTrigger.powerUpActive && player.weaponSystem != WeaponPlayerStraight)
+				        {
+					        player.switchWeapon(new WeaponPlayerStraight());
+					        player.setWeaponSpeed();
+					        trace("change to Normal")
+				        }
+				        break;
+			        }
+			        case 1:
+			        {
+				        if (!PowerUpTrigger.powerUpActive && touches[1].target != PowerUpTrigger.powerUpButton
+						  && touches[1].target != GameStage.gameStage.pauseButton)
+				        {
+					        player.switchWeapon(new WeaponPlayerPowershot());
 
-				WeaponPlayerPowershot.loadTime = touches[1].timestamp;
-			}
-			else if (!PowerUpTrigger.powerUpActive && player.weaponSystem != WeaponPlayerStraight)
-			{
-				player.switchWeapon(new WeaponPlayerStraight());
-			}
+					        WeaponPlayerPowershot.loadTime = touches[1].timestamp;
+				        }
+				        break;
+			        }
+			        default:
+			        {
+
+				        break;
+			        }
+		        }
+	        }
+
+
+
 
             if(Dreamcatcher.debugMode)
                 if(e.getTouch(stage, TouchPhase.HOVER))

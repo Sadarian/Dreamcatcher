@@ -97,7 +97,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             if(Dreamcatcher.debugMode)
 		        GameStage.gameStage.addChild(CollisionDummyBoxes.getDummy(tempEntity));
 
-            GameStage.gameStage.addChildAt(tempEntity.movieClip, 4);
+            GameStage.gameStage.addChildAt(tempEntity.movieClip, 5);
             return tempEntity;
 		}
 

@@ -29,7 +29,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 
 	    public function shoot(deltaTime:Number, position:Point, target:Object):void
         {
-
+			trace(_loadTime);
         }
 
 	    public static function set loadTime(value:Number):void {

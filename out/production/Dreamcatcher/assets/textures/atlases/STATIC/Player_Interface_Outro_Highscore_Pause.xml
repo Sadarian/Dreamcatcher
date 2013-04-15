@@ -1,128 +1,133 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:82a3d86af2176271da1a1f7016008d27$ -->
+<!-- $TexturePacker:SmartUpdate:a6d10ad332c3acd62b61047d65855f89$ -->
 <TextureAtlas imagePath="Player_Interface_Outro_Highscore_PauseTexture.png">
-    <SubTexture name="BossLifeBarFrame" x="2" y="1610" width="91" height="91"/>
-    <SubTexture name="Circle" x="796" y="276" width="50" height="50"/>
-    <SubTexture name="DC_comicOutro1" x="2" y="1208" width="640" height="400"/>
-    <SubTexture name="DC_comicOutro2" x="2" y="806" width="640" height="400"/>
-    <SubTexture name="PauseButton" x="974" y="464" width="37" height="40"/>
-    <SubTexture name="PauseMenuBackground" x="2" y="404" width="640" height="400"/>
-    <SubTexture name="PauseMenuEndGame" x="181" y="1618" width="80" height="80"/>
-    <SubTexture name="PauseMenuPlay" x="848" y="176" width="172" height="172"/>
-    <SubTexture name="PauseMenuSoundOff" x="263" y="1618" width="78" height="80"/>
-    <SubTexture name="PauseMenuSoundOn" x="186" y="1703" width="78" height="80"/>
-    <SubTexture name="PlayerArmCloseCombat_1" x="770" y="642" width="66" height="50" frameX="-45" frameY="-58" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmCloseCombat_2" x="770" y="642" width="66" height="50" frameX="-45" frameY="-58" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmCloseCombat_3" x="770" y="642" width="66" height="50" frameX="-45" frameY="-58" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerStrongBulletWalk_1" x="976" y="350" width="46" height="20" frameX="-8" frameY="-23" frameWidth="64" frameHeight="64"/>
-    <SubTexture name="LifebarHealthIncreaseDefault_01" x="770" y="912" width="62" height="68" frameX="-66" frameY="0" frameWidth="128" frameHeight="96"/>
-    <SubTexture name="LifebarHealthIncreaseDefault_02" x="770" y="840" width="62" height="70" frameX="-66" frameY="0" frameWidth="128" frameHeight="96"/>
-    <SubTexture name="LifebarHealthIncreaseDefault_03" x="770" y="694" width="64" height="72" frameX="-64" frameY="-1" frameWidth="128" frameHeight="96"/>
-    <SubTexture name="LifebarHealthIncreaseDefault_04" x="964" y="644" width="58" height="72" frameX="-70" frameY="0" frameWidth="128" frameHeight="96"/>
-    <SubTexture name="LifebarHealthIncreaseDefault_05" x="782" y="364" width="62" height="82" frameX="-66" frameY="0" frameWidth="128" frameHeight="96"/>
-    <SubTexture name="LifebarHealthIncreaseDefault_06" x="958" y="1000" width="54" height="64" frameX="-74" frameY="-10" frameWidth="128" frameHeight="96"/>
-    <SubTexture name="LifebarHealthIncreaseDefault_07" x="770" y="982" width="62" height="62" frameX="-66" frameY="-6" frameWidth="128" frameHeight="96"/>
-    <SubTexture name="LifebarHealthIncreaseDefault_08" x="774" y="448" width="68" height="76" frameX="-60" frameY="0" frameWidth="128" frameHeight="96"/>
-    <SubTexture name="LifebarHealthIncreaseDefault_09" x="770" y="768" width="64" height="70" frameX="-64" frameY="0" frameWidth="128" frameHeight="96"/>
-    <SubTexture name="LifebarHealthIncreaseDefault_10" x="770" y="564" width="66" height="76" frameX="-62" frameY="-1" frameWidth="128" frameHeight="96"/>
-    <SubTexture name="LifebarHealthIncreaseDefault_11" x="962" y="786" width="60" height="74" frameX="-68" frameY="0" frameWidth="128" frameHeight="96"/>
-    <SubTexture name="LifebarHealthIncreaseDefault_12" x="964" y="718" width="58" height="66" frameX="-70" frameY="-4" frameWidth="128" frameHeight="96"/>
-    <SubTexture name="LifebarHealthIncreaseDefault_13" x="962" y="862" width="60" height="62" frameX="-68" frameY="-11" frameWidth="128" frameHeight="96"/>
-    <SubTexture name="PlayerArmDie_01" x="430" y="1703" width="80" height="36" frameX="-31" frameY="-67" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmDie_02" x="958" y="926" width="54" height="72" frameX="-27" frameY="-55" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmDie_03" x="770" y="526" width="72" height="36" frameX="-25" frameY="-97" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmDie_04" x="770" y="526" width="72" height="36" frameX="-25" frameY="-97" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmDie_05" x="770" y="526" width="72" height="36" frameX="-25" frameY="-97" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmDie_06" x="770" y="526" width="72" height="36" frameX="-25" frameY="-97" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmDie_07" x="770" y="526" width="72" height="36" frameX="-25" frameY="-97" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmDie_08" x="770" y="526" width="72" height="36" frameX="-25" frameY="-97" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmDie_09" x="770" y="526" width="72" height="36" frameX="-25" frameY="-97" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmDie_10" x="770" y="526" width="72" height="36" frameX="-25" frameY="-97" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmDie_11" x="770" y="526" width="72" height="36" frameX="-25" frameY="-97" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmDie_12" x="423" y="1618" width="80" height="34" frameX="-23" frameY="-64" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmDie_13" x="350" y="1741" width="80" height="36" frameX="-26" frameY="-62" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmDie_14" x="348" y="1703" width="80" height="36" frameX="-21" frameY="-63" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmHit_1" x="2" y="2009" width="80" height="37" frameX="-31" frameY="-65" frameWidth="160" frameHeight="133"/>
-    <SubTexture name="PlayerArmStand_1" x="423" y="1654" width="78" height="34" frameX="-42" frameY="-67" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmStand_2" x="343" y="1656" width="78" height="36" frameX="-42" frameY="-67" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmStand_3" x="343" y="1618" width="78" height="36" frameX="-42" frameY="-68" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmStand_4" x="432" y="1741" width="78" height="36" frameX="-42" frameY="-68" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmStand_5" x="266" y="1703" width="80" height="38" frameX="-41" frameY="-67" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmStand_6" x="503" y="1654" width="76" height="34" frameX="-43" frameY="-68" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmWalk_1" x="266" y="1743" width="82" height="36" frameX="-42" frameY="-66" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmWalk_2" x="336" y="1995" width="82" height="38" frameX="-38" frameY="-66" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmWalk_3" x="420" y="1987" width="80" height="38" frameX="-42" frameY="-62" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmWalk_4" x="84" y="2009" width="82" height="36" frameX="-41" frameY="-65" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmWalk_5" x="250" y="1997" width="84" height="38" frameX="-40" frameY="-67" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerArmWalk_6" x="168" y="2000" width="80" height="40" frameX="-41" frameY="-61" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerBulletDie_1" x="768" y="1114" width="24" height="38" frameX="-31" frameY="-15" frameWidth="64" frameHeight="64"/>
-    <SubTexture name="PlayerBulletDie_2" x="802" y="1092" width="28" height="38" frameX="-27" frameY="-15" frameWidth="64" frameHeight="64"/>
-    <SubTexture name="PlayerBulletDie_3" x="802" y="1046" width="30" height="44" frameX="-25" frameY="-12" frameWidth="64" frameHeight="64"/>
-    <SubTexture name="PlayerBulletDie_4" x="976" y="404" width="38" height="58" frameX="-17" frameY="-5" frameWidth="64" frameHeight="64"/>
-    <SubTexture name="PlayerBulletWalk_1" x="976" y="372" width="46" height="14" frameX="-8" frameY="-26" frameWidth="64" frameHeight="64"/>
-    <SubTexture name="PlayerBulletWalk_2" x="796" y="346" width="48" height="16" frameX="-6" frameY="-25" frameWidth="64" frameHeight="64"/>
-    <SubTexture name="PlayerBulletWalk_3" x="796" y="328" width="50" height="16" frameX="-4" frameY="-26" frameWidth="64" frameHeight="64"/>
-    <SubTexture name="PlayerBulletWalk_4" x="976" y="388" width="42" height="14" frameX="-12" frameY="-26" frameWidth="64" frameHeight="64"/>
-    <SubTexture name="PlayerCloseCombat_1" x="870" y="1385" width="108" height="102" frameX="-32" frameY="-32" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerCloseCombat_2" x="846" y="350" width="128" height="101" frameX="-32" frameY="-32" frameWidth="160" frameHeight="133"/>
-    <SubTexture name="PlayerCloseCombat_3" x="870" y="1385" width="108" height="102" frameX="-32" frameY="-32" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerDie_01" x="96" y="1789" width="98" height="104" frameX="-15" frameY="-30" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerDie_02" x="284" y="1893" width="96" height="100" frameX="-12" frameY="-34" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerDie_03" x="2" y="1789" width="92" height="112" frameX="-16" frameY="-22" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerDie_04" x="196" y="1789" width="102" height="102" frameX="-10" frameY="-21" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerDie_05" x="844" y="531" width="124" height="102" frameX="0" frameY="-32" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerDie_06" x="838" y="635" width="124" height="96" frameX="0" frameY="-37" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerDie_07" x="644" y="526" width="124" height="106" frameX="0" frameY="-27" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerDie_08" x="644" y="634" width="124" height="96" frameX="0" frameY="-37" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerDie_09" x="644" y="910" width="124" height="86" frameX="0" frameY="-47" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerDie_10" x="836" y="823" width="124" height="88" frameX="0" frameY="-45" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerDie_11" x="836" y="733" width="124" height="88" frameX="0" frameY="-45" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerDie_12" x="644" y="732" width="124" height="88" frameX="0" frameY="-45" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerDie_13" x="644" y="822" width="124" height="86" frameX="0" frameY="-46" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerDie_14" x="834" y="1037" width="122" height="86" frameX="0" frameY="-46" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerHealthIncreaseDefault_1" x="402" y="1789" width="78" height="96" frameX="-30" frameY="-30" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerHealthIncreaseDefault_2" x="202" y="1893" width="80" height="102" frameX="-30" frameY="-30" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerHealthIncreaseDefault_3" x="382" y="1889" width="104" height="96" frameX="-16" frameY="-30" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerHealthIncreaseDefault_4" x="2" y="1903" width="98" height="104" frameX="-29" frameY="-22" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerHealthIncreaseDefault_5" x="95" y="1610" width="84" height="90" frameX="-29" frameY="-29" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerHealthIncreaseDefault_6" x="752" y="1503" width="106" height="98" frameX="-10" frameY="-31" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerHit_1" x="102" y="1895" width="98" height="103" frameX="-14" frameY="-30" frameWidth="160" frameHeight="133"/>
-    <SubTexture name="PlayerLifeBarFrame" x="644" y="428" width="128" height="96"/>
-    <SubTexture name="PlayerLifeBarState_1" x="958" y="1118" width="52" height="50" frameX="-13" frameY="-16" frameWidth="128" frameHeight="96"/>
-    <SubTexture name="PlayerLifeBarState_2" x="958" y="1066" width="52" height="50" frameX="-13" frameY="-16" frameWidth="128" frameHeight="96"/>
-    <SubTexture name="PlayerLifeBarState_3" x="970" y="592" width="52" height="50" frameX="-13" frameY="-16" frameWidth="128" frameHeight="96"/>
-    <SubTexture name="PlayerLifeBarState_4" x="970" y="540" width="52" height="50" frameX="-13" frameY="-16" frameWidth="128" frameHeight="96"/>
-    <SubTexture name="PlayerPowershotWalk2_1" x="644" y="1176" width="122" height="76" frameX="-6" frameY="-21" frameWidth="128" frameHeight="128"/>
-    <SubTexture name="PlayerPowershotWalk2_2" x="832" y="1125" width="122" height="76" frameX="-5" frameY="-21" frameWidth="128" frameHeight="128"/>
-    <SubTexture name="PlayerPowershotWalk2_3" x="844" y="453" width="128" height="76" frameX="0" frameY="-21" frameWidth="128" frameHeight="128"/>
-    <SubTexture name="PlayerPowershotWalk2_4" x="644" y="1098" width="122" height="76" frameX="-5" frameY="-21" frameWidth="128" frameHeight="128"/>
-    <SubTexture name="PlayerPowershotWalk_1" x="2" y="1703" width="100" height="82" frameX="-15" frameY="-19" frameWidth="128" frameHeight="128"/>
-    <SubTexture name="PlayerPowershotWalk_2" x="644" y="1538" width="106" height="78" frameX="-9" frameY="-21" frameWidth="128" frameHeight="128"/>
-    <SubTexture name="PlayerPowershotWalk_3" x="884" y="1203" width="112" height="80" frameX="-3" frameY="-20" frameWidth="128" frameHeight="128"/>
-    <SubTexture name="PlayerPowershotWalk_4" x="644" y="1254" width="112" height="80" frameX="-3" frameY="-22" frameWidth="128" frameHeight="128"/>
-    <SubTexture name="PlayerStand_1" x="858" y="1689" width="104" height="98" frameX="-34" frameY="-36" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerStand_2" x="866" y="1489" width="106" height="98" frameX="-32" frameY="-36" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerStand_3" x="644" y="1336" width="110" height="98" frameX="-32" frameY="-36" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerStand_4" x="758" y="1303" width="110" height="98" frameX="-32" frameY="-36" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerStand_5" x="884" y="1285" width="110" height="98" frameX="-32" frameY="-36" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerStand_6" x="756" y="1403" width="108" height="98" frameX="-33" frameY="-36" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerWalk_1" x="752" y="1603" width="104" height="98" frameX="-3" frameY="-36" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerWalk_2" x="768" y="1203" width="114" height="98" frameX="0" frameY="-36" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerWalk_3" x="860" y="1589" width="104" height="98" frameX="-16" frameY="-36" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerWalk_4" x="644" y="998" width="122" height="98" frameX="-12" frameY="-36" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerWalk_5" x="300" y="1789" width="100" height="98" frameX="-32" frameY="-36" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PlayerWalk_6" x="644" y="1436" width="106" height="100" frameX="-16" frameY="-34" frameWidth="160" frameHeight="134"/>
-    <SubTexture name="PowerUpFireRate" x="768" y="1080" width="32" height="32"/>
-    <SubTexture name="PowerUpFreeze" x="768" y="1046" width="32" height="32"/>
-    <SubTexture name="PowerUpHealth" x="974" y="506" width="32" height="32"/>
-    <SubTexture name="Quad" x="796" y="224" width="50" height="50"/>
-    <SubTexture name="TextBoxButton" x="644" y="310" width="150" height="50"/>
-    <SubTexture name="UsePower_1" x="644" y="362" width="136" height="64" frameX="-14" frameY="-64" frameWidth="150" frameHeight="128"/>
-    <SubTexture name="UsePower_2" x="644" y="224" width="150" height="84" frameX="0" frameY="-44" frameWidth="150" frameHeight="128"/>
-    <SubTexture name="highscore_again" x="834" y="913" width="122" height="122" frameX="-300" frameY="-144" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="BossLifeBarFrame" x="1553" y="1174" width="91" height="91"/>
+    <SubTexture name="Circle" x="490" y="404" width="50" height="50"/>
+    <SubTexture name="DC_comicOutro1" x="2" y="460" width="640" height="400"/>
+    <SubTexture name="DC_comicOutro2" x="1286" y="2" width="640" height="400"/>
+    <SubTexture name="LifebarHealthIncreaseDefault_01" x="1220" y="935" width="115" height="104" frameX="-148" frameY="-31" frameWidth="283" frameHeight="224"/>
+    <SubTexture name="LifebarHealthIncreaseDefault_02" x="1928" y="126" width="115" height="112" frameX="-148" frameY="-25" frameWidth="283" frameHeight="224"/>
+    <SubTexture name="LifebarHealthIncreaseDefault_03" x="1928" y="350" width="115" height="108" frameX="-148" frameY="-20" frameWidth="283" frameHeight="224"/>
+    <SubTexture name="LifebarHealthIncreaseDefault_04" x="1783" y="980" width="111" height="88" frameX="-149" frameY="-31" frameWidth="283" frameHeight="224"/>
+    <SubTexture name="LifebarHealthIncreaseDefault_05" x="1668" y="864" width="113" height="130" frameX="-170" frameY="-30" frameWidth="283" frameHeight="224"/>
+    <SubTexture name="LifebarHealthIncreaseDefault_06" x="909" y="900" width="123" height="120" frameX="-160" frameY="-30" frameWidth="283" frameHeight="224"/>
+    <SubTexture name="LifebarHealthIncreaseDefault_07" x="842" y="630" width="125" height="108" frameX="-158" frameY="-31" frameWidth="283" frameHeight="224"/>
+    <SubTexture name="LifebarHealthIncreaseDefault_08" x="644" y="806" width="137" height="104" frameX="-145" frameY="-31" frameWidth="283" frameHeight="224"/>
+    <SubTexture name="LifebarHealthIncreaseDefault_09" x="969" y="712" width="139" height="96" frameX="-144" frameY="-28" frameWidth="283" frameHeight="224"/>
+    <SubTexture name="LifebarHealthIncreaseDefault_10" x="1898" y="963" width="111" height="98" frameX="-144" frameY="-18" frameWidth="283" frameHeight="224"/>
+    <SubTexture name="LifebarHealthIncreaseDefault_11" x="1928" y="240" width="115" height="108" frameX="-144" frameY="-31" frameWidth="283" frameHeight="224"/>
+    <SubTexture name="LifebarHealthIncreaseDefault_12" x="1928" y="2" width="117" height="122" frameX="-144" frameY="-31" frameWidth="283" frameHeight="224"/>
+    <SubTexture name="LifebarHealthIncreaseDefault_13" x="1783" y="864" width="113" height="114" frameX="-148" frameY="-31" frameWidth="283" frameHeight="224"/>
+    <SubTexture name="PauseButton" x="1123" y="702" width="37" height="40"/>
+    <SubTexture name="PauseMenuBackground" x="644" y="2" width="640" height="400"/>
+    <SubTexture name="PauseMenuEndGame" x="1730" y="1214" width="80" height="80"/>
+    <SubTexture name="PauseMenuPlay" x="1523" y="404" width="172" height="172"/>
+    <SubTexture name="PauseMenuSoundOff" x="492" y="862" width="78" height="80"/>
+    <SubTexture name="PauseMenuSoundOn" x="412" y="862" width="78" height="80"/>
+    <SubTexture name="PlayerArmCloseCombat_1" x="154" y="404" width="66" height="50" frameX="-45" frameY="-58" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmCloseCombat_2" x="154" y="404" width="66" height="50" frameX="-45" frameY="-58" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmCloseCombat_3" x="154" y="404" width="66" height="50" frameX="-45" frameY="-58" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmDie_01" x="166" y="862" width="80" height="36" frameX="-31" frameY="-67" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmDie_02" x="644" y="530" width="54" height="72" frameX="-27" frameY="-55" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmDie_03" x="652" y="948" width="72" height="36" frameX="-25" frameY="-97" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmDie_04" x="652" y="948" width="72" height="36" frameX="-25" frameY="-97" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmDie_05" x="652" y="948" width="72" height="36" frameX="-25" frameY="-97" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmDie_06" x="652" y="948" width="72" height="36" frameX="-25" frameY="-97" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmDie_07" x="652" y="948" width="72" height="36" frameX="-25" frameY="-97" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmDie_08" x="652" y="948" width="72" height="36" frameX="-25" frameY="-97" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmDie_09" x="652" y="948" width="72" height="36" frameX="-25" frameY="-97" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmDie_10" x="652" y="948" width="72" height="36" frameX="-25" frameY="-97" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmDie_11" x="652" y="948" width="72" height="36" frameX="-25" frameY="-97" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmDie_12" x="330" y="862" width="80" height="34" frameX="-23" frameY="-64" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmDie_13" x="84" y="862" width="80" height="36" frameX="-26" frameY="-62" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmDie_14" x="2" y="862" width="80" height="36" frameX="-21" frameY="-63" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmHit_1" x="1894" y="1245" width="80" height="37" frameX="-31" frameY="-65" frameWidth="160" frameHeight="133"/>
+    <SubTexture name="PlayerArmStand_1" x="652" y="912" width="78" height="34" frameX="-42" frameY="-67" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmStand_2" x="572" y="912" width="78" height="36" frameX="-42" frameY="-67" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmStand_3" x="328" y="898" width="78" height="36" frameX="-42" frameY="-68" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmStand_4" x="248" y="898" width="78" height="36" frameX="-42" frameY="-68" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmStand_5" x="1812" y="1241" width="80" height="38" frameX="-41" frameY="-67" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmStand_6" x="732" y="936" width="76" height="34" frameX="-43" frameY="-68" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmWalk_1" x="1646" y="1196" width="82" height="36" frameX="-42" frameY="-66" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmWalk_2" x="1767" y="1174" width="82" height="38" frameX="-38" frameY="-66" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmWalk_3" x="1646" y="1234" width="80" height="38" frameX="-42" frameY="-62" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmWalk_4" x="1851" y="1203" width="82" height="36" frameX="-41" frameY="-65" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmWalk_5" x="1879" y="1163" width="84" height="38" frameX="-40" frameY="-67" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerArmWalk_6" x="628" y="404" width="80" height="40" frameX="-41" frameY="-61" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerBulletDie_1" x="674" y="748" width="24" height="38" frameX="-31" frameY="-15" frameWidth="64" frameHeight="64"/>
+    <SubTexture name="PlayerBulletDie_2" x="644" y="748" width="28" height="38" frameX="-27" frameY="-15" frameWidth="64" frameHeight="64"/>
+    <SubTexture name="PlayerBulletDie_3" x="542" y="404" width="30" height="44" frameX="-25" frameY="-12" frameWidth="64" frameHeight="64"/>
+    <SubTexture name="PlayerBulletDie_4" x="1123" y="642" width="38" height="58" frameX="-17" frameY="-5" frameWidth="64" frameHeight="64"/>
+    <SubTexture name="PlayerBulletWalk_1" x="1869" y="440" width="46" height="14" frameX="-8" frameY="-26" frameWidth="64" frameHeight="64"/>
+    <SubTexture name="PlayerBulletWalk_2" x="1869" y="422" width="48" height="16" frameX="-6" frameY="-25" frameWidth="64" frameHeight="64"/>
+    <SubTexture name="PlayerBulletWalk_3" x="1869" y="404" width="50" height="16" frameX="-4" frameY="-26" frameWidth="64" frameHeight="64"/>
+    <SubTexture name="PlayerBulletWalk_4" x="1123" y="626" width="42" height="14" frameX="-12" frameY="-26" frameWidth="64" frameHeight="64"/>
+    <SubTexture name="PlayerCloseCombat_1" x="1449" y="972" width="108" height="102" frameX="-32" frameY="-32" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerCloseCombat_2" x="1327" y="644" width="128" height="101" frameX="-32" frameY="-32" frameWidth="160" frameHeight="133"/>
+    <SubTexture name="PlayerCloseCombat_3" x="1449" y="972" width="108" height="102" frameX="-32" frameY="-32" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerDie_01" x="1947" y="652" width="98" height="104" frameX="-15" frameY="-30" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerDie_02" x="1599" y="578" width="96" height="100" frameX="-12" frameY="-34" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerDie_03" x="1599" y="680" width="92" height="112" frameX="-16" frameY="-22" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerDie_04" x="1775" y="1070" width="102" height="102" frameX="-10" frameY="-21" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerDie_05" x="1697" y="582" width="124" height="102" frameX="0" frameY="-32" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerDie_06" x="1418" y="762" width="124" height="96" frameX="0" frameY="-37" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerDie_07" x="842" y="740" width="124" height="106" frameX="0" frameY="-27" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerDie_08" x="1292" y="747" width="124" height="96" frameX="0" frameY="-37" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerDie_09" x="783" y="848" width="124" height="86" frameX="0" frameY="-47" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerDie_10" x="1236" y="845" width="124" height="88" frameX="0" frameY="-45" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerDie_11" x="968" y="810" width="124" height="88" frameX="0" frameY="-45" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerDie_12" x="1110" y="796" width="124" height="88" frameX="0" frameY="-45" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerDie_13" x="1094" y="886" width="124" height="86" frameX="0" frameY="-46" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerDie_14" x="1817" y="776" width="122" height="86" frameX="0" frameY="-46" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerHit_1" x="1947" y="758" width="98" height="103" frameX="-14" frameY="-30" frameWidth="160" frameHeight="133"/>
+    <SubTexture name="PlayerLifeBarFrame" x="710" y="404" width="259" height="224" frameX="-7" frameY="0" frameWidth="283" frameHeight="224"/>
+    <SubTexture name="PlayerLifeBarState_1" x="384" y="404" width="52" height="50" frameX="-13" frameY="-16" frameWidth="128" frameHeight="96"/>
+    <SubTexture name="PlayerLifeBarState_2" x="330" y="404" width="52" height="50" frameX="-13" frameY="-16" frameWidth="128" frameHeight="96"/>
+    <SubTexture name="PlayerLifeBarState_3" x="276" y="404" width="52" height="50" frameX="-13" frameY="-16" frameWidth="128" frameHeight="96"/>
+    <SubTexture name="PlayerLifeBarState_4" x="222" y="404" width="52" height="50" frameX="-13" frameY="-16" frameWidth="128" frameHeight="96"/>
+    <SubTexture name="PlayerPowershotArm_1" x="1232" y="1041" width="80" height="36" frameX="-43" frameY="-65" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerPowershotArm_2" x="248" y="862" width="80" height="34" frameX="-42" frameY="-71" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerPowershotArm_3" x="1150" y="1041" width="80" height="36" frameX="-43" frameY="-66" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerPowershotArm_4" x="1894" y="1284" width="80" height="36" frameX="-42" frameY="-66" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerPowershotArm_5" x="248" y="862" width="80" height="34" frameX="-42" frameY="-69" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerPowershotArm_6" x="1812" y="1281" width="80" height="36" frameX="-43" frameY="-64" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerPowershotCharging_1" x="1697" y="404" width="170" height="176" frameX="-37" frameY="-29" frameWidth="256" frameHeight="256"/>
+    <SubTexture name="PlayerPowershotCharging_2" x="700" y="630" width="140" height="174" frameX="-50" frameY="-63" frameWidth="256" frameHeight="256"/>
+    <SubTexture name="PlayerPowershotCharging_3" x="1465" y="578" width="132" height="182" frameX="-50" frameY="-36" frameWidth="256" frameHeight="256"/>
+    <SubTexture name="PlayerPowershotCharging_4" x="1349" y="404" width="172" height="172" frameX="-28" frameY="-30" frameWidth="256" frameHeight="256"/>
+    <SubTexture name="PlayerPowershotCharging_5" x="1175" y="578" width="150" height="138" frameX="-49" frameY="-50" frameWidth="256" frameHeight="256"/>
+    <SubTexture name="PlayerPowershotCharging_6" x="1869" y="460" width="162" height="190" frameX="-36" frameY="-25" frameWidth="256" frameHeight="256"/>
+    <SubTexture name="PlayerPowershotWalk_1" x="1362" y="860" width="122" height="76" frameX="-6" frameY="-21" frameWidth="128" frameHeight="128"/>
+    <SubTexture name="PlayerPowershotWalk_2" x="1544" y="794" width="122" height="76" frameX="-5" frameY="-21" frameWidth="128" frameHeight="128"/>
+    <SubTexture name="PlayerPowershotWalk_3" x="1162" y="718" width="128" height="76" frameX="0" frameY="-21" frameWidth="128" frameHeight="128"/>
+    <SubTexture name="PlayerPowershotWalk_4" x="1693" y="786" width="122" height="76" frameX="-5" frameY="-21" frameWidth="128" frameHeight="128"/>
+    <SubTexture name="PlayerStand_1" x="1447" y="1076" width="104" height="98" frameX="-34" frameY="-36" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerStand_2" x="1667" y="996" width="106" height="98" frameX="-32" frameY="-36" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerStand_3" x="1337" y="938" width="110" height="98" frameX="-32" frameY="-36" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerStand_4" x="1486" y="872" width="110" height="98" frameX="-32" frameY="-36" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerStand_5" x="1896" y="1063" width="110" height="98" frameX="-32" frameY="-36" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerStand_6" x="1337" y="1038" width="108" height="98" frameX="-33" frameY="-36" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerStrongBulletWalk_1" x="574" y="404" width="52" height="42" frameX="-6" frameY="-9" frameWidth="64" frameHeight="64"/>
+    <SubTexture name="PlayerStrongBulletWalk_2" x="644" y="604" width="54" height="40" frameX="-4" frameY="-10" frameWidth="64" frameHeight="64"/>
+    <SubTexture name="PlayerStrongBulletWalk_3" x="644" y="488" width="56" height="40" frameX="-2" frameY="-10" frameWidth="64" frameHeight="64"/>
+    <SubTexture name="PlayerStrongBulletWalk_4" x="644" y="446" width="56" height="40" frameX="-2" frameY="-11" frameWidth="64" frameHeight="64"/>
+    <SubTexture name="PlayerWalk_1" x="1559" y="1074" width="104" height="98" frameX="-3" frameY="-36" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerWalk_2" x="1034" y="974" width="114" height="98" frameX="0" frameY="-36" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerWalk_3" x="1941" y="863" width="104" height="98" frameX="-16" frameY="-36" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerWalk_4" x="1693" y="686" width="122" height="98" frameX="-12" frameY="-36" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerWalk_5" x="1665" y="1096" width="100" height="98" frameX="-32" frameY="-36" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PlayerWalk_6" x="1559" y="972" width="106" height="100" frameX="-16" frameY="-34" frameWidth="160" frameHeight="134"/>
+    <SubTexture name="PowerUpFireRate" x="644" y="714" width="32" height="32"/>
+    <SubTexture name="PowerUpFreeze" x="644" y="680" width="32" height="32"/>
+    <SubTexture name="PowerUpHealth" x="644" y="646" width="32" height="32"/>
+    <SubTexture name="Quad" x="438" y="404" width="50" height="50"/>
+    <SubTexture name="TextBoxButton" x="2" y="404" width="150" height="50"/>
+    <SubTexture name="UsePower_1" x="1327" y="578" width="136" height="64" frameX="-14" frameY="-64" frameWidth="150" frameHeight="128"/>
+    <SubTexture name="UsePower_2" x="971" y="626" width="150" height="84" frameX="0" frameY="-44" frameWidth="150" frameHeight="128"/>
+    <SubTexture name="highscore_again" x="1823" y="652" width="122" height="122" frameX="-300" frameY="-144" frameWidth="640" frameHeight="400"/>
     <SubTexture name="highscore_background" x="2" y="2" width="640" height="400"/>
-    <SubTexture name="highscore_bar" x="644" y="2" width="202" height="220"/>
-    <SubTexture name="highscore_end" x="104" y="1703" width="80" height="80"/>
-    <SubTexture name="highscore_play" x="848" y="2" width="172" height="172"/>
+    <SubTexture name="highscore_bar" x="971" y="404" width="202" height="220"/>
+    <SubTexture name="highscore_end" x="1965" y="1163" width="80" height="80"/>
+    <SubTexture name="highscore_play" x="1175" y="404" width="172" height="172"/>
 </TextureAtlas>

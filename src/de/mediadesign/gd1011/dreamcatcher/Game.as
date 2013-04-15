@@ -218,10 +218,7 @@ public class Game extends Sprite
 			{
 				player.switchWeapon(new WeaponPlayerPowershot());
 
-				if (touches[1].timestamp >=1)
-				{
-
-				}
+				WeaponPlayerPowershot.loadTime = touches[1].timestamp;
 			}
 			else if (!PowerUpTrigger.powerUpActive && player.weaponSystem != WeaponPlayerStraight)
 			{

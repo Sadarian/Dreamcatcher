@@ -15,8 +15,9 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
     {
         private var _speed:Number = 0;
         private var sumTime:Number = 0;
+	    private static var _loadTime:Number = 0;
 
-        public function set speed(value:Number):void
+	    public function set speed(value:Number):void
         {
             _speed = value;
         }
@@ -30,5 +31,9 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
         {
 
         }
+
+	    public static function set loadTime(value:Number):void {
+		    _loadTime = value;
+	    }
     }
 }

@@ -8,6 +8,7 @@
 package de.mediadesign.gd1011.dreamcatcher.View
 {
 	import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
+	import de.mediadesign.gd1011.dreamcatcher.Game;
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
@@ -234,7 +235,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 				case 3:
 				{
-					player.switchWeapon(new WeaponPlayerFan());
+					player.switchWeapon(Game.weaponPlayerFan);
 					player.setWeaponSpeed();
 					break;
 				}
@@ -263,7 +264,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		{
 			durationTime -= deltaTime;
 
-			var entity:Entity
+			var entity:Entity;
 
 			if (durationTime <= 0)
 			{
@@ -330,7 +331,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			{
 				case GameConstants.POWERUP_FIRE_RATE:
 				{
-					if(_activeStack == 3)player.switchWeapon(new WeaponPlayerStraight());
+					if(_activeStack == 3)player.switchWeapon(Game.weaponPlayerStraight);
 					player.setWeaponSpeed();
 
 					_activeStack = 0;

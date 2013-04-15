@@ -6,6 +6,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBullet;
+	import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
 	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
 
 	import flash.geom.Point;
@@ -15,7 +16,8 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
     {
         private var _speed:Number = 0;
         private var sumTime:Number = 0;
-	    private static var _loadTime:Number = 0;
+	    private var loadPowerShot:AnimatedModel;
+	    private var temPosition:Point;
 
 	    public function set speed(value:Number):void
         {
@@ -29,11 +31,52 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 
 	    public function shoot(deltaTime:Number, position:Point, target:Object):void
         {
-			trace(_loadTime);
+
+	        temPosition = new Point(position.x - -125, position.y - -33);
+
+	        if (loadPowerShot == null)
+	        {
+		        loadPowerShot = new AnimatedModel("PlayerPowershot", new Array(), "Charging");
+		        loadPowerShot.start();
+		        loadPowerShot.x = temPosition.x;
+		        loadPowerShot.y = temPosition.y;
+		        loadPowerShot.scaleX = 0;
+		        loadPowerShot.scaleY = 0;
+		        GameStage.gameStage.addChild(loadPowerShot);
+	        }
+	        sumTime += deltaTime;
+
+	        if (sumTime >= 1 && sumTime < 2)
+	        {
+		        loadPowerShot.x = temPosition.x;
+		        loadPowerShot.y = temPosition.y;
+		        loadPowerShot.scaleX = 0.5;
+		        loadPowerShot.scaleY = 0.5;
+	        }
+	        else if (sumTime >= 2)
+	        {
+		        loadPowerShot.x = temPosition.x;
+		        loadPowerShot.y = temPosition.y;
+		        loadPowerShot.scaleX = 1;
+		        loadPowerShot.scaleY = 1;
+	        }
         }
 
-	    public static function set loadTime(value:Number):void {
-		    _loadTime = value;
+	    public function shootNow():void
+	    {
+		    if (loadPowerShot != null)
+		    {
+			    sumTime = 0;
+
+			    loadPowerShot.scaleX = 0;
+			    loadPowerShot.scaleY = 0;
+
+			    var entity:Entity = EntityManager.entityManager.createEntity(GameConstants.PLAYER_STRONG_BULLET, temPosition);
+			    (entity.movementSystem as MovementBullet).target = new Point(Starling.current.viewPort.width * 1.2, temPosition.y);
+			    (entity.movementSystem as MovementBullet).calculateVelocity(temPosition);
+			    GraphicsManager.graphicsManager.playSound("PlayerShoot");
+			    GameStage.gameStage.addChild(entity.movieClip);
+		    }
 	    }
     }
 }

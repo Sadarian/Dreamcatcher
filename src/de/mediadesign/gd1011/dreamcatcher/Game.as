@@ -1,6 +1,7 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
+	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerPowershot;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerStraight;
@@ -28,6 +29,7 @@ package de.mediadesign.gd1011.dreamcatcher
 
     import flash.geom.Point;
 	import flash.media.SoundTransform;
+	import flash.net.InterfaceAddress;
 	import flash.ui.Keyboard;
     import flash.utils.getTimer;
     import starling.core.Starling;
@@ -59,6 +61,9 @@ public class Game extends Sprite
 		private var now:Number = 0;
 		public var noPlayTime:Number = 0;
 		private var passedLvlTime:Number = 0;
+		private static var _weaponPlayerStraight:WeaponPlayerStraight = new WeaponPlayerStraight();
+		private static var _weaponPlayerFan:WeaponPlayerFan = new WeaponPlayerFan();
+		private static var _weaponPlayerPowershot:WeaponPlayerPowershot = new WeaponPlayerPowershot();
 
         //DEBUG:
         private var touchPosition:Point = new Point();
@@ -198,6 +203,7 @@ public class Game extends Sprite
             var touches:Vector.<Touch> = new Vector.<Touch>();
 	        e.getTouches(stage, TouchPhase.BEGAN, touches);
 	        e.getTouches(stage, TouchPhase.MOVED, touches);
+	        e.getTouches(stage, TouchPhase.ENDED, touches);
 	        e.getTouches(stage, TouchPhase.STATIONARY, touches);
 
             MovementPlayer.touch = null;
@@ -214,9 +220,12 @@ public class Game extends Sprite
 					        MovementPlayer.touch = touches[0];
 				        }
 
-				        if (touches.length < 2 && !PowerUpTrigger.powerUpActive && player.weaponSystem != WeaponPlayerStraight)
+
+
+				        if (touches.length < 2 && !PowerUpTrigger.powerUpActive && player.weaponSystem != _weaponPlayerStraight)
 				        {
-					        player.switchWeapon(new WeaponPlayerStraight());
+					        _weaponPlayerPowershot.shootNow();
+					        player.switchWeapon(_weaponPlayerStraight);
 					        player.setWeaponSpeed();
 					        trace("change to Normal")
 				        }
@@ -227,22 +236,12 @@ public class Game extends Sprite
 				        if (!PowerUpTrigger.powerUpActive && touches[1].target != PowerUpTrigger.powerUpButton
 						  && touches[1].target != GameStage.gameStage.pauseButton)
 				        {
-					        player.switchWeapon(new WeaponPlayerPowershot());
-
-					        WeaponPlayerPowershot.loadTime = touches[1].timestamp;
+					        player.switchWeapon(_weaponPlayerPowershot);
 				        }
-				        break;
-			        }
-			        default:
-			        {
-
 				        break;
 			        }
 		        }
 	        }
-
-
-
 
             if(Dreamcatcher.debugMode)
                 if(e.getTouch(stage, TouchPhase.HOVER))
@@ -291,5 +290,17 @@ public class Game extends Sprite
                 entityManager.getEntity("Player").blink(GameConstants.blinkAmount("Player"));
             }
         }
-    }
+
+	public static function get weaponPlayerFan():WeaponPlayerFan {
+		return _weaponPlayerFan;
+	}
+
+	public static function get weaponPlayerPowershot():WeaponPlayerPowershot {
+		return _weaponPlayerPowershot;
+	}
+
+	public static function get weaponPlayerStraight():WeaponPlayerStraight {
+		return _weaponPlayerStraight;
+	}
+}
 }

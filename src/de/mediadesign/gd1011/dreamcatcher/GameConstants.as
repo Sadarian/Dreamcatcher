@@ -139,6 +139,11 @@ package de.mediadesign.gd1011.dreamcatcher
 		private static var _growFadeSpeed:Number;
 		private static var _fontSize:Number;
 		private static var _moveToSpeed:Number;
+		private static var _introTextRotation:Number;
+		private static var _introTextSize:Number;
+		private static var _introTextLvl1:String;
+		private static var _introTextLvl2:String;
+		private static var _introTextLvlEndless:String;
 
         public static function init(path:String = "Configs/"):void
         {
@@ -199,7 +204,12 @@ package de.mediadesign.gd1011.dreamcatcher
 			if(data.growFadeSpeed)_growFadeSpeed = data.growFadeSpeed;
 			if(data.fontSize)_fontSize = data.fontSize;
 			if(data.moveToSpeedt)_moveToSpeed = data.moveToSpeed;
-		}
+	        if(data.introTextRotation)_introTextRotation = data.introTextRotation;
+	        if(data.introTextSize)_introTextSize = data.introTextSize;
+	        if(data.introTextLvl1)_introTextLvl1 = data.introTextLvl1;
+	        if(data.introTextLvl2)_introTextLvl2 = data.introTextLvl2;
+	        if(data.introTextLvlEndless)_introTextLvlEndless = data.introTextLvlEndless;
+        }
 
 		private static function setPowerUps(data:Object):void
 		{
@@ -410,6 +420,26 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		public static function get growFadeSpeed():Number {
 			return _growFadeSpeed;
+		}
+		
+		public static function get introTextSize():Number {
+			return _introTextSize;
+		}
+
+		public static function get introTextLvl1():String {
+			return _introTextLvl1;
+		}
+
+		public static function get introTextLvl2():String {
+			return _introTextLvl2;
+		}
+
+		public static function get introTextLvlEndless():String {
+			return _introTextLvlEndless;
+		}
+
+		public static function get introTextRotation():Number {
+			return _introTextRotation;
 		}
 	}
 }

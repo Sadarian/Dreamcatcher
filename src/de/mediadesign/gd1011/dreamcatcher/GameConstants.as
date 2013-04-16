@@ -136,6 +136,11 @@ package de.mediadesign.gd1011.dreamcatcher
         private static var _playerBlinkAmount:int;
         private static var _generalBlinkDuration:Number;
         private static var _generalBlinkAmount:int;
+		private static var _introTextRotation:Number;
+		private static var _introTextSize:Number;
+		private static var _introTextLvl1:String;
+		private static var _introTextLvl2:String;
+		private static var _introTextLvlEndless:String;
 
         public static function init(path:String = "Configs/"):void
         {
@@ -192,6 +197,11 @@ package de.mediadesign.gd1011.dreamcatcher
             if(data.playerBlinkAmount)_playerBlinkAmount = data.playerBlinkAmount;
             if(data.generalBlinkDuration)_generalBlinkDuration = data.generalBlinkDuration;
             if(data.generalBlinkAmount)_generalBlinkAmount = data.generalBlinkAmount;
+	        if(data.introTextRotation)_introTextRotation = data.introTextRotation;
+	        if(data.introTextSize)_introTextSize = data.introTextSize;
+	        if(data.introTextLvl1)_introTextLvl1 = data.introTextLvl1;
+	        if(data.introTextLvl2)_introTextLvl2 = data.introTextLvl2;
+	        if(data.introTextLvlEndless)_introTextLvlEndless = data.introTextLvlEndless;
         }
 
 		private static function setPowerUps(data:Object):void
@@ -391,6 +401,26 @@ package de.mediadesign.gd1011.dreamcatcher
 		
 		public static function get fanAngle():Number {
 			return _fanAngle;
+		}
+
+		public static function get introTextSize():Number {
+			return _introTextSize;
+		}
+
+		public static function get introTextLvl1():String {
+			return _introTextLvl1;
+		}
+
+		public static function get introTextLvl2():String {
+			return _introTextLvl2;
+		}
+
+		public static function get introTextLvlEndless():String {
+			return _introTextLvlEndless;
+		}
+
+		public static function get introTextRotation():Number {
+			return _introTextRotation;
 		}
 	}
 }

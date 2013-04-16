@@ -139,25 +139,28 @@ package de.mediadesign.gd1011.dreamcatcher
 			{
 				case 1:
 				{
-					text = createTextField("LEVEL 1  Forest of Fears \n “No mercy!”");
+					text = createTextField(GameConstants.introTextLvl1);
 					GameStage.gameStage.addChild(text);
 					Starling.juggler.delayCall(deleteText, 2, text);
+					trace("lvl1");
 					break;
 				}
 
 				case 2:
 				{
-					text = createTextField("LEVEL 2  Valley of Spiders  \n “Finish it!”");
+					text = createTextField(GameConstants.introTextLvl2);
 					GameStage.gameStage.addChild(text);
 					Starling.juggler.delayCall(deleteText, 2, text);
+					trace("lvl2");
 					break;
 				}
 
 				default:
 				{
-					text = createTextField("Trial of Heroes \n “Survive!!”");
+					text = createTextField(GameConstants.introTextLvlEndless);
 					GameStage.gameStage.addChild(text);
 					Starling.juggler.delayCall(deleteText, 2, text);
+					trace("lvl3");
 					break;
 				}
 			}
@@ -177,12 +180,19 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		private function createTextField(s:String):TextField
 		{
-			var text:TextField = new TextField(500, 200, s, "MenuFont", 50,0xece030b, true);
+			var text:TextField = new TextField(500, 200, s, "MenuFont", GameConstants.introTextSize,0xece030b, true);
 			text.pivotX = text.width/2;
 			text.pivotY = text.height/2;
 			text.x = Starling.current.viewPort.width/2;
 			text.y = Starling.current.viewPort.height/2;
 			text.autoScale = true;
+
+			if (GameConstants.introTextRotation > 0 || GameConstants.introTextRotation < 0)
+			{
+				trace("rotation");
+				text.rotation = GameConstants.introTextRotation*(Math.PI/180);
+			}
+
 			return text;
 		}
 

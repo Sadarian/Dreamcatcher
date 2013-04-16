@@ -27,7 +27,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 		public static function updateScore(entity:Entity):void
 		{
-			var points:TextField = new TextField(300, GameConstants.fontSize, entity.points.toString(), "MenuFont", 100);
+			var points:TextField = new TextField(300, 100, entity.points.toString(), "MenuFont", 100);
 			points.pivotX = points.width/2;
 			points.pivotY = points.height/2;
 			points.x = entity.position.x;
@@ -35,6 +35,8 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			points.scaleX = 0.5;
 			points.scaleY = 0.5;
 			points.alpha = 0.5;
+
+
 
 			if (entity.isEnemy)
 			{
@@ -63,7 +65,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		{
 			for each (var textField:TextField in entityPoints)
 			{
-				if (textField.x == textField.x && textField.y == scoreField.y)
+				if (textField.x == scoreField.x && textField.y == scoreField.y)
 				{
 					var index:Number = entityPoints.indexOf(textField);
 					GameStage.gameStage.removeActor(textField);
@@ -77,10 +79,10 @@ package de.mediadesign.gd1011.dreamcatcher.View
 					showScore(_score);
 				}
 			}
+
 			if (reShake && scoreField.rotation == 15 * (Math.PI / 180))
 			{
 				shakeScore(scoreField);
-
 			}
 		}
 
@@ -123,7 +125,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		public static function addScoreField():void
 		{
 			GameStage.gameStage.addChild(scoreField);
-			scoreField.x = Starling.current.stage.stageWidth - scoreField.width - 50;
+			scoreField.x = Starling.current.stage.stageWidth - scoreField.width;
 			scoreField.y = 50;
             scoreField.touchable =false;
 			scoreField.pivotX = scoreField.width/2;
@@ -132,6 +134,11 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 		public static function removeScoreField():void
 		{
+			for each (var textField:TextField in entityPoints)
+			{
+				GameStage.gameStage.removeActor(textField);
+				entityPoints.splice(entityPoints.indexOf(textField),1);
+			}
 			GameStage.gameStage.removeChild(scoreField);
 			resetScore();
 			initialisation = false;
@@ -142,20 +149,21 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			var fadeInTween:Tween = new Tween (tweenObject,GameConstants.growFadeSpeed,Transitions.EASE_IN);
 			fadeInTween.scaleTo(1);
 			fadeInTween.fadeTo(1);
+//			fadeInTween.moveTo(scoreField.x, scoreField.y);
 			fadeInTween.onComplete = moveTo(tweenObject);
 			Starling.juggler.add(fadeInTween);
 		}
 
-		private static function fadeOut(tweenObject:DisplayObject):void
-		{
-			var fadeOutTween:Tween = new Tween (tweenObject,1,Transitions.EASE_OUT);
-			fadeOutTween.fadeTo(0);
-			Starling.juggler.add(fadeOutTween);
-		}
+//		private static function fadeOut(tweenObject:DisplayObject):void
+//		{
+//			var fadeOutTween:Tween = new Tween (tweenObject,1,Transitions.EASE_OUT);
+//			fadeOutTween.fadeTo(0);
+//			Starling.juggler.add(fadeOutTween);
+//		}
 
 		private static function moveTo(tweenObject:DisplayObject):Function
 		{
-			var moveToTween:Tween = new Tween (tweenObject, GameConstants.moveToSpeed, Transitions.EASE_IN);
+			var moveToTween:Tween = new Tween(tweenObject, GameConstants.moveToSpeed, Transitions.EASE_IN);
 			moveToTween.moveTo(scoreField.x, scoreField.y);
 			Starling.juggler.add(moveToTween);
 			return null;

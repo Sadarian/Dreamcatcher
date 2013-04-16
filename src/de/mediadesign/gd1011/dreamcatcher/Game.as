@@ -189,7 +189,6 @@ package de.mediadesign.gd1011.dreamcatcher
 
 			if (GameConstants.introTextRotation > 0 || GameConstants.introTextRotation < 0)
 			{
-				trace("rotation");
 				text.rotation = GameConstants.introTextRotation*(Math.PI/180);
 			}
 

@@ -203,7 +203,7 @@ package de.mediadesign.gd1011.dreamcatcher
 
 			if(data.growFadeSpeed)_growFadeSpeed = data.growFadeSpeed;
 			if(data.fontSize)_fontSize = data.fontSize;
-			if(data.moveToSpeedt)_moveToSpeed = data.moveToSpeed;
+			if(data.moveToSpeed)_moveToSpeed = data.moveToSpeed;
 	        if(data.introTextRotation)_introTextRotation = data.introTextRotation;
 	        if(data.introTextSize)_introTextSize = data.introTextSize;
 	        if(data.introTextLvl1)_introTextLvl1 = data.introTextLvl1;

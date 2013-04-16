@@ -136,6 +136,9 @@ package de.mediadesign.gd1011.dreamcatcher
         private static var _playerBlinkAmount:int;
         private static var _generalBlinkDuration:Number;
         private static var _generalBlinkAmount:int;
+		private static var _growFadeSpeed:Number;
+		private static var _fontSize:Number;
+		private static var _moveToSpeed:Number;
 
         public static function init(path:String = "Configs/"):void
         {
@@ -192,7 +195,11 @@ package de.mediadesign.gd1011.dreamcatcher
             if(data.playerBlinkAmount)_playerBlinkAmount = data.playerBlinkAmount;
             if(data.generalBlinkDuration)_generalBlinkDuration = data.generalBlinkDuration;
             if(data.generalBlinkAmount)_generalBlinkAmount = data.generalBlinkAmount;
-        }
+
+			if(data.growFadeSpeed)_growFadeSpeed = data.growFadeSpeed;
+			if(data.fontSize)_fontSize = data.fontSize;
+			if(data.moveToSpeedt)_moveToSpeed = data.moveToSpeed;
+		}
 
 		private static function setPowerUps(data:Object):void
 		{
@@ -391,6 +398,18 @@ package de.mediadesign.gd1011.dreamcatcher
 		
 		public static function get fanAngle():Number {
 			return _fanAngle;
+		}
+
+		public static function get fontSize():Number {
+			return _fontSize;
+		}
+
+		public static function get moveToSpeed():Number {
+			return _moveToSpeed;
+		}
+
+		public static function get growFadeSpeed():Number {
+			return _growFadeSpeed;
 		}
 	}
 }

@@ -19,5 +19,8 @@
     "playerBlinkDuration":2,
     "playerBlinkAmount":3,
     "generalBlinkDuration":0.1,
-    "generalBlinkAmount":1
+    "generalBlinkAmount":1,
+    "growFadeSpeed":1.5,
+    "fontSize":100,
+    "moveToSpeed":2.5
 }

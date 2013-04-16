@@ -18,6 +18,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
         private var sumTime:Number = 0;
 	    private var loadPowerShot:AnimatedModel;
 	    private var temPosition:Point;
+	    private var stack:Number = 0;
 
 	    public function set speed(value:Number):void
         {
@@ -52,6 +53,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 		        loadPowerShot.y = temPosition.y;
 		        loadPowerShot.scaleX = 0.5;
 		        loadPowerShot.scaleY = 0.5;
+		        stack = 1;
 	        }
 	        else if (sumTime >= 2)
 	        {
@@ -59,6 +61,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 		        loadPowerShot.y = temPosition.y;
 		        loadPowerShot.scaleX = 1;
 		        loadPowerShot.scaleY = 1;
+		        stack = 2;
 	        }
         }
 
@@ -76,6 +79,25 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 			    (entity.movementSystem as MovementBullet).calculateVelocity(temPosition);
 			    GraphicsManager.graphicsManager.playSound("PlayerShoot");
 			    GameStage.gameStage.addChild(entity.movieClip);
+
+			    switch (stack)
+			    {
+				    case 1:
+				    {
+					    entity.movieClip.scaleX = 0.5;
+					    entity.movieClip.scaleY = 0.5;
+					    break;
+				    }
+				    case 2:
+				    {
+						entity.health *= 2;
+					    entity.movieClip.scaleX = 1;
+					    entity.movieClip.scaleY = 1;
+					    break;
+				    }
+			    }
+
+			    stack = 0;
 		    }
 	    }
     }

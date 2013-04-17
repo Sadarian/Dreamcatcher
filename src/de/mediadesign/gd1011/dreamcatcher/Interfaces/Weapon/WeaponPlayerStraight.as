@@ -35,7 +35,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 
                 var temPosition:Point = new Point(position.x - -125, position.y - -33);
 
-				var entity:Entity
+				var entity:Entity;
 
 				if ((PowerUpTrigger.activePowerUp == GameConstants.POWERUP_FIRE_RATE) && PowerUpTrigger.activeStack == 2)
 				{

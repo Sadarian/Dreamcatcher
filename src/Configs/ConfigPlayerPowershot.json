@@ -1,0 +1,12 @@
+{
+    "name":"PlayerPowershot",
+    "health":30,
+    "movementSystem":"MovementBullet",
+    "movementSpeed":775,
+    "weaponSystem":"null",
+    "weaponSpeed":0.3,
+    "collisionMode":"CollisionCircle",
+    "collisionPoint":[0, -5],
+    "collisionValues":[70, 70],
+    "points":[0]
+}

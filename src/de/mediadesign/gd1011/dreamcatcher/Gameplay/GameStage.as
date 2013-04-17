@@ -30,7 +30,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 		private var movementSpeeds:Vector.<Number>;
 
-        private var pauseButton:PauseButton;
+        private var _pauseButton:PauseButton;
 
 		private var lvlEnd:Boolean;
 
@@ -74,8 +74,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
                 addChild(containerGroup[i]);
             }
 
-            pauseButton = new PauseButton();
-            addChild(pauseButton);
+            _pauseButton = new PauseButton();
+            addChild(_pauseButton);
 		}
 
 		public function resetAll():void
@@ -91,9 +91,9 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 			movementSpeeds = null;
 
-			removeChild(pauseButton, true);
+			removeChild(_pauseButton, true);
 
-			pauseButton = null;
+			_pauseButton = null;
 
 			removeChild(background, true);
 
@@ -265,6 +265,10 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
                 HighScoreMenu.showAndHide();
             }
 
+		}
+
+		public function get pauseButton():PauseButton {
+			return _pauseButton;
 		}
 	}
 }

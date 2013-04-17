@@ -70,6 +70,7 @@ package de.mediadesign.gd1011.dreamcatcher
 
 		public static const PLAYER_BULLET:String = "PlayerBullet";
 		public static const PLAYER_STRONG_BULLET:String = "PlayerStrongBullet";
+		public static const PLAYER_POWERSHOT:String = "PlayerPowershot";
 	    public static const ENEMY_BULLET:String = "EnemyBullet";
         public static const BOSS1_BULLET:String = "Boss1Bullet";
         public static const BOSS2_BULLET:String = "Boss2Bullet";
@@ -147,8 +148,8 @@ package de.mediadesign.gd1011.dreamcatcher
 
         public static function init(path:String = "Configs/"):void
         {
-	        new WeaponPlayerStraight();
-			new WeaponPlayerFan();
+	        Game.weaponPlayerStraight;
+			Game.weaponPlayerFan;
             new WeaponBoss();
             new MovementCharger();
 	        new MovementPowerUp();

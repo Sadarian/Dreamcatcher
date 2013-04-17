@@ -2,6 +2,9 @@ package de.mediadesign.gd1011.dreamcatcher
 {
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
+	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
+	import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
+	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerPowershot;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerStraight;
     import de.mediadesign.gd1011.dreamcatcher.Processes.ActivePowerUpProcess;
 	import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionDummyBoxes;
@@ -20,11 +23,14 @@ package de.mediadesign.gd1011.dreamcatcher
     import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
 	import de.mediadesign.gd1011.dreamcatcher.View.Menu.PauseMenu;
 	import de.mediadesign.gd1011.dreamcatcher.View.Menu.TutorialMenu;
+	import de.mediadesign.gd1011.dreamcatcher.View.PauseButton;
+	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
 	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
 	import de.mediadesign.gd1011.dreamcatcher.View.Score;
 
     import flash.geom.Point;
 	import flash.media.SoundTransform;
+	import flash.net.InterfaceAddress;
 	import flash.ui.Keyboard;
     import flash.utils.getTimer;
     import starling.core.Starling;
@@ -57,6 +63,9 @@ package de.mediadesign.gd1011.dreamcatcher
 		private var now:Number = 0;
 		public var noPlayTime:Number = 0;
 		private var passedLvlTime:Number = 0;
+		private static var _weaponPlayerStraight:WeaponPlayerStraight = new WeaponPlayerStraight();
+		private static var _weaponPlayerFan:WeaponPlayerFan = new WeaponPlayerFan();
+		private static var _weaponPlayerPowershot:WeaponPlayerPowershot = new WeaponPlayerPowershot();
 
         //DEBUG:
         private var touchPosition:Point = new Point();
@@ -198,6 +207,8 @@ package de.mediadesign.gd1011.dreamcatcher
         private function allowShooting():void
         {
             entityManager.entities[0].switchWeapon(new WeaponPlayerStraight());
+
+            entityManager.entities[0].switchWeapon(weaponPlayerStraight);
             entityManager.entities[0].setWeaponSpeed();
         }
 
@@ -251,13 +262,42 @@ package de.mediadesign.gd1011.dreamcatcher
             var touches:Vector.<Touch> = new Vector.<Touch>();
 	        e.getTouches(stage, TouchPhase.BEGAN, touches);
 	        e.getTouches(stage, TouchPhase.MOVED, touches);
+	        e.getTouches(stage, TouchPhase.ENDED, touches);
 	        e.getTouches(stage, TouchPhase.STATIONARY, touches);
 
             MovementPlayer.touch = null;
 
-            for each(var touch:Touch in touches)
-                if(touch.getLocation(stage).x < GameConstants.playerMovementBorder.width)
-                    MovementPlayer.touch = touch;
+	        var player:Entity = entityManager.getEntity(GameConstants.PLAYER);
+
+	        for (var i:int = 0; i < touches.length; i++) {
+		        switch (i)
+		        {
+			        case 0:
+			        {
+				        if(touches[0].getLocation(stage).x < GameConstants.playerMovementBorder.width)
+				        {
+					        MovementPlayer.touch = touches[0];
+				        }
+
+				        if (touches.length < 2 && !PowerUpTrigger.powerUpActive && player.weaponSystem != _weaponPlayerStraight && player.weaponSystem != null)
+				        {
+					        _weaponPlayerPowershot.shootNow();
+					        player.switchWeapon(null);
+					        Starling.juggler.delayCall(allowShooting, 0.5);
+				        }
+				        break;
+			        }
+			        case 1:
+			        {
+				        if (!PowerUpTrigger.powerUpActive && touches[1].target != PowerUpTrigger.powerUpButton
+						  && touches[1].target != GameStage.gameStage.pauseButton)
+				        {
+					        player.switchWeapon(_weaponPlayerPowershot);
+				        }
+				        break;
+			        }
+		        }
+	        }
 
             if(Dreamcatcher.debugMode)
                 if(e.getTouch(stage, TouchPhase.HOVER))
@@ -306,5 +346,17 @@ package de.mediadesign.gd1011.dreamcatcher
                 entityManager.getEntity("Player").blink(GameConstants.blinkAmount("Player"));
             }
         }
-    }
+
+		public static function get weaponPlayerFan():WeaponPlayerFan {
+			return _weaponPlayerFan;
+		}
+
+		public static function get weaponPlayerPowershot():WeaponPlayerPowershot {
+			return _weaponPlayerPowershot;
+		}
+
+		public static function get weaponPlayerStraight():WeaponPlayerStraight {
+			return _weaponPlayerStraight;
+		}
+	}
 }

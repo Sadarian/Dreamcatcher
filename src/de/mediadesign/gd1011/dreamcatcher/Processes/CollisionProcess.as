@@ -57,6 +57,11 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 
                                         pickUpPowerUp(entityA, entityB);
 
+	                                    if ((entityA.isPowershot || entityB.isPowershot) && (!entityA.isBullet || !entityB.isBullet))
+	                                    {
+		                                    powershot(entityA, entityB);
+	                                    }
+
                                         lifeBarUpdate()
                                     }
                                 }
@@ -64,6 +69,34 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 						}
 					}
 				}
+		}
+
+		private static function powershot(entityA:Entity, entityB:Entity):void
+		{
+			var tempHealth:Number;
+
+			if (!entityA.isPowershot && entityA.health > 0)
+			{
+				trace("HP: " + entityB.health);
+				entityA.blink(GameConstants.blinkAmount(entityA.name));
+				showAnimation([entityA], true);
+
+				tempHealth = entityA.health;
+				entityA.health = entityA.health - entityB.health;
+				entityB.health = entityB.health - tempHealth;
+			}
+			else if (!entityB.isPowershot && entityB.health > 0)
+			{
+				trace("HP: " + entityA.health);
+				entityB.blink(GameConstants.blinkAmount(entityB.name));
+				showAnimation([entityB], true);
+
+				tempHealth = entityB.health;
+				entityB.health = entityB.health - entityA.health;
+				entityA.health = entityA.health - tempHealth;
+			}
+
+			trace("hit with powershot EntityA: " + entityA.name + " HP: " + entityA.health + " EntityB: " + entityB.name + " HP: " + entityB.health);
 		}
 
 	    private static function pickUpPowerUp(entityA:Entity, entityB:Entity):void

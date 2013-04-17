@@ -149,7 +149,7 @@ public class Game extends Sprite
         private function allowShooting():void
         {
 
-            entityManager.entities[0].switchWeapon(new WeaponPlayerStraight());
+            entityManager.entities[0].switchWeapon(weaponPlayerStraight);
             entityManager.entities[0].setWeaponSpeed();
         }
 
@@ -220,14 +220,11 @@ public class Game extends Sprite
 					        MovementPlayer.touch = touches[0];
 				        }
 
-
-
-				        if (touches.length < 2 && !PowerUpTrigger.powerUpActive && player.weaponSystem != _weaponPlayerStraight)
+				        if (touches.length < 2 && !PowerUpTrigger.powerUpActive && player.weaponSystem != _weaponPlayerStraight && player.weaponSystem != null)
 				        {
 					        _weaponPlayerPowershot.shootNow();
-					        player.switchWeapon(_weaponPlayerStraight);
-					        player.setWeaponSpeed();
-					        trace("change to Normal")
+					        player.switchWeapon(null);
+					        Starling.juggler.delayCall(allowShooting, 0.5);
 				        }
 				        break;
 			        }

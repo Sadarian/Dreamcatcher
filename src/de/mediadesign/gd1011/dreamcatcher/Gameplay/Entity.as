@@ -250,6 +250,11 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             return (name.search(GameConstants.BULLET) != -1);
         }
 
+	    public function get isPowershot():Boolean
+	    {
+		    return (name == GameConstants.PLAYER_POWERSHOT);
+	    }
+
         public function get isPowerUp():Boolean
         {
             return (name.search(GameConstants.POWERUP) != -1);

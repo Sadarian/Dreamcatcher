@@ -10,7 +10,10 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
 
 	import flash.geom.Point;
-    import starling.core.Starling;
+
+	import org.osmf.metadata.CuePoint;
+
+	import starling.core.Starling;
 
     public class WeaponPlayerPowershot implements IWeapon
     {
@@ -19,6 +22,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 	    private var loadPowerShot:AnimatedModel;
 	    private var temPosition:Point;
 	    private var stack:Number = 0;
+	    private var canShoot:Boolean = false;
 
 	    public function set speed(value:Number):void
         {
@@ -54,6 +58,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 		        loadPowerShot.scaleX = 0.5;
 		        loadPowerShot.scaleY = 0.5;
 		        stack = 1;
+		        canShoot = true;
 	        }
 	        else if (sumTime >= 2)
 	        {
@@ -62,19 +67,20 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 		        loadPowerShot.scaleX = 1;
 		        loadPowerShot.scaleY = 1;
 		        stack = 2;
+		        canShoot = true;
 	        }
         }
 
 	    public function shootNow():void
 	    {
-		    if (loadPowerShot != null)
+		    if (loadPowerShot != null && canShoot)
 		    {
 			    sumTime = 0;
 
 			    loadPowerShot.scaleX = 0;
 			    loadPowerShot.scaleY = 0;
 
-			    var entity:Entity = EntityManager.entityManager.createEntity(GameConstants.PLAYER_STRONG_BULLET, temPosition);
+			    var entity:Entity = EntityManager.entityManager.createEntity(GameConstants.PLAYER_POWERSHOT, temPosition);
 			    (entity.movementSystem as MovementBullet).target = new Point(Starling.current.viewPort.width * 1.2, temPosition.y);
 			    (entity.movementSystem as MovementBullet).calculateVelocity(temPosition);
 			    GraphicsManager.graphicsManager.playSound("PlayerShoot");
@@ -84,20 +90,23 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 			    {
 				    case 1:
 				    {
+					    entity.health /= 2;
 					    entity.movieClip.scaleX = 0.5;
 					    entity.movieClip.scaleY = 0.5;
+					    trace("powerBullet HP: " + entity.health);
 					    break;
 				    }
 				    case 2:
 				    {
-						entity.health *= 2;
 					    entity.movieClip.scaleX = 1;
 					    entity.movieClip.scaleY = 1;
+					    trace("powerBullet better HP: " + entity.health);
 					    break;
 				    }
 			    }
 
 			    stack = 0;
+			    canShoot = false;
 		    }
 	    }
     }

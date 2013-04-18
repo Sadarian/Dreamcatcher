@@ -29,6 +29,7 @@ import flash.geom.Point;
         private var targetPoint:Point;
 
         private var _onInit:Boolean = true;
+		private static var _incoming:Boolean = false;
         private var _duration:Number = 0;
         private var _angle:Number = 0;
         private var _speed:Number = 0;
@@ -51,8 +52,11 @@ import flash.geom.Point;
         {
             _duration += deltaTime;
             if(_duration < GameConstants.bossFadingInTime)
-                return (position.add(new Point(-GameConstants.bossDistanceBorder/GameConstants.bossFadingInTime * deltaTime ,0)));
-            else
+			{
+				_incoming = true;
+				return (position.add(new Point(-GameConstants.bossDistanceBorder/GameConstants.bossFadingInTime * deltaTime ,0)));
+			}
+            else if(!_incoming)
             {
                 if(!_onInit && boss.name == GameConstants.BOSS1 && boss.health/boss.maxHealth <= 0.3 && phase != FLEE)
                     switchTo(FLEE);
@@ -127,6 +131,7 @@ import flash.geom.Point;
                 }
                 return position;
             }
+			return position;
         }
 
         public function get onInit():Boolean
@@ -189,5 +194,13 @@ import flash.geom.Point;
         {
             _canMove = value;
         }
-    }
+
+		public static function get incoming():Boolean {
+			return _incoming;
+		}
+
+		public static function set incoming(value:Boolean):void {
+			_incoming = value;
+		}
+	}
 }

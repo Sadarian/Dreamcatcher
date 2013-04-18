@@ -4,6 +4,7 @@ package de.mediadesign.gd1011.dreamcatcher
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
+	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBoss;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerPowershot;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerStraight;
     import de.mediadesign.gd1011.dreamcatcher.Processes.ActivePowerUpProcess;
@@ -204,13 +205,17 @@ package de.mediadesign.gd1011.dreamcatcher
 			return text;
 		}
 
-        private function allowShooting():void
+        public function allowShooting():void
         {
-            entityManager.entities[0].switchWeapon(new WeaponPlayerStraight());
-
             entityManager.entities[0].switchWeapon(weaponPlayerStraight);
             entityManager.entities[0].setWeaponSpeed();
         }
+
+		public function allowMoving():void
+		{
+			entityManager.entities[0].switchMovement(new MovementPlayer());
+			entityManager.entities[0].setMovementSpeed();
+		}
 
         public function setStartTimeStamp():void
         {
@@ -251,6 +256,13 @@ package de.mediadesign.gd1011.dreamcatcher
                 {
                     CollisionDummyBoxes.update();
                 }
+
+				if (entityManager.getEntity(GameConstants.PLAYER).position.equals(GameConstants.playerStartPosition) && MovementBoss.incoming)
+				{
+ 					MovementBoss.incoming = false;
+					allowMoving();
+					allowShooting();
+				}
             }
 		}
 
@@ -267,10 +279,12 @@ package de.mediadesign.gd1011.dreamcatcher
 
             MovementPlayer.touch = null;
 
+
 	        var player:Entity = entityManager.getEntity(GameConstants.PLAYER);
 
 	        for (var i:int = 0; i < touches.length; i++) {
-		        switch (i)
+//		        trace("touch Nr.: " + i + " touche id: " + touches[i].isTouching());
+				switch (i)
 		        {
 			        case 0:
 			        {
@@ -289,8 +303,8 @@ package de.mediadesign.gd1011.dreamcatcher
 			        }
 			        case 1:
 			        {
-				        if (!PowerUpTrigger.powerUpActive && touches[1].target != PowerUpTrigger.powerUpButton
-						  && touches[1].target != GameStage.gameStage.pauseButton)
+				        if (!PowerUpTrigger.powerUpActive && !touches[1].isTouching(PowerUpTrigger.powerUpButton)
+						  && !touches[1].isTouching(GameStage.gameStage.pauseButton))
 				        {
 					        player.switchWeapon(_weaponPlayerPowershot);
 				        }

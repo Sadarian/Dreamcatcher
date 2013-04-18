@@ -2,7 +2,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 {
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
-    import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
+	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementPlayerToStart;
+	import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
     import de.mediadesign.gd1011.dreamcatcher.View.Menu.HighScoreMenu;
     import de.mediadesign.gd1011.dreamcatcher.View.PauseButton;
 	import de.mediadesign.gd1011.dreamcatcher.Game;
@@ -13,7 +14,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 	import de.mediadesign.gd1011.dreamcatcher.View.Score;
 
     import starling.animation.DelayedCall;
-    import starling.core.Starling;
+	import starling.core.Starling;
+	import starling.core.Starling;
     import starling.display.DisplayObject;
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -227,6 +229,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 			bossStage = true;
             Starling.juggler.delayCall(beginReduction, delay/60);
+			var player:Entity = EntityManager.entityManager.getEntity(GameConstants.PLAYER);
             function beginReduction():void
             {
                 var call:DelayedCall = Starling.juggler.delayCall(reduceMovementSpeed, GameConstants.BOSS_SPEED_REDUCTION);
@@ -241,10 +244,17 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             function playerDefault():void
             {
                 GameConstants.Player_Default = "Stand";
-                var player:Entity = EntityManager.entityManager.getEntity(GameConstants.PLAYER);
+
                 if(player.getAnimatedModel(0).ActualAnimation.name == AnimatedModel.WALK)
                     player.playAnimation(AnimatedModel.STAND);
+				Starling.juggler.delayCall(enterBoss, 8);
             }
+			function enterBoss():void
+			{
+				player.switchMovement(new MovementPlayerToStart());
+				player.setMovementSpeed();
+				player.switchWeapon(null);
+			}
 		}
 
 		public function endLvl(text:String):void

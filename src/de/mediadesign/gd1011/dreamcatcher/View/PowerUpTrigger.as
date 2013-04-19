@@ -87,8 +87,8 @@ package de.mediadesign.gd1011.dreamcatcher.View
 					{
 						healthIncrease = new AnimatedModel("LifebarHealthIncrease", new Array(), "Default");
 						healthIncrease.start();
-						healthIncrease.x = 128;
-						healthIncrease.y = 105;
+						healthIncrease.x = 142;
+						healthIncrease.y = 122;
 						healthIncrease.ActualAnimation.loop = false;
 						GameStage.gameStage.addChild(healthIncrease);
 

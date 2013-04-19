@@ -43,9 +43,9 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		{
 			if (entity.isPlayer)
 			{
-				position = new Point(161, 43);
+				position = new Point(172, 43);
 				color = 0xFF0505;
-				size = 41
+				size = 41;
 				lifeBar = new Image(createLifeShape(0));
 				playerIcon = GraphicsManager.graphicsManager.getImage("PlayerLifeBarState_1");
 			}

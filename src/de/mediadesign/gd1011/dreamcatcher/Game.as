@@ -1,9 +1,12 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
+	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
+	import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
+	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBoss;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerPowershot;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerStraight;
     import de.mediadesign.gd1011.dreamcatcher.Processes.ActivePowerUpProcess;
@@ -33,7 +36,7 @@ package de.mediadesign.gd1011.dreamcatcher
 	import flash.net.InterfaceAddress;
 	import flash.ui.Keyboard;
     import flash.utils.getTimer;
-    import starling.core.Starling;
+	import starling.core.Starling;
 	import starling.display.Button;
     import starling.display.Image;
     import starling.display.Sprite;
@@ -204,13 +207,18 @@ package de.mediadesign.gd1011.dreamcatcher
 			return text;
 		}
 
-        private function allowShooting():void
+        public function allowShooting():void
         {
-            entityManager.entities[0].switchWeapon(new WeaponPlayerStraight());
-
             entityManager.entities[0].switchWeapon(weaponPlayerStraight);
             entityManager.entities[0].setWeaponSpeed();
         }
+
+		public function allowMoving():void
+		{
+			entityManager.entities[0].switchMovement(new MovementPlayer());
+			entityManager.entities[0].setMovementSpeed();
+			MovementBoss.incoming = false;
+		}
 
         public function setStartTimeStamp():void
         {
@@ -251,6 +259,15 @@ package de.mediadesign.gd1011.dreamcatcher
                 {
                     CollisionDummyBoxes.update();
                 }
+
+				if (MovementBoss.incoming && entityManager.getEntity(GameConstants.PLAYER).position.equals(GameConstants.playerStartPosition))
+				{
+					var text:TextField = createTextField("Kill it!!");
+					GameStage.gameStage.addChild(text);
+					Starling.juggler.delayCall(allowMoving,1);
+					Starling.juggler.delayCall(deleteText, 2 , text);
+					allowShooting();
+				}
             }
 		}
 
@@ -267,10 +284,12 @@ package de.mediadesign.gd1011.dreamcatcher
 
             MovementPlayer.touch = null;
 
+
 	        var player:Entity = entityManager.getEntity(GameConstants.PLAYER);
 
 	        for (var i:int = 0; i < touches.length; i++) {
-		        switch (i)
+//		        trace("touch Nr.: " + i + " touche id: " + touches[i].isTouching());
+				switch (i)
 		        {
 			        case 0:
 			        {
@@ -278,8 +297,8 @@ package de.mediadesign.gd1011.dreamcatcher
 				        {
 					        MovementPlayer.touch = touches[0];
 				        }
-
-				        if (touches.length < 2 && player != null && !PowerUpTrigger.powerUpActive && player.weaponSystem != _weaponPlayerStraight && player.weaponSystem != null)
+				        if (touches.length < 2 && !PowerUpTrigger.powerUpActive && player != null
+						        && player.weaponSystem != _weaponPlayerStraight && player.weaponSystem != null)
 				        {
 					        _weaponPlayerPowershot.shootNow();
 					        player.switchWeapon(null);
@@ -289,8 +308,8 @@ package de.mediadesign.gd1011.dreamcatcher
 			        }
 			        case 1:
 			        {
-				        if (!PowerUpTrigger.powerUpActive && touches[1].target != PowerUpTrigger.powerUpButton
-						  && touches[1].target != GameStage.gameStage.pauseButton)
+				        if (!PowerUpTrigger.powerUpActive && !touches[1].isTouching(PowerUpTrigger.powerUpButton)
+						  && !touches[1].isTouching(GameStage.gameStage.pauseButton))
 				        {
 					        player.switchWeapon(_weaponPlayerPowershot);
 				        }

@@ -2,7 +2,9 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 {
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
-    import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
+	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementPlayer;
+	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementPlayerToStart;
+	import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
     import de.mediadesign.gd1011.dreamcatcher.View.Menu.HighScoreMenu;
     import de.mediadesign.gd1011.dreamcatcher.View.PauseButton;
 	import de.mediadesign.gd1011.dreamcatcher.Game;
@@ -13,7 +15,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 	import de.mediadesign.gd1011.dreamcatcher.View.Score;
 
     import starling.animation.DelayedCall;
-    import starling.core.Starling;
+	import starling.core.Starling;
+	import starling.core.Starling;
     import starling.display.DisplayObject;
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -101,6 +104,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			PowerUpTrigger.deleteButton();
 			MovementBoss.resetPhase();
 			EntityManager.entityManager.removeAll();
+			removeChildren();
 		}
 
 		public function loadLevel(levelIndex:int = 1):void
@@ -167,7 +171,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 					{
 						switchToBoss();
 					}
-					if (Game.currentLvl == 2 && (now.toFixed() == "75"))
+					if (Game.currentLvl == 2 && (now.toFixed() == "78"))
 					{
 						switchToBoss();
 					}
@@ -227,6 +231,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 			bossStage = true;
             Starling.juggler.delayCall(beginReduction, delay/60);
+			var player:Entity = EntityManager.entityManager.getEntity(GameConstants.PLAYER);
             function beginReduction():void
             {
                 var call:DelayedCall = Starling.juggler.delayCall(reduceMovementSpeed, GameConstants.BOSS_SPEED_REDUCTION);
@@ -241,10 +246,26 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             function playerDefault():void
             {
                 GameConstants.Player_Default = "Stand";
-                var player:Entity = EntityManager.entityManager.getEntity(GameConstants.PLAYER);
+
                 if(player.getAnimatedModel(0).ActualAnimation.name == AnimatedModel.WALK)
                     player.playAnimation(AnimatedModel.STAND);
+	            if (Game.currentLvl == 1)
+	            {
+		            Starling.juggler.delayCall(enterBoss, 5);
+	            }
+	            else if (Game.currentLvl == 2)
+	            {
+		            Starling.juggler.delayCall(enterBoss, 7);
+	            }
             }
+			function enterBoss():void
+			{
+				player.switchMovement(new MovementPlayerToStart());
+				player.setMovementSpeed();
+				player.increaseMovementSpeed(1.5);
+				MovementPlayer.touch = null;
+				player.switchWeapon(null);
+			}
 		}
 
 		public function endLvl(text:String):void

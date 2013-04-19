@@ -2,6 +2,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 {
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
+	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementPlayer;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementPlayerToStart;
 	import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
     import de.mediadesign.gd1011.dreamcatcher.View.Menu.HighScoreMenu;
@@ -103,6 +104,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			PowerUpTrigger.deleteButton();
 			MovementBoss.resetPhase();
 			EntityManager.entityManager.removeAll();
+			removeChildren();
 		}
 
 		public function loadLevel(levelIndex:int = 1):void
@@ -169,7 +171,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 					{
 						switchToBoss();
 					}
-					if (Game.currentLvl == 2 && (now.toFixed() == "75"))
+					if (Game.currentLvl == 2 && (now.toFixed() == "78"))
 					{
 						switchToBoss();
 					}
@@ -247,12 +249,21 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
                 if(player.getAnimatedModel(0).ActualAnimation.name == AnimatedModel.WALK)
                     player.playAnimation(AnimatedModel.STAND);
-				Starling.juggler.delayCall(enterBoss, 8);
+	            if (Game.currentLvl == 1)
+	            {
+		            Starling.juggler.delayCall(enterBoss, 5);
+	            }
+	            else if (Game.currentLvl == 2)
+	            {
+		            Starling.juggler.delayCall(enterBoss, 7);
+	            }
             }
 			function enterBoss():void
 			{
 				player.switchMovement(new MovementPlayerToStart());
 				player.setMovementSpeed();
+				player.increaseMovementSpeed(1.5);
+				MovementPlayer.touch = null;
 				player.switchWeapon(null);
 			}
 		}

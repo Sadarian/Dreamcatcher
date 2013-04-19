@@ -24,8 +24,8 @@
     "fontSize":100,
     "moveToSpeed":2.5,
     "introTextRotation":0,
-    "introTextSize":50,
+    "introTextSize":60,
     "introTextLvl1":"Forest of Fears",
-    "introTextLvl2":"Forest of Fears",
+    "introTextLvl2":"Valley of Spiders",
     "introTextLvlEndless":"Forest of Fears"
 }

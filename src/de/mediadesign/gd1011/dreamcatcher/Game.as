@@ -1,6 +1,8 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
+	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
+	import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
@@ -34,7 +36,9 @@ package de.mediadesign.gd1011.dreamcatcher
 	import flash.net.InterfaceAddress;
 	import flash.ui.Keyboard;
     import flash.utils.getTimer;
-    import starling.core.Starling;
+
+	import starling.core.Starling;
+	import starling.core.Starling;
 	import starling.display.Button;
     import starling.display.Image;
     import starling.display.Sprite;
@@ -215,6 +219,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		{
 			entityManager.entities[0].switchMovement(new MovementPlayer());
 			entityManager.entities[0].setMovementSpeed();
+			MovementBoss.incoming = false;
 		}
 
         public function setStartTimeStamp():void
@@ -257,10 +262,12 @@ package de.mediadesign.gd1011.dreamcatcher
                     CollisionDummyBoxes.update();
                 }
 
-				if (entityManager.getEntity(GameConstants.PLAYER).position.equals(GameConstants.playerStartPosition) && MovementBoss.incoming)
+				if (MovementBoss.incoming && entityManager.getEntity(GameConstants.PLAYER).position.equals(GameConstants.playerStartPosition))
 				{
- 					MovementBoss.incoming = false;
-					allowMoving();
+					var text:TextField = createTextField("Kill it!!");
+					GameStage.gameStage.addChild(text);
+					Starling.juggler.delayCall(allowMoving,1);
+					Starling.juggler.delayCall(deleteText, 2 , text);
 					allowShooting();
 				}
             }
@@ -293,7 +300,8 @@ package de.mediadesign.gd1011.dreamcatcher
 					        MovementPlayer.touch = touches[0];
 				        }
 
-				        if (touches.length < 2 && !PowerUpTrigger.powerUpActive && player.weaponSystem != _weaponPlayerStraight && player.weaponSystem != null)
+				        if (touches.length < 2 && !PowerUpTrigger.powerUpActive && player != null
+						        && player.weaponSystem != _weaponPlayerStraight && player.weaponSystem != null)
 				        {
 					        _weaponPlayerPowershot.shootNow();
 					        player.switchWeapon(null);

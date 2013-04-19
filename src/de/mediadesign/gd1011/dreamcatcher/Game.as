@@ -279,7 +279,7 @@ package de.mediadesign.gd1011.dreamcatcher
 					        MovementPlayer.touch = touches[0];
 				        }
 
-				        if (touches.length < 2 && !PowerUpTrigger.powerUpActive && player.weaponSystem != _weaponPlayerStraight && player.weaponSystem != null)
+				        if (touches.length < 2 && player != null && !PowerUpTrigger.powerUpActive && player.weaponSystem != _weaponPlayerStraight && player.weaponSystem != null)
 				        {
 					        _weaponPlayerPowershot.shootNow();
 					        player.switchWeapon(null);

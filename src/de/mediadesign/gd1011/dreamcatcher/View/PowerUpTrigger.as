@@ -136,8 +136,8 @@ package de.mediadesign.gd1011.dreamcatcher.View
 				{
 					powerUpIcon = new Image(GraphicsManager.graphicsManager.getTexture(name));
 					GameStage.gameStage.addChild(powerUpIcon);
-					powerUpIcon.x = powerUp.collisionValues.x * 2 - 9;
-					powerUpIcon.y = powerUp.collisionValues.y * 2 + 12;
+					powerUpIcon.x = powerUp.collisionValues.x - 9;
+					powerUpIcon.y = powerUp.collisionValues.y * 2 + 40;
 					powerUpIcon.scaleX = 0.93;
 					powerUpIcon.scaleY = 0.93;
 				}

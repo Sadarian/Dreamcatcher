@@ -21,8 +21,8 @@ import de.mediadesign.gd1011.dreamcatcher.View.Menu.PauseMenu;
         public function PauseButton()
         {
             super(GraphicsManager.graphicsManager.getTexture("PauseButton"), "", GraphicsManager.graphicsManager.getTexture("PauseButton"));
-            x = Starling.current.viewPort.width - 80;
-            y = 30;
+            x = Starling.current.viewPort.width - 140;
+            y = 20;
             enabled = true;
             scaleWhenDown = 0.5;
             useHandCursor = true;

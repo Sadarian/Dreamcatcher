@@ -41,6 +41,11 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 								{
 									meleeCombat(entityA, entityB);
 
+									if ((entityA.isPowershot || entityB.isPowershot) && !(entityA.isBullet || entityB.isBullet))
+									{
+										powershot(entityA, entityB);
+									}
+
 									lifeBarUpdate();
 								}
 							}
@@ -57,7 +62,7 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 
                                         pickUpPowerUp(entityA, entityB);
 
-	                                    if ((entityA.isPowershot || entityB.isPowershot) && (!entityA.isBullet || !entityB.isBullet))
+	                                    if ((entityA.isPowershot || entityB.isPowershot))
 	                                    {
 		                                    powershot(entityA, entityB);
 	                                    }
@@ -123,7 +128,7 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 
         private static function rangeCombat(entityA:Entity, entityB:Entity):void
         {
-	        if (!(entityA.isPowerUp || entityB.isPowerUp))
+	        if (!(entityA.isPowerUp || entityB.isPowerUp || entityA.isPowershot || entityB.isPowershot))
 	        {
 		        if (entityA.isBullet && entityA.health > 0 && !entityB.isBullet && (entityA.name.search(entityB.name) == -1)  && entityB.canBeAttacked)
 	            {

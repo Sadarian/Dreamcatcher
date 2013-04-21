@@ -89,8 +89,6 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
                     (Starling.current.root as Game).startLevel(Game.currentLvl);
                     break;
 				case(mElements[4]):
-                    //HighScoreMenu.showAndHide();
-                    //HighScoreMenu.highScoreMenu.setScore(123456);
 					TutorialMenu.showAndHide();
 					break;
             }

@@ -20,7 +20,8 @@ package de.mediadesign.gd1011.dreamcatcher
     import de.mediadesign.gd1011.dreamcatcher.Processes.MoveProcess;
     import de.mediadesign.gd1011.dreamcatcher.Processes.RenderProcess;
     import de.mediadesign.gd1011.dreamcatcher.Processes.ShootingProcess;
-	import de.mediadesign.gd1011.dreamcatcher.View.Menu.ContinueMenu;
+    import de.mediadesign.gd1011.dreamcatcher.View.HighScore;
+    import de.mediadesign.gd1011.dreamcatcher.View.Menu.ContinueMenu;
 	import de.mediadesign.gd1011.dreamcatcher.View.Menu.CreditsMenu;
 	import de.mediadesign.gd1011.dreamcatcher.View.Menu.HighScoreMenu;
     import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
@@ -30,6 +31,8 @@ package de.mediadesign.gd1011.dreamcatcher
 	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
 	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
 	import de.mediadesign.gd1011.dreamcatcher.View.Score;
+
+    import flash.events.SoftKeyboardEvent;
 
     import flash.geom.Point;
 	import flash.media.SoundChannel;
@@ -371,12 +374,12 @@ package de.mediadesign.gd1011.dreamcatcher
             }
             if(e.keyCode==Keyboard.F11)
             {
-                HighScoreMenu.showAndHide();
+                HighScoreMenu.showAndHide(true);
                 HighScoreMenu.highScoreMenu.setScore(123456);
             }
             if(e.keyCode==Keyboard.F12)
             {
-                entityManager.getEntity("Player").blink(GameConstants.blinkAmount("Player"));
+                HighScore.resetHighScore();
             }
         }
 

@@ -26,8 +26,9 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
     import flash.text.TextFieldType;
     import flash.text.TextFormat;
     import flash.text.TextFormatAlign;
+import flash.ui.Keyboard;
 
-    import org.osmf.layout.HorizontalAlign;
+import org.osmf.layout.HorizontalAlign;
 
     import starling.core.Starling;
     import starling.display.Button;
@@ -35,7 +36,8 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
     import starling.display.Image;
     import starling.display.Sprite;
     import starling.events.Event;
-    import starling.text.TextField;
+import starling.events.KeyboardEvent;
+import starling.text.TextField;
     import starling.utils.deg2rad;
 
     public class HighScoreMenu extends Sprite
@@ -186,35 +188,46 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
             mScores[7].rotation = deg2rad(-10);
             mScores[7].touchable = true;
 
-            var textField:flash.text.TextField = new flash.text.TextField();
-            var textFormat:TextFormat = new TextFormat("MenuFont", 90, 0xff0000);
-            textFormat.align = TextFormatAlign.CENTER;
-            textField.defaultTextFormat = textFormat;
-            textField.type = TextFieldType.INPUT;
-            textField.autoSize = TextFieldAutoSize.CENTER;
-            textField.x = 640;
-            textField.y = 140;
-            textField.embedFonts = true;
-            textField.text = "Tap to type name!";
-            textField.restrict = "A-Z";
-            textField.needsSoftKeyboard = true;
-
-            Starling.current.nativeOverlay.addChild(textField);
-            textField.addEventListener(SoftKeyboardEvent.SOFT_KEYBOARD_ACTIVATE, onActivateKeyboard);
-            textField.addEventListener(TextEvent.TEXT_INPUT, onInput);
-            function onInput(event:SoftKeyboardEvent):void
+            if(newPosition != -1)
             {
-                if(newPosition != -1)
-                    HighScore.saveScoreAt(Game.currentLvl, score, newPosition, textField.text);
-                changeScore();
-                Starling.current.nativeOverlay.removeChild(textField);
-                textField = null;
-            }
-        }
+                var textField:flash.text.TextField = new flash.text.TextField();
+                var textFormat:TextFormat = new TextFormat("MenuFont", 90, 0xff0000);
+                textFormat.align = TextFormatAlign.CENTER;
+                textField.defaultTextFormat = textFormat;
+                textField.type = TextFieldType.INPUT;
+                textField.autoSize = TextFieldAutoSize.CENTER;
+                textField.x = 640;
+                textField.y = 140;
+                textField.embedFonts = true;
+                textField.text = "Tap to type name!";
+                textField.restrict = "A-Z";
+                textField.needsSoftKeyboard = true;
 
-        private function onActivateKeyboard(event:SoftKeyboardEvent):void
-        {
-            (event.currentTarget as flash.text.TextField).text = "";
+                Starling.current.nativeOverlay.addChild(textField);
+                textField.addEventListener(SoftKeyboardEvent.SOFT_KEYBOARD_ACTIVATE, onActivateKeyboard);
+                Starling.current.root.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+                textField.addEventListener(FocusEvent.FOCUS_OUT, onInput);
+
+                function onInput(event:FocusEvent):void
+                {
+                    HighScore.saveScoreAt(Game.currentLvl, score, newPosition, textField.text);
+                    changeScore();
+                    Starling.current.nativeOverlay.removeChild(textField);
+                    textField = null;
+                }
+                function onKeyDown(event:KeyboardEvent):void
+                {
+                    if(event.keyCode == Keyboard.ENTER && textField.text.length != 0)
+                    {
+                        Starling.current.root.stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+                        onInput(null);
+                    }
+                }
+                function onActivateKeyboard(event:SoftKeyboardEvent):void
+                {
+                    (event.currentTarget as flash.text.TextField).text = "";
+                }
+            }
         }
 
         public static function isActive():Boolean

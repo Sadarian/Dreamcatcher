@@ -92,14 +92,12 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 					    entity.health /= 2;
 					    entity.movieClip.scaleX = 0.5;
 					    entity.movieClip.scaleY = 0.5;
-					    trace("powerBullet HP: " + entity.health);
 					    break;
 				    }
 				    case 2:
 				    {
 					    entity.movieClip.scaleX = 1;
 					    entity.movieClip.scaleY = 1;
-					    trace("powerBullet better HP: " + entity.health);
 					    break;
 				    }
 			    }

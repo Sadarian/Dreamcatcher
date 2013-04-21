@@ -82,7 +82,6 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 
 			if (!entityA.isPowershot && entityA.health > 0)
 			{
-				trace("HP: " + entityB.health);
 				entityA.blink(GameConstants.blinkAmount(entityA.name));
 				showAnimation([entityA], true);
 
@@ -92,7 +91,6 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 			}
 			else if (!entityB.isPowershot && entityB.health > 0)
 			{
-				trace("HP: " + entityA.health);
 				entityB.blink(GameConstants.blinkAmount(entityB.name));
 				showAnimation([entityB], true);
 

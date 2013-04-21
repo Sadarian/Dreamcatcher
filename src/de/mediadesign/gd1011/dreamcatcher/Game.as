@@ -313,7 +313,6 @@ package de.mediadesign.gd1011.dreamcatcher
 			        }
 			        case 1:
 			        {
-				        trace(touches[1].isTouching(PowerUpTrigger.powerUpButton));
 				        if (!PowerUpTrigger.powerUpActive && !(touches[1].isTouching(PowerUpTrigger.powerUpButton))
 						  && !(touches[1].isTouching(GameStage.gameStage.pauseButton)))
 				        {

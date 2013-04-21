@@ -36,22 +36,22 @@
     <SubTexture name="Boss2Walk_6" x="427" y="902" width="145" height="178" frameX="-18" frameY="-3" frameWidth="163" frameHeight="194"/>
     <SubTexture name="DC_comicIntroPanel1" x="644" y="2" width="640" height="400"/>
     <SubTexture name="DC_comicIntroPanel2" x="2" y="2" width="640" height="400"/>
-    <SubTexture name="Bush_1" x="634" y="710" width="626" height="76" frameX="-2" frameY="-324" frameWidth="640" frameHeight="400"/>
-    <SubTexture name="Bush_2" x="2" y="688" width="630" height="76" frameX="-2" frameY="-324" frameWidth="640" frameHeight="400"/>
-    <SubTexture name="Bush_3" x="2" y="600" width="630" height="86" frameX="-6" frameY="-314" frameWidth="640" frameHeight="400"/>
-    <SubTexture name="FogAnim1_1" x="622" y="872" width="356" height="84" frameX="-25" frameY="-67" frameWidth="640" frameHeight="400"/>
-    <SubTexture name="FogAnim2_1" x="622" y="788" width="372" height="82" frameX="-220" frameY="-66" frameWidth="640" frameHeight="400"/>
-    <SubTexture name="FogAnim3_1" x="1262" y="784" width="506" height="84" frameX="-41" frameY="-65" frameWidth="640" frameHeight="400"/>
-    <SubTexture name="Forest_1" x="1286" y="590" width="640" height="192" frameX="0" frameY="0" frameWidth="640" frameHeight="400"/>
-    <SubTexture name="Forest_2" x="644" y="404" width="640" height="192" frameX="0" frameY="0" frameWidth="640" frameHeight="400"/>
-    <SubTexture name="Forest_3" x="2" y="404" width="640" height="194" frameX="0" frameY="0" frameWidth="640" frameHeight="400"/>
-    <SubTexture name="Front_1" x="1770" y="784" width="264" height="90" frameX="-217" frameY="-310" frameWidth="640" frameHeight="400"/>
-    <SubTexture name="Front_2" x="996" y="788" width="200" height="142" frameX="-401" frameY="-258" frameWidth="640" frameHeight="400"/>
-    <SubTexture name="Front_3" x="1928" y="2" width="116" height="62" frameX="-46" frameY="-338" frameWidth="640" frameHeight="400"/>
-    <SubTexture name="Front_4" x="1928" y="66" width="92" height="50" frameX="-67" frameY="-350" frameWidth="640" frameHeight="400"/>
-    <SubTexture name="Front_5" x="1198" y="870" width="192" height="104" frameX="-37" frameY="-296" frameWidth="640" frameHeight="400"/>
-    <SubTexture name="Main_1" x="1286" y="296" width="640" height="292" frameX="0" frameY="-108" frameWidth="640" frameHeight="400"/>
-    <SubTexture name="Main_2" x="1286" y="2" width="640" height="292" frameX="0" frameY="-108" frameWidth="640" frameHeight="400"/>
-    <SubTexture name="ScrollingBackground" x="2" y="766" width="618" height="134" frameX="-14" frameY="0" frameWidth="640" frameHeight="400"/>
-    <SubTexture name="StaticBackground" x="644" y="598" width="640" height="110"/>
+    <SubTexture name="Lvl1_Bush_1" x="634" y="710" width="626" height="76" frameX="-2" frameY="-324" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="Lvl1_Bush_2" x="2" y="688" width="630" height="76" frameX="-2" frameY="-324" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="Lvl1_Bush_3" x="2" y="600" width="630" height="86" frameX="-6" frameY="-314" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="Lvl1_FogAnim1_1" x="622" y="872" width="356" height="84" frameX="-25" frameY="-67" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="Lvl1_FogAnim2_1" x="622" y="788" width="372" height="82" frameX="-220" frameY="-66" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="Lvl1_FogAnim3_1" x="1262" y="784" width="506" height="84" frameX="-41" frameY="-65" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="Lvl1_Forest_1" x="1286" y="590" width="640" height="192" frameX="0" frameY="0" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="Lvl1_Forest_2" x="644" y="404" width="640" height="192" frameX="0" frameY="0" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="Lvl1_Forest_3" x="2" y="404" width="640" height="194" frameX="0" frameY="0" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="Lvl1_Front_1" x="1770" y="784" width="264" height="90" frameX="-217" frameY="-310" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="Lvl1_Front_2" x="996" y="788" width="200" height="142" frameX="-401" frameY="-258" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="Lvl1_Front_3" x="1928" y="2" width="116" height="62" frameX="-46" frameY="-338" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="Lvl1_Front_4" x="1928" y="66" width="92" height="50" frameX="-67" frameY="-350" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="Lvl1_Front_5" x="1198" y="870" width="192" height="104" frameX="-37" frameY="-296" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="Lvl1_Main_1" x="1286" y="296" width="640" height="292" frameX="0" frameY="-108" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="Lvl1_Main_2" x="1286" y="2" width="640" height="292" frameX="0" frameY="-108" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="Lvl1_ScrollingBackground" x="2" y="766" width="618" height="134" frameX="-14" frameY="0" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="Lvl1_StaticBackground" x="644" y="598" width="640" height="110"/>
 </TextureAtlas>

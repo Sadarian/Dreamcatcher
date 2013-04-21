@@ -22,7 +22,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
         public function ProgressBar(ratioAmounts:int = 1)
         {
             ratios = new Array(1);
-            mBar = new Quad(330, 260, 0xff6600);
+            mBar = new Quad(380, 260, 0xff6600);
             mBar.x = 480;
             mBar.y = 760;
             mBar.scaleY = 0;

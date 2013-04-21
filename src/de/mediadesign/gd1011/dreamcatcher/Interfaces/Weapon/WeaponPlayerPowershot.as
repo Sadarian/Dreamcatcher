@@ -36,7 +36,6 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 
 	    public function shoot(deltaTime:Number, position:Point, target:Object):void
         {
-
 	        temPosition = new Point(position.x - -125, position.y - -33);
 
 	        if (loadPowerShot == null)
@@ -83,7 +82,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 			    var entity:Entity = EntityManager.entityManager.createEntity(GameConstants.PLAYER_POWERSHOT, temPosition);
 			    (entity.movementSystem as MovementBullet).target = new Point(Starling.current.viewPort.width * 1.2, temPosition.y);
 			    (entity.movementSystem as MovementBullet).calculateVelocity(temPosition);
-			    GraphicsManager.graphicsManager.playSound("PlayerShoot");
+			    GraphicsManager.graphicsManager.playSound("PowerShoot");
 			    GameStage.gameStage.addChild(entity.movieClip);
 
 			    switch (stack)

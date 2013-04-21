@@ -14,7 +14,11 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
 	import de.mediadesign.gd1011.dreamcatcher.View.Score;
 
-    import starling.animation.DelayedCall;
+	import flash.media.SoundChannel;
+
+	import flash.media.SoundTransform;
+
+	import starling.animation.DelayedCall;
 	import starling.core.Starling;
 	import starling.core.Starling;
     import starling.display.DisplayObject;
@@ -42,6 +46,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		private var background:Image;
 
 		private var lose:Boolean;
+
+	    private var musicChanel:SoundChannel;
 
 		public function GameStage()
 		{
@@ -79,6 +85,9 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
             _pauseButton = new PauseButton();
             addChild(_pauseButton);
+
+			var musicTransform:SoundTransform = new SoundTransform(0.5);
+			musicChanel = GraphicsManager.graphicsManager.playSound("GreySkies", 0, 10, musicTransform);
 		}
 
 		public function resetAll():void
@@ -105,6 +114,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			MovementBoss.resetPhase();
 			EntityManager.entityManager.removeAll();
 			removeChildren();
+			musicChanel.stop();
 		}
 
 		public function loadLevel(levelIndex:int = 1):void

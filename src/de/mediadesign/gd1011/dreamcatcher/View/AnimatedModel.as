@@ -128,6 +128,12 @@ package de.mediadesign.gd1011.dreamcatcher.View
                             if(entity.isVictim2)
                                 entity.switchMovement(new MovementDieHead((entity.movementSystem as MovementVictim).speed));
                         }
+
+	                    if (animation == DEAD_WALK)
+	                    {
+		                    actual.loop = false;
+		                    trace("Enemy is dead!");
+	                    }
                     }
                     else
                         throw new ArgumentError("Error! No +"+animation+" animation found!");

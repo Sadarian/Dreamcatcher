@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:d829fda92f9ee8d44d7bfd503949efac$ -->
+<!-- $TexturePacker:SmartUpdate:b31b8c8b487c89556e260d85b636fc28$ -->
 <TextureAtlas imagePath="Victims_Charger_Enemy_lvl2Texture.png">
     <SubTexture name="ChargerDieCloseCombat_01" x="2" y="1052" width="88" height="104" frameX="-131" frameY="-24" frameWidth="256" frameHeight="128"/>
     <SubTexture name="ChargerDieCloseCombat_02" x="800" y="274" width="120" height="92" frameX="-77" frameY="-36" frameWidth="256" frameHeight="128"/>
@@ -38,6 +38,7 @@
     <SubTexture name="EnemyDeadWalk_6" x="716" y="976" width="74" height="68" frameX="-34" frameY="-59" frameWidth="128" frameHeight="128"/>
     <SubTexture name="EnemyDeadWalk_7" x="798" y="952" width="40" height="80" frameX="-47" frameY="-47" frameWidth="128" frameHeight="128"/>
     <SubTexture name="EnemyDeadWalk_8" x="718" y="1106" width="58" height="94" frameX="-28" frameY="-34" frameWidth="128" frameHeight="128"/>
+    <SubTexture name="EnemyDeadWalk_9" x="950" y="68" width="1" height="1" frameX="0" frameY="0" frameWidth="128" frameHeight="128"/>
     <SubTexture name="EnemyDieCloseCombat_01" x="860" y="640" width="56" height="122" frameX="-93" frameY="-6" frameWidth="256" frameHeight="128"/>
     <SubTexture name="EnemyDieCloseCombat_02" x="2" y="964" width="92" height="86" frameX="-71" frameY="-40" frameWidth="256" frameHeight="128"/>
     <SubTexture name="EnemyDieCloseCombat_03" x="468" y="886" width="82" height="88" frameX="-81" frameY="-39" frameWidth="256" frameHeight="128"/>

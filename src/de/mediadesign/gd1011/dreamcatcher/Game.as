@@ -32,6 +32,7 @@ package de.mediadesign.gd1011.dreamcatcher
 	import de.mediadesign.gd1011.dreamcatcher.View.Score;
 
     import flash.geom.Point;
+	import flash.media.SoundChannel;
 	import flash.media.SoundTransform;
 	import flash.net.InterfaceAddress;
 	import flash.ui.Keyboard;
@@ -69,6 +70,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		private static var _weaponPlayerStraight:WeaponPlayerStraight = new WeaponPlayerStraight();
 		private static var _weaponPlayerFan:WeaponPlayerFan = new WeaponPlayerFan();
 		private static var _weaponPlayerPowershot:WeaponPlayerPowershot = new WeaponPlayerPowershot();
+		private var powerShotChanel:SoundChannel;
 
         //DEBUG:
         private var touchPosition:Point = new Point();
@@ -99,9 +101,6 @@ package de.mediadesign.gd1011.dreamcatcher
             graphicsManager.initCompleted = true;
             addChild(gameStage);
             MainMenu.showAndHide();
-			var musicTransform:SoundTransform = new SoundTransform(0.5);
-			GraphicsManager.graphicsManager.playSound("GreySkies", 0, 10, musicTransform);
-
 
 			//GraphicsManager.graphicsManager.playSound("Slayer",0,0,musicTransform);
 			//GraphicsManager.graphicsManager.playSound("Slayer");
@@ -300,6 +299,8 @@ package de.mediadesign.gd1011.dreamcatcher
 				        if (touches.length < 2 && !PowerUpTrigger.powerUpActive && player != null
 						        && player.weaponSystem != _weaponPlayerStraight && player.weaponSystem != null)
 				        {
+					        powerShotChanel.stop();
+					        powerShotChanel = null;
 					        _weaponPlayerPowershot.shootNow();
 					        player.switchWeapon(null);
 					        Starling.juggler.delayCall(allowShooting, 0.5);
@@ -312,6 +313,10 @@ package de.mediadesign.gd1011.dreamcatcher
 						  && !touches[1].isTouching(GameStage.gameStage.pauseButton))
 				        {
 					        player.switchWeapon(_weaponPlayerPowershot);
+					        if (!powerShotChanel)
+					        {
+						        powerShotChanel = GraphicsManager.graphicsManager.playSound("PowerShootCharging");
+					        }
 				        }
 				        break;
 			        }

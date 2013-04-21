@@ -292,6 +292,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		        {
 			        case 0:
 			        {
+
 				        if(touches[0].getLocation(stage).x < GameConstants.playerMovementBorder.width)
 				        {
 					        MovementPlayer.touch = touches[0];
@@ -309,16 +310,24 @@ package de.mediadesign.gd1011.dreamcatcher
 			        }
 			        case 1:
 			        {
-				        if (!PowerUpTrigger.powerUpActive && !touches[1].isTouching(PowerUpTrigger.powerUpButton)
-						  && !touches[1].isTouching(GameStage.gameStage.pauseButton))
+				        trace(touches[1].isTouching(PowerUpTrigger.powerUpButton));
+				        if (!PowerUpTrigger.powerUpActive && !(touches[1].isTouching(PowerUpTrigger.powerUpButton))
+						  && !(touches[1].isTouching(GameStage.gameStage.pauseButton)))
 				        {
-					        player.switchWeapon(_weaponPlayerPowershot);
-					        if (!powerShotChanel)
-					        {
-						        powerShotChanel = GraphicsManager.graphicsManager.playSound("PowerShootCharging");
-					        }
+					        Starling.juggler.delayCall(switchToPowerShot,0.2);
 				        }
 				        break;
+			        }
+		        }
+		        function switchToPowerShot():void
+		        {
+			        if (!PowerUpTrigger.powerUpActive && !(touches[1].isTouching(PowerUpTrigger.powerUpButton))
+					        && !(touches[1].isTouching(GameStage.gameStage.pauseButton)))
+			        {
+				        player.switchWeapon(_weaponPlayerPowershot);
+				        if (!powerShotChanel) {
+					        powerShotChanel = GraphicsManager.graphicsManager.playSound("PowerShootCharging");
+				        }
 			        }
 		        }
 	        }

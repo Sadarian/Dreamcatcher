@@ -1,43 +1,29 @@
 package de.mediadesign.gd1011.dreamcatcher.View.Menu
 {
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
-    import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
     import de.mediadesign.gd1011.dreamcatcher.Game;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
     import de.mediadesign.gd1011.dreamcatcher.View.HighScore;
-    import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
-    import de.mediadesign.gd1011.dreamcatcher.View.Score;
-
-    import flash.display.Stage;
 
     import flash.events.FocusEvent;
 
     import flash.events.SoftKeyboardEvent;
-
-    import flash.events.SoftKeyboardTrigger;
-    import flash.events.TextEvent;
-
-    import flash.media.SoundMixer;
-    import flash.media.SoundTransform;
-    import flash.system.System;
-    import flash.text.TextColorType;
     import flash.text.TextField;
     import flash.text.TextFieldAutoSize;
     import flash.text.TextFieldType;
     import flash.text.TextFormat;
     import flash.text.TextFormatAlign;
-import flash.ui.Keyboard;
+    import flash.ui.Keyboard;
 
-import org.osmf.layout.HorizontalAlign;
+    import org.osmf.layout.HorizontalAlign;
 
     import starling.core.Starling;
     import starling.display.Button;
     import starling.display.DisplayObject;
-    import starling.display.Image;
     import starling.display.Sprite;
     import starling.events.Event;
-import starling.events.KeyboardEvent;
-import starling.text.TextField;
+    import starling.events.KeyboardEvent;
+    import starling.text.TextField;
     import starling.utils.deg2rad;
 
     public class HighScoreMenu extends Sprite
@@ -51,6 +37,7 @@ import starling.text.TextField;
         private var mHighScoreBar:Sprite;
         private var mScores:Vector.<starling.text.TextField>;
         private var score:Number;
+        private var textField:flash.text.TextField;
 
         public function HighScoreMenu()
         {
@@ -93,9 +80,9 @@ import starling.text.TextField;
                 addChild(button);
                 mElements.push(button);
             }
-//            mElements.push(gM.getImage("DC_comicOutro1"));
-//            addChild(mElements[mElements.length-1]);
-//            Starling.juggler.delayCall(deleteChild, 2);
+            //mElements.push(gM.getImage("DC_comicOutro1"));
+            //addChild(mElements[mElements.length-1]);
+            //Starling.juggler.delayCall(deleteChild, 2);
         }
 
         private function deleteChild():void
@@ -131,6 +118,8 @@ import starling.text.TextField;
                         break;
                     case(mElements[1]):
                         showAndHide();
+                        MainMenu.showAndHide();
+                        ContinueMenu.showAndHide();
                         break;
                 }
         }
@@ -147,6 +136,7 @@ import starling.text.TextField;
             state = ShownInMainMenu;
             if(!active)
             {
+                self = null;
                 active = true;
                 highScoreMenu.mElements[2].visible = !state;
                 (Starling.current.root as Game).addChild(highScoreMenu);
@@ -155,8 +145,14 @@ import starling.text.TextField;
             else
             {
                 active = false;
-                if(!state)
-                    Game.currentLvl = Dreamcatcher.localObject.data.Progress;
+                if(highScoreMenu.textField != null)
+                {
+                    Starling.current.nativeOverlay.removeChild(highScoreMenu.textField);
+                    highScoreMenu.textField = null;
+                    Starling.current.root.stage.removeEventListeners(KeyboardEvent.KEY_DOWN);
+                    highScoreMenu.mScores[6].text="";
+                    highScoreMenu.mScores[7].text="";
+                }
                 (Starling.current.root as Game).removeChild(highScoreMenu);
             }
         }
@@ -190,7 +186,9 @@ import starling.text.TextField;
 
             if(newPosition != -1)
             {
-                var textField:flash.text.TextField = new flash.text.TextField();
+                HighScore.saveScoreAt(Game.currentLvl, score, newPosition, "LocalPlayer");
+                changeScore();
+                textField = new flash.text.TextField();
                 var textFormat:TextFormat = new TextFormat("MenuFont", 90, 0xff0000);
                 textFormat.align = TextFormatAlign.CENTER;
                 textField.defaultTextFormat = textFormat;

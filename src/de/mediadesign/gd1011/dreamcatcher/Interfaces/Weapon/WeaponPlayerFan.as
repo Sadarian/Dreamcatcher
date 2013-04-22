@@ -66,7 +66,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 					(entity.movementSystem as MovementBullet).target = targetPosition;
 					(entity.movementSystem as MovementBullet).calculateVelocity(temPosition);
 					entity.movieClip.rotation = Math.atan2(targetPosition.y - temPosition.y, targetPosition.x - temPosition.x);
-					GraphicsManager.graphicsManager.playSound("PlayerShoot");
+                    GraphicsManager.graphicsManager.playSound("PlayerShootPowerUp");
 					GameStage.gameStage.addChild(entity.movieClip);
 				}
             }

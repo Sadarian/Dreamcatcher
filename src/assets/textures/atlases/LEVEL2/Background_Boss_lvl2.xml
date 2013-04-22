@@ -4,7 +4,7 @@
 <TextureAtlas imagePath="Background_Boss_lvl2Texture.png">
     <SubTexture name="Boss2BulletWalk_1" x="1960" y="66" width="30" height="18"/>
     <SubTexture name="Boss2BulletWalk_2" x="1928" y="66" width="30" height="18"/>
-    <SubTexture name="Boss2BulletWebWalk_1" x="1953" y="86" width="23" height="22" frameX="-25" frameY="-63" frameWidth="123" frameHeight="136"/>
+    <SubTexture name="Boss2BulletWeWalk_1" x="1953" y="86" width="23" height="22" frameX="-25" frameY="-63" frameWidth="123" frameHeight="136"/>
     <SubTexture name="Boss2BulletWebHit_0" x="1928" y="86" width="23" height="23" frameX="-26" frameY="-64" frameWidth="123" frameHeight="119"/>
     <SubTexture name="Boss2BulletWebHit_2" x="2019" y="111" width="23" height="24" frameX="-26" frameY="-64" frameWidth="123" frameHeight="130"/>
     <SubTexture name="Boss2BulletWebHit_3" x="1928" y="111" width="21" height="31" frameX="-27" frameY="-61" frameWidth="113" frameHeight="167"/>

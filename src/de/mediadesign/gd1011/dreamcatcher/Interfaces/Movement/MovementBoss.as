@@ -138,6 +138,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
                     }
                     case(MELEE_TO_RANGE):
                     {
+                        trace(position.x)
                         if(position.x >= startPoint.x)
                             switchTo(RANGE);
                         _angle = Math.atan2(startPoint.y - position.y, startPoint.x - position.x);
@@ -215,6 +216,8 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
 
         public function switchTo(phase:String):void
         {
+            if(phase == _phase)
+                return;
             _phase = phase;
             switch (_phase)
             {

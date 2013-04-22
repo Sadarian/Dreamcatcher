@@ -3,8 +3,9 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
 	import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
 	import de.mediadesign.gd1011.dreamcatcher.Game;
+    import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
 
-	import flash.net.FileFilter;
+    import flash.net.FileFilter;
 
 	import starling.animation.DelayedCall;
 
@@ -37,10 +38,8 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
             var buttonStrings:Array = [	"MainMenuContinueScreenBackButton", "MainMenuContinueScreenBackButtonClick",
 										"StageSelectScreenLV1",null,
 										"StageSelectScreenLV2", null,
-										"StageSelectScreenLV2 Lock", null,
-                                        "PowerUpHealth", null,
-                                        "PowerUpHealth", null];
-            var positions:Array = [[40, 660],[322, 177],[322, 438],[322, 438], [940, 380], [940, 650]];
+										"StageSelectScreenLV2 Lock", null]
+            var positions:Array = [[40, 660],[322, 177],[322, 438],[322, 438]];
             var button:Button;
             for(var i:int=0; i<buttonStrings.length;i+=2)
             {
@@ -86,29 +85,21 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 				case(mElements[1]):
 					GraphicsManager.graphicsManager.playSound("MenuButton2");
 					showAndHide();
-					MainMenu.showAndHide();
-					(Starling.current.root as Game).startLevel(1);
+                    Game.currentLvl = 1;
+                    MainMenu.showAndHide();
+					HighScoreMenu.showAndHide(true);
 					break;
 				case(mElements[2]):
 					GraphicsManager.graphicsManager.playSound("MenuButton2");
 					showAndHide();
-					MainMenu.showAndHide();
-					(Starling.current.root as Game).startLevel(2);
+                    Game.currentLvl = 2;
+                    MainMenu.showAndHide();
+                    HighScoreMenu.showAndHide(true);
 					break;
 				case(mElements[3]):
 					GraphicsManager.graphicsManager.playSound("EnemyDie");
 					lockedMessage();
 					break;
-                case(mElements[4]):
-                    GraphicsManager.graphicsManager.playSound("MenuButton2");
-                    Game.currentLvl = 1;
-                    HighScoreMenu.showAndHide(true);
-                    break;
-                case(mElements[5]):
-                    GraphicsManager.graphicsManager.playSound("MenuButton2");
-                    Game.currentLvl = 2;
-                    HighScoreMenu.showAndHide(true);
-                    break;
             }
         }
 
@@ -154,6 +145,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
         {
             if(!_active)
             {
+                self = null;
                 _active = true;
                 MainMenu.mainMenu.addChild(continueMenu);
             }

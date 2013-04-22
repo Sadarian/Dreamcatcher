@@ -5,6 +5,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
     import de.mediadesign.gd1011.dreamcatcher.Game;
 
     import flash.media.Sound;
+    import flash.media.SoundChannel;
     import flash.media.SoundMixer;
     import flash.media.SoundTransform;
 
@@ -23,13 +24,12 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
         private static var active:Boolean = false;
 
         private var mElements:Vector.<DisplayObject>;
+        private var music:SoundChannel;
 
         public function MainMenu()
         {
             var gM:GraphicsManager = GraphicsManager.graphicsManager;
             addChild(gM.getImage("MainMenuPicture"));
-
-			//var music:SoundChannel = GraphicsManager.graphicsManager.playSound("MenuTheme");
 
             mElements = new Vector.<DisplayObject>();
 
@@ -135,14 +135,17 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
         {
             if(!active)
             {
+                self = null;
                 active = true;
                 (Starling.current.root as Game).addChild(mainMenu);
                 mainMenu.checkSoundButton();
+                mainMenu.music = GraphicsManager.graphicsManager.playSound("MenuMusic");
             }
             else
             {
                 active = false;
                 (Starling.current.root as Game).setStartTimeStamp();
+                mainMenu.music.stop();
                 (Starling.current.root as Game).removeChild(mainMenu);
             }
         }

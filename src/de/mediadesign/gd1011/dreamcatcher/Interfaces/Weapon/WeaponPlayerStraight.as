@@ -40,15 +40,17 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 				if ((PowerUpTrigger.activePowerUp == GameConstants.POWERUP_FIRE_RATE) && PowerUpTrigger.activeStack == 2)
 				{
 					entity = EntityManager.entityManager.createEntity(GameConstants.PLAYER_STRONG_BULLET, temPosition);
+                    GraphicsManager.graphicsManager.playSound("PlayerShootPowerUp");
 				}
 				else
 				{
 					entity = EntityManager.entityManager.createEntity(GameConstants.PLAYER_BULLET, temPosition);
+                    GraphicsManager.graphicsManager.playSound("PlayerShoot");
 				}
 
 		        (entity.movementSystem as MovementBullet).target = new Point(Starling.current.viewPort.width*1.2, temPosition.y);
 	            (entity.movementSystem as MovementBullet).calculateVelocity(temPosition);
-				GraphicsManager.graphicsManager.playSound("PlayerShoot");
+
                 GameStage.gameStage.addChild(entity.movieClip);
 
             }

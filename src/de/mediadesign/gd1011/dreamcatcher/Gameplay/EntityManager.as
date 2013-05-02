@@ -43,33 +43,16 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
         {
             createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
             _entities[0].switchWeapon(null);
-            var loadingEntities:Array = GameConstants.loadSpawnData((Dreamcatcher.debugMode)?levelIndex+1665:levelIndex);
+            if(levelIndex==-1)
+            {
+                EndlessMode.reset();
+                EndlessMode.instance;
+                return;
+            }
+            var loadingEntities:Array = GameConstants.loadSpawnData(levelIndex);
             var i:int;
-            if(!Dreamcatcher.debugMode)
-            {
-                for(i=0;i<loadingEntities.length;i++)
-                    juggler.delayCall(createEntity, loadingEntities[i][0], loadingEntities[i][2], new Point(Starling.current.viewPort.width, loadingEntities[i][1]));
-            }
-            else
-            {
-                juggler.delayCall(createEntity, loadingEntities[0], "Boss"+levelIndex, new Point(Starling.current.viewPort.width, Starling.current.viewPort.height/2));
-                var mediumTime:Number = loadingEntities[0]/loadingEntities[1];
-                var nextTime:Number = 1 + (mediumTime-1)*Math.random();
-                var obj:Array;
-                loadingEntities.splice(0, 2);
-                for(i=0;i<loadingEntities.length;i++)
-                {
-                    obj = loadingEntities.splice([Math.round(Math.random()*loadingEntities.length)], 1);
-                    juggler.delayCall(spawnEntities, nextTime, obj);
-                    nextTime = (i+1)*mediumTime + (1 + (mediumTime-1)*Math.random());
-                }
-            }
-            function spawnEntities(list:Array):void
-            {
-                var i:int= 0, vP:Rectangle = Starling.current.viewPort;
-                for(i;i<list[0].length;i++)
-                    createEntity(list[0][i], new Point(vP.width + Math.random()*vP.width*0.1, vP.height*0.3 + 0.5*vP.height*Math.random()));
-            }
+            for(i=0;i<loadingEntities.length;i++)
+                juggler.delayCall(createEntity, loadingEntities[i][0], loadingEntities[i][2], new Point(Starling.current.viewPort.width, loadingEntities[i][1]));
         }
 
 

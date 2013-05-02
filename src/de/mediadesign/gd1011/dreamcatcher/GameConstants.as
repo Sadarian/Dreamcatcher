@@ -50,7 +50,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const BUSH_IMAGE_LIST_BOSS:Array = ["Bush_1","Bush_2"];
 		public static const FOREST_LIST_BOSS:Array = [["Forest_1"], ["Forest_2"], ["Forest_3"]];
         public static const FOREST_LIST_BOSS_LVL2:Array = [["BossForest_1"],["BossForest_1"]];
-		public static const FOG_LIST_BOSS:Array = [["FogAnim1_1"],["FogAnim2_1"],["FogAnim1_3"]];
+		public static const FOG_LIST_BOSS:Array = [["FogAnim1_1"],["FogAnim2_1"],["FogAnim3_1"]];
         public static const FOG_LIST_BOSS_LVL2:Array = [["BossFront_1"],["BossFront_1"]];
 		public static const BACKGROUND_IMAGE_LIST_BOSS:Array = ["ScrollingBackground","ScrollingBackground"];
         public static const BACKGROUND_IMAGE_LIST_BOSS_LVL2:Array = ["BossScrollingBackground","BossScrollingBackground"];

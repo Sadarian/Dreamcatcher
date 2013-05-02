@@ -2,7 +2,8 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 {
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.Game;
-    import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
+import de.mediadesign.gd1011.dreamcatcher.Gameplay.EndlessMode;
+import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
     import de.mediadesign.gd1011.dreamcatcher.View.HighScore;
 
     import flash.events.FocusEvent;
@@ -139,6 +140,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
                 self = null;
                 active = true;
                 highScoreMenu.mElements[2].visible = !state;
+                highScoreMenu.mElements[0].visible = !EndlessMode.hasInstance;
                 (Starling.current.root as Game).addChild(highScoreMenu);
                 highScoreMenu.changeScore();
             }

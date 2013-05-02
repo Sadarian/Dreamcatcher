@@ -84,6 +84,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 			_isSlowed = false;
 
+            _movieClip.filter = null;
+
             init();
 		}
 

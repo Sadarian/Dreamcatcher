@@ -86,7 +86,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 
                 case(mElements[3]):
                     showAndHide();
-                    (Starling.current.root as Game).startLevel(Game.currentLvl);
+                    (Starling.current.root as Game).startLevel(-1);
                     break;
 				case(mElements[4]):
 					TutorialMenu.showAndHide();

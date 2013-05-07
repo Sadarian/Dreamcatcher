@@ -132,9 +132,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		{
 			if (activeIcon == null)
 			{
-
 				activeIcon = name;
-
 
 				if (powerUpIcon == null)
 				{
@@ -150,6 +148,19 @@ package de.mediadesign.gd1011.dreamcatcher.View
 					GameStage.gameStage.addChild(powerUpIcon);
 					powerUpIcon.texture = GraphicsManager.graphicsManager.getTexture((stackCount>1)?name+stackCount:name);
 				}
+
+				if (!_powerUpActive)
+				{
+					_powerUpButton.enabled = true;
+					_powerUpButton.upState = GraphicsManager.graphicsManager.getTexture("UsePower_2");
+				}
+			}
+			else if(activeIcon != name)
+			{
+				activeIcon = name;
+				GameStage.gameStage.addChild(powerUpIcon);
+				powerUpIcon.texture = GraphicsManager.graphicsManager.getTexture(name);
+				stackCount = 1;
 
 				if (!_powerUpActive)
 				{

@@ -292,51 +292,10 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
             MovementPlayer.touch = null;
 
 
-	        var player:Entity = entityManager.getEntity(GameConstants.PLAYER);
-
-	        for (var i:int = 0; i < touches.length; i++) {
-                if(touches[i].isTouching(PowerUpTrigger.powerUpButton) || touches[i].isTouching(GameStage.gameStage.pauseButton))
-                    return;
-//		        trace("touch Nr.: " + i + " touche id: " + touches[i].isTouching());
-				switch (i)
+	        for each (var touch:Touch in touches) {
+		        if (touch.getLocation(stage).x < GameConstants.playerMovementBorder.width)
 		        {
-			        case 0:
-			        {
-
-				        if(touches[0].getLocation(stage).x < GameConstants.playerMovementBorder.width)
-				        {
-					        MovementPlayer.touch = touches[0];
-				        }
-				        if (touches.length < 2 && !PowerUpTrigger.powerUpActive && player != null
-						        && player.weaponSystem != _weaponPlayerStraight && player.weaponSystem != null)
-				        {
-					        powerShotChanel.stop();
-					        powerShotChanel = null;
-					        _weaponPlayerPowershot.shootNow();
-					        player.switchWeapon(null);
-                            trace("Bug-Source-A");
-					        Starling.juggler.delayCall(allowShooting, 0.5);
-				        }
-				        break;
-			        }
-			        case 1:
-			        {
-				        if (!PowerUpTrigger.powerUpActive)
-				        {
-					        Starling.juggler.delayCall(switchToPowerShot,0.2);
-				        }
-				        break;
-			        }
-		        }
-		        function switchToPowerShot():void
-		        {
-			        if (!PowerUpTrigger.powerUpActive)
-			        {
-				        player.switchWeapon(_weaponPlayerPowershot);
-				        if (!powerShotChanel) {
-					        powerShotChanel = GraphicsManager.graphicsManager.playSound("PowerShootCharging");
-				        }
-			        }
+			        MovementPlayer.touch = touch;
 		        }
 	        }
 

@@ -95,6 +95,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
         {
             if(!active)
             {
+                self = null;
                 active = true;
                 Starling.juggler.stop();
                 (Starling.current.root as Game).addChild(pauseMenu);

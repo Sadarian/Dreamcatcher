@@ -2,7 +2,8 @@ package de.mediadesign.gd1011.dreamcatcher
 {
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
-	import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
+import de.mediadesign.gd1011.dreamcatcher.Gameplay.EndlessMode;
+import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
@@ -182,6 +183,7 @@ package de.mediadesign.gd1011.dreamcatcher
 			gameStage.loadLevel(currentLvl);
             entityManager.loadEntities(currentLvl);
             graphicsManager.initCompleted = true;
+            trace("Bug-Source-B");
             Starling.juggler.delayCall(allowShooting, 1);
 
         }
@@ -211,6 +213,8 @@ package de.mediadesign.gd1011.dreamcatcher
 
         public function allowShooting():void
         {
+            if(entityManager.entities.length == 0)
+                entityManager.createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
             entityManager.entities[0].switchWeapon(weaponPlayerStraight);
             entityManager.entities[0].setWeaponSpeed();
         }
@@ -244,6 +248,7 @@ package de.mediadesign.gd1011.dreamcatcher
                 now = getTimer() / 1000 - noPlayTime - passedLvlTime;
                 var passedTime:Number = (now - lastFrameTimeStamp);
                 lastFrameTimeStamp = now;
+                if(EndlessMode.hasInstance) EndlessMode.instance.update(passedTime);
 
 //                entityManager.rotatePowerUps(passedTime);
                 moveProcess.update(passedTime);
@@ -290,6 +295,8 @@ package de.mediadesign.gd1011.dreamcatcher
 	        var player:Entity = entityManager.getEntity(GameConstants.PLAYER);
 
 	        for (var i:int = 0; i < touches.length; i++) {
+                if(touches[i].isTouching(PowerUpTrigger.powerUpButton) || touches[i].isTouching(GameStage.gameStage.pauseButton))
+                    return;
 //		        trace("touch Nr.: " + i + " touche id: " + touches[i].isTouching());
 				switch (i)
 		        {
@@ -307,14 +314,14 @@ package de.mediadesign.gd1011.dreamcatcher
 					        powerShotChanel = null;
 					        _weaponPlayerPowershot.shootNow();
 					        player.switchWeapon(null);
+                            trace("Bug-Source-A");
 					        Starling.juggler.delayCall(allowShooting, 0.5);
 				        }
 				        break;
 			        }
 			        case 1:
 			        {
-				        if (!PowerUpTrigger.powerUpActive && !(touches[1].isTouching(PowerUpTrigger.powerUpButton))
-						  && !(touches[1].isTouching(GameStage.gameStage.pauseButton)))
+				        if (!PowerUpTrigger.powerUpActive)
 				        {
 					        Starling.juggler.delayCall(switchToPowerShot,0.2);
 				        }
@@ -323,8 +330,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		        }
 		        function switchToPowerShot():void
 		        {
-			        if (!PowerUpTrigger.powerUpActive && !(touches[1].isTouching(PowerUpTrigger.powerUpButton))
-					        && !(touches[1].isTouching(GameStage.gameStage.pauseButton)))
+			        if (!PowerUpTrigger.powerUpActive)
 			        {
 				        player.switchWeapon(_weaponPlayerPowershot);
 				        if (!powerShotChanel) {
@@ -369,7 +375,7 @@ package de.mediadesign.gd1011.dreamcatcher
             }
             if(e.keyCode==Keyboard.F10)
             {
-                currentLvl = 1;
+                startLevel(-1);
             }
             if(e.keyCode==Keyboard.F11)
             {

@@ -33,6 +33,11 @@
     <SubTexture name="MainMenuSoundButtonOn" x="1999" y="550" width="46" height="56"/>
     <SubTexture name="MainMenuStartButton" x="155" y="1310" width="60" height="38"/>
     <SubTexture name="MainMenuStartButtonClick" x="409" y="1276" width="66" height="42"/>
+    <SubTexture name="PauseButton" x="2008" y="466" width="37" height="40"/>
+    <SubTexture name="PauseMenuEndGame" x="1999" y="608" width="42" height="60"/>
+    <SubTexture name="PauseMenuPlay" x="1997" y="670" width="48" height="80"/>
+    <SubTexture name="PauseMenuSoundOff" x="1997" y="752" width="48" height="52"/>
+    <SubTexture name="PauseMenuSoundOn" x="1997" y="806" width="42" height="52"/>
     <SubTexture name="StageScreenSelect Lvl1 Lock" x="130" y="1900" width="150" height="94"/>
     <SubTexture name="StageSelectScreenLV1" x="130" y="1804" width="151" height="94"/>
     <SubTexture name="StageSelectScreenLV2 Lock" x="2" y="1406" width="151" height="94"/>

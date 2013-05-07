@@ -57,7 +57,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 				{
 					if (activeIcon != GameConstants.POWERUP_FIRE_RATE)
 					{
-						createPowerUpIcon(GameConstants.POWERUP_FIRE_RATE, powerUp);
+						createPowerUpIcon(GameConstants.POWERUP_FIRE_RATE, powerUp, stack+1);
 
 						stack++;
 					}
@@ -65,6 +65,8 @@ package de.mediadesign.gd1011.dreamcatcher.View
 					{
 						if (stack < 3)
 						{
+                            powerUpIcon.texture = GraphicsManager.graphicsManager.getTexture(GameConstants.POWERUP_FIRE_RATE+(stack+1));
+
 							stack++;
 						}
 					}
@@ -82,10 +84,12 @@ package de.mediadesign.gd1011.dreamcatcher.View
 					_healthIncreased = true;
 
 					player.health += GameConstants.healthGiven;
+                    GraphicsManager.graphicsManager.playSound("HealthIncrease");
 
 					if (healthIncrease == null)
 					{
 						healthIncrease = new AnimatedModel("LifebarHealthIncrease", new Array(), "Default");
+
 						healthIncrease.start();
 						healthIncrease.x = 142;
 						healthIncrease.y = 122;
@@ -124,7 +128,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			GameStage.gameStage.addChild(freezeOverlay);
 		}
 
-		private static function createPowerUpIcon(name:String, powerUp:Entity):void
+		private static function createPowerUpIcon(name:String, powerUp:Entity, stackCount:int = 1):void
 		{
 			if (activeIcon == null)
 			{
@@ -134,7 +138,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 				if (powerUpIcon == null)
 				{
-					powerUpIcon = new Image(GraphicsManager.graphicsManager.getTexture(name));
+					powerUpIcon = new Image(GraphicsManager.graphicsManager.getTexture((stackCount>1)?name+stackCount:name));
 					GameStage.gameStage.addChild(powerUpIcon);
 					powerUpIcon.x = powerUp.collisionValues.x - 9;
 					powerUpIcon.y = powerUp.collisionValues.y * 2 + 40;
@@ -144,7 +148,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 				else
 				{
 					GameStage.gameStage.addChild(powerUpIcon);
-					powerUpIcon.texture = GraphicsManager.graphicsManager.getTexture(name);
+					powerUpIcon.texture = GraphicsManager.graphicsManager.getTexture((stackCount>1)?name+stackCount:name);
 				}
 
 				if (!_powerUpActive)

@@ -9,7 +9,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
         public static function initHighScore():void
         {
             var local:SharedObject = Dreamcatcher.localObject;
-            for(var j:int = 1;j<3;j++)
+            for(var j:int = -1;j<3;j++)
                 for(var i:int = 0; i<5; i++)
                 {
                     if(!local.data["Level_"+j+"_Score_"+i])
@@ -24,7 +24,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
         public static function resetHighScore():void
         {
             var local:SharedObject = Dreamcatcher.localObject;
-            for(var j:int = 1;j<3;j++)
+            for(var j:int = -1;j<3;j++)
                 for(var i:int = 0; i<5; i++)
                 {
                     local.data["Level_"+j+"_Score_"+i] = 10000-i*2000;

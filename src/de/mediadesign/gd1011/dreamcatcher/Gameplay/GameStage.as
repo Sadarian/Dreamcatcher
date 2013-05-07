@@ -123,6 +123,23 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			var vectorBoss:Array = [];
 			switch(levelIndex)
 			{
+                case -1:
+                {
+                    vector.push(GameConstants.BACKGROUND_IMAGE_LIST,
+                                GameConstants.MAIN_STAGE_IMAGE_LIST,
+                                GameConstants.FOREST_LIST,
+                                GameConstants.FOG_LIST,
+                                GameConstants.BUSH_IMAGE_LIST,
+                                GameConstants.FOREGROUND_IMAGE_LIST);
+
+                    vectorBoss.push(GameConstants.BACKGROUND_IMAGE_LIST_BOSS,
+                                    GameConstants.MAIN_STAGE_IMAGE_LIST_BOSS,
+                                    GameConstants.FOREST_LIST_BOSS,
+                                    GameConstants.FOG_LIST_BOSS,
+                                    GameConstants.BUSH_IMAGE_LIST_BOSS,
+                                    GameConstants.FOREGROUND_IMAGE_LIST_BOSS);
+                    break;
+                }
 				case 1:
 				{
 					vector.push(GameConstants.BACKGROUND_IMAGE_LIST,
@@ -143,18 +160,18 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 				case 2:
 				{
 					vector.push(GameConstants.BACKGROUND_IMAGE_LIST,
-									GameConstants.MAIN_STAGE_IMAGE_LIST,
-									GameConstants.FOREST_LIST_BOSS,
-									GameConstants.FOG_LIST,
-									GameConstants.BUSH_IMAGE_LIST_LVL2,
-									GameConstants.FOREGROUND_IMAGE_LIST);
+                                GameConstants.MAIN_STAGE_IMAGE_LIST,
+                                GameConstants.FOREST_LIST_BOSS,
+                                GameConstants.FOG_LIST,
+                                GameConstants.BUSH_IMAGE_LIST_LVL2,
+                                GameConstants.FOREGROUND_IMAGE_LIST);
 
 					vectorBoss.push(GameConstants.BACKGROUND_IMAGE_LIST_BOSS_LVL2,
-								GameConstants.MAIN_STAGE_IMAGE_LIST_BOSS,
-								GameConstants.FOREST_LIST_BOSS_LVL2,
-								GameConstants.FOG_LIST_BOSS_LVL2,
-								GameConstants.BUSH_IMAGE_LIST_BOSS,
-								GameConstants.FOREGROUND_IMAGE_LIST_BOSS);
+                                    GameConstants.MAIN_STAGE_IMAGE_LIST_BOSS,
+                                    GameConstants.FOREST_LIST_BOSS_LVL2,
+                                    GameConstants.FOG_LIST_BOSS_LVL2,
+                                    GameConstants.BUSH_IMAGE_LIST_BOSS,
+                                    GameConstants.FOREGROUND_IMAGE_LIST_BOSS);
 					break;
 				}
 			}
@@ -190,8 +207,15 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
             if (EntityManager.entityManager.getEntity(GameConstants.PLAYER) != null && EntityManager.entityManager.getEntity(GameConstants.PLAYER).health <= 0 && !lvlEnd)
             {
-                lose = true;
-                endLvl("You Lose!");
+                if(EndlessMode.hasInstance)
+                {
+                    endLvl("Yo have failed, but your Rumors will remain!");
+                }
+                else
+                {
+                    lose = true;
+                    endLvl("You Lose!");
+                }
             }
 
             var boss:Entity = EntityManager.entityManager.getEntity(GameConstants.BOSS1);
@@ -289,11 +313,12 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             }
 			else
             {
-                HighScoreMenu.highScoreMenu.setScore(Score.score);
-                resetAll();
-                Dreamcatcher.localObject.data.Progress = (Dreamcatcher.localObject.data.Progress >= (Game.currentLvl+1)) ? Dreamcatcher.localObject.data.Progress : (Game.currentLvl+1);
+                if(!EndlessMode.hasInstance)
+                    Dreamcatcher.localObject.data.Progress = (Dreamcatcher.localObject.data.Progress >= (Game.currentLvl+1)) ? Dreamcatcher.localObject.data.Progress : (Game.currentLvl+1);
                 Dreamcatcher.localObject.flush();
                 HighScoreMenu.showAndHide();
+                HighScoreMenu.highScoreMenu.setScore(Score.score);
+                resetAll();
             }
 
 		}

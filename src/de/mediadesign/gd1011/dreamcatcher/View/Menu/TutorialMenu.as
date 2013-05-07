@@ -99,6 +99,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 		{
 			if(!_active)
 			{
+                self = null;
 				_active = true;
 				MainMenu.mainMenu.addChild(continueMenu);
 			}

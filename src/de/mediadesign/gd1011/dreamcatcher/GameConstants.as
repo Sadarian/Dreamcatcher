@@ -21,8 +21,9 @@ package de.mediadesign.gd1011.dreamcatcher
 	public class GameConstants
     {
         public static const UI_LIST:Array = ["Credits", "Menu"];
-        public static const LEVEL1_LIST:Array = ["Background1_lvl1", "Feedback", "Intro", "Victims_Charger_Enemy_lvl2"];
-        public static const LEVEL2_LIST:Array = ["Background1_lvl2", "Background2_BossDie_lvl2", "Feedback", "Intro", "Victims_Charger_Enemy_lvl2"];
+        public static const ENDLESS_LIST:Array = ["Background1_lvl1", "Background2_lvl1","Feedback", "Intro", "Victims_Charger_Enemy_lvl2"];
+        public static const LEVEL1_LIST:Array = ["Background1_lvl1", "Background2_lvl1", "Boss_lvl1" ,"Feedback", "Intro", "Victims_Charger_Enemy_lvl2"];
+        public static const LEVEL2_LIST:Array = ["Background1_lvl2", "Background2_BossDie_lvl2", "Boss_lvl2", "Feedback", "Intro", "Victims_Charger_Enemy_lvl2"];
 
         public static const COLLISION_RECTANGLE:String = "CollisionRectangle";
         public static const COLLISION_CIRCLE:String = "CollisionCircle";

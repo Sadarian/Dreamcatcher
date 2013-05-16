@@ -3,7 +3,8 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
     import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
     import de.mediadesign.gd1011.dreamcatcher.Game;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
-    import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
+import de.mediadesign.gd1011.dreamcatcher.Gameplay.EndlessMode;
+import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
     import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
 
     import flash.filesystem.File;
@@ -87,7 +88,13 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
             {
                 case("UI"):
                     MainMenu.resetMainMain();
-                    deleteStream = GameConstants["LEVEL"+Game.currentLvl+"_LIST"];
+                    if(Game.currentLvl == -1)
+                    {
+                        deleteStream = GameConstants.ENDLESS_LIST;
+                        EndlessMode.reset();
+                    }
+                    else
+                        deleteStream = GameConstants["LEVEL"+Game.currentLvl+"_LIST"];
                     blendGraphic = true;
                     break;
 

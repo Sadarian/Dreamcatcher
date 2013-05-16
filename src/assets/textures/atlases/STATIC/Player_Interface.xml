@@ -2,7 +2,7 @@
 <!-- Created with TexturePacker http://texturepacker.com-->
 <!-- $TexturePacker:SmartUpdate:840b3ca0ac7485b76b485a56efe89f16$ -->
 <TextureAtlas imagePath="Player_InterfaceTexture.png">
-    <SubTexture name="BossLifebarFrame" x="1456" y="1237" width="152" height="152" frameX="-17" frameY="-25" frameWidth="180" frameHeight="180"/>
+    <SubTexture name="BossLifeBarFrame" x="1456" y="1237" width="152" height="152" frameX="-17" frameY="-25" frameWidth="180" frameHeight="180"/>
     <SubTexture name="LifebarHealthIncreaseDefault_01" x="1533" y="1079" width="115" height="104" frameX="-148" frameY="-31" frameWidth="283" frameHeight="224"/>
     <SubTexture name="LifebarHealthIncreaseDefault_02" x="494" y="866" width="115" height="112" frameX="-148" frameY="-25" frameWidth="283" frameHeight="224"/>
     <SubTexture name="LifebarHealthIncreaseDefault_03" x="1021" y="1137" width="115" height="108" frameX="-148" frameY="-20" frameWidth="283" frameHeight="224"/>

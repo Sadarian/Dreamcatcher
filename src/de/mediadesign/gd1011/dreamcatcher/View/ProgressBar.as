@@ -27,7 +27,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
             mBar.y = 760;
             mBar.scaleY = 0;
             addChild(mBar);
-            addChild(new Image(splashScreenAtlas.getTexture("LoadingScreen")));
+            addChild(new Image(splashScreenAtlas.getTexture("Splashscreen")));
         }
 
         public function setRatio(index:int, value:Number):void

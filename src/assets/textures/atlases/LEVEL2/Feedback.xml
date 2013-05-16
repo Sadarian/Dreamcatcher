@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:a633acec919c8003b861a41fb809f11b$ -->
+<TextureAtlas imagePath="FeedbackTexture.png">
+    <SubTexture name="ExhaustFeedback" x="2" y="804" width="1280" height="800"/>
+    <SubTexture name="FreezeFeedback" x="2" y="2" width="1280" height="800"/>
+</TextureAtlas>

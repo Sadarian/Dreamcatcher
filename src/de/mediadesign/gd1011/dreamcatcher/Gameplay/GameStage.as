@@ -40,6 +40,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
         private var _pauseButton:PauseButton;
 
 		private var lvlEnd:Boolean;
+		private var initComplete:Boolean = false;
 
 		private var endScreen:LevelEndScreen;
 
@@ -69,6 +70,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			bossStage = false;
 			lose = false;
 			lvlEnd = false;
+			initComplete = true;
 
 			containerGroup = new Vector.<StageContainer>(6);
 			movementSpeeds = GameConstants.GAME_STAGE_MOVMENT_SPEEDS.concat();
@@ -100,6 +102,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			containerGroup = null;
 
 			bossStage = false;
+
+			initComplete = false;
 
 			movementSpeeds = null;
 
@@ -185,7 +189,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 		public function update(now:Number):void
 		{
-			if (!lvlEnd)
+			if (!lvlEnd && initComplete)
 			{
 				for (var i:int = 0; i < containerGroup.length; i++)
 				{

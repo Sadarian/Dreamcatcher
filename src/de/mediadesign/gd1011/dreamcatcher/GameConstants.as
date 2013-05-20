@@ -56,6 +56,7 @@ package de.mediadesign.gd1011.dreamcatcher
         public static const BACKGROUND_IMAGE_LIST_BOSS_LVL2:Array = ["BossScrollingBackground","BossScrollingBackground"];
 		public static const FOREGROUND_IMAGE_LIST_BOSS:Array = ["Front_1","Front_2","Front_3","Front_4","Front_5"];
 		public static const BOSS_SPEED_REDUCTION:Number = 0.15;
+		public static const TUTORIAL:Number = -2;
 
 		public static const CREDITS:String = "CreditsText_";
 

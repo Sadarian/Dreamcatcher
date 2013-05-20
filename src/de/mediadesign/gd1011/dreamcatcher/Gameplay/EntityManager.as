@@ -42,17 +42,19 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
         public function loadEntities(levelIndex:int = 1):void
         {
             createEntity(GameConstants.PLAYER, GameConstants.playerStartPosition);
-            _entities[0].switchWeapon(null);
-            if(levelIndex==-1)
-            {
-                EndlessMode.reset();
-                EndlessMode.instance;
-                return;
-            }
-            var loadingEntities:Array = GameConstants.loadSpawnData(levelIndex);
-            var i:int;
-            for(i=0;i<loadingEntities.length;i++)
-                juggler.delayCall(createEntity, loadingEntities[i][0], loadingEntities[i][2], new Point(Starling.current.viewPort.width, loadingEntities[i][1]));
+			if (levelIndex != GameConstants.TUTORIAL)
+			{
+				_entities[0].switchWeapon(null);
+				if (levelIndex == -1) {
+					EndlessMode.reset();
+					EndlessMode.instance;
+					return;
+				}
+				var loadingEntities:Array = GameConstants.loadSpawnData(levelIndex);
+				var i:int;
+				for (i = 0; i < loadingEntities.length; i++)
+					juggler.delayCall(createEntity, loadingEntities[i][0], loadingEntities[i][2], new Point(Starling.current.viewPort.width, loadingEntities[i][1]));
+			}
         }
 
 

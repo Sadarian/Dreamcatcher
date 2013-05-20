@@ -28,6 +28,7 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
     import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
 	import de.mediadesign.gd1011.dreamcatcher.View.Menu.PauseMenu;
 	import de.mediadesign.gd1011.dreamcatcher.View.Menu.TutorialMenu;
+	import de.mediadesign.gd1011.dreamcatcher.View.Menu.YesNoMenu;
 	import de.mediadesign.gd1011.dreamcatcher.View.PauseButton;
 	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
 	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
@@ -105,19 +106,24 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
             graphicsManager.initCompleted = true;
             addChild(gameStage);
             MainMenu.showAndHide();
-
-			//GraphicsManager.graphicsManager.playSound("Slayer",0,0,musicTransform);
-			//GraphicsManager.graphicsManager.playSound("Slayer");
         }
 
 		public function startLevel(levelIndex:int = 1):void
 		{
-			passedLvlTime += now;
-            currentLvl = (levelIndex>2)?2:levelIndex;
-            if(GameConstants.Player_Default != "Walk")
-                GameConstants.Player_Default = "Walk";
-            graphicsManager.loadDataFor("LEVEL"+currentLvl, (currentLvl!=1)?resumeStartLevel:comic);
-
+			if (!Dreamcatcher.localObject.data.tutorialSeen && levelIndex != GameConstants.TUTORIAL)
+			{
+				YesNoMenu.selectetLvl = levelIndex;
+				YesNoMenu.showAndHide();
+				Dreamcatcher.localObject.data.tutorialSeen = true;
+			}
+			else
+			{
+				passedLvlTime += now;
+				currentLvl = (levelIndex > 2) ? 2 : levelIndex;
+				if (GameConstants.Player_Default != "Walk")
+					GameConstants.Player_Default = "Walk";
+				graphicsManager.loadDataFor("LEVEL" + currentLvl, (currentLvl != 1) ? resumeStartLevel : comic);
+			}
 		}
 
         private function comic():void
@@ -157,7 +163,6 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 					text = createTextField(GameConstants.introTextLvl1);
 					GameStage.gameStage.addChild(text);
 					Starling.juggler.delayCall(deleteText, 2, text);
-					trace("lvl1");
 					break;
 				}
 
@@ -166,16 +171,14 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 					text = createTextField(GameConstants.introTextLvl2);
 					GameStage.gameStage.addChild(text);
 					Starling.juggler.delayCall(deleteText, 2, text);
-					trace("lvl2");
 					break;
 				}
 
-				default:
+				case -1:
 				{
 					text = createTextField(GameConstants.introTextLvlEndless);
 					GameStage.gameStage.addChild(text);
 					Starling.juggler.delayCall(deleteText, 2, text);
-					trace("lvl3");
 					break;
 				}
 			}
@@ -183,7 +186,6 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 			gameStage.loadLevel(currentLvl);
             entityManager.loadEntities(currentLvl);
             graphicsManager.initCompleted = true;
-            trace("Bug-Source-B");
             Starling.juggler.delayCall(allowShooting, 1);
 
         }
@@ -238,7 +240,7 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 
 		private function update():void
 		{
-			if (MainMenu.isActive() || PauseMenu.isActive() || HighScoreMenu.isActive() || ContinueMenu.isActive() || CreditsMenu.isActive() || TutorialMenu.isActive())
+			if (MainMenu.isActive() || PauseMenu.isActive() || HighScoreMenu.isActive() || ContinueMenu.isActive() || CreditsMenu.isActive() || TutorialMenu.isActive() || YesNoMenu.isActive())
 			{
 				getNoPlayTime();
 			}

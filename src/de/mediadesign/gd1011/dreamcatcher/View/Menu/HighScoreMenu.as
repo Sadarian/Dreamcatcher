@@ -34,6 +34,9 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 
         private static var state:Boolean = false;
 
+        private static var _credits:Boolean = false;
+        private static var _creditsOnceShown:Boolean = false;
+
         private var mElements:Vector.<DisplayObject>;
         private var mHighScoreBar:Sprite;
         private var mScores:Vector.<starling.text.TextField>;
@@ -103,7 +106,18 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
                         break;
                     case(mElements[1]):
                         showAndHide();
-                        GraphicsManager.graphicsManager.loadDataFor("UI", MainMenu.showAndHide);
+                        if(!credits)
+                            GraphicsManager.graphicsManager.loadDataFor("UI", MainMenu.showAndHide);
+                        else
+                        {
+                            GraphicsManager.graphicsManager.loadDataFor("UI", creditsFunction);
+                            function creditsFunction():void
+                            {
+                                credits = false;
+                                MainMenu.showAndHide();
+                                CreditsMenu.showAndHide();
+                            }
+                        }
                         break;
                     case(mElements[2]):
                         showAndHide();
@@ -139,8 +153,8 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
             {
                 self = null;
                 active = true;
-                highScoreMenu.mElements[2].visible = !state;
-                highScoreMenu.mElements[0].visible = !EndlessMode.hasInstance;
+                highScoreMenu.mElements[2].visible = !state && !_credits;
+                highScoreMenu.mElements[0].visible = !EndlessMode.hasInstance && !_credits;
                 (Starling.current.root as Game).addChild(highScoreMenu);
                 highScoreMenu.changeScore();
             }
@@ -233,6 +247,26 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
         public static function isActive():Boolean
         {
             return active;
+        }
+
+        public static function set credits(value:Boolean):void
+        {
+            _credits = value;
+        }
+
+        public static function get credits():Boolean
+        {
+            return _credits;
+        }
+
+        public static function get creditsOnceShown():Boolean
+        {
+            return _creditsOnceShown;
+        }
+
+        public static function set creditsOnceShown(value:Boolean):void
+        {
+            _creditsOnceShown = value;
         }
     }
 }

@@ -319,6 +319,11 @@ import de.mediadesign.gd1011.dreamcatcher.View.Menu.HighScoreMenu;
                     Dreamcatcher.localObject.data.Progress = (Dreamcatcher.localObject.data.Progress >= (Game.currentLvl+1)) ? Dreamcatcher.localObject.data.Progress : (Game.currentLvl+1);
                     if(Game.currentLvl == 2 && Dreamcatcher.localObject.data.Endless == false)
                         Dreamcatcher.localObject.data.Endless = true;
+                    if(Game.currentLvl == 2 && HighScoreMenu.creditsOnceShown == false)
+                    {
+                        HighScoreMenu.credits = true;
+                        HighScoreMenu.creditsOnceShown = true;
+                    }
                 }
                 Dreamcatcher.localObject.flush();
                 HighScoreMenu.showAndHide();

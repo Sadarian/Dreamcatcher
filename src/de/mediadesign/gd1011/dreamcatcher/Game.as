@@ -1,7 +1,8 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
-	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
+    import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
+    import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 import de.mediadesign.gd1011.dreamcatcher.Gameplay.EndlessMode;
 import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
@@ -340,10 +341,13 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
             {
                 HighScoreMenu.showAndHide(true);
                 HighScoreMenu.highScoreMenu.setScore(123456);
+
             }
             if(e.keyCode==Keyboard.F12)
             {
                 HighScore.resetHighScore();
+                Dreamcatcher.localObject.data.Progress = 1;
+                Dreamcatcher.localObject.data.Endless = false;
             }
         }
 

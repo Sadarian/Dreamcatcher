@@ -5,7 +5,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementPlayer;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementPlayerToStart;
 	import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
-    import de.mediadesign.gd1011.dreamcatcher.View.Menu.HighScoreMenu;
+import de.mediadesign.gd1011.dreamcatcher.View.Menu.CreditsMenu;
+import de.mediadesign.gd1011.dreamcatcher.View.Menu.HighScoreMenu;
     import de.mediadesign.gd1011.dreamcatcher.View.PauseButton;
 	import de.mediadesign.gd1011.dreamcatcher.Game;
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
@@ -314,7 +315,11 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			else
             {
                 if(!EndlessMode.hasInstance)
+                {
                     Dreamcatcher.localObject.data.Progress = (Dreamcatcher.localObject.data.Progress >= (Game.currentLvl+1)) ? Dreamcatcher.localObject.data.Progress : (Game.currentLvl+1);
+                    if(Game.currentLvl == 2 && Dreamcatcher.localObject.data.Endless == false)
+                        Dreamcatcher.localObject.data.Endless = true;
+                }
                 Dreamcatcher.localObject.flush();
                 HighScoreMenu.showAndHide();
                 HighScoreMenu.highScoreMenu.setScore(Score.score);

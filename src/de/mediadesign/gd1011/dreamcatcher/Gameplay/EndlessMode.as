@@ -3,12 +3,12 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 
     import flash.geom.Point;
-
     import starling.core.Starling;
 
     public class EndlessMode
     {
         private static const activateHarderEntities:Number = 90;
+        private static var damageMultiplier:Number = 1;
 
         private static var self:EndlessMode;
 
@@ -156,6 +156,13 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
         public static function reset():void
         {
             self = null;
+        }
+
+        public static function getDamageMultiplier(target:String):Number
+        {
+            if(target == GameConstants.PLAYER)
+                return damageMultiplier;
+            return 1;
         }
     }
 }

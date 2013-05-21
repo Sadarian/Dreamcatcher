@@ -1,6 +1,7 @@
 package de.mediadesign.gd1011.dreamcatcher.Processes
 {
-    import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
+import de.mediadesign.gd1011.dreamcatcher.Gameplay.EndlessMode;
+import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Collision.CollisionUnidentical;
@@ -132,7 +133,7 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 	            {
                     entityB.blink(GameConstants.blinkAmount(entityB.name));
                     showAnimation([entityB], true);
-	                entityB.health = entityB.health - entityA.health;
+	                entityB.health = entityB.health - entityA.health*EndlessMode.getDamageMultiplier(entityB.name);
 	                entityA.health = 0;
 	            }
 	            else
@@ -140,7 +141,7 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
                     {
                         entityA.blink(GameConstants.blinkAmount(entityA.name));
                         showAnimation([entityA], true);
-                        entityA.health = entityA.health - entityB.health;
+                        entityA.health = entityA.health - entityB.health*EndlessMode.getDamageMultiplier(entityA.name);
                         entityB.health = 0;
                     }
 	        }
@@ -153,12 +154,12 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
                 if(entityB.canAttack && entityA.canBeAttacked)
                 {
                     entityA.blink(GameConstants.blinkAmount(entityA.name));
-                    entityA.health -= GameConstants.meleeDamage(entityB.name);
+                    entityA.health -= GameConstants.meleeDamage(entityB.name)*EndlessMode.getDamageMultiplier(entityA.name);
                 }
                 if(entityA.canAttack && (!entityB.isBoss1 || entityA.getAnimatedModel(0).ActualAnimation.name == AnimatedModel.CLOSE_COMBAT))
                 {
                     entityB.blink(GameConstants.blinkAmount(entityB.name));
-                    entityB.health -= GameConstants.meleeDamage(entityA.name);
+                    entityB.health -= GameConstants.meleeDamage(entityA.name)*EndlessMode.getDamageMultiplier(entityB.name);
                 }
                 showAnimation([entityA, entityB], false);
             }
@@ -168,12 +169,12 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
                     if(entityB.canAttack && (!entityA.isBoss1 || entityB.getAnimatedModel(0).ActualAnimation.name == AnimatedModel.CLOSE_COMBAT))
                     {
                         entityA.blink(GameConstants.blinkAmount(entityA.name));
-                        entityA.health -= GameConstants.meleeDamage(entityB.name);
+                        entityA.health -= GameConstants.meleeDamage(entityB.name)*EndlessMode.getDamageMultiplier(entityA.name);
                     }
                     if(entityA.canAttack && entityB.canBeAttacked)
                     {
                         entityB.blink(GameConstants.blinkAmount(entityB.name));
-                        entityB.health -= GameConstants.meleeDamage(entityA.name);
+                        entityB.health -= GameConstants.meleeDamage(entityA.name)*EndlessMode.getDamageMultiplier(entityB.name);
                     }
                     showAnimation([entityB, entityA], false);
                 }

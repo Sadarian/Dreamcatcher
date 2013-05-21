@@ -52,6 +52,8 @@ package de.mediadesign.gd1011.dreamcatcher
                 localObject.data.Progress = 1;
             if(localObject.data.soundOn == null)
                 localObject.data.soundOn = true;
+            if(!localObject.data.Endless == null)
+                localObject.data.Endless = false;
 
             HighScore.initHighScore();
             GameConstants.init();

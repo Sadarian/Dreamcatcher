@@ -1,0 +1,12 @@
+{
+    "name":"MiniBoss",
+    "health":30,
+    "movementSystem":"MovementMiniBoss",
+    "movementSpeed":250,
+    "weaponSystem":"WeaponMiniBoss",
+    "weaponSpeed":2.0,
+    "collisionMode":"CollisionCircle",
+    "collisionPoint":[20, -70],
+    "collisionValues":[100, 100],
+    "points":[2137]
+}

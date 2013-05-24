@@ -87,19 +87,12 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 		}
 
-		private function fadeIn(tweenObject:DisplayObject):void
+		private static function fadeIn(tweenObject:DisplayObject):void
 		{
 			var mTween:Tween = new Tween (tweenObject,2,Transitions.EASE_IN);
 			mTween.fadeTo(1);
 			Starling.juggler.add(mTween);
 
-		}
-
-		private function fadeOut(tweenObject:DisplayObject):void
-		{
-			var mTween:Tween = new Tween (tweenObject,2,Transitions.EASE_OUT);
-			mTween.fadeTo(0);
-			Starling.juggler.add(mTween);
 		}
 
 		private function soundCompleteHandler(event:Event):void

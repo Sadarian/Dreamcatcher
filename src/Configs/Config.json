@@ -27,5 +27,6 @@
     "introTextSize":60,
     "introTextLvl1":"Forest of Fears",
     "introTextLvl2":"Valley of Spiders",
-    "introTextLvlEndless":"Endless Nightmare"
+    "introTextLvlEndless":"Endless Nightmare",
+    "endlessBossWait":30,
 }

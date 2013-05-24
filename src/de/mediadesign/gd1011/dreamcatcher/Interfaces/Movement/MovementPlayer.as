@@ -11,6 +11,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
 
     public class MovementPlayer implements IMovement
     {
+        //noinspection JSFieldCanBeLocal
         private static var BORDER:Rectangle = GameConstants.playerMovementBorder;
 
         private static var _touch:Touch = null;

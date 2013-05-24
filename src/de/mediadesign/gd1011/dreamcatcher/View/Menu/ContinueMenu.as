@@ -3,18 +3,12 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
 	import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
 	import de.mediadesign.gd1011.dreamcatcher.Game;
-    import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
-
-    import flash.net.FileFilter;
-
-	import starling.animation.DelayedCall;
 
 	import starling.core.Starling;
 	import starling.display.Button;
     import starling.display.DisplayObject;
     import starling.display.Sprite;
     import starling.events.Event;
-	import starling.text.TextField;
 	import starling.text.TextField;
 	import starling.utils.Color;
 	import starling.utils.deg2rad;
@@ -38,7 +32,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
             var buttonStrings:Array = [	"MainMenuContinueScreenBackButton", "MainMenuContinueScreenBackButtonClick",
 										"StageSelectScreenLV1",null,
 										"StageSelectScreenLV2", null,
-										"StageSelectScreenLV2 Lock", null]
+										"StageSelectScreenLV2 Lock", null];
             var positions:Array = [[40, 660],[322, 177],[322, 438],[322, 438]];
             var button:Button;
             for(var i:int=0; i<buttonStrings.length;i+=2)
@@ -103,9 +97,9 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
             }
         }
 
-		private function insertNumbers(x:Number,y:Number,value:String):TextField
+		private static function insertNumbers(x:Number,y:Number,value:String):TextField
 		{
-			var writtenNumber:TextField = new TextField(100,300,value,"MenuFont",80)
+			var writtenNumber:TextField = new TextField(100,300,value,"MenuFont",80);
 			writtenNumber.pivotY = writtenNumber.height/2;
 			writtenNumber.pivotX = writtenNumber.width/2;
 			writtenNumber.x = x;

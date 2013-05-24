@@ -1,6 +1,5 @@
 package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 {
-    import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
@@ -9,15 +8,15 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementWeb;
     import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
 
-import flash.geom.Point;
+    import flash.geom.Point;
 
-import starling.core.Starling;
-
-public class WeaponBoss implements IWeapon
+    public class WeaponBoss implements IWeapon
     {
+        //noinspection JSFieldCanBeLocal
         private static var bulletType:String = GameConstants.BOSS1_BULLET;
 
         private var _canShoot:Boolean = false;
+        //noinspection JSFieldCanBeLocal
         private var boss:Entity;
 
         private var shoots:Number = 0;

@@ -4,7 +4,6 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
     import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
     import de.mediadesign.gd1011.dreamcatcher.Game;
 
-    import flash.media.Sound;
     import flash.media.SoundChannel;
     import flash.media.SoundMixer;
     import flash.media.SoundTransform;
@@ -23,22 +22,34 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
         private static var self:MainMenu;
         private static var active:Boolean = false;
 
+        private var endless:Boolean = false;
         private var mElements:Vector.<DisplayObject>;
+        //noinspection JSFieldCanBeLocal
         private var music:SoundChannel;
 
         public function MainMenu()
         {
+            endless = Dreamcatcher.localObject.data.Endless;
+
             var gM:GraphicsManager = GraphicsManager.graphicsManager;
             addChild(gM.getImage("MainMenuPicture"));
 
             mElements = new Vector.<DisplayObject>();
 
-            var buttonStrings:Array =
-                    ["MainMenuContinueButton", "MainMenuContinueButtonClick",
-                     "MainMenuCreditsButton", "MainMenuCreditsButtonClick",
-                     "MainMenuSoundButtonOn", "MainMenuSoundButtonOn",
-                     "MainMenuStartButton", "MainMenuStartButtonClick",
-					 "MainMenuHelpButton",  "MainMenuHelpButtonClick"];
+            if(!endless)
+                var buttonStrings:Array =
+                        ["MainMenuContinueButton", "MainMenuContinueButtonClick",
+                         "MainMenuCreditsButton", "MainMenuCreditsButtonClick",
+                         "MainMenuSoundButtonOn", "MainMenuSoundButtonOn",
+                         "MainMenuStartButton", "MainMenuStartButtonClick",
+                         "MainMenuHelpButton",  "MainMenuHelpButtonClick"];
+            else
+                var buttonStrings:Array =
+                        ["MainMenuStoryButton", "MainMenuStoryButtonClick",
+                            "MainMenuCreditsButton", "MainMenuCreditsButtonClick",
+                            "MainMenuSoundButtonOn", "MainMenuSoundButtonOn",
+                            "MainMenuEndlessButton", "MainMenuEndlessButtonClick",
+                            "MainMenuHelpButton",  "MainMenuHelpButtonClick"];
             var positions:Array = [[109, 375, deg2rad(-14.5)], [164, 455, deg2rad(-14.5)], [20, 23, deg2rad(0)], [138, 257, deg2rad(-13.5)], [260, 530, deg2rad(-13.5)]];
             var button:Button;
             for(var i:int=0; i<buttonStrings.length;i+=2)
@@ -86,7 +97,10 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 
                 case(mElements[3]):
                     showAndHide();
-                    (Starling.current.root as Game).startLevel(-1);
+                    if(endless)
+                        (Starling.current.root as Game).startLevel(-1);
+                    else
+                        (Starling.current.root as Game).startLevel(Dreamcatcher.localObject.data.Progress);
                     break;
 				case(mElements[4]):
 					TutorialMenu.showAndHide();

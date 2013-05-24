@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:4efae036f26058b575274f5f5d8fc324$ -->
+<TextureAtlas imagePath="Background2_BossDie_lvl2Texture.png">
+    <SubTexture name="Boss2Die_01" x="1610" y="984" width="318" height="336" frameX="-343" frameY="-172" frameWidth="1024" frameHeight="512"/>
+    <SubTexture name="Boss2Die_02" x="1284" y="1020" width="292" height="342" frameX="-378" frameY="-168" frameWidth="1024" frameHeight="512"/>
+    <SubTexture name="Boss2Die_03" x="1514" y="1658" width="270" height="326" frameX="-409" frameY="-186" frameWidth="1024" frameHeight="512"/>
+    <SubTexture name="Boss2Die_04" x="1256" y="1658" width="256" height="330" frameX="-408" frameY="-181" frameWidth="1024" frameHeight="512"/>
+    <SubTexture name="Boss2Die_05" x="2" y="1736" width="260" height="298" frameX="-399" frameY="-214" frameWidth="1024" frameHeight="512"/>
+    <SubTexture name="Boss2Die_06" x="1578" y="1322" width="288" height="292" frameX="-364" frameY="-220" frameWidth="1024" frameHeight="512"/>
+    <SubTexture name="Boss2Die_07" x="1766" y="688" width="274" height="294" frameX="-378" frameY="-218" frameWidth="1024" frameHeight="512"/>
+    <SubTexture name="Boss2Die_08" x="540" y="1736" width="274" height="266" frameX="-378" frameY="-245" frameWidth="1024" frameHeight="512"/>
+    <SubTexture name="Boss2Die_09" x="1284" y="1364" width="274" height="292" frameX="-378" frameY="-219" frameWidth="1024" frameHeight="512"/>
+    <SubTexture name="Boss2Die_10" x="1766" y="392" width="274" height="294" frameX="-378" frameY="-218" frameWidth="1024" frameHeight="512"/>
+    <SubTexture name="Boss2Die_11" x="264" y="1736" width="274" height="270" frameX="-378" frameY="-242" frameWidth="1024" frameHeight="512"/>
+    <SubTexture name="Boss2Die_12" x="1284" y="726" width="324" height="292" frameX="-356" frameY="-220" frameWidth="1024" frameHeight="512"/>
+    <SubTexture name="Boss2Die_13" x="1284" y="392" width="480" height="332" frameX="-252" frameY="-180" frameWidth="1024" frameHeight="512"/>
+    <SubTexture name="Boss2Die_14" x="1284" y="2" width="598" height="388" frameX="-203" frameY="-119" frameWidth="1024" frameHeight="512"/>
+    <SubTexture name="LVL2BossForest_1" x="2" y="1104" width="1280" height="360" frameX="0" frameY="0" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="LVL2Forest_1" x="2" y="738" width="1280" height="364" frameX="0" frameY="-1" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="LVL2Forest_2" x="2" y="370" width="1280" height="366" frameX="0" frameY="0" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="LVL2Forest_3" x="2" y="2" width="1280" height="366" frameX="0" frameY="0" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="LVL2ScrollingBackground" x="2" y="1466" width="1252" height="268" frameX="-19" frameY="0" frameWidth="1280" frameHeight="800"/>
+</TextureAtlas>

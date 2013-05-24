@@ -7,11 +7,8 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBullet;
 	import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
-	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
 
 	import flash.geom.Point;
-
-	import org.osmf.metadata.CuePoint;
 
 	import starling.core.Starling;
 
@@ -40,7 +37,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 
 	        if (loadPowerShot == null)
 	        {
-		        loadPowerShot = new AnimatedModel("PlayerPowershot", new Array(), "Charging");
+		        loadPowerShot = new AnimatedModel("PlayerPowershot", [], "Charging");
 		        loadPowerShot.start();
 		        loadPowerShot.x = temPosition.x;
 		        loadPowerShot.y = temPosition.y;
@@ -70,7 +67,8 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
 	        }
         }
 
-	    public function shootNow():void
+        //noinspection JSUnusedGlobalSymbols
+        public function shootNow():void
 	    {
 		    if (loadPowerShot != null && canShoot)
 		    {

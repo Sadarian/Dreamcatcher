@@ -10,6 +10,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBoss;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementDieHead;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementVictim;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponBoss;
 
     import flash.utils.Dictionary;
     import starling.core.Starling;
@@ -130,10 +131,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
                         }
 
 	                    if (animation == DEAD_WALK)
-	                    {
 		                    actual.loop = false;
-		                    trace("Enemy is dead!");
-	                    }
                     }
                     else
                         throw new ArgumentError("Error! No +"+animation+" animation found!");
@@ -175,8 +173,8 @@ package de.mediadesign.gd1011.dreamcatcher.View
                         if(entity.isBoss2)
                         {
                             MovementBoss.resetPhase();
-                            GameStage.gameStage.endLvl("Congratulations! You have passed Level " + Game.currentLvl);
-                            return;
+                            if(Game.currentLvl == 2)
+                                GameStage.gameStage.endLvl("Congratulations! You have passed Level " + Game.currentLvl);
                         }
                         if(name != GameConstants.PLAYERARM)
                             EntityManager.entityManager.addUnusedEntity(entity);

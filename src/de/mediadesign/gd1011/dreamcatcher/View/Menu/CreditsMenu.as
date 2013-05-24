@@ -4,13 +4,9 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.View.ProgressBar;
 
-    import starling.animation.IAnimatable;
-
 	import starling.animation.Transitions;
 
 	import starling.animation.Tween;
-	import starling.core.Starling;
-
 	import starling.core.Starling;
 	import starling.display.Button;
 	import starling.display.DisplayObject;
@@ -83,7 +79,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 			if (creditCount == 7)
 				creditCount = 1;
 			else
-				creditCount++
+				creditCount++;
 
 			//if(active == true)
 				Starling.juggler.delayCall(nextCredit,2);

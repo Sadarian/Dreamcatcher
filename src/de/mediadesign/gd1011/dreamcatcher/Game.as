@@ -1,15 +1,8 @@
 package de.mediadesign.gd1011.dreamcatcher
 {
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
-    import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
-    import de.mediadesign.gd1011.dreamcatcher.GameConstants;
-import de.mediadesign.gd1011.dreamcatcher.Gameplay.EndlessMode;
-import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
-	import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
-	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
-	import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
+    import de.mediadesign.gd1011.dreamcatcher.Gameplay.EndlessMode;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBoss;
-	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerPowershot;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerStraight;
     import de.mediadesign.gd1011.dreamcatcher.Processes.ActivePowerUpProcess;
 	import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionDummyBoxes;
@@ -29,24 +22,15 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
     import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
 	import de.mediadesign.gd1011.dreamcatcher.View.Menu.PauseMenu;
 	import de.mediadesign.gd1011.dreamcatcher.View.Menu.TutorialMenu;
-	import de.mediadesign.gd1011.dreamcatcher.View.PauseButton;
-	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
 	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
 	import de.mediadesign.gd1011.dreamcatcher.View.Score;
 
-    import flash.events.SoftKeyboardEvent;
-
     import flash.geom.Point;
-	import flash.media.SoundChannel;
-	import flash.media.SoundTransform;
-	import flash.net.InterfaceAddress;
 	import flash.ui.Keyboard;
     import flash.utils.getTimer;
 	import starling.core.Starling;
-	import starling.display.Button;
     import starling.display.Image;
     import starling.display.Sprite;
-	import starling.events.Event;
 	import starling.events.Event;
     import starling.events.KeyboardEvent;
     import starling.events.Touch;
@@ -72,10 +56,11 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 		private var now:Number = 0;
 		public var noPlayTime:Number = 0;
 		private var passedLvlTime:Number = 0;
-		private static var _weaponPlayerStraight:WeaponPlayerStraight = new WeaponPlayerStraight();
-		private static var _weaponPlayerFan:WeaponPlayerFan = new WeaponPlayerFan();
-		private static var _weaponPlayerPowershot:WeaponPlayerPowershot = new WeaponPlayerPowershot();
-		private var powerShotChanel:SoundChannel;
+
+        //noinspection JSFieldCanBeLocal
+        private static var _weaponPlayerStraight:WeaponPlayerStraight = new WeaponPlayerStraight();
+        //noinspection JSFieldCanBeLocal
+        private static var _weaponPlayerFan:WeaponPlayerFan = new WeaponPlayerFan();
 
         //DEBUG:
         private var touchPosition:Point = new Point();
@@ -158,7 +143,6 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 					text = createTextField(GameConstants.introTextLvl1);
 					GameStage.gameStage.addChild(text);
 					Starling.juggler.delayCall(deleteText, 2, text);
-					trace("lvl1");
 					break;
 				}
 
@@ -167,7 +151,6 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 					text = createTextField(GameConstants.introTextLvl2);
 					GameStage.gameStage.addChild(text);
 					Starling.juggler.delayCall(deleteText, 2, text);
-					trace("lvl2");
 					break;
 				}
 
@@ -176,7 +159,6 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 					text = createTextField(GameConstants.introTextLvlEndless);
 					GameStage.gameStage.addChild(text);
 					Starling.juggler.delayCall(deleteText, 2, text);
-					trace("lvl3");
 					break;
 				}
 			}
@@ -184,18 +166,17 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 			gameStage.loadLevel(currentLvl);
             entityManager.loadEntities(currentLvl);
             graphicsManager.initCompleted = true;
-            trace("Bug-Source-B");
             Starling.juggler.delayCall(allowShooting, 1);
 
         }
 
-		private function deleteText(text:TextField):void
+		private static function deleteText(text:TextField):void
 		{
 			GameStage.gameStage.removeActor(text);
 			text.dispose();
 		}
 
-		private function createTextField(s:String):TextField
+		private static function createTextField(s:String):TextField
 		{
 			var text:TextField = new TextField(500, 200, s, "MenuFont", GameConstants.introTextSize,0xece030b, true);
 			text.pivotX = text.width/2;
@@ -315,7 +296,7 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
             if(e.keyCode==Keyboard.F3)
                 entityManager.createEntity(GameConstants.VICTIM1, touchPosition);
             if(e.keyCode==Keyboard.F4)
-                entityManager.createEntity(GameConstants.BOSS1, touchPosition);
+                entityManager.createEntity(GameConstants.MINIBOSS, touchPosition);
             if(e.keyCode==Keyboard.F5)
                 entityManager.createEntity(GameConstants.CHARGER, touchPosition);
             if(e.keyCode==Keyboard.F6)
@@ -353,10 +334,6 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 
 		public static function get weaponPlayerFan():WeaponPlayerFan {
 			return _weaponPlayerFan;
-		}
-
-		public static function get weaponPlayerPowershot():WeaponPlayerPowershot {
-			return _weaponPlayerPowershot;
 		}
 
 		public static function get weaponPlayerStraight():WeaponPlayerStraight {

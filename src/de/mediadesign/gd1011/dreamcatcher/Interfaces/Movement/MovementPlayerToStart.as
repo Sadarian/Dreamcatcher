@@ -1,7 +1,6 @@
 package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
 {
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
-    import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
 
     import flash.geom.Point;
 

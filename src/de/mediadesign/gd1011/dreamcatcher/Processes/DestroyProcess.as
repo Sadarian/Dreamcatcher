@@ -7,11 +7,7 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBoss;
     import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
 
-    import flash.events.Event;
-
     import starling.core.Starling;
-    import starling.display.DisplayObjectContainer;
-    import starling.display.MovieClip;
 
     public class DestroyProcess
     {
@@ -26,9 +22,9 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
 		{
 			for each (var entity:Entity in manager.entities)
 			{
-                if(entity.health <= 0 && (entity.isBullet || entity.isBoss1 || entity.isPowerUp || entity.isCharger || entity.isPowershot))
+                if(entity.health <= 0 && (entity.isBullet || entity.isBoss1 || entity.isPowerUp || entity.isCharger || entity.isPowerShot || entity.isMiniBoss))
                 {
-                    if(!(entity.name == GameConstants.PLAYER_BULLET) && !entity.isCharger)
+                    if(!(entity.name == GameConstants.PLAYER_BULLET) && !entity.isCharger && !entity.isMiniBoss)
                     {
                         if(checkForWeb(entity, true)) return;
                         GameStage.gameStage.removeActor(entity.movieClip);

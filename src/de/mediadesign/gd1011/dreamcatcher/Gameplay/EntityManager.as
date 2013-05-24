@@ -1,13 +1,11 @@
 package de.mediadesign.gd1011.dreamcatcher.Gameplay
 {
-    import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
-	import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionDummyBoxes;
+    import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionDummyBoxes;
     import de.mediadesign.gd1011.dreamcatcher.TestStuff.CollisionImage;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.View.LifeBarHandling;
 	import flash.geom.Point;
-	import flash.geom.Rectangle;
 
 	import starling.animation.Juggler;
 	import starling.core.Starling;
@@ -46,7 +44,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             if(levelIndex==-1)
             {
                 EndlessMode.reset();
-                EndlessMode.instance;
+                var endless:EndlessMode = EndlessMode.instance;
+                trace(endless);
                 return;
             }
             var loadingEntities:Array = GameConstants.loadSpawnData(levelIndex);
@@ -114,6 +113,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		    return null;
 	    }
 
+        /*
         public function rotatePowerUps(deltaTime:Number):void
         {
             var powerUps:Vector.<Entity> =  _entities.filter(allPowerUps);
@@ -130,8 +130,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
                 else if(powerUps[i].movieClip.scaleX >= 1)
                     powerUps[i].movieClip.name = "-1";
             }
-
         }
+        */
 
 		public function get entities():Vector.<Entity>
         {

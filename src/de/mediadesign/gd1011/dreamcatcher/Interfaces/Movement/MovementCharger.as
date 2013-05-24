@@ -22,7 +22,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
         public function move(deltaTime:Number, position:Point):Point
         {
             var targetPoint:Point = (EntityManager.entityManager.getEntity(GameConstants.PLAYER)) ? (EntityManager.entityManager.getEntity(GameConstants.PLAYER)).position : new Point(0, position.y);
-            var angle:Number = Math.atan2(targetPoint.y - position.y, targetPoint.x - position.x);;
+            var angle:Number = Math.atan2(targetPoint.y - position.y, targetPoint.x - position.x);
             return (position.add(new Point((_speed * Math.cos(angle) * deltaTime), (_speed * Math.sin(angle) * deltaTime))));
         }
     }

@@ -1,10 +1,3 @@
-/**
- * Created with IntelliJ IDEA.
- * User: tofrey
- * Date: 21.02.13
- * Time: 08:24
- * To change this template use File | Settings | File Templates.
- */
 package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
 {
 	import flash.geom.Point;

@@ -1,10 +1,3 @@
-/**
- * Created with IntelliJ IDEA.
- * User: tofrey
- * Date: 18.02.13
- * Time: 11:28
- * To change this template use File | Settings | File Templates.
- */
 package de.mediadesign.gd1011.dreamcatcher.View
 {
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;

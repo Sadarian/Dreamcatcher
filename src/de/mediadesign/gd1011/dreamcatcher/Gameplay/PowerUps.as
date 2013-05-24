@@ -1,10 +1,3 @@
-/**
- * Created with IntelliJ IDEA.
- * User: tofrey
- * Date: 20.02.13
- * Time: 13:20
- * To change this template use File | Settings | File Templates.
- */
 package de.mediadesign.gd1011.dreamcatcher.Gameplay
 {
 	import de.mediadesign.gd1011.dreamcatcher.Game;
@@ -51,6 +44,14 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			}
 			else if(entity.isVictim)
 				dropHealth(entity);
+
+            else if(entity.isMiniBoss)
+            {
+                if(Math.random()<0.5)
+                    dropFireRate(entity);
+                else
+                    dropFreeze(entity);
+            }
 		}
 
 		private static function dropFireRate(entity:Entity):void

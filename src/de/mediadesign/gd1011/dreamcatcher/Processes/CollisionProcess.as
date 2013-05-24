@@ -42,7 +42,7 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
 								{
 									meleeCombat(entityA, entityB);
 
-									if ((entityA.isPowershot || entityB.isPowershot) && !(entityA.isBullet || entityB.isBullet))
+									if ((entityA.isPowerShot || entityB.isPowerShot) && !(entityA.isBullet || entityB.isBullet))
 									{
 										powershot(entityA, entityB);
 									}
@@ -63,7 +63,7 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
 
                                         pickUpPowerUp(entityA, entityB);
 
-	                                    if ((entityA.isPowershot || entityB.isPowershot))
+	                                    if ((entityA.isPowerShot || entityB.isPowerShot))
 	                                    {
 		                                    powershot(entityA, entityB);
 	                                    }
@@ -81,7 +81,7 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
 		{
 			var tempHealth:Number;
 
-			if (!entityA.isPowershot && entityA.health > 0)
+			if (!entityA.isPowerShot && entityA.health > 0)
 			{
 				entityA.blink(GameConstants.blinkAmount(entityA.name));
 				showAnimation([entityA], true);
@@ -90,7 +90,7 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
 				entityA.health = entityA.health - entityB.health;
 				entityB.health = entityB.health - tempHealth;
 			}
-			else if (!entityB.isPowershot && entityB.health > 0)
+			else if (!entityB.isPowerShot && entityB.health > 0)
 			{
 				entityB.blink(GameConstants.blinkAmount(entityB.name));
 				showAnimation([entityB], true);
@@ -127,7 +127,7 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
 
         private static function rangeCombat(entityA:Entity, entityB:Entity):void
         {
-	        if (!(entityA.isPowerUp || entityB.isPowerUp || entityA.isPowershot || entityB.isPowershot))
+	        if (!(entityA.isPowerUp || entityB.isPowerUp || entityA.isPowerShot || entityB.isPowerShot))
 	        {
 		        if (entityA.isBullet && entityA.health > 0 && !entityB.isBullet && (entityA.name.search(entityB.name) == -1)  && entityB.canBeAttacked)
 	            {

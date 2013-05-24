@@ -14,9 +14,13 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
 
 	    private var _onInit:Boolean = true;
 
-	    private var minDirection:Number = GameConstants.victimDirectionBorderMin;
+        //noinspection JSFieldCanBeLocal
+        private var minDirection:Number = GameConstants.victimDirectionBorderMin;
+        //noinspection JSFieldCanBeLocal
 	    private var maxDirection:Number = GameConstants.victimDirectionBorderMax;
+        //noinspection JSFieldCanBeLocal
 	    private var minMovementY:Number = GameConstants.victimMovementBorderMin;
+        //noinspection JSFieldCanBeLocal
 	    private var maxMovementY:Number = GameConstants.victimMovementBorderMax;
 
         public function set speed(value:Number):void

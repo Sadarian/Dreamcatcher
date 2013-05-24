@@ -5,19 +5,15 @@ package de.mediadesign.gd1011.dreamcatcher
     import de.mediadesign.gd1011.dreamcatcher.View.Menu.HighScoreMenu;
     import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
     import de.mediadesign.gd1011.dreamcatcher.View.Menu.PauseMenu;
-    import de.mediadesign.gd1011.dreamcatcher.View.Score;
 
     import flash.desktop.NativeApplication;
     import flash.display.Sprite;
     import flash.display.StageAlign;
-    import flash.display.StageDisplayState;
     import flash.display.StageScaleMode;
 	import flash.geom.Rectangle;
-    import flash.media.Sound;
     import flash.media.SoundMixer;
     import flash.media.SoundTransform;
     import flash.net.SharedObject;
-    import flash.system.Capabilities;
 
     import starling.core.Starling;
     import flash.events.*;
@@ -52,7 +48,7 @@ package de.mediadesign.gd1011.dreamcatcher
                 localObject.data.Progress = 1;
             if(localObject.data.soundOn == null)
                 localObject.data.soundOn = true;
-            if(!localObject.data.Endless == null)
+            if(localObject.data.Endless == null)
                 localObject.data.Endless = false;
 
             HighScore.initHighScore();

@@ -21,7 +21,6 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 		public function TutorialMenu()
 		{
 			var gM:GraphicsManager = GraphicsManager.graphicsManager;
-			var iM:Image;
             var i:int;
 			for(i=0; i<imageList.length;i++)
 			{
@@ -77,15 +76,8 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 
         private function showArrows():void
         {
-            if (mIndex <= 0)
-                mElements[1].visible = false;
-            else
-                mElements[1].visible = true;
-
-            if (mIndex >= tutorialContent.length-1)
-                mElements[2].visible = false;
-            else
-                mElements[2].visible = true;
+            mElements[1].visible = mIndex > 0;
+            mElements[2].visible = mIndex < tutorialContent.length - 1;
         }
 
 		public static function get continueMenu():TutorialMenu

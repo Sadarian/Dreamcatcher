@@ -38,9 +38,7 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
         private static var _creditsOnceShown:Boolean = false;
 
         private var mElements:Vector.<DisplayObject>;
-        private var mHighScoreBar:Sprite;
         private var mScores:Vector.<starling.text.TextField>;
-        private var score:Number;
         private var textField:flash.text.TextField;
 
         public function HighScoreMenu()
@@ -49,7 +47,7 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
             addChild(gM.getImage("highscore_background"));
 
             mElements = new Vector.<DisplayObject>();
-            mHighScoreBar = new Sprite();
+            var mHighScoreBar:Sprite = new Sprite();
             mScores = new Vector.<starling.text.TextField>(8);
             mHighScoreBar.addChild(gM.getImage("highscore_bar"));
             var i:int;
@@ -89,10 +87,10 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
             //Starling.juggler.delayCall(deleteChild, 2);
         }
 
-        private function deleteChild():void
-        {
-            removeChild(mElements[mElements.length-1]);
-        }
+        //private function deleteChild():void
+        //{
+        //    removeChild(mElements[mElements.length-1]);
+        //}
 
         private function onTriggered(e:Event):void
         {
@@ -182,8 +180,7 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 
         public function setScore(value:Number):void
         {
-            score = value;
-            var newPosition:int = HighScore.checkHighScore(Game.currentLvl,score);
+            var newPosition:int = HighScore.checkHighScore(Game.currentLvl, value);
             var text:String;
             if(newPosition == -1)
                 text = "Your Score is: ";
@@ -193,7 +190,7 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
             mScores[6].width = 800; mScores[6].height = 100;
             mScores[6].x = 25; mScores[6].y = 450;
             mScores[6].fontSize = 70;
-            mScores[7].text = score.toString();
+            mScores[7].text = value.toString();
             mScores[7].fontSize = 150;
             mScores[7].width = 900; mScores[7].height = 200;
             mScores[7].x = 135; mScores[7].y = 600;
@@ -202,7 +199,7 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 
             if(newPosition != -1)
             {
-                HighScore.saveScoreAt(Game.currentLvl, score, newPosition, "LocalPlayer");
+                HighScore.saveScoreAt(Game.currentLvl, value, newPosition, "LocalPlayer");
                 changeScore();
                 textField = new flash.text.TextField();
                 var textFormat:TextFormat = new TextFormat("MenuFont", 90, 0xff0000);
@@ -224,7 +221,7 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 
                 function onInput(event:FocusEvent):void
                 {
-                    HighScore.saveScoreAt(Game.currentLvl, score, newPosition, textField.text);
+                    HighScore.saveScoreAt(Game.currentLvl, value, newPosition, textField.text);
                     changeScore();
                     Starling.current.nativeOverlay.removeChild(textField);
                     textField = null;

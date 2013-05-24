@@ -5,8 +5,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementPlayer;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementPlayerToStart;
 	import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
-import de.mediadesign.gd1011.dreamcatcher.View.Menu.CreditsMenu;
-import de.mediadesign.gd1011.dreamcatcher.View.Menu.HighScoreMenu;
+    import de.mediadesign.gd1011.dreamcatcher.View.Menu.HighScoreMenu;
     import de.mediadesign.gd1011.dreamcatcher.View.PauseButton;
 	import de.mediadesign.gd1011.dreamcatcher.Game;
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
@@ -20,7 +19,6 @@ import de.mediadesign.gd1011.dreamcatcher.View.Menu.HighScoreMenu;
 	import flash.media.SoundTransform;
 
 	import starling.animation.DelayedCall;
-	import starling.core.Starling;
 	import starling.core.Starling;
     import starling.display.DisplayObject;
 	import starling.display.Image;
@@ -52,7 +50,7 @@ import de.mediadesign.gd1011.dreamcatcher.View.Menu.HighScoreMenu;
 
 		public function GameStage()
 		{
-			movementSpeeds = GameConstants.GAME_STAGE_MOVMENT_SPEEDS.concat();
+			movementSpeeds = GameConstants.GAME_STAGE_MOVEMENT_SPEEDS.concat();
 			containerGroup = new Vector.<StageContainer>(6);
 		}
 
@@ -72,7 +70,7 @@ import de.mediadesign.gd1011.dreamcatcher.View.Menu.HighScoreMenu;
 			lvlEnd = false;
 
 			containerGroup = new Vector.<StageContainer>(6);
-			movementSpeeds = GameConstants.GAME_STAGE_MOVMENT_SPEEDS.concat();
+			movementSpeeds = GameConstants.GAME_STAGE_MOVEMENT_SPEEDS.concat();
 
 			background = GraphicsManager.graphicsManager.getImage( GameConstants.BACKGROUND);
             addChild(background);
@@ -256,12 +254,12 @@ import de.mediadesign.gd1011.dreamcatcher.View.Menu.HighScoreMenu;
 			if(containerGroup[0].getChildAt(0).x < containerGroup[0].getChildAt(1).x)
 			{
                 delay = containerGroup[0].getChildAt(0).x + (2*containerGroup[0].getChildAt(1).width);
-				delay /= GameConstants.GAME_STAGE_MOVMENT_SPEEDS[0];
+				delay /= GameConstants.GAME_STAGE_MOVEMENT_SPEEDS[0];
 			}
             else
             {
                 delay = containerGroup[0].getChildAt(1).x + (2*containerGroup[0].getChildAt(0).width);
-                delay /= GameConstants.GAME_STAGE_MOVMENT_SPEEDS[0];
+                delay /= GameConstants.GAME_STAGE_MOVEMENT_SPEEDS[0];
             }
 
 			bossStage = true;
@@ -276,7 +274,7 @@ import de.mediadesign.gd1011.dreamcatcher.View.Menu.HighScoreMenu;
             function reduceMovementSpeed():void
             {
                 for (var i:int = 0; i < movementSpeeds.length; i++)
-                    movementSpeeds[i] -= GameConstants.GAME_STAGE_MOVMENT_SPEEDS[i]/100;
+                    movementSpeeds[i] -= GameConstants.GAME_STAGE_MOVEMENT_SPEEDS[i]/100;
             }
             function playerDefault():void
             {
@@ -331,10 +329,6 @@ import de.mediadesign.gd1011.dreamcatcher.View.Menu.HighScoreMenu;
                 resetAll();
             }
 
-		}
-
-		public function get pauseButton():PauseButton {
-			return _pauseButton;
 		}
 	}
 }

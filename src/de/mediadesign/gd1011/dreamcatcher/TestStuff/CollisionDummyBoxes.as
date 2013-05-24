@@ -24,7 +24,8 @@ package de.mediadesign.gd1011.dreamcatcher.TestStuff
 		private static function createCircle(x:Number, name:String):CollisionImage {
 			var temCircle:CollisionImage = new CollisionImage(GraphicsManager.graphicsManager.getTexture("Circle"), name);
 			temCircle.scaleX = x/100;
-			temCircle.scaleY = temCircle.scaleX;
+			//noinspection JSSuspiciousNameCombination
+            temCircle.scaleY = temCircle.scaleX;
 			return temCircle;
 		}
 

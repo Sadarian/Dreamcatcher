@@ -46,6 +46,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
             return output;
         }
 
+        /*
         public static function traceOutput(l:int):void
         {
             var output:Array = [];
@@ -58,6 +59,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
             }
             trace(output);
         }
+        */
 
         public static function checkHighScore(l:int, value:Number):int
         {

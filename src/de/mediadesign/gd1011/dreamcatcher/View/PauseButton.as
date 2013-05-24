@@ -1,10 +1,3 @@
-/**
- * Created with IntelliJ IDEA.
- * User: rolehmann
- * Date: 23.02.13
- * Time: 13:45
- * To change this template use File | Settings | File Templates.
- */
 package de.mediadesign.gd1011.dreamcatcher.View
 {
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;

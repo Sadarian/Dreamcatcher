@@ -2,16 +2,16 @@ package de.mediadesign.gd1011.dreamcatcher
 {
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementCharger;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementMiniBoss;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponBoss;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBullet;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementEnemy;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementPowerUp;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementVictim;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponEnemy;
-	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerFan;
-	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerStraight;
+    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponMiniBoss;
 
-	import flash.filesystem.File;
+    import flash.filesystem.File;
 	import flash.filesystem.FileMode;
 	import flash.filesystem.FileStream;
 	import flash.geom.Point;
@@ -21,20 +21,25 @@ package de.mediadesign.gd1011.dreamcatcher
 	public class GameConstants
     {
         public static const UI_LIST:Array = ["Credits", "Menu"];
-        public static const ENDLESS_LIST:Array = ["Background1_lvl1", "Background2_lvl1","Feedback", "Intro", "Victims_Charger_Enemy_lvl2"];
+        public static const ENDLESS_LIST:Array = ["Background1_lvl1", "Background2_lvl1","Feedback", "Intro", "Victims_Charger_Enemy_lvl2", "Background2_BossDie_lvl2", "Boss_lvl2", "MiniBoss"];
+        //noinspection JSUnusedGlobalSymbols
         public static const LEVEL1_LIST:Array = ["Background1_lvl1", "Background2_lvl1", "Boss_lvl1" ,"Feedback", "Intro", "Victims_Charger_Enemy_lvl2"];
+        //noinspection JSUnusedGlobalSymbols
         public static const LEVEL2_LIST:Array = ["Background1_lvl2", "Background2_BossDie_lvl2", "Boss_lvl2", "Feedback", "Intro", "Victims_Charger_Enemy_lvl2"];
 
         public static const COLLISION_RECTANGLE:String = "CollisionRectangle";
+        //noinspection JSUnusedGlobalSymbols
         public static const COLLISION_CIRCLE:String = "CollisionCircle";
 	    public static const BULLET:String = "Bullet";
 		public static const POWERUP:String = "PowerUp";
 		public static const TEXTBOXBUTTON:String = "TextBoxButton";
 
 		public static const TEST_SOUND:String = "TestSound";
+        //noinspection JSUnusedGlobalSymbols
 		public static const SOUND_LIST:Vector.<String> = new <String>[TEST_SOUND];
 
 		public static const BACKGROUND:String = "StaticBackground";
+        //noinspection JSUnusedGlobalSymbols
 		public static const BUTTON:String ="Button";
 
 		//Properties of the GameStage (LVL1)
@@ -45,7 +50,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static const FOG_LIST:Array = [["FogAnim1_1"],["FogAnim2_1"],["FogAnim3_1"]];
 		public static const BACKGROUND_IMAGE_LIST:Array = ["ScrollingBackground","ScrollingBackground"];
 		public static const FOREGROUND_IMAGE_LIST:Array = ["Front_1","Front_2","Front_3","Front_4","Front_5"];
-		public static const GAME_STAGE_MOVMENT_SPEEDS:Vector.<Number> = new <Number>[1,2,3,6,7,8];
+		public static const GAME_STAGE_MOVEMENT_SPEEDS:Vector.<Number> = new <Number>[1,2,3,6,7,8];
 
 		public static const MAIN_STAGE_IMAGE_LIST_BOSS:Array = ["Main_1","Main_2"];
 		public static const BUSH_IMAGE_LIST_BOSS:Array = ["Bush_1","Bush_2"];
@@ -68,6 +73,7 @@ package de.mediadesign.gd1011.dreamcatcher
         public static const CHARGER:String = "Charger";
         public static const BOSS1:String = "Boss1";
 		public static const BOSS2:String = "Boss2";
+        public static const MINIBOSS:String = "MiniBoss";
 
 		public static const PLAYER_BULLET:String = "PlayerBullet";
 		public static const PLAYER_STRONG_BULLET:String = "PlayerStrongBullet";
@@ -76,6 +82,7 @@ package de.mediadesign.gd1011.dreamcatcher
         public static const BOSS1_BULLET:String = "Boss1Bullet";
         public static const BOSS2_BULLET:String = "Boss2Bullet";
         public static const BOSS2_BULLET_WEB:String = "Boss2BulletWeb";
+        public static const MINIBOSS_BULLET_WEB:String = "MiniBossBulletWeb";
 
         public static const POWERUP_FIRE_RATE:String = "PowerUpFireRate";
         public static const POWERUP_FREEZE:String = "PowerUpFreeze";
@@ -88,25 +95,37 @@ package de.mediadesign.gd1011.dreamcatcher
         private static var _playerBulletsPowerUpSpeed:Number;
 
         //States and Defaults for Animations:
+        //noinspection JSUnusedGlobalSymbols
         public static const Player_States:Array =["CloseCombat", "Die", "Hit", "Stand"];
         public static var Player_Default:String = "Walk";
-
+        //noinspection JSUnusedGlobalSymbols
         public static const PlayerArm_States:Array =["CloseCombat", "Die", "Hit", "Stand"];
-
+        //noinspection JSUnusedGlobalSymbols
         public static const PlayerBullet_States:Array =["Die"];
 
+        //noinspection JSUnusedGlobalSymbols
         public static const Enemy_States:Array =["Die", "Hit", "DieCloseCombat", "DeadWalk"];
+        //noinspection JSUnusedGlobalSymbols
         public static const Charger_States:Array =["Die", "DieCloseCombat"];
 
+        //noinspection JSUnusedGlobalSymbols
         public static const Victim1_States:Array =["Die", "Walk", "Fear"];
+        //noinspection JSUnusedGlobalSymbols
         public static const Victim1_Default:String = "Eat";
 
+        //noinspection JSUnusedGlobalSymbols
         public static const Victim2_States:Array =["Die", "Walk", "Fear", "DieHead"];
+        //noinspection JSUnusedGlobalSymbols
         public static const Victim2_Default:String = "Eat";
 
+        //noinspection JSUnusedGlobalSymbols
         public static const Boss1_States:Array =["CloseCombat", "Die", "Shoot"];
 
+        //noinspection JSUnusedGlobalSymbols
         public static const Boss2_States:Array =["CloseCombat", "Die", "Shoot", "ShootWeb"];
+
+        //noinspection JSUnusedGlobalSymbols
+        public static const MiniBoss_States:Array =["CloseCombat", "Die", "ShootWeb"];
 
         private static var _victimMovementBorderMax:Number;
         private static var _victimMovementBorderMin:Number;
@@ -139,7 +158,6 @@ package de.mediadesign.gd1011.dreamcatcher
         private static var _generalBlinkDuration:Number;
         private static var _generalBlinkAmount:int;
 		private static var _growFadeSpeed:Number;
-		private static var _fontSize:Number;
 		private static var _moveToSpeed:Number;
 		private static var _introTextRotation:Number;
 		private static var _introTextSize:Number;
@@ -147,17 +165,19 @@ package de.mediadesign.gd1011.dreamcatcher
 		private static var _introTextLvl2:String;
 		private static var _introTextLvlEndless:String;
 
+        private static var _endlessBossWait:Number;
+
         public static function init(path:String = "Configs/"):void
         {
-	        Game.weaponPlayerStraight;
-			Game.weaponPlayerFan;
             new WeaponBoss();
             new MovementCharger();
 	        new MovementPowerUp();
             new MovementBullet();
             new MovementEnemy();
+            new MovementMiniBoss();
             new MovementVictim();
             new WeaponEnemy();
+            new WeaponMiniBoss();
 
             var stream:FileStream = new FileStream();
             stream.open(File.applicationDirectory.resolvePath(path+"Config.json"), FileMode.READ);
@@ -204,13 +224,13 @@ package de.mediadesign.gd1011.dreamcatcher
             if(data.generalBlinkAmount)_generalBlinkAmount = data.generalBlinkAmount;
 
 			if(data.growFadeSpeed)_growFadeSpeed = data.growFadeSpeed;
-			if(data.fontSize)_fontSize = data.fontSize;
 			if(data.moveToSpeed)_moveToSpeed = data.moveToSpeed;
 	        if(data.introTextRotation)_introTextRotation = data.introTextRotation;
 	        if(data.introTextSize)_introTextSize = data.introTextSize;
 	        if(data.introTextLvl1)_introTextLvl1 = data.introTextLvl1;
 	        if(data.introTextLvl2)_introTextLvl2 = data.introTextLvl2;
 	        if(data.introTextLvlEndless)_introTextLvlEndless = data.introTextLvlEndless;
+            if(data.endlessBossWait) _endlessBossWait = data.endlessBossWait;
         }
 
 		private static function setPowerUps(data:Object):void
@@ -412,10 +432,6 @@ package de.mediadesign.gd1011.dreamcatcher
 			return _fanAngle;
 		}
 
-		public static function get fontSize():Number {
-			return _fontSize;
-		}
-
 		public static function get moveToSpeed():Number {
 			return _moveToSpeed;
 		}
@@ -443,5 +459,10 @@ package de.mediadesign.gd1011.dreamcatcher
 		public static function get introTextRotation():Number {
 			return _introTextRotation;
 		}
-	}
+
+        public static function get endlessBossWait():Number
+        {
+            return _endlessBossWait;
+        }
+    }
 }

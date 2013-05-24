@@ -252,7 +252,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             return (name.search(GameConstants.BULLET) != -1);
         }
 
-	    public function get isPowershot():Boolean
+	    public function get isPowerShot():Boolean
 	    {
 		    return (name == GameConstants.PLAYER_POWERSHOT);
 	    }
@@ -301,6 +301,11 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 	    {
 		    return (isBoss1 || isBoss2);
 	    }
+
+        public function get isMiniBoss():Boolean
+        {
+            return (name == GameConstants.MINIBOSS);
+        }
 
         public function get isHostile():Boolean
         {

@@ -1,10 +1,3 @@
-/**
- * Created with IntelliJ IDEA.
- * User: tofrey
- * Date: 22.02.13
- * Time: 14:14
- * To change this template use File | Settings | File Templates.
- */
 package de.mediadesign.gd1011.dreamcatcher.View
 {
 	import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
@@ -44,7 +37,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 		public function createButton(text:String):Button
 		{
-			var tempButton:Button
+			var tempButton:Button;
 			tempButton = new Button(GraphicsManager.graphicsManager.getTexture(GameConstants.TEXTBOXBUTTON), text);
 			tempButton.fontName = "MenuFont";
 			tempButton.fontSize = 50;
@@ -55,13 +48,6 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			return tempButton;
 		}
 
-		public function createNextLevelButton():Button
-		{
-			continueButton = createButton(buttonStrings[0]);
-			continueButton.addEventListener(Event.TRIGGERED, nextLevelClicked);
-			return continueButton;
-		}
-
 		public function createRestartButton():Button
 		{
 			restartButton = createButton(buttonStrings[1]);
@@ -69,12 +55,12 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			return restartButton;
 		}
 
-		private function restartClicked(event:Event):void {
+		private function restartClicked():void {
 			deleteAll();
 			(GameStage.gameStage.parent as Game).startLevel(Game.currentLvl);
 		}
 
-		private function nextLevelClicked(event:Event):void
+		private function nextLevelClicked():void
 		{
 			deleteAll();
             (GameStage.gameStage.parent as Game).startLevel(Game.currentLvl+1);

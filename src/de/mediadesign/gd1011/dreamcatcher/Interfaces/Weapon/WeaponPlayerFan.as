@@ -8,9 +8,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBullet;
     import flash.geom.Point;
 
-	import starling.animation.IAnimatable;
 	import starling.core.Starling;
-    import starling.events.Touch;
 
     public class WeaponPlayerFan implements IWeapon
     {

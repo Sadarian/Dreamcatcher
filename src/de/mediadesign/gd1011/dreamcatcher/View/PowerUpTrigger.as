@@ -1,10 +1,3 @@
-/**
- * Created with IntelliJ IDEA.
- * User: tofrey
- * Date: 21.02.13
- * Time: 10:33
- * To change this template use File | Settings | File Templates.
- */
 package de.mediadesign.gd1011.dreamcatcher.View
 {
 	import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
@@ -14,8 +7,6 @@ package de.mediadesign.gd1011.dreamcatcher.View
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBullet;
-	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerFan;
-	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponPlayerStraight;
 
 	import starling.animation.Transitions;
 	import starling.animation.Tween;
@@ -40,7 +31,6 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		private static var durationTime:Number;
 		private static var _powerUpActive:Boolean = false;
 		private static var player:Entity;
-		private static var initialized:Boolean = false;
 		private static var freezeOverlay:Image;
 		private static var healthIncrease:AnimatedModel;
 		private static var playerHealthIncrease:AnimatedModel;
@@ -70,12 +60,13 @@ package de.mediadesign.gd1011.dreamcatcher.View
 							stack++;
 						}
 					}
-					trace(stack);
+                    trace(stack);
 
 					break;
 				}
 				case GameConstants.POWERUP_FREEZE:
 				{
+                    stack = 1;
 					createPowerUpIcon(GameConstants.POWERUP_FREEZE, powerUp);
 					break;
 				}
@@ -88,7 +79,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 					if (healthIncrease == null)
 					{
-						healthIncrease = new AnimatedModel("LifebarHealthIncrease", new Array(), "Default");
+						healthIncrease = new AnimatedModel("LifebarHealthIncrease", [], "Default");
 
 						healthIncrease.start();
 						healthIncrease.x = 142;
@@ -96,7 +87,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 						healthIncrease.ActualAnimation.loop = false;
 						GameStage.gameStage.addChild(healthIncrease);
 
-						playerHealthIncrease = new AnimatedModel("PlayerHealthIncrease", new Array(), "Default");
+						playerHealthIncrease = new AnimatedModel("PlayerHealthIncrease", [], "Default");
 						playerHealthIncrease.start();
 						playerHealthIncrease.x = playerE.position.x;
 						playerHealthIncrease.y = playerE.position.y;
@@ -120,7 +111,6 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		public static function init():void
 		{
 			createButton();
-			initialized = true;
 
 			freezeOverlay = new Image(GraphicsManager.graphicsManager.getTexture("FreezeFeedback"));
 			freezeOverlay.alpha = 0;
@@ -160,7 +150,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 				activeIcon = name;
 				GameStage.gameStage.addChild(powerUpIcon);
 				powerUpIcon.texture = GraphicsManager.graphicsManager.getTexture(name);
-				stackCount = 1;
+				stack = 1;
 
 				if (!_powerUpActive)
 				{
@@ -181,7 +171,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			GameStage.gameStage.addChild(_powerUpButton);
 		}
 
-		private static function onButtonClick(event:Event):void
+		private static function onButtonClick():void
 		{
 			if (_powerUpButton.enabled)
 			{
@@ -316,13 +306,13 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 			if (healthIncrease.ActualAnimation.isComplete)
 			{
-				healthIncrease.ActualAnimation.stop()
+				healthIncrease.ActualAnimation.stop();
 				healthIncrease.alpha = 0;
 			}
 
 			if (playerHealthIncrease.ActualAnimation.isComplete)
 			{
-				playerHealthIncrease.ActualAnimation.stop()
+				playerHealthIncrease.ActualAnimation.stop();
 				playerHealthIncrease.alpha = 0;
 			}
 

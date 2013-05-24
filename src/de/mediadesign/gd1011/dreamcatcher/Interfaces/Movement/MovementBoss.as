@@ -1,21 +1,13 @@
 package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
 {
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
-    import de.mediadesign.gd1011.dreamcatcher.Game;
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
-    import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Collision.CollisionUnidentical;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponBoss;
 	import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
-
-	import flash.display.Bitmap;
-	import flash.display.BitmapData;
-
-	import flash.display.Shape;
-	import flash.geom.Point;
 
 	import flash.geom.Point;
 
@@ -24,10 +16,8 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
 	import starling.animation.Tween;
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
-	import starling.display.Image;
 	import starling.display.Quad;
 	import starling.display.Sprite;
-	import starling.textures.Texture;
 
 	public class MovementBoss implements IMovement
     {
@@ -42,6 +32,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
 
         private var boss:Entity;
         private var player:Entity;
+        //noinspection JSFieldCanBeLocal
         private var startPoint:Point;
         private var targetPoint:Point;
 
@@ -50,17 +41,13 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
 		private static var _incoming:Boolean = false;
 	    private var lightFlashScreen:Sprite;
         private var _duration:Number = 0;
+        //noinspection JSFieldCanBeLocal
         private var _angle:Number = 0;
         private var _speed:Number = 0;
         private var _direction:Point = new Point();
         private var _lastMoveUp:Boolean = Math.round(Math.random()) == 1;
         private var _canMove:Boolean = true;
         private var raged:Boolean = false;
-
-        public function get canMove():Boolean
-        {
-            return _canMove;
-        }
 
         public function set speed(value:Number):void
         {
@@ -138,7 +125,6 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
                     }
                     case(MELEE_TO_RANGE):
                     {
-                        trace(position.x)
                         if(position.x >= startPoint.x)
                             switchTo(RANGE);
                         _angle = Math.atan2(startPoint.y - position.y, startPoint.x - position.x);
@@ -198,12 +184,12 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
 		    }
 	    }
 
-		private function switchTexture():void
+		private static function switchTexture():void
 		{
 			trace("lvl2 texture");
 		}
 
-		private function deleteLightFlash(lightFlashScreen:DisplayObject):void
+		private static function deleteLightFlash(lightFlashScreen:DisplayObject):void
 		{
 			GameStage.gameStage.removeActor(lightFlashScreen);
 			lightFlashScreen.dispose();
@@ -255,7 +241,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
             }
         }
 
-		private function fadeIn(tweenObject:DisplayObject):void
+		private static function fadeIn(tweenObject:DisplayObject):void
 		{
 			var mTween:Tween = new Tween (tweenObject,0.5,Transitions.EASE_IN);
 			mTween.fadeTo(1);
@@ -263,7 +249,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
 
 		}
 
-		private function fadeOut(tweenObject:DisplayObject):void
+		private static function fadeOut(tweenObject:DisplayObject):void
 		{
 			var mTween:Tween = new Tween (tweenObject,0.5,Transitions.EASE_OUT);
 			mTween.fadeTo(0);

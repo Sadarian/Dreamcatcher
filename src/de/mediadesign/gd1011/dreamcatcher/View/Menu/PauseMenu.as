@@ -4,7 +4,6 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
     import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
     import de.mediadesign.gd1011.dreamcatcher.Game;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
-    import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
 
     import flash.media.SoundMixer;
     import flash.media.SoundTransform;
@@ -74,7 +73,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 
         private function checkSoundButton():void
         {
-            var suffix:String = (SoundMixer.soundTransform.volume != 0)?"On":"Off"
+            var suffix:String = (SoundMixer.soundTransform.volume != 0)?"On":"Off";
             var name:String = "PauseMenuSound"+suffix;
             var gM:GraphicsManager = GraphicsManager.graphicsManager;
             (mElements[2] as Button).upState = gM.getTexture(name);

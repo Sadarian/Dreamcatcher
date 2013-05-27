@@ -3,6 +3,7 @@
     "enemyMeleeDamage":10,
     "bossMeleeDamage":15,
     "chargerMeleeDamage":15,
+    "miniBossMeleeDamage":20,
     "playerMovementBorder":[128, 192, 1082, 448],
     "playerStartPosition":[100, 400],
     "victimTimeUntilMid":2,
@@ -27,5 +28,7 @@
     "introTextSize":60,
     "introTextLvl1":"Forest of Fears",
     "introTextLvl2":"Valley of Spiders",
-    "introTextLvlEndless":"Endless Nightmare"
+    "introTextLvlEndless":"Endless Nightmare",
+    "endlessBossWait":30,
+    "endlessMultiplierFactor": 0.05
 }

@@ -309,7 +309,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
         public function get isHostile():Boolean
         {
-            return (isVictim || isEnemy || isCharger || isBoss1)
+            return (isVictim || isEnemy || isCharger || isBoss1 || isBoss2 || isMiniBoss);
         }
 
         public function get canAttack():Boolean

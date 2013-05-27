@@ -10,6 +10,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
     public class EndlessMode
     {
         private static var damageMultiplier:Number = 1;
+        private static var _pointMultiplier:Number = 1;
 
         private static var self:EndlessMode;
 
@@ -50,6 +51,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
         public function EndlessMode()
         {
+            _pointMultiplier = 1;
             timeTilNextBoss = 5+GameConstants.endlessBossWait;
             timeTilNextEntity = 5;
             lastEntityTypes = [];
@@ -96,6 +98,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
                 if(timeTilNextEntity<=0)
                 {
                     var types:Array = AllowedTypes;
+                    //var entityType:String = GameConstants.MINIBOSS;
                     var entityType:String = types.splice(Math.random()*types.length, 1);
                     lastEntityTypes.unshift(entityType);
                     if(lastEntityTypes.length>50)
@@ -229,6 +232,16 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             if(target == GameConstants.PLAYER)
                 return damageMultiplier;
             return 1;
+        }
+
+        public static function get pointMultiplier():Number
+        {
+            return _pointMultiplier;
+        }
+
+        public static function set pointMultiplier(value:Number):void
+        {
+            _pointMultiplier = value;
         }
     }
 }

@@ -156,7 +156,7 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
                     entityA.blink(GameConstants.blinkAmount(entityA.name));
                     entityA.health -= GameConstants.meleeDamage(entityB.name)*EndlessMode.getDamageMultiplier(entityA.name);
                 }
-                if(entityA.canAttack && (!entityB.isBoss1 || entityA.getAnimatedModel(0).ActualAnimation.name == AnimatedModel.CLOSE_COMBAT))
+                if(entityA.canAttack && ((!entityB.isBoss1 && !entityB.isBoss2 && !entityB.isMiniBoss) || entityA.getAnimatedModel(0).ActualAnimation.name != AnimatedModel.CLOSE_COMBAT))
                 {
                     entityB.blink(GameConstants.blinkAmount(entityB.name));
                     entityB.health -= GameConstants.meleeDamage(entityA.name)*EndlessMode.getDamageMultiplier(entityB.name);
@@ -166,7 +166,7 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
             else
                 if(entityB.isPlayer && entityA.isHostile  && entityA.canBeAttacked)
                 {
-                    if(entityB.canAttack && (!entityA.isBoss1 || entityB.getAnimatedModel(0).ActualAnimation.name == AnimatedModel.CLOSE_COMBAT))
+                    if(entityB.canAttack && ((!entityA.isBoss1 && !entityA.isBoss2 && !entityA.isMiniBoss) || entityB.getAnimatedModel(0).ActualAnimation.name != AnimatedModel.CLOSE_COMBAT))
                     {
                         entityA.blink(GameConstants.blinkAmount(entityA.name));
                         entityA.health -= GameConstants.meleeDamage(entityB.name)*EndlessMode.getDamageMultiplier(entityA.name);
@@ -192,7 +192,7 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
                     else
                         entity.playAnimation(AnimatedModel.DIE_CLOSE_COMBAT);
 
-                if(entity.isBoss1)
+                if(entity.isBoss1 || entity.isBoss2)
                     if(!distance)
                         (entity.movementSystem as MovementBoss).switchTo(MovementBoss.MELEE_TO_RANGE);
 
@@ -208,6 +208,9 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
                         entity.playAnimation(AnimatedModel.HIT);
                     else
                         entity.playAnimation(AnimatedModel.CLOSE_COMBAT);
+
+                if(entity.isMiniBoss && !distance)
+                    entity.playAnimation(AnimatedModel.CLOSE_COMBAT);
             }
         }
 	}

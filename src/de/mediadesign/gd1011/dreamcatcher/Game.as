@@ -316,7 +316,8 @@ package de.mediadesign.gd1011.dreamcatcher
             }
             if(e.keyCode==Keyboard.F10)
             {
-                startLevel(-1);
+                Dreamcatcher.localObject.data.Progress = 3;
+                Dreamcatcher.localObject.data.Endless = true;
             }
             if(e.keyCode==Keyboard.F11)
             {

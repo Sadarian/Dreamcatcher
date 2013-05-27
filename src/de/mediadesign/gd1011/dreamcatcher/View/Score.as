@@ -1,9 +1,9 @@
 package de.mediadesign.gd1011.dreamcatcher.View
 {
-	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
+    import de.mediadesign.gd1011.dreamcatcher.Game;
+    import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.*;
-
-	import starling.animation.Transitions;
+    import starling.animation.Transitions;
 	import starling.animation.Tween;
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
@@ -13,6 +13,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 	{
 		private static var _score:Number = 0;
 		private static var scoreField:TextField = new TextField(300, 100 , _score.toString(),"MenuFont", 100, 0xe87600);
+        private static var multiplierField:TextField = new TextField(300, 100 , "x"+EndlessMode.pointMultiplier, "MenuFont", 100, 0xeFF0000);
 		private static var entityPoints:Vector.<TextField> = new Vector.<TextField>();
 		private static var addedPoints:Vector.<Number> = new Vector.<Number>();
 		private static var initialisation:Boolean = false;
@@ -20,7 +21,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 		public static function updateScore(entity:Entity):void
 		{
-			var points:TextField = new TextField(300, 100, entity.points.toString(), "MenuFont", 100);
+			var points:TextField = new TextField(300, 100, Math.round(entity.points*EndlessMode.pointMultiplier).toString(), "MenuFont", 100);
 			points.pivotX = points.width/2;
 			points.pivotY = points.height/2;
 			points.x = entity.position.x;
@@ -47,10 +48,14 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			{
 				points.color = 0xe445323
 			}
+            else if (entity.isMiniBoss)
+            {
+                points.color = 0xe6A5ACD
+            }
 
 			GameStage.gameStage.addChild(points);
 			fadeIn(points);
-			addedPoints.push(entity.points);
+			addedPoints.push(entity.points*EndlessMode.pointMultiplier);
 			entityPoints.push(points);
 		}
 
@@ -64,7 +69,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 					GameStage.gameStage.removeActor(textField);
 					textField.dispose();
 
-					_score += addedPoints[index];
+					_score += Math.round(addedPoints[index]);
 
 					addedPoints.splice(index,1);
 					entityPoints.splice(index,1);
@@ -79,9 +84,18 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			}
 		}
 
+        public static function updateMultiplier(increase:Boolean = false):void
+        {
+            if(increase)
+                EndlessMode.pointMultiplier += GameConstants.endlessMultiplierFactor;
+            else
+                EndlessMode.pointMultiplier = 1;
+            multiplierField.text = "x"+EndlessMode.pointMultiplier.toFixed(1);
+        }
+
 		public static function showScore(score:Number):void
 		{
-			scoreField.text = score.toString();
+			scoreField.text = Math.round(score).toString();
 
 			if (!initialisation)
 			{
@@ -118,11 +132,18 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		public static function addScoreField():void
 		{
 			GameStage.gameStage.addChild(scoreField);
+            if(Game.currentLvl == -1)
+                GameStage.gameStage.addChild(multiplierField);
 			scoreField.x = Starling.current.stage.stageWidth - scoreField.width;
 			scoreField.y = 50;
             scoreField.touchable =false;
 			scoreField.pivotX = scoreField.width/2;
 			scoreField.pivotY = scoreField.height/2;
+            multiplierField.x = Starling.current.stage.stageWidth - multiplierField.width + 75;
+            multiplierField.y = 100;
+            multiplierField.touchable =false;
+            multiplierField.pivotX = multiplierField.width/2;
+            multiplierField.pivotY = multiplierField.height/2;
 		}
 
 		public static function removeScoreField():void
@@ -133,6 +154,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 				entityPoints.splice(entityPoints.indexOf(textField),1);
 			}
 			GameStage.gameStage.removeChild(scoreField);
+            GameStage.gameStage.removeChild(multiplierField);
 			resetScore();
 			initialisation = false;
 		}

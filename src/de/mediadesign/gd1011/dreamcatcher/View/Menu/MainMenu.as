@@ -36,21 +36,26 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 
             mElements = new Vector.<DisplayObject>();
 
+            var buttonStrings:Array;
             if(!endless)
-                var buttonStrings:Array =
+                buttonStrings =
                         ["MainMenuContinueButton", "MainMenuContinueButtonClick",
                          "MainMenuCreditsButton", "MainMenuCreditsButtonClick",
                          "MainMenuSoundButtonOn", "MainMenuSoundButtonOn",
                          "MainMenuStartButton", "MainMenuStartButtonClick",
                          "MainMenuHelpButton",  "MainMenuHelpButtonClick"];
             else
-                var buttonStrings:Array =
+                buttonStrings =
                         ["MainMenuStoryButton", "MainMenuStoryButtonClick",
-                            "MainMenuCreditsButton", "MainMenuCreditsButtonClick",
-                            "MainMenuSoundButtonOn", "MainMenuSoundButtonOn",
-                            "MainMenuEndlessButton", "MainMenuEndlessButtonClick",
-                            "MainMenuHelpButton",  "MainMenuHelpButtonClick"];
-            var positions:Array = [[109, 375, deg2rad(-14.5)], [164, 455, deg2rad(-14.5)], [20, 23, deg2rad(0)], [138, 257, deg2rad(-13.5)], [260, 530, deg2rad(-13.5)]];
+                         "MainMenuCreditsButton", "MainMenuCreditsButtonClick",
+                         "MainMenuSoundButtonOn", "MainMenuSoundButtonOn",
+                         "MainMenuEndlessButton", "MainMenuEndlessButtonClick",
+                         "MainMenuHelpButton",  "MainMenuHelpButtonClick"];
+            var positions:Array;
+            if(!endless)
+                positions = [[109, 375, deg2rad(-14.5)], [164, 455, deg2rad(-14.5)], [20, 23, deg2rad(0)], [138, 257, deg2rad(-13.5)], [260, 530, deg2rad(-13.5)]];
+            else
+                positions = [[149, 365, deg2rad(-17.5)], [164, 455, deg2rad(-14.5)], [20, 23, deg2rad(0)], [99, 272, deg2rad(-15.5)], [260, 530, deg2rad(-13.5)]];
             var button:Button;
             for(var i:int=0; i<buttonStrings.length;i+=2)
             {

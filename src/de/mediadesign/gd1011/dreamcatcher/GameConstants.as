@@ -166,6 +166,7 @@ package de.mediadesign.gd1011.dreamcatcher
 		private static var _introTextLvlEndless:String;
 
         private static var _endlessBossWait:Number;
+        private static var _endlessMultiplierFactor:Number;
 
         public static function init(path:String = "Configs/"):void
         {
@@ -196,6 +197,7 @@ package de.mediadesign.gd1011.dreamcatcher
             if(data.enemyMeleeDamage) _meleeDamage.push(data.enemyMeleeDamage);
             if(data.bossMeleeDamage) _meleeDamage.push(data.bossMeleeDamage);
             if(data.chargerMeleeDamage) _meleeDamage.push(data.chargerMeleeDamage);
+            if(data.miniBossMeleeDamage) _meleeDamage.push(data.miniBossMeleeDamage);
             if(data.playerMovementBorder) _playerMovementBorder = new Rectangle(data.playerMovementBorder[0],
                                                                                 data.playerMovementBorder[1],
                                                                                 data.playerMovementBorder[2],
@@ -231,6 +233,7 @@ package de.mediadesign.gd1011.dreamcatcher
 	        if(data.introTextLvl2)_introTextLvl2 = data.introTextLvl2;
 	        if(data.introTextLvlEndless)_introTextLvlEndless = data.introTextLvlEndless;
             if(data.endlessBossWait) _endlessBossWait = data.endlessBossWait;
+            if(data.endlessMultiplierFactor) _endlessMultiplierFactor = data.endlessMultiplierFactor;
         }
 
 		private static function setPowerUps(data:Object):void
@@ -306,6 +309,9 @@ package de.mediadesign.gd1011.dreamcatcher
                     break;
                 case(CHARGER):
                     pos = 3;
+                    break;
+                case(MINIBOSS):
+                    pos = 4;
                     break;
                 default:
                     return 0;
@@ -463,6 +469,11 @@ package de.mediadesign.gd1011.dreamcatcher
         public static function get endlessBossWait():Number
         {
             return _endlessBossWait;
+        }
+
+        public static function get endlessMultiplierFactor():Number
+        {
+            return _endlessMultiplierFactor;
         }
     }
 }

@@ -1,11 +1,13 @@
 package de.mediadesign.gd1011.dreamcatcher.Processes
 {
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
+    import de.mediadesign.gd1011.dreamcatcher.Gameplay.EndlessMode;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBoss;
     import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
+    import de.mediadesign.gd1011.dreamcatcher.View.Score;
 
     import starling.core.Starling;
 
@@ -37,6 +39,8 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
                 else
                     if (entity.position.x >= (Starling.current.viewPort.width*1.1)+entity.movieClip.width/2 || entity.position.x <0-entity.movieClip.width/2)
                     {
+                        if(entity.isHostile && EndlessMode.hasInstance && entity.position.x < 0-entity.movieClip.width/2 && entity.health > 0)
+                            Score.updateMultiplier();
                         checkForWeb(entity, false);
                         GameStage.gameStage.removeActor(entity.movieClip);
                         entity.removeMovieClip();

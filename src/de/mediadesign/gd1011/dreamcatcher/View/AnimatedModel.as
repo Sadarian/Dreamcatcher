@@ -3,6 +3,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.Game;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
+    import de.mediadesign.gd1011.dreamcatcher.Gameplay.EndlessMode;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
@@ -119,6 +120,8 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
                         if(animation == DIE)
                         {
+                            if(entity.isHostile && EndlessMode.hasInstance)
+                                Score.updateMultiplier(true);
                             if(!entity.isPlayer && name != GameConstants.PLAYERARM && !entity.isBullet)
                             {
                                 Score.updateScore(entity);
@@ -131,7 +134,11 @@ package de.mediadesign.gd1011.dreamcatcher.View
                         }
 
 	                    if (animation == DEAD_WALK)
-		                    actual.loop = false;
+                        {
+                            if(entity.isHostile && EndlessMode.hasInstance)
+                                Score.updateMultiplier(true);
+                            actual.loop = false;
+                        }
                     }
                     else
                         throw new ArgumentError("Error! No +"+animation+" animation found!");

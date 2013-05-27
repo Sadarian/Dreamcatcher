@@ -98,7 +98,6 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
                 if(timeTilNextEntity<=0)
                 {
                     var types:Array = AllowedTypes;
-                    //var entityType:String = GameConstants.MINIBOSS;
                     var entityType:String = types.splice(Math.random()*types.length, 1);
                     lastEntityTypes.unshift(entityType);
                     if(lastEntityTypes.length>50)

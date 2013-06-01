@@ -87,13 +87,21 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
             {
                 case("UI"):
                     MainMenu.resetMainMain();
-                    deleteStream = GameConstants["LEVEL"+Game.currentLvl+"_LIST"];
+					deleteStream = GameConstants["LEVEL" + Game.currentLvl + "_LIST"];
                     blendGraphic = true;
                     break;
 
                 default:
                     mContainers = new Dictionary();
-                    deleteStream = (mLast == "UI")?GameConstants.UI_LIST:GameConstants["LEVEL"+(Game.currentLvl-1)+"_LIST"];
+					if (mLast == "UI")
+					{
+						deleteStream = GameConstants.UI_LIST
+					}
+					else if (mLast == "LEVEL"+GameConstants.TUTORIAL)
+					{
+						deleteStream = GameConstants.LEVEL_TUTORIAL_LIST;
+					}
+					else deleteStream = GameConstants["LEVEL"+(Game.currentLvl-1)+"_LIST"];
                     blendScreen = getImage("tutorialScreen_"+(1+Math.round(Math.random()*3)));
                     break;
             }

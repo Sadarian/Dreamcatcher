@@ -132,11 +132,13 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		public function switchMovement(movementSystem:IMovement):void
         {
 			this._movementSystem = movementSystem;
+			setMovementSpeed();
 		}
 
 		public function switchWeapon(weaponSystem:IWeapon):void
         {
 			this._weaponSystem = weaponSystem;
+			setWeaponSpeed();
 		}
 
 	    public function get name():String

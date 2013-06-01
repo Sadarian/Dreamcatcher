@@ -154,6 +154,7 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
             PowerUpTrigger.init();
             Score.showScore(0);
 
+
 			var text:TextField;
 
 			switch (currentLvl)
@@ -186,8 +187,12 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 			gameStage.loadLevel(currentLvl);
             entityManager.loadEntities(currentLvl);
             graphicsManager.initCompleted = true;
-            Starling.juggler.delayCall(allowShooting, 1);
 
+			if (currentLvl == GameConstants.TUTORIAL)
+			{
+				TutorialMenu.init();
+			}
+			else Starling.juggler.delayCall(allowShooting, 1);
         }
 
 		private function deleteText(text:TextField):void
@@ -240,11 +245,11 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 
 		private function update():void
 		{
-			if (MainMenu.isActive() || PauseMenu.isActive() || HighScoreMenu.isActive() || ContinueMenu.isActive() || CreditsMenu.isActive() || TutorialMenu.isActive() || YesNoMenu.isActive())
+			if (MainMenu.isActive() || PauseMenu.isActive() || HighScoreMenu.isActive() || ContinueMenu.isActive() || CreditsMenu.isActive() || YesNoMenu.isActive())
 			{
 				getNoPlayTime();
 			}
-			else if(Starling.juggler.isActive && !MainMenu.isActive() && graphicsManager.initCompleted && !HighScoreMenu.isActive())
+			else if(Starling.juggler.isActive && graphicsManager.initCompleted)
             {
 
                 now = getTimer() / 1000 - noPlayTime - passedLvlTime;
@@ -259,6 +264,11 @@ import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
                 destroyProcess.update();
                 renderProcess.update();
                 gameStage.update(now);
+
+				if (TutorialMenu.isActive())
+				{
+					TutorialMenu.update(passedTime);
+				}
 
 				Score.update();
 

@@ -23,6 +23,7 @@ package de.mediadesign.gd1011.dreamcatcher
         public static const UI_LIST:Array = ["Credits_Menu_Tutorial"];
         public static const LEVEL1_LIST:Array = ["Background_Intro_lvl1", "Victims_Charger_Enemy_lvl2"];
         public static const LEVEL2_LIST:Array = ["Background_Boss_lvl2", "Victims_Charger_Enemy_lvl2"];
+		public static const LEVEL_TUTORIAL_LIST:Array = ["Background_Intro_lvl1", "Victims_Charger_Enemy_lvl2"];
 
         public static const COLLISION_RECTANGLE:String = "CollisionRectangle";
         public static const COLLISION_CIRCLE:String = "CollisionCircle";

@@ -76,7 +76,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 			addChild(mImage);
 			fadeIn(mImage);
 
-			if (creditCount == 7)
+			if (creditCount == 9)
 				creditCount = 1;
 			else
 				creditCount++;

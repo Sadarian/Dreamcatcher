@@ -233,6 +233,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			if (lvlEnd && endScreen && endScreen.alpha <= 1)
 			{
 				endScreen.alpha += 0.02;
+                trace(endScreen.alpha);
 				endScreen.fadeIn();
 
 				if (endScreen.alpha >= 1)

@@ -196,6 +196,7 @@ package de.mediadesign.gd1011.dreamcatcher
             if(data.playerMeleeDamage) _meleeDamage.push(data.playerMeleeDamage);
             if(data.enemyMeleeDamage) _meleeDamage.push(data.enemyMeleeDamage);
             if(data.bossMeleeDamage) _meleeDamage.push(data.bossMeleeDamage);
+            if(data.boss2MeleeDamage) _meleeDamage.push(data.boss2MeleeDamage);
             if(data.chargerMeleeDamage) _meleeDamage.push(data.chargerMeleeDamage);
             if(data.miniBossMeleeDamage) _meleeDamage.push(data.miniBossMeleeDamage);
             if(data.playerMovementBorder) _playerMovementBorder = new Rectangle(data.playerMovementBorder[0],
@@ -307,11 +308,14 @@ package de.mediadesign.gd1011.dreamcatcher
                 case(BOSS1):
                     pos = 2;
                     break;
-                case(CHARGER):
+                case(BOSS2):
                     pos = 3;
                     break;
-                case(MINIBOSS):
+                case(CHARGER):
                     pos = 4;
+                    break;
+                case(MINIBOSS):
+                    pos = 5;
                     break;
                 default:
                     return 0;

@@ -2,6 +2,7 @@
     "playerMeleeDamage":15,
     "enemyMeleeDamage":10,
     "bossMeleeDamage":15,
+    "boss2MeleeDamage":15,
     "chargerMeleeDamage":15,
     "miniBossMeleeDamage":20,
     "playerMovementBorder":[128, 192, 1082, 448],

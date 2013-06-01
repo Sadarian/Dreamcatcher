@@ -2,6 +2,7 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
 {
     import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
     import de.mediadesign.gd1011.dreamcatcher.Game;
+    import de.mediadesign.gd1011.dreamcatcher.Game;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EndlessMode;
     import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
@@ -81,6 +82,7 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
         {
             if(dataSet == mLast){Starling.juggler.delayCall(functionAfter, 0.15); return;}
             mInit = false;
+            var loadStream:Array;
             var deleteStream:Array;
             var blendScreen:Image;
             var blendGraphic:Boolean = false;
@@ -100,6 +102,7 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
 
                 default:
                     mContainers = new Dictionary();
+                    loadStream = (Game.currentLvl == -1)?GameConstants.ENDLESS_LIST:GameConstants["LEVEL"+(Game.currentLvl)+"_LIST"];
                     deleteStream = (mLast == "UI")?GameConstants.UI_LIST:GameConstants["LEVEL"+(Game.currentLvl-1)+"_LIST"];
                     blendScreen = getImage("tutorialScreen_"+(1+Math.round(Math.random()*3)));
                     break;
@@ -107,7 +110,14 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
             var i:int;
             for(i = 0;i<deleteStream.length;i++)
                 removeTextureAtlas(deleteStream[i]+"Texture");
-            enqueue(File.applicationDirectory.resolvePath("assets/textures/atlases/"+dataSet));
+            if(dataSet == "UI")
+                enqueue(File.applicationDirectory.resolvePath("assets/textures/atlases/"+dataSet));
+            else
+                for(i = 0;i<loadStream.length;i++)
+                {
+                    enqueue(File.applicationDirectory.resolvePath("assets/textures/atlases/LEVEL/"+loadStream[i]+".xml"));
+                    enqueue(File.applicationDirectory.resolvePath("assets/textures/atlases/LEVEL/"+loadStream[i]+"Texture.png"));
+                }
             mLast = dataSet;
 
             if(blendGraphic)

@@ -28,7 +28,12 @@ package de.mediadesign.gd1011.dreamcatcher
     import flash.geom.Point;
 	import flash.ui.Keyboard;
     import flash.utils.getTimer;
-	import starling.core.Starling;
+
+    import starling.animation.Transitions;
+
+    import starling.animation.Tween;
+    import starling.core.Starling;
+    import starling.display.DisplayObject;
     import starling.display.Image;
     import starling.display.Sprite;
 	import starling.events.Event;

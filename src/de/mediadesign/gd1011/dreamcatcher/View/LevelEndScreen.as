@@ -91,6 +91,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 			if (_alpha >= 1)
 			{
+                trace(true);
 				if (continueButton != null)
 				{
 					var textField:TextField;

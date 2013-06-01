@@ -11,7 +11,6 @@ package de.mediadesign.gd1011.dreamcatcher.View
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBoss;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementDieHead;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementVictim;
-    import de.mediadesign.gd1011.dreamcatcher.Interfaces.Weapon.WeaponBoss;
 
     import flash.utils.Dictionary;
     import starling.core.Starling;
@@ -185,8 +184,11 @@ package de.mediadesign.gd1011.dreamcatcher.View
                         }
                         if(name != GameConstants.PLAYERARM)
                             EntityManager.entityManager.addUnusedEntity(entity);
-                        GameStage.gameStage.removeActor(entity.movieClip);
-                        entity.removeMovieClip();
+                        if(entity)
+                        {
+                            GameStage.gameStage.removeActor(entity.movieClip);
+                            entity.removeMovieClip();
+                        }
                     }
                     else
                     {

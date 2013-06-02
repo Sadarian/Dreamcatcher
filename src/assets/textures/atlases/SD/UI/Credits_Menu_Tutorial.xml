@@ -18,8 +18,8 @@
     <SubTexture name="CreditsText_7" x="341" y="1050" width="243" height="122" frameX="-58" frameY="0" frameWidth="359" frameHeight="128"/>
     <SubTexture name="CreditsText_8" x="2" y="1290" width="203" height="116" frameX="-78" frameY="-5" frameWidth="359" frameHeight="128"/>
     <SubTexture name="CreditsText_9" x="2" y="1052" width="325" height="116" frameX="-18" frameY="-6" frameWidth="359" frameHeight="128"/>
-    <SubTexture name="MainMenuContinueButton" x="1928" y="177" width="110" height="34" frameX="-26" frameY="-4" frameWidth="160" frameHeight="44"/>
-    <SubTexture name="MainMenuContinueButtonClick" x="1928" y="2" width="116" height="40" frameX="-23" frameY="-1" frameWidth="160" frameHeight="44"/>
+    <SubTexture name="MainMenuContinueButton" x="1928" y="177" width="110" height="34"/>
+    <SubTexture name="MainMenuContinueButtonClick" x="1928" y="2" width="116" height="40"/>
     <SubTexture name="MainMenuContinueScreen" x="1286" y="404" width="640" height="400"/>
     <SubTexture name="MainMenuContinueScreenBackButton" x="1928" y="259" width="103" height="65" frameX="-5" frameY="0" frameWidth="113" frameHeight="65"/>
     <SubTexture name="MainMenuContinueScreenBackButtonClick" x="1928" y="454" width="93" height="63" frameX="-13" frameY="0" frameWidth="113" frameHeight="65"/>

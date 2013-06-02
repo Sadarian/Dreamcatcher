@@ -40,7 +40,7 @@ package de.mediadesign.gd1011.dreamcatcher
         //noinspection JSUnusedGlobalSymbols
         public static const LEVEL2_LIST_SD:Array = ["Background_lvl2", "Boss_lvl2", "Victims_Charger_Enemy_lvl2"];
 		//noinspection JSUnusedGlobalSymbols
-		public static const TUTORIAL_LIST_SD:Array = ["Background_Intro_lvl1", "Victims_Charger_Enemy_lvl2"];
+		public static const TUTORIAL_LIST_SD:Array = ["Background_Intro_lvl1_1", "Victims_Charger_Enemy_lvl2"];
 
         public static const COLLISION_RECTANGLE:String = "CollisionRectangle";
         //noinspection JSUnusedGlobalSymbols

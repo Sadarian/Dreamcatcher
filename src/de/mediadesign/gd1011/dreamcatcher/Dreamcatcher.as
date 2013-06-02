@@ -60,7 +60,7 @@ package de.mediadesign.gd1011.dreamcatcher
                     Math.max(stage.fullScreenHeight, stage.fullScreenWidth),
                     Math.min(stage.fullScreenHeight, stage.fullScreenWidth)));
 
-            scaleFactor = (_starling.viewPort.width<=640)?0.5:1;
+            scaleFactor = (Math.min(Capabilities.screenResolutionX, Capabilities.screenResolutionY)<800)?0.5:1;
 
 			_starling.showStats = true;
 			_starling.addEventListener(starling.events.Event.ROOT_CREATED, onRootCreated);

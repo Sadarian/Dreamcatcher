@@ -184,7 +184,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
 		    else if (!lightFlashScreen)
 		    {
 			    lightFlashScreen = new Sprite();
-			    lightFlashScreen.addChild(new Quad(Starling.current.viewPort.width,Starling.current.viewPort.height, 0xe111111));
+			    lightFlashScreen.addChild(new Quad(Starling.current.viewPort.width,Starling.current.viewPort.height, 0xffffff));
 			    lightFlashScreen.alpha = 0.2;
 			    player.switchWeapon(null);
 			    GameStage.gameStage.addChild(lightFlashScreen);

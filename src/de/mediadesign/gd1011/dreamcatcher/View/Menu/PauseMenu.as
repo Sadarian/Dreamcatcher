@@ -3,7 +3,9 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
     import de.mediadesign.gd1011.dreamcatcher.Game;
-    import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
+	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
+	import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
+    import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
 
     import flash.media.SoundMixer;
     import flash.media.SoundTransform;
@@ -59,7 +61,15 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
                 case(mElements[1]):
                     showAndHide();
                     GameStage.gameStage.resetAll();
-                    GraphicsManager.graphicsManager.loadDataFor("UI", MainMenu.showAndHide);
+	                if (Game.currentLvl == GameConstants.TUTORIAL && YesNoMenu.selectetLvl != GameConstants.TUTORIAL)
+	                {
+		                TutorialMenu.showAndHide();
+		                (Starling.current.root as Game).startLevel(YesNoMenu.selectetLvl);
+	                }
+		            else
+	                {
+		                GraphicsManager.graphicsManager.loadDataFor("UI", MainMenu.showAndHide);
+	                }
                     break;
                 case(mElements[2]):
                     if(SoundMixer.soundTransform.volume == 1)

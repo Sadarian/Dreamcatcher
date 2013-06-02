@@ -39,6 +39,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
         private var _pauseButton:PauseButton;
 
 		private var lvlEnd:Boolean;
+		private var initComplete:Boolean = false;
 
 		private var endScreen:LevelEndScreen;
 
@@ -68,6 +69,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			bossStage = false;
 			lose = false;
 			lvlEnd = false;
+			initComplete = true;
 
 			containerGroup = new Vector.<StageContainer>(6);
 			_movementSpeeds = GameConstants.GAME_STAGE_MOVEMENT_SPEEDS.concat();
@@ -85,8 +87,11 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             _pauseButton = new PauseButton();
             addChild(_pauseButton);
 
-			var musicTransform:SoundTransform = new SoundTransform(0.5);
-			musicChanel = GraphicsManager.graphicsManager.playSound("GreySkies", 0, 10, musicTransform);
+			if (Game.currentLvl != GameConstants.TUTORIAL)
+			{
+				var musicTransform:SoundTransform = new SoundTransform(0.5);
+				musicChanel = GraphicsManager.graphicsManager.playSound("GreySkies", 0, 10, musicTransform);
+			}
 		}
 
 		public function resetAll():void
@@ -101,6 +106,9 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			bossStage = false;
 
 			_movementSpeeds = null;
+			initComplete = false;
+
+			movementSpeeds = null;
 
 			removeChild(_pauseButton, true);
 
@@ -113,7 +121,10 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			MovementBoss.resetPhase();
 			EntityManager.entityManager.removeAll();
 			removeChildren();
-			musicChanel.stop();
+			if (musicChanel)
+			{
+				musicChanel.stop();
+			}
 		}
 
 		public function loadLevel(levelIndex:int = 1):void
@@ -122,6 +133,23 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			var vectorBoss:Array = [];
 			switch(levelIndex)
 			{
+				case GameConstants.TUTORIAL:
+				{
+					vector.push(GameConstants.BACKGROUND_IMAGE_LIST,
+							GameConstants.MAIN_STAGE_IMAGE_LIST,
+							GameConstants.FOREST_LIST,
+							GameConstants.FOG_LIST,
+							GameConstants.BUSH_IMAGE_LIST,
+							GameConstants.FOREGROUND_IMAGE_LIST);
+
+					vectorBoss.push(GameConstants.BACKGROUND_IMAGE_LIST_BOSS,
+							GameConstants.MAIN_STAGE_IMAGE_LIST_BOSS,
+							GameConstants.FOREST_LIST_BOSS,
+							GameConstants.FOG_LIST_BOSS,
+							GameConstants.BUSH_IMAGE_LIST_BOSS,
+							GameConstants.FOREGROUND_IMAGE_LIST_BOSS);
+					break;
+				}
                 case -1:
                 {
                     vector.push(GameConstants.BACKGROUND_IMAGE_LIST,
@@ -184,7 +212,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 		public function update(now:Number):void
 		{
-			if (!lvlEnd)
+			if (!lvlEnd && initComplete)
 			{
 				for (var i:int = 0; i < containerGroup.length; i++)
 				{
@@ -297,7 +325,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             {
                 endScreen = new LevelEndScreen(text);
                 endScreen.createRestartButton();
-                addChild(endScreen.screen);
+	            addChild(endScreen.screen);
             }
 			else
             {

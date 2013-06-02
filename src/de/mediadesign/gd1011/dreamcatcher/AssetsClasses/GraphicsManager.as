@@ -7,8 +7,9 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EndlessMode;
     import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
     import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
+	import de.mediadesign.gd1011.dreamcatcher.View.Menu.TutorialMenu;
 
-    import flash.filesystem.File;
+	import flash.filesystem.File;
     import flash.media.SoundChannel;
     import flash.media.SoundMixer;
     import flash.media.SoundTransform;
@@ -101,15 +102,23 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
                         deleteStream = GameConstants["ENDLESS_LIST"+mQualityGraphics];
                         EndlessMode.reset();
                     }
-                    else
-                        deleteStream = GameConstants["LEVEL"+Game.currentLvl+"_LIST"+mQualityGraphics];
+                    else if (Game.currentLvl == GameConstants.TUTORIAL)
+	                {
+		                deleteStream = GameConstants["TUTORIAL_LIST"+mQualityGraphics];
+		                TutorialMenu.resetTutorial();
+	                }
+		            else
+	                {
+		                deleteStream = GameConstants["LEVEL" + Game.currentLvl + "_LIST" +mQualityGraphics];
+	                }
                     blendGraphic = true;
                     break;
 
-                default:
+	            default:
+		            TutorialMenu.resetTutorial();
                     mContainers = new Dictionary();
                     loadStream = (Game.currentLvl == -1)?GameConstants["ENDLESS_LIST"+mQualityGraphics]:GameConstants["LEVEL"+(Game.currentLvl)+"_LIST"+mQualityGraphics];
-                    deleteStream = (mLast == "UI")?GameConstants["UI_LIST"+mQualityGraphics]:GameConstants["LEVEL"+(Game.currentLvl-1)+"_LIST"+mQualityGraphics];
+                    deleteStream = (mLast == "UI")?GameConstants["UI_LIST"+mQualityGraphics]: (mLast != "LEVEL-2")?GameConstants["TUTORIAL_LIST"+mQualityGraphics]:GameConstants["LEVEL"+(Game.currentLvl-1)+"_LIST"+mQualityGraphics];
                     blendScreen = getImage("tutorialScreen_"+(1+Math.round(Math.random()*3)));
                     break;
             }

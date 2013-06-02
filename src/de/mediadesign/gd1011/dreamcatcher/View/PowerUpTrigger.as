@@ -24,6 +24,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 		private static var powerUpIcon:Image;
 		private static var activeIcon:String;
+		private static var _powerUpCollected:Boolean;
 		private static var stack:int = 0;
 		private static var _activeStack:int = 0;
 		private static var _powerUpButton:Button;
@@ -45,6 +46,8 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			{
 				case GameConstants.POWERUP_FIRE_RATE:
 				{
+					_powerUpCollected = true;
+
 					if (activeIcon != GameConstants.POWERUP_FIRE_RATE)
 					{
 						createPowerUpIcon(GameConstants.POWERUP_FIRE_RATE, powerUp, stack+1);
@@ -66,7 +69,8 @@ package de.mediadesign.gd1011.dreamcatcher.View
 				}
 				case GameConstants.POWERUP_FREEZE:
 				{
-                    stack = 1;
+					_powerUpCollected = true;
+
 					createPowerUpIcon(GameConstants.POWERUP_FREEZE, powerUp);
 					break;
 				}
@@ -120,6 +124,8 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 		private static function createPowerUpIcon(name:String, powerUp:Entity, stackCount:int = 1):void
 		{
+			_powerUpCollected = true;
+
 			if (activeIcon == null)
 			{
 				activeIcon = name;
@@ -148,6 +154,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			else if(activeIcon != name)
 			{
 				activeIcon = name;
+
 				GameStage.gameStage.addChild(powerUpIcon);
 				powerUpIcon.texture = GraphicsManager.graphicsManager.getTexture(name);
 				stack = 1;
@@ -199,6 +206,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 		private static function deactivateButton():void
 		{
 			activeIcon = null;
+			_powerUpCollected = false;
 			GameStage.gameStage.removeActor(powerUpIcon);
 			_powerUpButton.enabled = false;
 			_powerUpButton.upState = GraphicsManager.graphicsManager.getTexture("UsePower_1");
@@ -398,6 +406,10 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 		public static function get healthIncreased():Boolean {
 			return _healthIncreased;
+		}
+
+		public static function get powerUpCollected():Boolean {
+			return _powerUpCollected;
 		}
 	}
 }

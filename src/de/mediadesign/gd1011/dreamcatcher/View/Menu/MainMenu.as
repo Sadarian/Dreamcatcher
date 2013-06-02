@@ -3,8 +3,9 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 	import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
     import de.mediadesign.gd1011.dreamcatcher.Game;
-    import de.mediadesign.gd1011.dreamcatcher.GameConstants;
+	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 
+	import flash.media.Sound;
     import flash.media.SoundChannel;
     import flash.media.SoundMixer;
     import flash.media.SoundTransform;
@@ -108,8 +109,11 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
                         (Starling.current.root as Game).startLevel(Dreamcatcher.localObject.data.Progress);
                     showAndHide();
                     break;
-				case(mElements[4]):
+	            case(mElements[4]):
+					(Starling.current.root as Game).startLevel(GameConstants.TUTORIAL);
+					YesNoMenu.selectetLvl = GameConstants.TUTORIAL;
 					TutorialMenu.showAndHide();
+			        showAndHide();
 					break;
             }
         }

@@ -6,6 +6,7 @@
     <SubTexture name="BossScrollingBackground" x="1284" y="2" width="698" height="274" frameX="-9" frameY="0" frameWidth="1280" frameHeight="800"/>
     <SubTexture name="Bush_1" x="2" y="1392" width="1226" height="234" frameX="-27" frameY="-566" frameWidth="1280" frameHeight="800"/>
     <SubTexture name="Bush_2" x="2" y="1628" width="1216" height="202" frameX="-27" frameY="-598" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="Bush_3" x="2" y="1628" width="1216" height="202" frameX="-27" frameY="-598" frameWidth="1280" frameHeight="800"/>
     <SubTexture name="Front_1" x="1284" y="566" width="496" height="170" frameX="-438" frameY="-630" frameWidth="1280" frameHeight="800"/>
     <SubTexture name="Front_2" x="1284" y="988" width="402" height="196" frameX="-64" frameY="-604" frameWidth="1280" frameHeight="800"/>
     <SubTexture name="Front_3" x="1782" y="566" width="210" height="124" frameX="-124" frameY="-676" frameWidth="1280" frameHeight="800"/>

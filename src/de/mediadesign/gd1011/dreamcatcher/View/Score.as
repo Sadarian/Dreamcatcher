@@ -48,7 +48,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			{
 				points.color = 0xe445323
 			}
-            else if (entity.isMiniBoss)
+            else if (entity.isMiniBoss || entity.isBoss)
             {
                 points.color = 0xe6A5ACD
             }

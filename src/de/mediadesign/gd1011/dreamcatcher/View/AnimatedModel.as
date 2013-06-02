@@ -113,12 +113,19 @@ package de.mediadesign.gd1011.dreamcatcher.View
                         {
                             entity.switchMovement(null);
                             entity.switchWeapon(null);
+                            Score.updateScore(entity);
+                            PowerUps.checkDrop(entity);
                         }
                         if(name != GameConstants.PLAYERARM)
                             GraphicsManager.graphicsManager.playSound(name+animation);
 
                         if(animation == DIE)
                         {
+                            if(entity.name == GameConstants.BOSS2 && Game.currentLvl == 2)
+                            {
+                                EntityManager.entityManager.entities[0].switchMovement(null);
+                                EntityManager.entityManager.entities[0].switchWeapon(null);
+                            }
                             if(entity.isHostile && EndlessMode.hasInstance)
                                 Score.updateMultiplier(true);
                             if(!entity.isPlayer && name != GameConstants.PLAYERARM && !entity.isBullet)
@@ -180,7 +187,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
                         {
                             MovementBoss.resetPhase();
                             if(Game.currentLvl == 2)
-                                GameStage.gameStage.endLvl("Congratulations! You have passed Level " + Game.currentLvl);
+                                (Starling.current.root as Game).fadeOutLevel2();
                         }
                         if(name != GameConstants.PLAYERARM)
                             EntityManager.entityManager.addUnusedEntity(entity);

@@ -1,7 +1,9 @@
 package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
 {
     import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
-	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
+    import de.mediadesign.gd1011.dreamcatcher.Game;
+    import de.mediadesign.gd1011.dreamcatcher.Game;
+    import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
@@ -11,15 +13,16 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
 
 	import flash.geom.Point;
 
-	import starling.animation.Transitions;
+    import starling.animation.Transitions;
 
 	import starling.animation.Tween;
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
 	import starling.display.Quad;
 	import starling.display.Sprite;
+    import starling.text.TextField;
 
-	public class MovementBoss implements IMovement
+    public class MovementBoss implements IMovement
     {
         public static var MELEE:String = "Melee";
         public static var RANGE:String = "Range";
@@ -49,6 +52,8 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
         private var _canMove:Boolean = true;
         private var raged:Boolean = false;
 
+        public var fade:DisplayObject;
+
         public function set speed(value:Number):void
         {
             _speed = value;
@@ -66,7 +71,9 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
             {
                 if(!_onInit && boss.name == GameConstants.BOSS1 && boss.health/boss.maxHealth <= 0.3 && phase != FLEE)
                 {
-	                changeTexture();
+                    fade = GameStage.gameStage.addChild(new Quad(Starling.current.viewPort.width,Starling.current.viewPort.height, 0x000000));
+                    fade.alpha = 0;
+	                switchTo(FLEE);
                 }
                 if(!_onInit && !raged && boss.isBoss2 && boss.health/boss.maxHealth <= 0.3)
                 {
@@ -134,9 +141,13 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
 	                {
                         if(!_onInit)
                             _onInit = true;
-		                if (position.x == Starling.current.viewPort.width-20)
+
+		                if (position.x >= Starling.current.viewPort.width*1.1)
 		                {
-			                GameStage.gameStage.endLvl("The END!");
+                            GameStage.gameStage.addChild(fade);
+                            fade.alpha += 0.02;
+                            if(fade.alpha>=1)
+			                    GameStage.gameStage.endLvl("The END!");
 		                }
 		                return (position.add(new Point(_speed * Math.cos(0) * deltaTime, _speed * Math.sin(0) * deltaTime)));
 	                }

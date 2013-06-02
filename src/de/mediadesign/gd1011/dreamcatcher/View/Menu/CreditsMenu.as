@@ -32,7 +32,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 			mElements = new Vector.<DisplayObject>();
 
 			var buttonStrings:Array = ["MainMenuContinueScreenBackButton", "MainMenuContinueScreenBackButtonClick"];
-			var positions:Array = [[40, 660]];
+			var positions:Array = [[40, 610]];
 			var button:Button;
 
 			var logo:Image = new Image(ProgressBar.splashScreenAtlas_HD.getTexture("Splashscreen"));

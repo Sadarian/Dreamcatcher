@@ -21,10 +21,10 @@
     <SubTexture name="LifebarHealthIncreaseDefault_13" x="782" y="1224" width="58" height="58" frameX="-73" frameY="-15" frameWidth="142" frameHeight="112"/>
     <SubTexture name="PauseButton" x="664" y="1569" width="68" height="72" frameX="-4" frameY="-6" frameWidth="74" frameHeight="80"/>
     <SubTexture name="PauseMenuBackground" x="1286" y="404" width="640" height="400"/>
-    <SubTexture name="PauseMenuEndGame" x="1836" y="1044" width="80" height="80" frameX="-216" frameY="-8" frameWidth="640" frameHeight="400"/>
-    <SubTexture name="PauseMenuPlay" x="1490" y="980" width="172" height="172" frameX="-18" frameY="-18" frameWidth="640" frameHeight="400"/>
-    <SubTexture name="PauseMenuSoundOff" x="82" y="1286" width="78" height="80" frameX="-94" frameY="-221" frameWidth="640" frameHeight="400"/>
-    <SubTexture name="PauseMenuSoundOn" x="2" y="1286" width="78" height="80" frameX="-94" frameY="-221" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="PauseMenuEndGame" x="1836" y="1044" width="80" height="80"/>
+    <SubTexture name="PauseMenuPlay" x="1490" y="980" width="172" height="172"/>
+    <SubTexture name="PauseMenuSoundOff" x="82" y="1286" width="78" height="80"/>
+    <SubTexture name="PauseMenuSoundOn" x="2" y="1286" width="78" height="80"/>
     <SubTexture name="PlayerArmCloseCombat_1" x="154" y="1232" width="66" height="50" frameX="-45" frameY="-58" frameWidth="160" frameHeight="134"/>
     <SubTexture name="PlayerArmCloseCombat_2" x="154" y="1232" width="66" height="50" frameX="-45" frameY="-58" frameWidth="160" frameHeight="134"/>
     <SubTexture name="PlayerArmCloseCombat_3" x="154" y="1232" width="66" height="50" frameX="-45" frameY="-58" frameWidth="160" frameHeight="134"/>
@@ -139,11 +139,11 @@
     <SubTexture name="TextBoxButton" x="2" y="1232" width="150" height="50"/>
     <SubTexture name="UsePower_1" x="644" y="1224" width="136" height="64" frameX="-14" frameY="-64" frameWidth="150" frameHeight="128"/>
     <SubTexture name="UsePower_2" x="648" y="1733" width="150" height="84" frameX="0" frameY="-44" frameWidth="150" frameHeight="128"/>
-    <SubTexture name="highscore_again" x="1924" y="834" width="122" height="122" frameX="-300" frameY="-144" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="highscore_again" x="1924" y="834" width="122" height="122"/>
     <SubTexture name="highscore_background" x="644" y="404" width="640" height="400"/>
-    <SubTexture name="highscore_bar" x="1286" y="806" width="202" height="220" frameX="-47" frameY="-23" frameWidth="640" frameHeight="400"/>
-    <SubTexture name="highscore_end" x="1838" y="962" width="80" height="80" frameX="-464" frameY="-223" frameWidth="640" frameHeight="400"/>
-    <SubTexture name="highscore_play" x="1490" y="806" width="172" height="172" frameX="-447" frameY="-20" frameWidth="640" frameHeight="400"/>
+    <SubTexture name="highscore_bar" x="1286" y="806" width="202" height="220"/>
+    <SubTexture name="highscore_end" x="1838" y="962" width="80" height="80"/>
+    <SubTexture name="highscore_play" x="1490" y="806" width="172" height="172" />
     <SubTexture name="tutorialScreen_1" x="2" y="428" width="640" height="400"/>
     <SubTexture name="tutorialScreen_2" x="1286" y="2" width="640" height="400"/>
     <SubTexture name="tutorialScreen_3" x="644" y="2" width="640" height="400"/>

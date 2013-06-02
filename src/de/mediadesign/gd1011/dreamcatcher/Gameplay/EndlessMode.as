@@ -3,6 +3,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementBoss;
     import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
+    import de.mediadesign.gd1011.dreamcatcher.View.Score;
 
     import flash.geom.Point;
     import starling.core.Starling;
@@ -224,6 +225,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
         {
             self = null;
             damageMultiplier = 1;
+            Score.updateMultiplier();
         }
 
         public static function getDamageMultiplier(target:String):Number

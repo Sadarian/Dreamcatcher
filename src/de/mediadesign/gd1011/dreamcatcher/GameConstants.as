@@ -23,20 +23,20 @@ package de.mediadesign.gd1011.dreamcatcher
         //noinspection JSUnusedGlobalSymbols
         public static const UI_LIST_HD:Array = ["Credits", "Menu"];
         //noinspection JSUnusedGlobalSymbols
-        public static const ENDLESS_LIST_HD:Array = ["Background1_lvl1", "Background2_lvl1","Feedback", "Intro", "Victims_Charger_Enemy_lvl2", "Background2_BossDie_lvl2", "Boss_lvl2", "MiniBoss"];
+        public static var ENDLESS_LIST_HD:Array = ["Background1_lvl1", "Background2_lvl1","Feedback", "Intro", "Victims_Charger_Enemy_lvl2", "Boss_lvl2_Die", "Boss_lvl2", "MiniBoss"];
         //noinspection JSUnusedGlobalSymbols
         public static const LEVEL1_LIST_HD:Array = ["Background1_lvl1", "Background2_lvl1", "Boss_lvl1" ,"Feedback", "Intro", "Victims_Charger_Enemy_lvl2"];
         //noinspection JSUnusedGlobalSymbols
-        public static const LEVEL2_LIST_HD:Array = ["Background1_lvl2", "Background2_BossDie_lvl2", "Boss_lvl2", "Feedback", "Intro", "Victims_Charger_Enemy_lvl2"];
+        public static const LEVEL2_LIST_HD:Array = ["Background1_lvl2", "Background2_lvl2", "Boss_lvl2", "Boss_lvl2_Die", "Feedback", "Intro", "Victims_Charger_Enemy_lvl2"];
 
         //noinspection JSUnusedGlobalSymbols
         public static const UI_LIST_SD:Array = ["Credits_Menu_Tutorial"];
         //noinspection JSUnusedGlobalSymbols
-        public static const ENDLESS_LIST_SD:Array = ["Background_Boss_lvl2", "Background_Intro_lvl1_1", "Victims_Charger_Enemy_lvl2"];
+        public static var ENDLESS_LIST_SD:Array = ["MiniBoss", "Boss_lvl2", "Background_Intro_lvl1_1", "Victims_Charger_Enemy_lvl2"];
         //noinspection JSUnusedGlobalSymbols
-        public static const LEVEL1_LIST_SD:Array = ["Background_Intro_lvl1_1", "Victims_Charger_Enemy_lvl2"];
+        public static const LEVEL1_LIST_SD:Array = ["Background_Intro_lvl1_1", "Boss_lvl1" ,"Victims_Charger_Enemy_lvl2"];
         //noinspection JSUnusedGlobalSymbols
-        public static const LEVEL2_LIST_SD:Array = ["Background_Boss_lvl2", "Victims_Charger_Enemy_lvl2"];
+        public static const LEVEL2_LIST_SD:Array = ["Background_lvl2", "Boss_lvl2", "Victims_Charger_Enemy_lvl2"];
 
         public static const COLLISION_RECTANGLE:String = "CollisionRectangle";
         //noinspection JSUnusedGlobalSymbols

@@ -1,7 +1,5 @@
 package de.mediadesign.gd1011.dreamcatcher.View
 {
-    import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
-
     import starling.display.Image;
     import starling.display.Quad;
     import starling.display.Sprite;
@@ -10,20 +8,13 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
     public class ProgressBar extends Sprite
     {
-        [Embed(source="/../assets/textures/HD/Splashscreen.xml", mimeType="application/octet-stream")]
+        [Embed(source="/../assets/textures/Splashscreen.xml", mimeType="application/octet-stream")]
         public static const SplashscreenXML_HD:Class;
 
-        [Embed(source="/../assets/textures/HD/Splashscreen.png")]
+        [Embed(source="/../assets/textures/Splashscreen.png")]
         public static const SplashscreenTexture_HD:Class;
 
-        [Embed(source="/../assets/textures/SD/Splashscreen.xml", mimeType="application/octet-stream")]
-        public static const SplashscreenXML_SD:Class;
-
-        [Embed(source="/../assets/textures/SD/Splashscreen.png")]
-        public static const SplashscreenTexture_SD:Class;
-
         public static var splashScreenAtlas_HD:TextureAtlas = new TextureAtlas(Texture.fromBitmap(new SplashscreenTexture_HD()), XML(new SplashscreenXML_HD()));
-        public static var splashScreenAtlas_SD:TextureAtlas = new TextureAtlas(Texture.fromBitmap(new SplashscreenTexture_SD()), XML(new SplashscreenXML_SD()));
 
         private var mBar:Quad;
         public var ratios:Array;
@@ -35,9 +26,8 @@ package de.mediadesign.gd1011.dreamcatcher.View
             mBar.x = 480;
             mBar.y = 760;
             mBar.scaleY = 0;
-            var currentAtlas:TextureAtlas = (Dreamcatcher.scaleFactor == 1)?splashScreenAtlas_HD:splashScreenAtlas_SD;
             addChild(mBar);
-            addChild(new Image(currentAtlas.getTexture("Splashscreen")));
+            addChild(new Image(splashScreenAtlas_HD.getTexture("Splashscreen")));
         }
 
         public function setRatio(index:int, value:Number):void

@@ -144,8 +144,6 @@ package de.mediadesign.gd1011.dreamcatcher.View
 					lifeBar.texture = createLifeShape((life - entity.health)/3);
 				}
 
-
-
 				lifePercent = entity.health / life;
 			}
 
@@ -160,6 +158,12 @@ package de.mediadesign.gd1011.dreamcatcher.View
 
 	            if (entity.name == GameConstants.PLAYER)
 	                GameStage.gameStage.removeActor(playerIcon);
+
+                if (entity.name == GameConstants.BOSS2)
+                {
+                    GameStage.gameStage.removeActor(bossLifeIcon);
+                }
+
             }
 		}
 
@@ -188,7 +192,7 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			}
 			else
 			{
-				playerIcon.texture = GraphicsManager.graphicsManager.getTexture("PlayerLifeBarState_1");
+                playerIcon.texture = GraphicsManager.graphicsManager.getTexture("PlayerLifeBarState_1");
 				if (exhaustSound)
 					exhaustSound.stop();
 			}

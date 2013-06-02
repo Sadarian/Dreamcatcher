@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:0dc757e6fab067f71771b37857503ed1$ -->
+<TextureAtlas imagePath="MiniBossTexture.png">
+    <SubTexture name="MiniBossBulletWebHit_1" x="454" y="2" width="13" height="13" frameX="-12" frameY="-31" frameWidth="61" frameHeight="59"/>
+    <SubTexture name="MiniBossBulletWebHit_2" x="255" y="88" width="13" height="14" frameX="-12" frameY="-30" frameWidth="61" frameHeight="64"/>
+    <SubTexture name="MiniBossBulletWebHit_3" x="454" y="17" width="12" height="17" frameX="-12" frameY="-29" frameWidth="56" frameHeight="83"/>
+    <SubTexture name="MiniBossBulletWebHit_4" x="240" y="88" width="13" height="22" frameX="-10" frameY="-24" frameWidth="55" frameHeight="100"/>
+    <SubTexture name="MiniBossBulletWebHit_5" x="469" y="15" width="12" height="24" frameX="-11" frameY="-24" frameWidth="56" frameHeight="112"/>
+    <SubTexture name="MiniBossBulletWebWalk_1" x="484" y="2" width="13" height="11" frameX="-11" frameY="-31" frameWidth="61" frameHeight="67"/>
+    <SubTexture name="MiniBossBulletWebWalk_2" x="469" y="2" width="13" height="11" frameX="-11" frameY="-30" frameWidth="61" frameHeight="67"/>
+    <SubTexture name="MiniBossCloseCombat_1" x="436" y="91" width="74" height="89" frameX="-20" frameY="-6" frameWidth="100" frameHeight="95"/>
+    <SubTexture name="MiniBossCloseCombat_2" x="2" y="372" width="70" height="89" frameX="-25" frameY="-4" frameWidth="100" frameHeight="95"/>
+    <SubTexture name="MiniBossCloseCombat_3" x="354" y="91" width="80" height="85" frameX="-20" frameY="-1" frameWidth="100" frameHeight="95"/>
+    <SubTexture name="MiniBossCloseCombat_4" x="154" y="88" width="84" height="87" frameX="-12" frameY="0" frameWidth="100" frameHeight="95"/>
+    <SubTexture name="MiniBossCloseCombat_5" x="276" y="2" width="92" height="87" frameX="0" frameY="0" frameWidth="100" frameHeight="95"/>
+    <SubTexture name="MiniBossCloseCombat_6" x="370" y="2" width="82" height="87" frameX="-8" frameY="-4" frameWidth="100" frameHeight="95"/>
+    <SubTexture name="MiniBossDie_01" x="2" y="100" width="82" height="84" frameX="-84" frameY="-43" frameWidth="256" frameHeight="128"/>
+    <SubTexture name="MiniBossDie_02" x="2" y="186" width="74" height="86" frameX="-94" frameY="-42" frameWidth="256" frameHeight="128"/>
+    <SubTexture name="MiniBossDie_03" x="74" y="446" width="68" height="82" frameX="-101" frameY="-46" frameWidth="256" frameHeight="128"/>
+    <SubTexture name="MiniBossDie_04" x="144" y="458" width="64" height="84" frameX="-102" frameY="-44" frameWidth="256" frameHeight="128"/>
+    <SubTexture name="MiniBossDie_05" x="86" y="100" width="66" height="76" frameX="-98" frameY="-52" frameWidth="256" frameHeight="128"/>
+    <SubTexture name="MiniBossDie_06" x="78" y="273" width="72" height="74" frameX="-91" frameY="-54" frameWidth="256" frameHeight="128"/>
+    <SubTexture name="MiniBossDie_07" x="306" y="274" width="70" height="74" frameX="-93" frameY="-54" frameWidth="256" frameHeight="128"/>
+    <SubTexture name="MiniBossDie_08" x="306" y="350" width="70" height="68" frameX="-93" frameY="-60" frameWidth="256" frameHeight="128"/>
+    <SubTexture name="MiniBossDie_09" x="396" y="258" width="70" height="74" frameX="-93" frameY="-54" frameWidth="256" frameHeight="128"/>
+    <SubTexture name="MiniBossDie_10" x="396" y="182" width="70" height="74" frameX="-93" frameY="-54" frameWidth="256" frameHeight="128"/>
+    <SubTexture name="MiniBossDie_11" x="378" y="334" width="70" height="68" frameX="-93" frameY="-60" frameWidth="256" frameHeight="128"/>
+    <SubTexture name="MiniBossDie_12" x="270" y="91" width="82" height="74" frameX="-88" frameY="-54" frameWidth="256" frameHeight="128"/>
+    <SubTexture name="MiniBossDie_13" x="154" y="2" width="120" height="84" frameX="-63" frameY="-44" frameWidth="256" frameHeight="128"/>
+    <SubTexture name="MiniBossDie_14" x="2" y="2" width="150" height="96" frameX="-50" frameY="-31" frameWidth="256" frameHeight="128"/>
+    <SubTexture name="MiniBossShootWeb_1" x="153" y="271" width="73" height="90" frameX="0" frameY="-4" frameWidth="73" frameHeight="94"/>
+    <SubTexture name="MiniBossShootWeb_2" x="378" y="404" width="67" height="89" frameX="-4" frameY="-4" frameWidth="73" frameHeight="95"/>
+    <SubTexture name="MiniBossShootWeb_3" x="299" y="420" width="65" height="93" frameX="-7" frameY="-2" frameWidth="73" frameHeight="95"/>
+    <SubTexture name="MiniBossShootWeb_4" x="228" y="355" width="69" height="95" frameX="-4" frameY="0" frameWidth="73" frameHeight="95"/>
+    <SubTexture name="MiniBossShootWeb_5" x="75" y="349" width="71" height="95" frameX="-2" frameY="0" frameWidth="73" frameHeight="95"/>
+    <SubTexture name="MiniBossShootWeb_6" x="148" y="363" width="69" height="93" frameX="-4" frameY="0" frameWidth="73" frameHeight="95"/>
+    <SubTexture name="MiniBossShootWeb_7" x="86" y="178" width="65" height="93" frameX="-7" frameY="-2" frameWidth="73" frameHeight="95"/>
+    <SubTexture name="MiniBossShootWeb_8" x="219" y="452" width="65" height="90" frameX="-7" frameY="-2" frameWidth="73" frameHeight="94"/>
+    <SubTexture name="MiniBossWalk_1" x="240" y="167" width="79" height="94" frameX="0" frameY="-2" frameWidth="81" frameHeight="96"/>
+    <SubTexture name="MiniBossWalk_2" x="154" y="177" width="75" height="92" frameX="-1" frameY="0" frameWidth="81" frameHeight="96"/>
+    <SubTexture name="MiniBossWalk_3" x="321" y="178" width="73" height="94" frameX="-3" frameY="0" frameWidth="81" frameHeight="96"/>
+    <SubTexture name="MiniBossWalk_4" x="2" y="274" width="71" height="96" frameX="-8" frameY="0" frameWidth="81" frameHeight="96"/>
+    <SubTexture name="MiniBossWalk_5" x="2" y="463" width="67" height="94" frameX="-9" frameY="-1" frameWidth="81" frameHeight="96"/>
+    <SubTexture name="MiniBossWalk_6" x="231" y="263" width="73" height="90" frameX="-8" frameY="0" frameWidth="81" frameHeight="96"/>
+</TextureAtlas>

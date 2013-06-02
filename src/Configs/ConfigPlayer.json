@@ -1,6 +1,6 @@
 {
     "name":"Player",
-    "health":100,
+    "health":10000,
     "movementSystem":"MovementPlayer",
     "movementSpeed":750,
     "weaponSystem":"WeaponPlayerStraight",

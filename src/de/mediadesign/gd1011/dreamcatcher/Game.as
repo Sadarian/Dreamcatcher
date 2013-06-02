@@ -35,6 +35,7 @@ package de.mediadesign.gd1011.dreamcatcher
     import starling.core.Starling;
     import starling.display.DisplayObject;
     import starling.display.Image;
+    import starling.display.Quad;
     import starling.display.Sprite;
 	import starling.events.Event;
     import starling.events.KeyboardEvent;
@@ -66,6 +67,7 @@ package de.mediadesign.gd1011.dreamcatcher
         private static var _weaponPlayerStraight:WeaponPlayerStraight = new WeaponPlayerStraight();
         //noinspection JSFieldCanBeLocal
         private static var _weaponPlayerFan:WeaponPlayerFan = new WeaponPlayerFan();
+        private var fade:DisplayObject;
 
         //DEBUG:
         private var touchPosition:Point = new Point();
@@ -175,13 +177,13 @@ package de.mediadesign.gd1011.dreamcatcher
 
         }
 
-		private static function deleteText(text:TextField):void
+		public static function deleteText(text:TextField):void
 		{
 			GameStage.gameStage.removeActor(text);
 			text.dispose();
 		}
 
-		private static function createTextField(s:String):TextField
+        public static function createTextField(s:String):TextField
 		{
 			var text:TextField = new TextField(500, 200, s, "MenuFont", GameConstants.introTextSize,0xece030b, true);
 			text.pivotX = text.width/2;
@@ -223,6 +225,12 @@ package de.mediadesign.gd1011.dreamcatcher
 			noPlayTime = (getTimer()/1000) - now - passedLvlTime;
 		}
 
+        public function fadeOutLevel2():void
+        {
+            fade = GameStage.gameStage.addChild(new Quad(Starling.current.viewPort.width,Starling.current.viewPort.height, 0x000000));
+            fade.alpha = 0;
+        }
+
 		private function update():void
 		{
 			if (MainMenu.isActive() || PauseMenu.isActive() || HighScoreMenu.isActive() || ContinueMenu.isActive() || CreditsMenu.isActive() || TutorialMenu.isActive())
@@ -249,6 +257,16 @@ package de.mediadesign.gd1011.dreamcatcher
 
 				ActivePowerUpProcess.update(passedTime);
 
+                if(fade)
+                {
+                    fade.alpha += 0.02;
+                    if(fade.alpha>=1)
+                    {
+                        fade = null;
+                        GameStage.gameStage.endLvl("Congratulations! You have passed Level " + Game.currentLvl);
+                    }
+                }
+
                 if(Dreamcatcher.debugMode)
                 {
                     CollisionDummyBoxes.update();
@@ -260,7 +278,7 @@ package de.mediadesign.gd1011.dreamcatcher
 					GameStage.gameStage.addChild(text);
 					Starling.juggler.delayCall(allowMoving,1);
 					Starling.juggler.delayCall(deleteText, 2 , text);
-					allowShooting();
+                    Starling.juggler.delayCall(allowShooting,1);
 				}
             }
 		}

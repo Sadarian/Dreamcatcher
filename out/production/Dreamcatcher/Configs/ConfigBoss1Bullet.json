@@ -1,6 +1,6 @@
 {
     "name":"Boss1Bullet",
-    "health":5,
+    "health":15,
     "movementSystem":"MovementBullet",
     "movementSpeed":500,
     "weaponSystem":"null",

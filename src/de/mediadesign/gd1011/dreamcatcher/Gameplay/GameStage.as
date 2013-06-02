@@ -217,19 +217,6 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
                 }
             }
 
-            var boss:Entity = EntityManager.entityManager.getEntity(GameConstants.BOSS1);
-			if (boss)
-			{
-				if ((MovementBoss.phase == "Flee") || boss.health <= 0)
-				{
-					if (!lvlEnd)
-					{
-						MovementBoss.resetPhase();
-						endLvl("Congratulations! You have passed Level " + Game.currentLvl);
-					}
-				}
-			}
-
 			if (lvlEnd && endScreen && endScreen.alpha <= 1)
 			{
 				endScreen.alpha += 0.02;
@@ -239,6 +226,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 				if (endScreen.alpha >= 1)
 				{
 					resetAll();
+                    addChild(endScreen.screen);
 				}
 			}
 		}

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:a0bbaa0092a61c601dfc3aa8db613709$ -->
-<TextureAtlas imagePath="Splashscreen.png">
-    <SubTexture name="Splashscreen" x="2" y="804" width="1280" height="800"/>
-    <SubTexture name="SplashscreenCredits" x="2" y="2" width="1280" height="800"/>
-</TextureAtlas>

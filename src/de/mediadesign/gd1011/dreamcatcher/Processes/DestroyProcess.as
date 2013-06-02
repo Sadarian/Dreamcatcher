@@ -37,7 +37,7 @@ package de.mediadesign.gd1011.dreamcatcher.Processes
                         entity.playAnimation(AnimatedModel.DIE);
                 }
                 else
-                    if (entity.position.x >= (Starling.current.viewPort.width*1.1)+entity.movieClip.width/2 || entity.position.x <0-entity.movieClip.width/2)
+                    if ((entity.position.x >= (Starling.current.viewPort.width*1.1)+entity.movieClip.width/2 || entity.position.x <0-entity.movieClip.width/2) && (!entity.isBoss1 || ((entity.movementSystem as MovementBoss).fade.alpha>=1)))
                     {
                         if(entity.isHostile && EndlessMode.hasInstance && entity.position.x < 0-entity.movieClip.width/2 && entity.health > 0)
                             Score.updateMultiplier();

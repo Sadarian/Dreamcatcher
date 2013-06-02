@@ -3,6 +3,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 	import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
     import de.mediadesign.gd1011.dreamcatcher.Game;
+    import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 
     import flash.media.SoundChannel;
     import flash.media.SoundMixer;
@@ -159,6 +160,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
                 (Starling.current.root as Game).addChild(mainMenu);
                 mainMenu.checkSoundButton();
                 mainMenu.music = GraphicsManager.graphicsManager.playSound("MenuMusic");
+                swapEndlessGraphics();
             }
             else
             {
@@ -172,6 +174,20 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
         public static function isActive():Boolean
         {
             return active;
+        }
+
+        private static function swapEndlessGraphics():void
+        {
+            if(Math.random()<0.5)
+            {
+                GameConstants.ENDLESS_LIST_HD = ["Background1_lvl2", "Background2_lvl2","Feedback", "Intro", "Victims_Charger_Enemy_lvl2", "Boss_lvl2_Die", "Boss_lvl2", "MiniBoss"];
+                GameConstants.ENDLESS_LIST_SD = ["MiniBoss", "Boss_lvl2", "Background_lvl2", "Victims_Charger_Enemy_lvl2"];
+            }
+            else
+            {
+                GameConstants.ENDLESS_LIST_HD = ["Background1_lvl1", "Background2_lvl1","Feedback", "Intro", "Victims_Charger_Enemy_lvl2", "Boss_lvl2_Die", "Boss_lvl2", "MiniBoss"];
+                GameConstants.ENDLESS_LIST_SD = ["MiniBoss", "Boss_lvl2", "Background_Intro_lvl1_1", "Victims_Charger_Enemy_lvl2"];
+            }
         }
     }
 }

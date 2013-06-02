@@ -1,7 +1,8 @@
 package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
 {
     import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
-    import de.mediadesign.gd1011.dreamcatcher.Game;
+	import de.mediadesign.gd1011.dreamcatcher.Game;
+	import de.mediadesign.gd1011.dreamcatcher.Game;
     import de.mediadesign.gd1011.dreamcatcher.Game;
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.Gameplay.EndlessMode;
@@ -117,7 +118,7 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
 	            default:
 		            TutorialMenu.resetTutorial();
                     mContainers = new Dictionary();
-                    loadStream = (Game.currentLvl == -1)?GameConstants["ENDLESS_LIST"+mQualityGraphics]:GameConstants["LEVEL"+(Game.currentLvl)+"_LIST"+mQualityGraphics];
+                    loadStream = (Game.currentLvl == -1)?GameConstants["ENDLESS_LIST"+mQualityGraphics]:(Game.currentLvl == -2)?GameConstants["TUTORIAL_LIST"+mQualityGraphics]:GameConstants["LEVEL"+(Game.currentLvl)+"_LIST"+mQualityGraphics];
                     deleteStream = (mLast == "UI")?GameConstants["UI_LIST"+mQualityGraphics]: (mLast != "LEVEL-2")?GameConstants["TUTORIAL_LIST"+mQualityGraphics]:GameConstants["LEVEL"+(Game.currentLvl-1)+"_LIST"+mQualityGraphics];
                     blendScreen = getImage("tutorialScreen_"+(1+Math.round(Math.random()*3)));
                     break;

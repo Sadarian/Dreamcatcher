@@ -108,8 +108,6 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			_movementSpeeds = null;
 			initComplete = false;
 
-			movementSpeeds = null;
-
 			removeChild(_pauseButton, true);
 
 			_pauseButton = null;

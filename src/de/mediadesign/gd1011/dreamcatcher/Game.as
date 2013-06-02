@@ -183,7 +183,10 @@ package de.mediadesign.gd1011.dreamcatcher
 			gameStage.loadLevel(currentLvl);
             entityManager.loadEntities(currentLvl);
             graphicsManager.initCompleted = true;
-            Starling.juggler.delayCall(allowShooting, 1);
+	        if (currentLvl != GameConstants.TUTORIAL)
+	        {
+		        Starling.juggler.delayCall(allowShooting, 1);
+	        }
 
 			if (currentLvl == GameConstants.TUTORIAL)
 			{
@@ -252,7 +255,7 @@ package de.mediadesign.gd1011.dreamcatcher
 			{
 				getNoPlayTime();
 			}
-			else if(Starling.juggler.isActive && graphicsManager.initCompleted && !MainMenu.isActive() && !PauseMenu.isActive() && !HighScoreMenu.isActive() && !ContinueMenu.isActive() && !CreditsMenu.isActive() && !TutorialMenu.isActive())
+			else if(Starling.juggler.isActive && graphicsManager.initCompleted && !MainMenu.isActive() && !PauseMenu.isActive() && !HighScoreMenu.isActive() && !ContinueMenu.isActive() && !CreditsMenu.isActive())
             {
 
                 now = getTimer() / 1000 - noPlayTime - passedLvlTime;

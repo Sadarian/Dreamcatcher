@@ -5,8 +5,9 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
     import de.mediadesign.gd1011.dreamcatcher.GameConstants;
     import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
     import de.mediadesign.gd1011.dreamcatcher.View.Menu.MainMenu;
+	import de.mediadesign.gd1011.dreamcatcher.View.Menu.TutorialMenu;
 
-    import flash.filesystem.File;
+	import flash.filesystem.File;
     import flash.media.SoundChannel;
     import flash.media.SoundMixer;
     import flash.media.SoundTransform;
@@ -87,11 +88,20 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
             {
                 case("UI"):
                     MainMenu.resetMainMain();
-					deleteStream = GameConstants["LEVEL" + Game.currentLvl + "_LIST"];
+		            TutorialMenu.resetTutorial();
+	                if (Game.currentLvl == GameConstants.TUTORIAL)
+	                {
+		                deleteStream = GameConstants.LEVEL_TUTORIAL_LIST;
+	                }
+		            else
+	                {
+		                deleteStream = GameConstants["LEVEL" + Game.currentLvl + "_LIST"];
+	                }
                     blendGraphic = true;
                     break;
 
                 default:
+		            TutorialMenu.resetTutorial();
                     mContainers = new Dictionary();
 					if (mLast == "UI")
 					{

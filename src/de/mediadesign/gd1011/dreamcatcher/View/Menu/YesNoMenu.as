@@ -3,9 +3,10 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 	import de.mediadesign.gd1011.dreamcatcher.AssetsClasses.GraphicsManager;
     import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
     import de.mediadesign.gd1011.dreamcatcher.Game;
+	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 
 
-    import starling.core.Starling;
+	import starling.core.Starling;
     import starling.display.Button;
     import starling.display.DisplayObject;
     import starling.display.MovieClip;
@@ -63,6 +64,8 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
             {
                 case(mElements[0]):
 					showAndHide();
+		            TutorialMenu.resetTutorial();
+	                (Starling.current.root as Game).startLevel(GameConstants.TUTORIAL);
 					TutorialMenu.showAndHide();
                     break;
 

@@ -56,7 +56,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 
 		public function TutorialMenu()
 		{
-			(Starling.current.root as Game).startLevel(GameConstants.TUTORIAL);
+
 		}
 
 		public static function init():void
@@ -429,7 +429,15 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 							GraphicsManager.graphicsManager.playSound("evilLaugh");
 							showAndHide();
 							GameStage.gameStage.resetAll();
-							(Starling.current.root as Game).startLevel(YesNoMenu.selectetLvl);
+							if (YesNoMenu.selectetLvl != GameConstants.TUTORIAL)
+							{
+								TutorialMenu.showAndHide();
+								(Starling.current.root as Game).startLevel(YesNoMenu.selectetLvl);
+							}
+							else
+							{
+								GraphicsManager.graphicsManager.loadDataFor("UI", MainMenu.showAndHide);
+							}
 						}
 						break;
 					}
@@ -510,6 +518,14 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 			moveToTween.moveTo(GameConstants.playerStartPosition.x + 50 + 200, GameConstants.playerStartPosition.y - 50);
 			Starling.juggler.add(moveToTween);
 			return null;
+		}
+
+		public static function resetTutorial():void
+		{
+			if(!self) return;
+			_phase = null;
+			self.dispose();
+			self = null;
 		}
 
 		public static function isActive():Boolean {

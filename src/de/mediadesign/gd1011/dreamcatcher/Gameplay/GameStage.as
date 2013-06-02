@@ -234,29 +234,9 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
             if (EntityManager.entityManager.getEntity(GameConstants.PLAYER) != null && EntityManager.entityManager.getEntity(GameConstants.PLAYER).health <= 0 && !lvlEnd)
             {
-                if(EndlessMode.hasInstance)
-                {
-                    endLvl("Yo have failed, but your Rumors will remain!");
-                }
-                else
-                {
-                    lose = true;
-                    endLvl("You Lose!");
-                }
+                lose = true;
+                endLvl("You Lose!");
             }
-
-            var boss:Entity = EntityManager.entityManager.getEntity(GameConstants.BOSS1);
-			if (boss)
-			{
-				if ((MovementBoss.phase == "Flee") || boss.health <= 0)
-				{
-					if (!lvlEnd)
-					{
-						MovementBoss.resetPhase();
-						endLvl("Congratulations! You have passed Level " + Game.currentLvl);
-					}
-				}
-			}
 
 			if (lvlEnd && endScreen && endScreen.alpha <= 1)
 			{
@@ -266,6 +246,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 				if (endScreen.alpha >= 1)
 				{
 					resetAll();
+					addChild(endScreen.screen);
 				}
 			}
 		}
@@ -336,7 +317,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             {
                 endScreen = new LevelEndScreen(text);
                 endScreen.createRestartButton();
-                addChild(endScreen.screen);
+	            addChild(endScreen.screen);
             }
 			else
             {

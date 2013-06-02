@@ -4,14 +4,10 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 	import de.mediadesign.gd1011.dreamcatcher.Game;
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
-	import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
-	import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
-	import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementCharger;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementPlayer;
-	import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
 	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
 
 	import flash.geom.Point;
@@ -19,12 +15,12 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 	import starling.animation.Transitions;
 	import starling.animation.Tween;
 	import starling.core.Starling;
-	import starling.display.Button;
 	import starling.display.DisplayObject;
+	import starling.display.Image;
 	import starling.display.Quad;
 	import starling.display.Sprite;
-	import starling.events.Event;
 	import starling.text.TextField;
+	import starling.utils.deg2rad;
 
 	public class TutorialMenu extends Sprite
 	{
@@ -41,6 +37,11 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 		private static var allowSpawning:Boolean = false;
 		private static var enemy:Entity;
 
+		private static var introductionReminder:TextField;
+
+		private static var arrow:Image;
+		private static var finger:Image;
+
 		public static var MOVEMENT:String = "Movement";
 		public static var SHOOTING:String = "Shooting";
 		public static var POWERUP:String = "PowerUp";
@@ -53,8 +54,6 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 
 		private static var _phase:String;
 
-		private static var mElements:Vector.<DisplayObject>;
-
 		public function TutorialMenu()
 		{
 			(Starling.current.root as Game).startLevel(GameConstants.TUTORIAL);
@@ -62,27 +61,14 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 
 		public static function init():void
 		{
-			var gM:GraphicsManager = GraphicsManager.graphicsManager;
+			arrow = GraphicsManager.graphicsManager.getImage("tutorialArrow");
+			finger = GraphicsManager.graphicsManager.getImage("tutorialFinger");
+			finger.pivotX = finger.width/2;
+			finger.pivotY = finger.height/2;
+
 			player = EntityManager.entityManager.getEntity(GameConstants.PLAYER);
 			player.switchMovement(null);
 			player.switchWeapon(null);
-
-			mElements = new Vector.<DisplayObject>();
-
-			var buttonStrings:Array = [	"TutorialBackButton", "TutorialBackButtonClick"];
-			var positions:Array = [[40, 650]];
-			var button:Button;
-			for(var i:int = 0; i<buttonStrings.length;i+=2)
-			{
-				button = new Button(gM.getTexture(buttonStrings[i]),"", gM.getTexture(buttonStrings[i+1]));
-				button.enabled = true;
-				button.x = positions[i/2][0];
-				button.y = positions[i/2][1];
-				button.name = buttonStrings[i];
-				button.addEventListener(Event.TRIGGERED, onTriggered);
-				tutorialMenu.addChild(button);
-				mElements.push(button);
-			}
 
 			greyScreen = new Quad(Starling.current.viewPort.width,Starling.current.viewPort.height, 0x000000);
 			screen.addChild(greyScreen);
@@ -124,6 +110,13 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 				{
 					showHideGreyScreen();
 					showHideText();
+					introductionReminder = new TextField(400, 200, "Drag Player to move", "TutorialFont", 30, 0xffffff, true);
+					introductionReminder.x = 190;
+					introductionReminder.y = 720;
+					introductionReminder.pivotX = introductionReminder.width/2;
+					introductionReminder.pivotY = introductionReminder.height/2;
+					introductionReminder.rotation = deg2rad(20);
+					tutorialMenu.addChild(introductionReminder);
 					player.switchMovement(new MovementPlayer());
 					break;
 				}
@@ -138,12 +131,23 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 				{
 					Starling.juggler.delayCall(switchTextTo, 2, "Collect a Power up!", showHideText);
 					Starling.juggler.delayCall(EntityManager.entityManager.createEntity, 4, GameConstants.POWERUP_FIRE_RATE, new Point(Starling.current.viewPort.width - 50, Starling.current.viewPort.height/2));
+					Starling.juggler.delayCall(tutorialMenu.addChild, 4, introductionReminder);
+					introductionReminder.text = "Collect a Power up!";
 					break;
 				}
 
 				case USEPOWERUP:
 				{
 					Starling.juggler.delayCall(switchTextTo, 1, "Trigger Power-Up by pressing the Button", showHideText);
+
+					Starling.juggler.delayCall(tutorialMenu.addChild, 3, introductionReminder);
+					introductionReminder.text = "Use The Power up!";
+
+					tutorialMenu.addChild(arrow);
+					arrow.x = 1100;
+					arrow.y = 700;
+					arrow.rotation = deg2rad(220);
+
 					break;
 				}
 
@@ -166,18 +170,24 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 				}
 				case LOSELIFE:
 				{
-					//place arrow to life bar
+					tutorialMenu.addChild(arrow);
+					arrow.x = 150;
+					arrow.y = 100;
+					arrow.rotation = deg2rad(45);
 					switchTextTo("Doge their pucke!", showHideText);
 					break;
 				}
 				case GETLIFE:
 				{
 					player.health = 10;
-					switchTextTo("Collect  Health to survive!", showHideText);
+					Starling.juggler.delayCall(tutorialMenu.addChild, 2, introductionReminder);
+					introductionReminder.text = "Collect Health to survive!";
+					switchTextTo("Collect Health to survive!", showHideText);
 					break;
 				}
 				case THEENDE:
 				{
+					tutorialMenu.removeChild(introductionReminder);
 					switchTextTo("Your first Mission awaits!", showHideGreyScreen);
 					Starling.juggler.delayCall(fadeIn, 3, screen);
 					greyScreen.color = 0x000000;
@@ -194,13 +204,38 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 				{
 					case MOVEMENT:
 					{
+						passedSecs += passedTime;
 						if (!player.position.equals(GameConstants.playerStartPosition) && moved == 0)
 						{
 							moved = 1;
 						}
+						else if ((passedSecs >= 5|| tutorialMenu.contains(finger)) && moved == 0)
+						{
+							if (!tutorialMenu.contains(finger))
+							{
+								passedSecs = 0;
+								tutorialMenu.addChild(finger);
+								finger.x = GameConstants.playerStartPosition.x + 50;
+								finger.y = GameConstants.playerStartPosition.y - 50;
+								moveTo(finger);
+							}
+							else if(finger.x != GameConstants.playerStartPosition.x && passedSecs >= 2)
+							{
+								passedSecs = 0;
+								finger.x = GameConstants.playerStartPosition.x + 50;
+								finger.y = GameConstants.playerStartPosition.y - 50;
+								moveTo(finger);
+							}
+						}
 						if (moved == 1)
 						{
+							if (tutorialMenu.contains(finger))
+							{
+								tutorialMenu.removeChild(finger);
+							}
 							moved = 2;
+							passedSecs = 0;
+							tutorialMenu.removeChild(introductionReminder);
 							Starling.juggler.delayCall(switchTextTo, 2, "You can move him everywhere!", switchTo, SHOOTING);
 						}
 						break;
@@ -210,6 +245,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 					{
 						if (player.weaponSystem == Game.weaponPlayerStraight)
 						{
+							passedSecs = 0;
 							switchTo(POWERUP);
 						}
 						break;
@@ -220,6 +256,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 						passedSecs += passedTime;
 						if (PowerUpTrigger.powerUpCollected && !powerUpCollected)
 						{
+							tutorialMenu.removeChild(introductionReminder);
 							powerUpCollected = true;
 							switchTo(USEPOWERUP);
 							passedSecs = 0;
@@ -236,6 +273,8 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 					{
 						if (!PowerUpTrigger.powerUpCollected && powerUpCollected)
 						{
+							tutorialMenu.removeChild(arrow);
+							tutorialMenu.removeChild(introductionReminder);
 							powerUpCollected = false;
 							switchTextTo("You can also stack Power-Ups");
 							Starling.juggler.delayCall(switchTextTo, 3, "Stack Power-Ups and trigger them!", switchTo, STACKPOWERUP);
@@ -267,6 +306,8 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 							repeatCount = 0;
 							passedSecs = 0;
 							switchTextTo("Kill Everything!", showHideText);
+							Starling.juggler.delayCall(tutorialMenu.addChild, 2, introductionReminder);
+							introductionReminder.text = "Kill Everything!";
 							switchTo(ENEMYAPPEARS);
 						}
 						break;
@@ -285,7 +326,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 							enemy.maxHealth = 100;
 							enemy.health = 100;
 						}
-						else if (repeatCount < 4)
+						else if (repeatCount <= 4)
 						{
 							if (passedSecs >= 5 && !allowSpawning)
 							{
@@ -306,6 +347,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 							{
 								passedSecs = 0;
 								repeatCount = 0;
+								tutorialMenu.removeChild(introductionReminder);
 								switchTextTo("Don’t get hit!");
 								switchTo(LOSELIFE);
 							}
@@ -338,6 +380,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 							if (passedSecs >= 3 && !allowSpawning)
 							{
 								allowSpawning = true;
+								tutorialMenu.removeChild(arrow);
 							}
 							if (passedSecs >= 1.5 && allowSpawning)
 							{
@@ -356,6 +399,13 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 							player.switchMovement(null);
 							player.switchWeapon(null);
 							switchTo(THEENDE);
+							for each (var entity:Entity in EntityManager.entityManager.entities)
+							{
+								if (entity.isPowerUp && entity.health > 0)
+								{
+									entity.health = 0;
+								}
+							}
 						}
 						else
 						{
@@ -367,7 +417,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 							{
 								passedSecs = 0;
 								repeatCount++;
-								EntityManager.entityManager.createEntity(GameConstants.POWERUP_FIRE_RATE, new Point(Starling.current.viewPort.width - 50, Starling.current.viewPort.height - 200 - 300 * Math.random()));
+								EntityManager.entityManager.createEntity(GameConstants.POWERUP_HEALTH, new Point(Starling.current.viewPort.width - 50, Starling.current.viewPort.height - 200 - 300 * Math.random()));
 							}
 						}
 						break;
@@ -376,7 +426,10 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 					{
 						if (screen.alpha == 1)
 						{
-							mElements[0].dispatchEventWith(Event.TRIGGERED);
+							GraphicsManager.graphicsManager.playSound("evilLaugh");
+							showAndHide();
+							GameStage.gameStage.resetAll();
+							(Starling.current.root as Game).startLevel(YesNoMenu.selectetLvl);
 						}
 						break;
 					}
@@ -420,19 +473,6 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 			}
 		}
 
-		private static function onTriggered(e:Event):void
-		{
-			switch(e.currentTarget)
-			{
-				case(mElements[0]):
-					GraphicsManager.graphicsManager.playSound("evilLaugh");
-					showAndHide();
-					GameStage.gameStage.resetAll();
-					(Starling.current.root as Game).startLevel(YesNoMenu.selectetLvl);
-					break;
-			}
-		}
-
 		public static function get tutorialMenu():TutorialMenu
 		{
 			if(!self)
@@ -464,11 +504,12 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 
 		}
 
-		private static function fadeOut(tweenObject:DisplayObject):void
+		private static function moveTo(tweenObject:DisplayObject):Function
 		{
-			var mTween:Tween = new Tween (tweenObject,2,Transitions.EASE_OUT);
-			mTween.fadeTo(0);
-			Starling.juggler.add(mTween);
+			var moveToTween:Tween = new Tween(tweenObject, 1, Transitions.EASE_IN);
+			moveToTween.moveTo(GameConstants.playerStartPosition.x + 50 + 200, GameConstants.playerStartPosition.y - 50);
+			Starling.juggler.add(moveToTween);
+			return null;
 		}
 
 		public static function isActive():Boolean {

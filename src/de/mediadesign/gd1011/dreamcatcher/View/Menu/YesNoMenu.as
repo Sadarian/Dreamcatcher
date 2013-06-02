@@ -31,7 +31,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
             var buttonStrings:Array =
                     ["Yes", "TextBoxButton",
                      "No", "TextBoxButton"];
-            var positions:Array = [[440, 400], [840, 400]];
+            var positions:Array = [[440, 500], [840, 500]];
             var button:Button;
             for(var i:int=0; i<buttonStrings.length;i+=2)
             {
@@ -40,6 +40,8 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 				button.fontSize = 100;
 				button.fontName = "MenuFont";
 				button.fontColor = 0xece030b;
+	            button.pivotX = button.width/2;
+	            button.pivotY = button.height/2;
                 button.x = positions[i/2][0];
                 button.y = positions[i/2][1];
                 button.name = buttonStrings[i];

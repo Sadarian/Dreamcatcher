@@ -5,9 +5,13 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 	import de.mediadesign.gd1011.dreamcatcher.GameConstants;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
+	import de.mediadesign.gd1011.dreamcatcher.Gameplay.Entity;
+	import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.EntityManager;
 	import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
+	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementCharger;
 	import de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement.MovementPlayer;
+	import de.mediadesign.gd1011.dreamcatcher.View.AnimatedModel;
 	import de.mediadesign.gd1011.dreamcatcher.View.PowerUpTrigger;
 
 	import flash.geom.Point;
@@ -27,13 +31,15 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 		private static var self:TutorialMenu;
 		private static var _active:Boolean = false;
 		private static var player:Entity;
-		private static var greyScreen:Sprite = new Sprite();
+		private static var screen:Sprite = new Sprite();
+		private static var greyScreen:Quad;
 		private static var textBox:TextField;
 		private static var moved:int = 0;
 		private static var powerUpCollected:Boolean = false;
 		private static var passedSecs:Number = 0;
 		private static var repeatCount:int = 0;
 		private static var allowSpawning:Boolean = false;
+		private static var enemy:Entity;
 
 		public static var MOVEMENT:String = "Movement";
 		public static var SHOOTING:String = "Shooting";
@@ -41,6 +47,9 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 		public static var USEPOWERUP:String = "UsePowerUp";
 		public static var STACKPOWERUP:String = "StackPowerUp";
 		public static var ENEMYAPPEARS:String = "EnemyAppears";
+		public static var LOSELIFE:String = "LoseLife";
+		public static var GETLIFE:String = "GetLife";
+		public static var THEENDE:String = "TheEnd";
 
 		private static var _phase:String;
 
@@ -75,8 +84,9 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 				mElements.push(button);
 			}
 
-			greyScreen.addChild(new Quad(Starling.current.viewPort.width,Starling.current.viewPort.height, 0x000000));
-			greyScreen.alpha = 0.5;
+			greyScreen = new Quad(Starling.current.viewPort.width,Starling.current.viewPort.height, 0x000000);
+			screen.addChild(greyScreen);
+			screen.alpha = 0.5;
 			showHideGreyScreen();
 
 			textBox = createTextField("Welcome to the Tutorial");
@@ -97,9 +107,9 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 			if (functionToCall != null)
 			{
 				if (args.length > 0)
-					Starling.juggler.delayCall(functionToCall, 2, args);
+					Starling.juggler.delayCall(functionToCall, 3, args);
 				else
-					Starling.juggler.delayCall(functionToCall, 2);
+					Starling.juggler.delayCall(functionToCall, 3);
 			}
 		}
 
@@ -107,7 +117,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 		{
 			if(phase == _phase)
 				return;
-			_phase = phase
+			_phase = phase;
 			switch (_phase)
 			{
 				case MOVEMENT:
@@ -127,31 +137,51 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 				case POWERUP:
 				{
 					Starling.juggler.delayCall(switchTextTo, 2, "Collect a Power up!", showHideText);
-					Starling.juggler.delayCall(EntityManager.entityManager.createEntity, 4, GameConstants.POWERUP_FIRE_RATE, new Point(Starling.current.viewPort.width - 100, Starling.current.viewPort.height/2));
+					Starling.juggler.delayCall(EntityManager.entityManager.createEntity, 4, GameConstants.POWERUP_FIRE_RATE, new Point(Starling.current.viewPort.width - 50, Starling.current.viewPort.height/2));
 					break;
 				}
 
 				case USEPOWERUP:
 				{
-					Starling.juggler.delayCall(showHideText, 3);
+					Starling.juggler.delayCall(switchTextTo, 1, "Trigger Power-Up by pressing the Button", showHideText);
 					break;
 				}
 
 				case STACKPOWERUP:
 				{
+					showHideText();
 					for (var i:int = 1; i <= 6; i++)
 					{
-						Starling.juggler.delayCall(EntityManager.entityManager.createEntity, 0.25*i, GameConstants.POWERUP_FIRE_RATE, new Point(Starling.current.viewPort.width - 100, 200+(60*i)));
+						Starling.juggler.delayCall(EntityManager.entityManager.createEntity, 0.25*i, GameConstants.POWERUP_FIRE_RATE, new Point(Starling.current.viewPort.width - 50, 200+(60*i)));
 					}
-					Starling.juggler.delayCall(switchTextTo, 3, "Double Tapping the Dreamcatcher also triggers Power-Ups");
-					Starling.juggler.delayCall(switchTextTo, 6,"Power-Ups have 3 charging states", showHideText);
+					Starling.juggler.delayCall(switchTextTo, 6, "Double Tapping the Dreamcatcher also triggers Power-Ups");
+					Starling.juggler.delayCall(switchTextTo, 9,"Power-Ups have 3 charging states", showHideText);
 					break;
 				}
 				case ENEMYAPPEARS:
 				{
-					var enemy:Entity = EntityManager.entityManager.createEntity(GameConstants.ENEMY, new Point(Starling.current.viewPort.width - 100, Starling.current.viewPort.height/2));
+					var enemy:Entity = EntityManager.entityManager.createEntity(GameConstants.ENEMY, new Point(Starling.current.viewPort.width - 50, Starling.current.viewPort.height - 200 - 300 * Math.random()));
 					enemy.switchWeapon(null);
 					break;
+				}
+				case LOSELIFE:
+				{
+					//place arrow to life bar
+					switchTextTo("Doge their pucke!", showHideText);
+					break;
+				}
+				case GETLIFE:
+				{
+					player.health = 10;
+					switchTextTo("Collect  Health to survive!", showHideText);
+					break;
+				}
+				case THEENDE:
+				{
+					switchTextTo("Your first Mission awaits!", showHideGreyScreen);
+					Starling.juggler.delayCall(fadeIn, 3, screen);
+					greyScreen.color = 0x000000;
+					screen.alpha = 0;
 				}
 			}
 		}
@@ -191,13 +221,12 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 						if (PowerUpTrigger.powerUpCollected && !powerUpCollected)
 						{
 							powerUpCollected = true;
-							switchTextTo("Trigger Power-Up by pressing the Button");
 							switchTo(USEPOWERUP);
 							passedSecs = 0;
 						}
 						if (passedSecs >= 11 && !powerUpCollected)
 						{
-							EntityManager.entityManager.createEntity(GameConstants.POWERUP_FIRE_RATE, new Point(Starling.current.viewPort.width - 100, Starling.current.viewPort.height/2));
+							EntityManager.entityManager.createEntity(GameConstants.POWERUP_FIRE_RATE, new Point(Starling.current.viewPort.width - 50, Starling.current.viewPort.height - 200 - 300 * Math.random()));
 							passedSecs = 0;
 						}
 						break;
@@ -209,7 +238,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 						{
 							powerUpCollected = false;
 							switchTextTo("You can also stack Power-Ups");
-							Starling.juggler.delayCall(switchTextTo, 2, "Stack Power-Ups and trigger them!", switchTo, STACKPOWERUP);
+							Starling.juggler.delayCall(switchTextTo, 3, "Stack Power-Ups and trigger them!", switchTo, STACKPOWERUP);
 						}
 						break;
 					}
@@ -225,7 +254,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 						{
 							passedSecs = 0;
 							repeatCount++;
-							EntityManager.entityManager.createEntity(GameConstants.POWERUP_FIRE_RATE, new Point(Starling.current.viewPort.width - 100, Starling.current.viewPort.height/2));
+							EntityManager.entityManager.createEntity(GameConstants.POWERUP_FIRE_RATE, new Point(Starling.current.viewPort.width - 50, Starling.current.viewPort.height - 200 - 300 * Math.random()));
 						}
 						if (repeatCount == 7 && allowSpawning)
 						{
@@ -240,6 +269,116 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 							switchTextTo("Kill Everything!", showHideText);
 							switchTo(ENEMYAPPEARS);
 						}
+						break;
+					}
+					case ENEMYAPPEARS:
+					{
+						passedSecs += passedTime;
+						if (repeatCount == 5 && allowSpawning)
+						{
+							passedSecs = 0;
+							repeatCount++;
+							allowSpawning = false;
+							enemy = EntityManager.entityManager.createEntity(GameConstants.ENEMY, new Point(Starling.current.viewPort.width - 50, Starling.current.viewPort.height - 200 - 300 * Math.random()));
+							enemy.switchWeapon(null);
+							enemy.switchMovement(new MovementCharger());
+							enemy.maxHealth = 100;
+							enemy.health = 100;
+						}
+						else if (repeatCount < 4)
+						{
+							if (passedSecs >= 5 && !allowSpawning)
+							{
+								allowSpawning = true;
+							}
+
+							if (passedSecs >= 2 && allowSpawning)
+							{
+								repeatCount++;
+								passedSecs = 0;
+								enemy = EntityManager.entityManager.createEntity(GameConstants.ENEMY, new Point(Starling.current.viewPort.width - 50, Starling.current.viewPort.height - 200 - 300 * Math.random()));
+								enemy.switchWeapon(null);
+							}
+						}
+						else
+						{
+							if (player.health != player.maxHealth)
+							{
+								passedSecs = 0;
+								repeatCount = 0;
+								switchTextTo("Don’t get hit!");
+								switchTo(LOSELIFE);
+							}
+							else if(!enemy)
+							{
+								allowSpawning = true;
+							}
+						}
+						break;
+					}
+					case LOSELIFE:
+					{
+						passedSecs += passedTime;
+						if (repeatCount == 10 && allowSpawning)
+						{
+							passedSecs = 0;
+							repeatCount = 0;
+							allowSpawning = false;
+							for each (var entity:Entity in EntityManager.entityManager.entities)
+							{
+								if (entity.isEnemy && entity.health > 0)
+								{
+									entity.health = 0;
+								}
+							}
+							switchTo(GETLIFE);
+						}
+						else if (repeatCount < 10)
+						{
+							if (passedSecs >= 3 && !allowSpawning)
+							{
+								allowSpawning = true;
+							}
+							if (passedSecs >= 1.5 && allowSpawning)
+							{
+								repeatCount++;
+								passedSecs = 0;
+								enemy = EntityManager.entityManager.createEntity(GameConstants.ENEMY, new Point(Starling.current.viewPort.width - 50, Starling.current.viewPort.height - 200 - 300 * Math.random()));
+							}
+						}
+						break;
+					}
+					case GETLIFE:
+					{
+						passedSecs += passedTime;
+						if (player.health == player.maxHealth)
+						{
+							player.switchMovement(null);
+							player.switchWeapon(null);
+							switchTo(THEENDE);
+						}
+						else
+						{
+							if (passedSecs >= 3 && !allowSpawning)
+							{
+								allowSpawning = true;
+							}
+							if (passedSecs >= 1 && allowSpawning)
+							{
+								passedSecs = 0;
+								repeatCount++;
+								EntityManager.entityManager.createEntity(GameConstants.POWERUP_FIRE_RATE, new Point(Starling.current.viewPort.width - 50, Starling.current.viewPort.height - 200 - 300 * Math.random()));
+							}
+						}
+						break;
+					}
+					case THEENDE:
+					{
+						if (screen.alpha == 1)
+						{
+							mElements[0].dispatchEventWith(Event.TRIGGERED);
+						}
+						break;
 					}
 				}
 
@@ -260,7 +399,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 
 		private static function createTextField(s:String):TextField
 		{
-			var text:TextField = new TextField(500, 200, s, "TutorialFont", 50 ,0xffffff, true);
+			var text:TextField = new TextField(800, 200, s, "TutorialFont", 50 ,0xffffff, true);
 			text.pivotX = text.width/2;
 			text.pivotY = text.height/2;
 			text.x = Starling.current.viewPort.width/2;
@@ -271,13 +410,13 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 
 		private static function showHideGreyScreen():void
 		{
-			if (tutorialMenu.contains(greyScreen))
+			if (tutorialMenu.contains(screen))
 			{
-				tutorialMenu.removeChild(greyScreen);
+				tutorialMenu.removeChild(screen);
 			}
 			else
 			{
-				tutorialMenu.addChildAt(greyScreen, 0);
+				tutorialMenu.addChildAt(screen, 0);
 			}
 		}
 
@@ -290,9 +429,6 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 					showAndHide();
 					GameStage.gameStage.resetAll();
 					(Starling.current.root as Game).startLevel(YesNoMenu.selectetLvl);
-					break;
-				case(mElements[1]):
-
 					break;
 			}
 		}
@@ -320,15 +456,15 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 			}
 		}
 
-		private function fadeIn(tweenObject:DisplayObject):void
+		private static function fadeIn(tweenObject:DisplayObject):void
 		{
-			var mTween:Tween = new Tween (tweenObject,2,Transitions.EASE_IN);
+			var mTween:Tween = new Tween(tweenObject,2,Transitions.EASE_IN);
 			mTween.fadeTo(1);
 			Starling.juggler.add(mTween);
 
 		}
 
-		private function fadeOut(tweenObject:DisplayObject):void
+		private static function fadeOut(tweenObject:DisplayObject):void
 		{
 			var mTween:Tween = new Tween (tweenObject,2,Transitions.EASE_OUT);
 			mTween.fadeTo(0);

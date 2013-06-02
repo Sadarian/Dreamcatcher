@@ -236,7 +236,11 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             return _maxHealth;
         }
 
-		public function setMovementSpeed():void
+	    public function set maxHealth(value:Number):void {
+		    _maxHealth = value;
+	    }
+
+	    public function setMovementSpeed():void
 		{
 			if (_movementSystem != null)
 			{

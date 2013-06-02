@@ -101,11 +101,11 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
                     break;
 
                 case(mElements[3]):
-                    showAndHide();
                     if(endless)
                         (Starling.current.root as Game).startLevel(-1);
                     else
                         (Starling.current.root as Game).startLevel(Dreamcatcher.localObject.data.Progress);
+                    showAndHide();
                     break;
 				case(mElements[4]):
 					TutorialMenu.showAndHide();

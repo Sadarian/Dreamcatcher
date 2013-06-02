@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:36d8f9909ea8dd559e3ef41772bd6148$ -->
+<TextureAtlas imagePath="Boss_lvl2Texture.png">
+    <SubTexture name="Boss2BulletWalk_1" x="230" y="2007" width="61" height="37"/>
+    <SubTexture name="Boss2BulletWalk_2" x="230" y="1968" width="61" height="37"/>
+    <SubTexture name="Boss2BulletWeWalk_1" x="92" y="1968" width="44" height="44" frameX="-52" frameY="-125" frameWidth="246" frameHeight="272"/>
+    <SubTexture name="Boss2BulletWebHit_0" x="138" y="1968" width="44" height="43" frameX="-53" frameY="-129" frameWidth="246" frameHeight="237"/>
+    <SubTexture name="Boss2BulletWebHit_2" x="46" y="1968" width="44" height="45" frameX="-53" frameY="-129" frameWidth="246" frameHeight="259"/>
+    <SubTexture name="Boss2BulletWebHit_3" x="2" y="1968" width="42" height="62" frameX="-53" frameY="-122" frameWidth="226" frameHeight="334"/>
+    <SubTexture name="Boss2BulletWebHit_4" x="368" y="1942" width="47" height="86" frameX="-48" frameY="-108" frameWidth="233" frameHeight="426"/>
+    <SubTexture name="Boss2BulletWebHit_5" x="317" y="1942" width="49" height="98" frameX="-46" frameY="-102" frameWidth="233" frameHeight="470"/>
+    <SubTexture name="Boss2BulletWebWalk_2" x="184" y="1968" width="44" height="40" frameX="-52" frameY="-126" frameWidth="246" frameHeight="272"/>
+    <SubTexture name="Boss2CloseCombat_1" x="550" y="785" width="313" height="375" frameX="-91" frameY="-33" frameWidth="433" frameHeight="409"/>
+    <SubTexture name="Boss2CloseCombat_2" x="574" y="381" width="295" height="375" frameX="-114" frameY="-22" frameWidth="433" frameHeight="409"/>
+    <SubTexture name="Boss2CloseCombat_3" x="1152" y="752" width="341" height="365" frameX="-92" frameY="-4" frameWidth="433" frameHeight="409"/>
+    <SubTexture name="Boss2CloseCombat_4" x="879" y="2" width="359" height="369" frameX="-55" frameY="0" frameWidth="433" frameHeight="409"/>
+    <SubTexture name="Boss2CloseCombat_5" x="871" y="381" width="393" height="369" frameX="0" frameY="0" frameWidth="433" frameHeight="409"/>
+    <SubTexture name="Boss2CloseCombat_6" x="869" y="1130" width="355" height="367" frameX="-38" frameY="-21" frameWidth="433" frameHeight="409"/>
+    <SubTexture name="Boss2ShootWeb_1" x="564" y="2" width="313" height="377" frameX="0" frameY="-23" frameWidth="313" frameHeight="405"/>
+    <SubTexture name="Boss2ShootWeb_2" x="582" y="1566" width="279" height="373" frameX="-24" frameY="-18" frameWidth="313" frameHeight="405"/>
+    <SubTexture name="Boss2ShootWeb_3" x="291" y="2" width="271" height="395" frameX="-35" frameY="-10" frameWidth="313" frameHeight="405"/>
+    <SubTexture name="Boss2ShootWeb_4" x="2" y="2" width="287" height="399" frameX="-23" frameY="-2" frameWidth="313" frameHeight="405"/>
+    <SubTexture name="Boss2ShootWeb_5" x="2" y="403" width="295" height="397" frameX="-18" frameY="0" frameWidth="313" frameHeight="405"/>
+    <SubTexture name="Boss2ShootWeb_6" x="2" y="1197" width="285" height="391" frameX="-25" frameY="-3" frameWidth="313" frameHeight="405"/>
+    <SubTexture name="Boss2ShootWeb_7" x="2" y="802" width="269" height="393" frameX="-35" frameY="-10" frameWidth="313" frameHeight="405"/>
+    <SubTexture name="Boss2ShootWeb_8" x="602" y="1162" width="265" height="373" frameX="-38" frameY="-17" frameWidth="313" frameHeight="405"/>
+    <SubTexture name="Boss2Shoot_1" x="289" y="1188" width="311" height="376" frameX="0" frameY="-10" frameWidth="325" frameHeight="388"/>
+    <SubTexture name="Boss2Shoot_2" x="1529" y="2" width="291" height="362" frameX="-11" frameY="-6" frameWidth="325" frameHeight="388"/>
+    <SubTexture name="Boss2Shoot_3" x="1240" y="2" width="287" height="368" frameX="-15" frameY="-1" frameWidth="325" frameHeight="388"/>
+    <SubTexture name="Boss2Shoot_4" x="299" y="399" width="273" height="384" frameX="-37" frameY="0" frameWidth="325" frameHeight="388"/>
+    <SubTexture name="Boss2Shoot_5" x="863" y="1537" width="269" height="368" frameX="-37" frameY="-10" frameWidth="325" frameHeight="388"/>
+    <SubTexture name="Boss2Shoot_6" x="1226" y="1119" width="287" height="350" frameX="-36" frameY="-11" frameWidth="325" frameHeight="388"/>
+    <SubTexture name="Boss2Walk_1" x="2" y="1590" width="313" height="376" frameX="0" frameY="-12" frameWidth="325" frameHeight="388"/>
+    <SubTexture name="Boss2Walk_2" x="1266" y="372" width="291" height="364" frameX="-10" frameY="-6" frameWidth="325" frameHeight="388"/>
+    <SubTexture name="Boss2Walk_3" x="865" y="758" width="285" height="370" frameX="-16" frameY="-1" frameWidth="325" frameHeight="388"/>
+    <SubTexture name="Boss2Walk_4" x="273" y="802" width="275" height="384" frameX="-37" frameY="0" frameWidth="325" frameHeight="388"/>
+    <SubTexture name="Boss2Walk_5" x="317" y="1566" width="263" height="374" frameX="-38" frameY="-6" frameWidth="325" frameHeight="388"/>
+    <SubTexture name="Boss2Walk_6" x="1134" y="1499" width="289" height="356" frameX="-36" frameY="-6" frameWidth="325" frameHeight="388"/>
+</TextureAtlas>

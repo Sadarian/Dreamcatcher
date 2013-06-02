@@ -28,17 +28,23 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
         private var mInit:Boolean;
         private var mLast:String;
         private var mProgressBar:ProgressBar;
+        private var mQualityPath:String;
+        private var mQualityGraphics:String;
 
-        private var contents:Array = ["assets/textures/atlases/STATIC", "assets/audio", "assets/textures/atlases/UI"];
+        private var contents:Array;
 
         public function GraphicsManager():void
         {
-            super(1, false);
+            super(Dreamcatcher.scaleFactor, false);
+            mQualityPath = (Dreamcatcher.scaleFactor == 1)?"HD/":"SD/";
+            mQualityGraphics = (Dreamcatcher.scaleFactor == 1)?"_HD":"_SD";
             mContainers = new Dictionary();
             SoundMixer.soundTransform = new SoundTransform((Dreamcatcher.localObject.data.soundOn)?1:0, 0);
             mProgressBar = new ProgressBar(3);
             mInit = false;
             mLast = "UI";
+
+            contents = ["assets/textures/atlases/"+mQualityPath+"STATIC", "assets/audio", "assets/textures/atlases/"+mQualityPath+"UI"]
             enqueue(EmbeddedAssets);
         }
 
@@ -92,18 +98,18 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
                     MainMenu.resetMainMain();
                     if(Game.currentLvl == -1)
                     {
-                        deleteStream = GameConstants.ENDLESS_LIST;
+                        deleteStream = GameConstants["ENDLESS_LIST"+mQualityGraphics];
                         EndlessMode.reset();
                     }
                     else
-                        deleteStream = GameConstants["LEVEL"+Game.currentLvl+"_LIST"];
+                        deleteStream = GameConstants["LEVEL"+Game.currentLvl+"_LIST"+mQualityGraphics];
                     blendGraphic = true;
                     break;
 
                 default:
                     mContainers = new Dictionary();
-                    loadStream = (Game.currentLvl == -1)?GameConstants.ENDLESS_LIST:GameConstants["LEVEL"+(Game.currentLvl)+"_LIST"];
-                    deleteStream = (mLast == "UI")?GameConstants.UI_LIST:GameConstants["LEVEL"+(Game.currentLvl-1)+"_LIST"];
+                    loadStream = (Game.currentLvl == -1)?GameConstants["ENDLESS_LIST"+mQualityGraphics]:GameConstants["LEVEL"+(Game.currentLvl)+"_LIST"+mQualityGraphics];
+                    deleteStream = (mLast == "UI")?GameConstants["UI_LIST"+mQualityGraphics]:GameConstants["LEVEL"+(Game.currentLvl-1)+"_LIST"+mQualityGraphics];
                     blendScreen = getImage("tutorialScreen_"+(1+Math.round(Math.random()*3)));
                     break;
             }
@@ -111,12 +117,12 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
             for(i = 0;i<deleteStream.length;i++)
                 removeTextureAtlas(deleteStream[i]+"Texture");
             if(dataSet == "UI")
-                enqueue(File.applicationDirectory.resolvePath("assets/textures/atlases/"+dataSet));
+                enqueue(File.applicationDirectory.resolvePath("assets/textures/atlases/"+mQualityPath+dataSet));
             else
                 for(i = 0;i<loadStream.length;i++)
                 {
-                    enqueue(File.applicationDirectory.resolvePath("assets/textures/atlases/LEVEL/"+loadStream[i]+".xml"));
-                    enqueue(File.applicationDirectory.resolvePath("assets/textures/atlases/LEVEL/"+loadStream[i]+"Texture.png"));
+                    enqueue(File.applicationDirectory.resolvePath("assets/textures/atlases/"+mQualityPath+"LEVEL/"+loadStream[i]+".xml"));
+                    enqueue(File.applicationDirectory.resolvePath("assets/textures/atlases/"+mQualityPath+"LEVEL/"+loadStream[i]+"Texture.png"));
                 }
             mLast = dataSet;
 

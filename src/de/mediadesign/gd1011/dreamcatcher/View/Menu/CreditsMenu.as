@@ -35,7 +35,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 			var positions:Array = [[40, 660]];
 			var button:Button;
 
-			var logo:Image = new Image(ProgressBar.splashScreenAtlas.getTexture("Splashscreen"));
+			var logo:Image = new Image(ProgressBar.splashScreenAtlas_HD.getTexture("Splashscreen"));
 			addChild(logo);
 			fadeOut(logo);
 

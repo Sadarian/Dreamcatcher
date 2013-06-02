@@ -14,6 +14,7 @@ package de.mediadesign.gd1011.dreamcatcher
     import flash.media.SoundMixer;
     import flash.media.SoundTransform;
     import flash.net.SharedObject;
+    import flash.system.Capabilities;
 
     import starling.core.Starling;
     import flash.events.*;
@@ -25,6 +26,8 @@ package de.mediadesign.gd1011.dreamcatcher
         public static const debugMode:Boolean = false;
 
         public static var localObject:SharedObject = SharedObject.getLocal("Dreamcatcher");
+
+        public static var scaleFactor:Number;
 
 		private var _starling:Starling;
 
@@ -56,6 +59,9 @@ package de.mediadesign.gd1011.dreamcatcher
 			_starling = new Starling(Game, stage, new Rectangle(0, 0 ,
                     Math.max(stage.fullScreenHeight, stage.fullScreenWidth),
                     Math.min(stage.fullScreenHeight, stage.fullScreenWidth)));
+
+            scaleFactor = (_starling.viewPort.width<=640)?0.5:1;
+
 			_starling.showStats = true;
 			_starling.addEventListener(starling.events.Event.ROOT_CREATED, onRootCreated);
 		}

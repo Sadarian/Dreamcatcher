@@ -229,7 +229,7 @@ package de.mediadesign.gd1011.dreamcatcher
 			{
 				getNoPlayTime();
 			}
-			else if(Starling.juggler.isActive && !MainMenu.isActive() && graphicsManager.initCompleted && !HighScoreMenu.isActive())
+			else if(Starling.juggler.isActive && graphicsManager.initCompleted && !MainMenu.isActive() && !PauseMenu.isActive() && !HighScoreMenu.isActive() && !ContinueMenu.isActive() && !CreditsMenu.isActive() && !TutorialMenu.isActive())
             {
 
                 now = getTimer() / 1000 - noPlayTime - passedLvlTime;
@@ -333,7 +333,7 @@ package de.mediadesign.gd1011.dreamcatcher
             if(e.keyCode==Keyboard.F12)
             {
                 HighScore.resetHighScore();
-                Dreamcatcher.localObject.data.Progress = 1;
+                Dreamcatcher.localObject.data.Progress = 2;
                 Dreamcatcher.localObject.data.Endless = false;
             }
         }

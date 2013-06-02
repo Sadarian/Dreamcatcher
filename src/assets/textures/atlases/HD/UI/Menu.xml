@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:af702d4b21aa8ac4567b091a8df90bf6$ -->
+<TextureAtlas imagePath="MenuTexture.png">
+    <SubTexture name="MainMenuContinueButton" x="1223" y="1697" width="221" height="67"/>
+    <SubTexture name="MainMenuContinueButtonClick" x="1382" y="1766" width="233" height="77"/>
+    <SubTexture name="MainMenuContinueScreen" x="2" y="804" width="1280" height="800"/>
+    <SubTexture name="MainMenuContinueScreenBackButton" x="881" y="1772" width="203" height="130" frameX="-11" frameY="0" frameWidth="225" frameHeight="130"/>
+    <SubTexture name="MainMenuContinueScreenBackButtonClick" x="881" y="1904" width="185" height="124" frameX="-25" frameY="0" frameWidth="225" frameHeight="130"/>
+    <SubTexture name="MainMenuCreditsButton" x="1048" y="1697" width="173" height="71"/>
+    <SubTexture name="MainMenuCreditsButtonClick" x="1174" y="1946" width="185" height="81"/>
+    <SubTexture name="MainMenuDrawerAnim_1" x="798" y="1606" width="156" height="164" frameX="-662" frameY="-330" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="MainMenuDrawerAnim_2" x="612" y="1606" width="184" height="168" frameX="-658" frameY="-337" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="MainMenuDrawerAnim_3" x="611" y="1797" width="268" height="182" frameX="-656" frameY="-336" frameWidth="1280" frameHeight="800"/>
+    <SubTexture name="MainMenuEndlessButton" x="1325" y="1851" width="199" height="79"/>
+    <SubTexture name="MainMenuEndlessButtonClick" x="1048" y="1606" width="211" height="89"/>
+    <SubTexture name="MainMenuHelpButton" x="1361" y="1932" width="25" height="77"/>
+    <SubTexture name="MainMenuHelpButtonClick" x="1261" y="1606" width="39" height="89"/>
+    <SubTexture name="MainMenuPicture" x="2" y="2" width="1280" height="800"/>
+    <SubTexture name="MainMenuSoundButtonOff" x="1068" y="1904" width="104" height="110"/>
+    <SubTexture name="MainMenuSoundButtonOn" x="956" y="1606" width="90" height="110"/>
+    <SubTexture name="MainMenuStartButton" x="1388" y="1932" width="119" height="75"/>
+    <SubTexture name="MainMenuStartButtonClick" x="1249" y="1766" width="131" height="83"/>
+    <SubTexture name="MainMenuStoryButton" x="1174" y="1861" width="149" height="83"/>
+    <SubTexture name="MainMenuStoryButtonClick" x="1086" y="1770" width="161" height="89"/>
+    <SubTexture name="StageScreenSelect Lvl1 Lock" x="307" y="1797" width="302" height="189"/>
+    <SubTexture name="StageSelectScreenLV1" x="307" y="1606" width="303" height="189"/>
+    <SubTexture name="StageSelectScreenLV2 Lock" x="2" y="1797" width="303" height="189"/>
+    <SubTexture name="StageSelectScreenLV2" x="2" y="1606" width="303" height="189"/>
+</TextureAtlas>

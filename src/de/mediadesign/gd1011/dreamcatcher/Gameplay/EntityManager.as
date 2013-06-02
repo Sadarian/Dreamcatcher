@@ -64,7 +64,10 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 		    if(_unusedEntities.length > 0)
 		    {
 			    tempEntity = _unusedEntities.shift();
-                tempEntity.setData(GameConstants.getData(name), position);
+                if(tempEntity != null)
+                    tempEntity.setData(GameConstants.getData(name), position);
+                else
+                    tempEntity = new Entity(GameConstants.getData(name), position);
 		    }
             else
                 tempEntity = new Entity(GameConstants.getData(name), position);

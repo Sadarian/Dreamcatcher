@@ -34,7 +34,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 		public var bossStage:Boolean;
 
-		private var movementSpeeds:Vector.<Number>;
+		private var _movementSpeeds:Vector.<Number>;
 
         private var _pauseButton:PauseButton;
 
@@ -50,7 +50,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 		public function GameStage()
 		{
-			movementSpeeds = GameConstants.GAME_STAGE_MOVEMENT_SPEEDS.concat();
+			_movementSpeeds = GameConstants.GAME_STAGE_MOVEMENT_SPEEDS.concat();
 			containerGroup = new Vector.<StageContainer>(6);
 		}
 
@@ -70,7 +70,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			lvlEnd = false;
 
 			containerGroup = new Vector.<StageContainer>(6);
-			movementSpeeds = GameConstants.GAME_STAGE_MOVEMENT_SPEEDS.concat();
+			_movementSpeeds = GameConstants.GAME_STAGE_MOVEMENT_SPEEDS.concat();
 
 			background = GraphicsManager.graphicsManager.getImage( GameConstants.BACKGROUND);
             addChild(background);
@@ -100,7 +100,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 
 			bossStage = false;
 
-			movementSpeeds = null;
+			_movementSpeeds = null;
 
 			removeChild(_pauseButton, true);
 
@@ -188,7 +188,7 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
 			{
 				for (var i:int = 0; i < containerGroup.length; i++)
 				{
-					containerGroup[i].move(movementSpeeds[i]);
+					containerGroup[i].move(_movementSpeeds[i]);
 					containerGroup[i].swap(bossStage);
 				}
 				if (!bossStage)
@@ -274,8 +274,8 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             }
             function reduceMovementSpeed():void
             {
-                for (var i:int = 0; i < movementSpeeds.length; i++)
-                    movementSpeeds[i] -= GameConstants.GAME_STAGE_MOVEMENT_SPEEDS[i]/100;
+                for (var i:int = 0; i < _movementSpeeds.length; i++)
+                    _movementSpeeds[i] -= GameConstants.GAME_STAGE_MOVEMENT_SPEEDS[i]/100;
             }
             function playerDefault():void
             {
@@ -331,5 +331,10 @@ package de.mediadesign.gd1011.dreamcatcher.Gameplay
             }
 
 		}
-	}
+
+        public function get movementSpeeds():Vector.<Number>
+        {
+            return _movementSpeeds;
+        }
+    }
 }

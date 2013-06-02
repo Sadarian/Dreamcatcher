@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:ce6f361321390f8a4318326736884f80$ -->
-<TextureAtlas imagePath="Background2_lvl1Texture.png">
-    <SubTexture name="Forest_1" x="2" y="778" width="1280" height="382" frameX="0" frameY="0" frameWidth="1280" frameHeight="800"/>
-    <SubTexture name="Forest_2" x="2" y="392" width="1280" height="384" frameX="0" frameY="0" frameWidth="1280" frameHeight="800"/>
-    <SubTexture name="Forest_3" x="2" y="2" width="1280" height="388" frameX="0" frameY="0" frameWidth="1280" frameHeight="800"/>
-    <SubTexture name="ScrollingBackground" x="2" y="1162" width="1238" height="268" frameX="-26" frameY="0" frameWidth="1280" frameHeight="800"/>
-</TextureAtlas>

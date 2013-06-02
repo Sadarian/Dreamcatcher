@@ -1,6 +1,9 @@
 package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
 {
-	import flash.geom.Point;
+    import de.mediadesign.gd1011.dreamcatcher.Game;
+    import de.mediadesign.gd1011.dreamcatcher.Gameplay.GameStage;
+
+    import flash.geom.Point;
 
 	public class MovementPowerUp implements IMovement
 	{
@@ -18,7 +21,7 @@ package de.mediadesign.gd1011.dreamcatcher.Interfaces.Movement
 
 		public function move(deltaTime:Number, position:Point):Point
 		{
-            return position.add(new Point((_speed * Math.cos(0) * deltaTime)*-1, _speed * Math.sin(0) * deltaTime));
+            return position.add(new Point((_speed * GameStage.gameStage.movementSpeeds[0] * Math.cos(0) * deltaTime)*-1, _speed * GameStage.gameStage.movementSpeeds[0]  * Math.sin(0) * deltaTime));
 		}
 	}
 }

@@ -119,7 +119,7 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
 		            TutorialMenu.resetTutorial();
                     mContainers = new Dictionary();
                     loadStream = (Game.currentLvl == -1)?GameConstants["ENDLESS_LIST"+mQualityGraphics]:(Game.currentLvl == -2)?GameConstants["TUTORIAL_LIST"+mQualityGraphics]:GameConstants["LEVEL"+(Game.currentLvl)+"_LIST"+mQualityGraphics];
-                    deleteStream = (mLast == "UI")?GameConstants["UI_LIST"+mQualityGraphics]: (mLast != "LEVEL-2")?GameConstants["TUTORIAL_LIST"+mQualityGraphics]:GameConstants["LEVEL"+(Game.currentLvl-1)+"_LIST"+mQualityGraphics];
+                    deleteStream = (mLast == "UI")?GameConstants["UI_LIST"+mQualityGraphics]: (mLast == "LEVEL-2")?GameConstants["TUTORIAL_LIST"+mQualityGraphics]:GameConstants["LEVEL"+(Game.currentLvl-1)+"_LIST"+mQualityGraphics];
                     blendScreen = getImage("tutorialScreen_"+(1+Math.round(Math.random()*3)));
                     break;
             }

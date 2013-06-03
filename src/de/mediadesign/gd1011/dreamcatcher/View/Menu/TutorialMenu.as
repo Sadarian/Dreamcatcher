@@ -112,7 +112,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 					showHideText();
 					introductionReminder = new TextField(400, 200, "Drag Player to move", "TutorialFont", 30, 0xffffff, true);
 					introductionReminder.x = 190;
-					introductionReminder.y = 720;
+					introductionReminder.y = 650;
 					introductionReminder.pivotX = introductionReminder.width/2;
 					introductionReminder.pivotY = introductionReminder.height/2;
 					introductionReminder.rotation = deg2rad(20);
@@ -315,7 +315,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 					case ENEMYAPPEARS:
 					{
 						passedSecs += passedTime;
-						if (repeatCount == 5 && allowSpawning)
+						if (repeatCount == 5 && allowSpawning && passedSecs >= 2)
 						{
 							passedSecs = 0;
 							repeatCount++;
@@ -366,11 +366,11 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 							passedSecs = 0;
 							repeatCount = 0;
 							allowSpawning = false;
-							for each (var entity:Entity in EntityManager.entityManager.entities)
+							for each (var entityA:Entity in EntityManager.entityManager.entities)
 							{
-								if (entity.isEnemy && entity.health > 0)
+								if (entityA.isEnemy && entityA.health > 0)
 								{
-									entity.health = 0;
+									entityA.health = 0;
 								}
 							}
 							switchTo(GETLIFE);

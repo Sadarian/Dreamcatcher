@@ -1,5 +1,7 @@
 package de.mediadesign.gd1011.dreamcatcher.View
 {
+    import de.mediadesign.gd1011.dreamcatcher.Dreamcatcher;
+
     import starling.display.Image;
     import starling.display.Quad;
     import starling.display.Sprite;

@@ -33,7 +33,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 										"StageSelectScreenLV1",null,
 										"StageSelectScreenLV2", null,
 										"StageSelectScreenLV2 Lock", null];
-            var positions:Array = [[40, 660],[322, 177],[322, 438],[322, 438]];
+            var positions:Array = [[40, 610],[322, 177],[322, 438],[322, 438]];
             var button:Button;
             for(var i:int=0; i<buttonStrings.length;i+=2)
             {

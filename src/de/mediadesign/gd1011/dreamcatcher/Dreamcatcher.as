@@ -58,12 +58,12 @@ package de.mediadesign.gd1011.dreamcatcher
 
             HighScore.initHighScore();
             GameConstants.init();
-			_starling = new Starling(Game, stage, new Rectangle(0, 0 ,
+            trace(stage.fullScreenWidth, stage.fullScreenHeight);
+            _starling = new Starling(Game, stage, new Rectangle(0, 0 ,
                     Math.max(stage.fullScreenHeight, stage.fullScreenWidth),
                     Math.min(stage.fullScreenHeight, stage.fullScreenWidth)));
 
-//            scaleFactor = (Math.min(Capabilities.screenResolutionX, Capabilities.screenResolutionY)<800)?0.5:1;
-			scaleFactor = 0.5;
+            scaleFactor = (Math.min(Capabilities.screenResolutionX, Capabilities.screenResolutionY)<800)?1:0.5;
 
 			_starling.showStats = false;
 			_starling.addEventListener(starling.events.Event.ROOT_CREATED, onRootCreated);

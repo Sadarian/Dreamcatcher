@@ -38,8 +38,10 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
         public function GraphicsManager():void
         {
             super(Dreamcatcher.scaleFactor, false);
-            mQualityPath = (Dreamcatcher.scaleFactor == 1)?"HD/":"SD/";
-            mQualityGraphics = (Dreamcatcher.scaleFactor == 1)?"_HD":"_SD";
+            //mQualityPath = (Dreamcatcher.scaleFactor == 1)?"HD/":"SD/";
+            mQualityPath = "SD/";
+            //mQualityGraphics = (Dreamcatcher.scaleFactor == 1)?"_HD":"_SD";
+            mQualityGraphics = "_SD";
             mContainers = new Dictionary();
             SoundMixer.soundTransform = new SoundTransform((Dreamcatcher.localObject.data.soundOn)?1:0, 0);
             mProgressBar = new ProgressBar(3);

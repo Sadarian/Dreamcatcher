@@ -171,6 +171,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 				case LOSELIFE:
 				{
 					tutorialMenu.addChild(arrow);
+					Starling.juggler.delayCall(tutorialMenu.removeChild, 3, arrow);
 					arrow.x = 150;
 					arrow.y = 100;
 					arrow.rotation = deg2rad(45);
@@ -348,7 +349,7 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 								passedSecs = 0;
 								repeatCount = 0;
 								tutorialMenu.removeChild(introductionReminder);
-								switchTextTo("Donâ€™t get hit!");
+								switchTextTo("Don't get hit!");
 								switchTo(LOSELIFE);
 							}
 							else if(!enemy)
@@ -380,7 +381,6 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 							if (passedSecs >= 3 && !allowSpawning)
 							{
 								allowSpawning = true;
-								tutorialMenu.removeChild(arrow);
 							}
 							if (passedSecs >= 1.5 && allowSpawning)
 							{

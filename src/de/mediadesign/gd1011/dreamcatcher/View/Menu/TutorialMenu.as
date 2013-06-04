@@ -201,6 +201,10 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
 		{
 			if (_phase)
 			{
+				if (player.health < 10)
+				{
+					player.health = 10;
+				}
 				switch (_phase)
 				{
 					case MOVEMENT:

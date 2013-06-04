@@ -186,8 +186,11 @@ package de.mediadesign.gd1011.dreamcatcher.View
 			else if (lifePercent <= 0.25)
 			{
 				playerIcon.texture = GraphicsManager.graphicsManager.getTexture("PlayerLifeBarState_4");
-				exhaustSound = GraphicsManager.graphicsManager.playSound("PlayerExhaust",0);
-				exhaustSound.addEventListener(Event.SOUND_COMPLETE, soundCompleteHandler);
+				exhaustSound = GraphicsManager.graphicsManager.playSound("PlayerExhaust",100);
+				if (exhaustSound)
+				{
+					exhaustSound.addEventListener(Event.SOUND_COMPLETE, soundCompleteHandler);
+				}
 				fadeIn(exhaustOverlay);
 			}
 			else

@@ -36,7 +36,7 @@ package de.mediadesign.gd1011.dreamcatcher
 			Starling.handleLostContext = true;
             Starling.multitouchEnabled = true;
 
-			localObject.data.tutorialSeen = false;
+//			localObject.data.tutorialSeen = false;
 
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;

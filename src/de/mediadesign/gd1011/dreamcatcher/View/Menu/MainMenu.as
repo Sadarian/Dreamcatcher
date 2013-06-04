@@ -170,7 +170,10 @@ package de.mediadesign.gd1011.dreamcatcher.View.Menu
             {
                 active = false;
                 (Starling.current.root as Game).setStartTimeStamp();
-                mainMenu.music.stop();
+	            if (mainMenu.music)
+	            {
+		            mainMenu.music.stop();
+	            }
                 (Starling.current.root as Game).removeChild(mainMenu);
             }
         }

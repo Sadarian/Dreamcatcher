@@ -267,14 +267,16 @@ package de.mediadesign.gd1011.dreamcatcher
                 moveProcess.update(passedTime);
                 shootingProcess.update(passedTime);
                 collisionProcess.update();
-                destroyProcess.update();
-                renderProcess.update();
-                gameStage.update(now);
 
 				if (TutorialMenu.isActive())
 				{
 					TutorialMenu.update(passedTime);
 				}
+
+				destroyProcess.update();
+				renderProcess.update();
+
+                gameStage.update(now);
 
 				Score.update();
 

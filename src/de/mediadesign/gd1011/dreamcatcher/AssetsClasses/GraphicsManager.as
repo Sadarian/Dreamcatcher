@@ -39,9 +39,9 @@ package de.mediadesign.gd1011.dreamcatcher.AssetsClasses
         {
             super(Dreamcatcher.scaleFactor, false);
             //mQualityPath = (Dreamcatcher.scaleFactor == 1)?"HD/":"SD/";
-            mQualityPath = "SD/";
+            mQualityPath = "HD/";
             //mQualityGraphics = (Dreamcatcher.scaleFactor == 1)?"_HD":"_SD";
-            mQualityGraphics = "_SD";
+            mQualityGraphics = "_HD";
             mContainers = new Dictionary();
             SoundMixer.soundTransform = new SoundTransform((Dreamcatcher.localObject.data.soundOn)?1:0, 0);
             mProgressBar = new ProgressBar(3);

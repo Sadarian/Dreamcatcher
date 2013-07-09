@@ -61,7 +61,7 @@ package de.mediadesign.gd1011.dreamcatcher
                     Math.max(stage.fullScreenHeight, stage.fullScreenWidth),
                     Math.min(stage.fullScreenHeight, stage.fullScreenWidth)));
 
-            scaleFactor = 0.5;
+            scaleFactor = 1;
 
 			_starling.showStats = false;
 			_starling.addEventListener(starling.events.Event.ROOT_CREATED, onRootCreated);

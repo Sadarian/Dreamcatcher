@@ -13,8 +13,7 @@ package de.mediadesign.gd1011.dreamcatcher
 	import flash.geom.Rectangle;
     import flash.media.SoundMixer;
     import flash.media.SoundTransform;
-    import flash.net.SharedObject;
-    import flash.system.Capabilities;
+    import flash.net.SharedObject
 
     import starling.core.Starling;
     import flash.events.*;
@@ -58,12 +57,11 @@ package de.mediadesign.gd1011.dreamcatcher
 
             HighScore.initHighScore();
             GameConstants.init();
-            trace(stage.fullScreenWidth, stage.fullScreenHeight);
             _starling = new Starling(Game, stage, new Rectangle(0, 0 ,
                     Math.max(stage.fullScreenHeight, stage.fullScreenWidth),
                     Math.min(stage.fullScreenHeight, stage.fullScreenWidth)));
 
-            scaleFactor = (Math.min(Capabilities.screenResolutionX, Capabilities.screenResolutionY)<800)?1:0.5;
+            scaleFactor = 0.5;
 
 			_starling.showStats = false;
 			_starling.addEventListener(starling.events.Event.ROOT_CREATED, onRootCreated);
